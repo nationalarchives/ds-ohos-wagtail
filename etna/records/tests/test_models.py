@@ -488,6 +488,7 @@ class UnexpectedParsingIssueTest(SimpleTestCase):
 
         self.assertEqual(record.related_articles, ())
 
+
 @override_settings(CLIENT_BASE_URL=f"{settings.CLIENT_BASE_URL}")
 class ArchiveRecordModelTests(SimpleTestCase):
     """Record model tests for an Archive record"""

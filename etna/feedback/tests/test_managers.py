@@ -1,6 +1,6 @@
-from django.contrib.contenttypes.models import ContentType
 import unittest
 
+from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 
 from wagtail.models import Page

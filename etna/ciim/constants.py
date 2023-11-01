@@ -27,6 +27,7 @@ class SearchTabs(StrEnum):
     ALL = "All results"
     CATALOGUE = "Catalogue results"
 
+
 class Aggregation(StrEnum):
     """Aggregated counts to include with response.
 

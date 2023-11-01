@@ -510,6 +510,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                 content,
             )
 
+
 class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
     test_url = reverse_lazy(
         "search-catalogue-long-filter-chooser", kwargs={"field_name": "collection"}
@@ -588,6 +589,7 @@ class FeaturedSearchTestCase(SearchViewTestCase):
             self.client.session.get("back_to_search_url"),
             "/search/featured/?q=query",
         )
+
 
 class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
     def assertDataLayerEquals(
@@ -923,6 +925,7 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
                 "customMetric2": 0,
             },
         )
+
 
 class RecordCreatorsTestCase(WagtailTestUtils, TestCase):
     maxDiff = None

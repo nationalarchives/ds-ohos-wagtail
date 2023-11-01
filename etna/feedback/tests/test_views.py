@@ -1,6 +1,7 @@
 import unittest
 
 from http import HTTPStatus
+
 from django.contrib.auth.models import Permission
 from django.test import TestCase, override_settings
 from django.urls import reverse
