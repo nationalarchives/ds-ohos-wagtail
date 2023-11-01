@@ -3,22 +3,14 @@ import logging
 import re
 
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
-from urllib.parse import urlparse
 
-from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Page as PaginatorPage
-from django.db.models import Count, Q
 from django.forms import Form
 from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadRequest
 from django.utils import timezone
-from django.utils.text import capfirst
 from django.views.generic import FormView, TemplateView
-from django.views.generic.list import MultipleObjectMixin
 
 from wagtail.coreutils import camelcase_to_underscore
-from wagtail.models import Page
-from wagtail.query import PageQuerySet
-from wagtail.search.backends.database.postgres.postgres import PostgresSearchResults
 
 from ..analytics.mixins import SearchDataLayerMixin
 from ..ciim.client import Aggregation, SortBy, SortOrder, Stream, Template
@@ -34,10 +26,8 @@ from ..ciim.constants import (
 )
 from ..ciim.paginator import APIPaginator
 from ..ciim.utils import underscore_to_camelcase
-from ..home.models import HomePage
 from ..records.api import records_client
 from .forms import CatalogueSearchForm, FeaturedSearchForm
-from .utils import normalise_native_search_query
 
 logger = logging.getLogger(__name__)
 

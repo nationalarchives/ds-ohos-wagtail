@@ -1,5 +1,4 @@
 import json as json_module
-import unittest
 
 from typing import Any, Dict
 
@@ -11,11 +10,9 @@ from wagtail.test.utils import WagtailTestUtils
 
 import responses
 
-from etna.ciim.constants import DEFAULT_AGGREGATIONS, Aggregation, Bucket, BucketList
 from etna.core.test_utils import prevent_request_warnings
 
 from ...ciim.tests.factories import create_response, create_search_response
-from ...home.models import HomePage
 from ..forms import CatalogueSearchForm
 from ..views import CatalogueSearchView
 
@@ -546,7 +543,7 @@ class FeaturedSearchTestCase(SearchViewTestCase):
 
     @responses.activate
     def test_without_search_query(self):
-        response = self.client.get(self.test_url)
+        _ = self.client.get(self.test_url)
 
         # The API should be requested without a search query
         self.assertEqual(len(responses.calls), 1)
@@ -568,7 +565,7 @@ class FeaturedSearchTestCase(SearchViewTestCase):
 
     @responses.activate
     def test_with_search_query(self):
-        response = self.client.get(self.test_url, data={"q": "query"})
+        _ = self.client.get(self.test_url, data={"q": "query"})
 
         # The query should be passed to the search API
         self.assertEqual(len(responses.calls), 1)
