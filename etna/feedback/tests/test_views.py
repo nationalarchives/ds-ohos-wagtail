@@ -1,5 +1,3 @@
-import unittest
-
 from http import HTTPStatus
 
 from django.contrib.auth.models import Permission
@@ -19,7 +17,6 @@ from etna.feedback.utils import sign_submission_id
 from .constants import VALID_URL
 
 
-@unittest.skip("TODO: temporary skip until data migrated for OHOS")
 @override_settings(ALLOWED_HOSTS=["*"])
 class TestFeedbackSubmitView(WagtailTestUtils, TestCase):
     """
@@ -53,6 +50,7 @@ class TestFeedbackSubmitView(WagtailTestUtils, TestCase):
         # and mark it as the latest
         page = Page.objects.get(depth=2).specific
         page.teaser_text = "New teaser text"
+        page.intro = "New intro text"
         revision = page.save_revision(clean=False, changed=True)
         revision.publish()
         cls.page = page
@@ -194,7 +192,6 @@ class TestFeedbackSubmitView(WagtailTestUtils, TestCase):
         )
 
 
-@unittest.skip("TODO: temporary skip until data migrated for OHOS")
 @override_settings(ALLOWED_HOSTS=["*"])
 class TestFeedbackCommentSubmitView(WagtailTestUtils, TestCase):
     maxDiff = None
@@ -333,7 +330,6 @@ class TestFeedbackCommentSubmitView(WagtailTestUtils, TestCase):
         )
 
 
-@unittest.skip("TODO: temporary skip until data migrated for OHOS")
 class TestFeedbackSuccessView(TestCase):
     """
     Integration tests for `etna.feedback.views.FeedbackSuccessView`,
@@ -440,7 +436,6 @@ class TestFeedbackSuccessView(TestCase):
         )
 
 
-@unittest.skip("TODO: temporary skip until data migrated for OHOS")
 class TestFeedbackCommentSuccessView(TestCase):
     """
     Integration tests for `etna.feedback.views.FeedbackCommentSuccessView`,

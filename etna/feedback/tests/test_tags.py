@@ -1,5 +1,3 @@
-import unittest
-
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpRequest
 from django.test import TestCase, override_settings
@@ -21,7 +19,6 @@ def fake_request_context(path: str, page: Page | None = None):
     return {"request": request, "page": page}
 
 
-@unittest.skip("TODO: temporary skip until data migrated for OHOS")
 class TestRenderFeedbackPromptTag(TestCase):
     """
     Unit tests for `{% render_feedback_prompt %}`

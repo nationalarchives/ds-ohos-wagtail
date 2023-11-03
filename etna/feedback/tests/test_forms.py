@@ -1,5 +1,3 @@
-import unittest
-
 from typing import Dict, List
 
 from django.test import TestCase, override_settings
@@ -12,7 +10,6 @@ from etna.feedback.tests import constants
 from etna.feedback.widgets import ResponseSubmitButtonList
 
 
-@unittest.skip("TODO: temporary skip until data migrated for OHOS")
 @override_settings(ALLOWED_HOSTS=[constants.VALID_DOMAIN])
 class TestSubmissionFormValidation(TestCase):
     """
@@ -30,6 +27,7 @@ class TestSubmissionFormValidation(TestCase):
         # for a page and mark it as the latest
         page = Page.objects.get(depth=2).specific
         page.teaser_text = "New teaser text"
+        page.intro = "New intro text"
         revision = page.save_revision(clean=False, changed=True)
         page.latest_revision = revision
         page.save(update_fields=["latest_revision"])

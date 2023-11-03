@@ -1,5 +1,3 @@
-import unittest
-
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 
@@ -10,7 +8,6 @@ from etna.generic_pages.models import GeneralPage
 from etna.home.models import HomePage
 
 
-@unittest.skip("TODO: temporary skip until data migrated for OHOS")
 class TestGetForPath(TestCase):
     """
     Unit tests for `FeedbackPromptManager.get_for_path()`
