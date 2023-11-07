@@ -48,14 +48,6 @@ services:
       - FEATURE_BETA_BANNER_ENABLED=False
       - KEEP_ALIVE=30
 
-  docs:
-    container_name: docs
-    image: squidfunk/mkdocs-material
-    volumes:
-      - .:/docs
-    ports:
-      - 8001:8000
-
   dev:
     container_name: dev
     build:
