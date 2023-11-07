@@ -28,6 +28,8 @@ def create_homepage(apps, schema_editor):
         depth=2,
         numchild=0,
         url_path="/home/",
+        intro="Welcome to our site",
+        teaser_text="Site homepage",
         locale_id=1,
     )
 
