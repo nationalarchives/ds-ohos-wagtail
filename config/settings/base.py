@@ -387,7 +387,7 @@ FEATURE_BETA_BANNER_ENABLED = strtobool(
     os.getenv("FEATURE_BETA_BANNER_ENABLED", "True")
 )
 FEATURE_COOKIE_BANNER_ENABLED = strtobool(
-    os.getenv("FEATURE_COOKIE_BANNER_ENABLED", "True")
+    os.getenv("FEATURE_COOKIE_BANNER_ENABLED", "False")
 )
 
 # TODO: This feature to update and test the env var for the deployment environment
