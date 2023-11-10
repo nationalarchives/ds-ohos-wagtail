@@ -465,7 +465,7 @@ Modified to match the existing site (for now)
 
     .generic-intro,
     .generic-intro__meta {
-        @include colour.invert;
+        @include colourTools.invert;
         background-color: #343338 !important;
         color: #fff !important;
 
