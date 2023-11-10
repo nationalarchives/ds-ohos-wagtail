@@ -431,6 +431,8 @@ Modified to match the existing site (for now)
             }
         }
     }
+}
+
 .tna-large-paragraph {
     @include colour.colour-font("font-dark");
     @include typography.relative-font-size(22);
