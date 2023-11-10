@@ -19,8 +19,7 @@ LOCAL_DATABASE_NAME = os.getenv("DATABASE_NAME")
 LOCAL_DATABASE_USERNAME = os.getenv("DATABASE_USER")
 
 PLATFORM_PROJECT_ID = "rasrzs7pi6sd4"
-PRODUCTION_APP_INSTANCE = "main"
-STAGING_APP_INSTANCE = "develop"
+STAGING_APP_INSTANCE = "test-deploy-ohos"
 
 LOCAL_DB_DUMP_DIR = "database_dumps"
 
@@ -267,23 +266,6 @@ def restore_db(c, filename, delete_dump_on_success=False, delete_dump_on_error=F
 
 
 # -----------------------------------------------------------------------------
-# Pull from Production
-# -----------------------------------------------------------------------------
-
-
-@task
-def pull_production_data(c):
-    """Pull database from the production platform.sh env"""
-    pull_database_from_platform(c, PRODUCTION_APP_INSTANCE)
-
-
-@task
-def pull_production_media(c):
-    """Pull all media from the production platform.sh env"""
-    pull_media_from_platform(c, PRODUCTION_APP_INSTANCE)
-
-
-# -----------------------------------------------------------------------------
 # Pull from Staging
 # -----------------------------------------------------------------------------
 
@@ -362,4 +344,4 @@ def pull_media_from_platform(
         f"platform mount:download -e {environment_name} -p {PLATFORM_PROJECT_ID} -m media "
         "--target=media --exclude='/images/*' --yes"
     )
-    delete_local_renditions(c)
+    # delete_local_renditions(c)
