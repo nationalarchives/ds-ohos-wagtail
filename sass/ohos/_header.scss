@@ -1,3 +1,7 @@
+@use "@nationalarchives/frontend/nationalarchives/tools/typography";
+@use "@nationalarchives/frontend/nationalarchives/tools/colour";
+@use "@nationalarchives/frontend/nationalarchives/tools/media";
+
 /**
  * Specific theme and style overrides for OHOS project
  */
@@ -14,7 +18,7 @@
     &,
     &:visited {
         @include media.on-larger-than-mobile {
-            @include colourTools.colour-font("accent");
+            @include colour.colour-font("accent");
         }
     }
 
@@ -23,7 +27,7 @@
     &--selected:visited {
         .tna-template--light-theme & {
             @include media.on-larger-than-mobile {
-                @include colourTools.colour-font("contrast-background");
+                @include colour.colour-font("contrast-background");
                 background: var(--background-tint);
             }
         }
@@ -41,8 +45,8 @@
 
     @include media.on-larger-than-mobile {
         @include typography.heading-font;
+        @include typography.relative-font-size(30);
         display: inline;
-        font-size: rem(30px);
     }
 }
 
