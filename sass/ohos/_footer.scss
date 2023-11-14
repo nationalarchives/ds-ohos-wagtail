@@ -27,7 +27,7 @@
 
                 border: 0 transparent solid;
                 border-width: 4px 0;
-å
+
                 .fa-solid,
                 .fa-brands {
                     font-size: 2rem;
@@ -36,7 +36,7 @@
                 &:has(.fa-solid),
                 &:has(.fa-brands) {
                     &:hover {
-                        @include colour.colour-border(
+                        @include colourTools.colour-border(
                             "link",
                             4px,
                             solid,
