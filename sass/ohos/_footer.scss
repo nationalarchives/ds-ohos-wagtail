@@ -36,7 +36,7 @@
                 &:has(.fa-solid),
                 &:has(.fa-brands) {
                     &:hover {
-                        @include colourTools.colour-border(
+                        @include colour.colour-border(
                             "link",
                             4px,
                             solid,
