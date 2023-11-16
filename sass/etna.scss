@@ -59,6 +59,9 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/typography";
 @use "@nationalarchives/frontend/nationalarchives/variables/grid";
 
+// Redeclare $orange to match OHOS orange
+$orange: #FA8334;
+
 .tna-heading--l,
 .tna-heading--m {
     @include colourTools.colour-font("font-base");
