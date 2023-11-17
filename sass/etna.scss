@@ -55,6 +55,7 @@
 
 @use "@nationalarchives/frontend/nationalarchives/tools/media";
 @use "@nationalarchives/frontend/nationalarchives/tools/colour" as colourTools;
+@use "@nationalarchives/frontend/nationalarchives/tools/spacing";
 @use "@nationalarchives/frontend/nationalarchives/tools/typography";
 @use "@nationalarchives/frontend/nationalarchives/variables/grid";
 
@@ -77,6 +78,8 @@
 }
 
 .ohos-search {
+    @include spacing.space-above;
+
     display: flex;
     align-items: stretch;
 
@@ -173,8 +176,6 @@ These are Etna specific components, created using BEM and following our guidelin
 @import "includes/variables";
 @import "includes/mixins";
 @import "includes/global";
-@import "includes/buttons";
-// @import "includes/generic-intro";
 @import "includes/hero-image";
 @import "includes/jumplinks";
 @import "includes/links";
@@ -214,6 +215,7 @@ These are Etna specific components, created using BEM and following our guidelin
 @import "includes/featured-articles";
 @import "includes/filters";
 @import "includes/full-width-header";
+@import "includes/listing-info";
 @import "includes/meta";
 @import "includes/media-embed";
 @import "includes/people";
@@ -260,6 +262,7 @@ These are Etna specific components, created using BEM and following our guidelin
 @import "includes/highlight-cards";
 // @import "includes/highlight-intro";
 @import "includes/utilities";
+@import "includes/accordion";
 @import "includes/archive-description";
 @import "includes/archive-collections";
 @import "includes/archive-additional-resources";
@@ -275,6 +278,9 @@ These are Etna specific components, created using BEM and following our guidelin
 @import "includes/record-creator-description";
 @import "includes/record-creator-collections";
 
+@import "ohos/header";
+@import "ohos/footer";
+
 /* Un-comment when front-end toolkit is fixed
 
 ==============
@@ -289,20 +295,6 @@ Modified to match the existing site (for now)
 
 .tna-template {
     overflow: initial !important;
-}
-
-.tna-header__navigation-item-link {
-    &:hover,
-    &--selected,
-    &--selected:visited {
-        background: #fff !important;
-    }
-}
-
-@include media.on-mobile {
-    .tna-header__navigation-items {
-        background: #fff !important;
-    }
 }
 
 .tna-breadcrumbs {
@@ -385,51 +377,6 @@ Modified to match the existing site (for now)
         @include colourTools.plain;
         background-color: transparent;
         border: none;
-    }
-}
-
-.tna-footer {
-    &__social {
-        &-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-        &-item {
-            margin: 0;
-
-            &-link {
-                min-width: calc(2rem + 4px);
-                padding: 4px;
-
-                display: block;
-
-                text-align: center;
-                line-height: 1;
-
-                border: 0 transparent solid;
-                border-width: 4px 0;
-
-                .fa-solid,
-                .fa-brands {
-                    font-size: 2rem;
-                }
-
-                &:has(.fa-solid),
-                &:has(.fa-brands) {
-                    &:hover {
-                        @include colourTools.colour-border(
-                            "link",
-                            4px,
-                            solid,
-                            bottom
-                        );
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -694,14 +641,8 @@ Modified to match the existing site (for now)
     }
 }
 
-// tna-container variant with an offset top - used on what's on landing page
+// tna-container variant which is full-width at mobile - used on what's on landing page
 .tna-container {
-    &--offset-top {
-        @include media.on-larger-than-mobile {
-            margin-top: -9rem;
-        }
-    }
-
     &--full-width-mobile {
         @include media.on-mobile {
             padding-left: 0;
@@ -730,6 +671,7 @@ Modified to match the existing site (for now)
     @include colourTools.light-accent-background;
     color: colourTools.brand-colour("black");
     padding: 1.5rem 2rem 2rem 2rem;
+    margin-top: 2rem;
 }
 
 //
@@ -746,6 +688,12 @@ Modified to match the existing site (for now)
 
     .tna-breadcrumbs__link {
         color: $color--white;
+    }
+
+    .tna-breadcrumbs__item {
+        &:before {
+            color: $color--white;
+        }
     }
 
     .tna-heading {
