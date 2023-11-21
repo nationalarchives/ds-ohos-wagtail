@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - ohos
+      - test-deploy-ohos
     paths:
       # Host config
       - '.plaform/**'
