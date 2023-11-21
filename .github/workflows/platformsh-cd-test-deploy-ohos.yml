@@ -46,14 +46,4 @@ jobs:
           cli-token: ${{ secrets.PLATFORM_CLI_TOKEN }}
           ssh-private-key: ${{ secrets.PLATFORM_SSH_KEY }}
           force-push: true
-          environment-name: ${{ steps.extract_branch.outputs.BRANCH }}
-
-  notify-slack:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-    - uses: actions/checkout@v3
-    - uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_TITLE: "A deployment to develop is complete"
+          environment-name: test-deploy-ohos
