@@ -3,14 +3,14 @@
 <nav class="tna-pagination" role="navigation" aria-label="Pagination" id="analytics-disambiguation-pagination">
     {% if page.has_previous %}
     <div class="tna-pagination__prev">
-      <a class="tna-button tna-pagination__link" href="?{% query_string_include 'page' page.previous_page_number %}" role="button" rel="prev" data-link-type="Pagination"  data-link="Previous page">
-        <svg class="tna-pagination__icon tna-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
-          <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
-        </svg>
-        <span class="tna-pagination__link-title">
-          Previous
-        </span>
-      </a>
+        <a class="tna-button tna-pagination__link" href="?{% query_string_include 'page' page.previous_page_number %}" role="button" rel="prev" data-link-type="Pagination"  data-link="Previous page">
+            <svg class="tna-pagination__icon tna-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="tna-pagination__link-title">
+                Previous
+            </span>
+        </a>
     </div>
     {% endif %}
     <ul class="tna-pagination__list">
@@ -18,20 +18,15 @@
             {% if i == page.paginator.ELLIPSIS %}
             <li class="tna-pagination__item tna-pagination__item--ellipses">&ctdot;</li>
             {% else %}
-                {# API will return up to 5020 results so cap the pagination there #}
-                {% if i < 252 %}
-                    <li class="tna-pagination__item{% if page.number == i %} tna-pagination__item--current{% endif %}">
-                        <a class="tna-button{% if page.number == i %} tna-button--accent{% endif %} tna-pagination__link" href="?{% query_string_include 'page' i %}" aria-label="Page {{ i }}" data-link-type="Pagination" data-link="{{ i }}" role="button"{% if page.number == i %} aria-current="page"{% endif %}>
-                            {{ i }}
-                        </a>
-                    </li>
-                {% endif %}
+                <li class="tna-pagination__item{% if page.number == i %} tna-pagination__item--current{% endif %}">
+                    <a class="tna-button{% if page.number == i %} tna-button--accent{% endif %} tna-pagination__link" href="?{% query_string_include 'page' i %}" aria-label="Page {{ i }}" data-link-type="Pagination" data-link="{{ i }}" role="button"{% if page.number == i %} aria-current="page"{% endif %}>
+                        {{ i }}
+                    </a>
+                </li>
             {% endif %}
         {% endfor %}
     </ul>
     {% if page.has_next %}
-        {# API will return up to 5020 results so cap the pagination there #}
-        {% if page.next_page_number < 252 %}
         <div class="tna-pagination__next">
             <a class="tna-button tna-pagination__link" href="?{% query_string_include 'page' page.next_page_number %}" role="button" rel="next" data-link-type="Pagination"  data-link="Next page">
                 <span class="tna-pagination__link-title">Next</span>
@@ -40,7 +35,6 @@
                 </svg>
             </a>
         </div>
-        {% endif %}
     {% endif %}
 </nav>
 {% endif %}
