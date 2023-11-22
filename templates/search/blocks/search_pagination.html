@@ -18,14 +18,14 @@
             {% if i == page.paginator.ELLIPSIS %}
             <li class="tna-pagination__item tna-pagination__item--ellipses">&ctdot;</li>
             {% else %}
-            {# API will return up to 5020 results so cap the pagination there #}
-            {% if i < 252 %}
-                <li class="tna-pagination__item{% if page.number == i %} tna-pagination__item--current{% endif %}">
-                    <a class="tna-button{% if page.number == i %} tna-button--accent{% endif %} tna-pagination__link" href="?{% query_string_include 'page' i %}" aria-label="Page {{ i }}" data-link-type="Pagination" data-link="{{ i }}" role="button"{% if page.number == i %} aria-current="page"{% endif %}>
-                        {{ i }}
-                    </a>
-                </li>
-            {% endif %}
+                {# API will return up to 5020 results so cap the pagination there #}
+                {% if i < 252 %}
+                    <li class="tna-pagination__item{% if page.number == i %} tna-pagination__item--current{% endif %}">
+                        <a class="tna-button{% if page.number == i %} tna-button--accent{% endif %} tna-pagination__link" href="?{% query_string_include 'page' i %}" aria-label="Page {{ i }}" data-link-type="Pagination" data-link="{{ i }}" role="button"{% if page.number == i %} aria-current="page"{% endif %}>
+                            {{ i }}
+                        </a>
+                    </li>
+                {% endif %}
             {% endif %}
         {% endfor %}
     </ul>
