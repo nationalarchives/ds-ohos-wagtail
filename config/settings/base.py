@@ -36,10 +36,14 @@ INSTALLED_APPS = [
     "etna.generic_pages",
     "etna.alerts",
     "etna.analytics",
+    "etna.articles",
+    "etna.categories",
     "etna.ciim",
     "etna.core",
     "etna.feedback",
     "etna.home",
+    "etna.images",
+    "etna.media",
     "etna.navigation",
     "etna.records",
     "etna.search",
@@ -255,6 +259,11 @@ MEDIA_URL = "/media/"
 # to serve static files even when DEBUG is False
 DJANGO_SERVE_STATIC = False
 
+WAGTAILMEDIA = {
+    "MEDIA_MODEL": "media.EtnaMedia",
+    "MEDIA_FORM_BASE": "etna.media.forms.BaseMediaForm",
+}
+
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "etna"
@@ -270,9 +279,12 @@ WAGTAILSEARCH_BACKENDS = {
     }
 }
 
+WAGTAILIMAGES_IMAGE_MODEL = "images.CustomImage"
+
 # Custom password template for private pages
 
 PASSWORD_REQUIRED_TEMPLATE = "password_pages/password_required.html"
+
 
 # API Client
 
@@ -290,13 +302,12 @@ INLINE_RICH_TEXT_FEATURES = [
     "italic",
     "link",
 ]
-RESTRICTED_RICH_TEXT_FEATURES = INLINE_RICH_TEXT_FEATURES + [
+RESTRICTED_RICH_TEXT_FEATURES = [
+    "bold",
+    "italic",
+    "link",
     "ol",
     "ul",
-]
-EXPANDED_RICH_TEXT_FEATURES = RESTRICTED_RICH_TEXT_FEATURES + [
-    "h2",
-    "h3",
 ]
 
 # Analytics
@@ -390,10 +401,8 @@ FEATURE_BETA_BANNER_ENABLED = strtobool(
 FEATURE_COOKIE_BANNER_ENABLED = strtobool(
     os.getenv("FEATURE_COOKIE_BANNER_ENABLED", "False")
 )
-
-# TODO: This feature to update and test the env var for the deployment environment
 FEATURE_PLATFORM_ENVIRONMENT_TYPE = os.getenv("PLATFORM_ENVIRONMENT_TYPE", "production")
-
 FEATURE_FEEDBACK_MECHANISM_ENABLED = strtobool(
     os.getenv("FEATURE_FEEDBACK_MECHANISM_ENABLED", "False")
 )
+
