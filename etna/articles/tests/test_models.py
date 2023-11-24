@@ -1,8 +1,6 @@
 from django.test import TestCase
 
-from wagtail.models import Site
-
-from ..models import ArticlePage, ArticleTag
+from ..models import ArticleTag
 
 
 class TestArticleTagClean(TestCase):
