@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     "etna.core",
     "etna.feedback",
     "etna.home",
-    "etna.images",
-    "etna.media",
     "etna.navigation",
     "etna.records",
     "etna.search",
@@ -259,11 +257,6 @@ MEDIA_URL = "/media/"
 # to serve static files even when DEBUG is False
 DJANGO_SERVE_STATIC = False
 
-WAGTAILMEDIA = {
-    "MEDIA_MODEL": "media.EtnaMedia",
-    "MEDIA_FORM_BASE": "etna.media.forms.BaseMediaForm",
-}
-
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "etna"
@@ -279,7 +272,6 @@ WAGTAILSEARCH_BACKENDS = {
     }
 }
 
-WAGTAILIMAGES_IMAGE_MODEL = "images.CustomImage"
 
 # Custom password template for private pages
 
