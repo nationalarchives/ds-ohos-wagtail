@@ -33,10 +33,7 @@ from etna.core.models import (
 from etna.core.utils import skos_id_from_text
 from etna.records.fields import RecordField
 
-from .blocks import (
-    ArticlePageStreamBlock,
-    FeaturedCollectionBlock,
-)
+from .blocks import ArticlePageStreamBlock, FeaturedCollectionBlock
 
 
 @register_snippet
@@ -151,7 +148,7 @@ class ArticlePage(
     promote_panels = (
         NewLabelMixin.promote_panels
         + BasePageWithIntro.promote_panels
-        + ArticleTagMixin.promote_panels        
+        + ArticleTagMixin.promote_panels
     )
 
     subpage_types = []

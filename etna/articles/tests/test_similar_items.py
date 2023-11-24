@@ -104,4 +104,3 @@ class TestArticlePageSimilarItems(TestCase):
         test_page = ArticlePage.objects.get(id=self.different_tags_page.id)
         with self.assertNumQueries(4):
             self.assertFalse(test_page.similar_items)
-

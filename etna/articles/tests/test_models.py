@@ -28,4 +28,3 @@ class TestArticleTagClean(TestCase):
         tag = ArticleTag(name="Test", slug="test-3")
         tag.clean()
         self.assertEqual(tag.skos_id, "Test_3")
-

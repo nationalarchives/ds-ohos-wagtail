@@ -12,4 +12,3 @@ class ArticlePageFactory(BasePageFactory):
 
     class Meta:
         model = app_models.ArticlePage
-
