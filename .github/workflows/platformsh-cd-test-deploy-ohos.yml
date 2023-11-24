@@ -1,4 +1,4 @@
-name: CD - develop (platform.sh)
+name: CD - test-deploy-ohos (platform.sh)
 
 on:
   workflow_dispatch:
