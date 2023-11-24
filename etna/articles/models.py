@@ -1,6 +1,5 @@
 from typing import Any, Dict, List, Tuple, Union
 
-from django.conf import settings
 from django.db import models
 from django.http import HttpRequest
 from django.utils.functional import cached_property
@@ -9,12 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
-from wagtail.admin.panels import (
-    FieldPanel,
-    InlinePanel,
-    MultiFieldPanel,
-    PageChooserPanel,
-)
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail.images import get_image_model_string
 from wagtail.models import Orderable, Page
@@ -26,14 +20,12 @@ from taggit.models import ItemBase, TagBase
 from etna.core.models import (
     BasePageWithIntro,
     ContentWarningMixin,
-    HeroImageMixin,
     NewLabelMixin,
     RequiredHeroImageMixin,
 )
 from etna.core.utils import skos_id_from_text
-from etna.records.fields import RecordField
 
-from .blocks import ArticlePageStreamBlock, FeaturedCollectionBlock
+from .blocks import ArticlePageStreamBlock
 
 
 @register_snippet
