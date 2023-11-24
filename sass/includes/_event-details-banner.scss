@@ -2,7 +2,7 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/colour";
 
 .event-details-banner {
-    @include colour.light-accent-background;
+    @include colour.accent-light;
 
     &__cta {
         margin: 2rem 0 0 0;
@@ -12,5 +12,14 @@
         @include media.on-larger-than-mobile {
             margin: 1rem 0;
         }
+    }
+
+    &__link,
+    &__link:visited {
+        @include colour.colour-font("font-dark");
+    }
+
+    &__address {
+        display: inline;
     }
 }

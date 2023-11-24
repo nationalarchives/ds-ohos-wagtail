@@ -8,7 +8,7 @@
 @use "@nationalarchives/frontend/nationalarchives/variables/colour" with (
     $colour-palette-default: (
         "page-background": #f4f4f4,
-        "background-tint": #d8d8d8,
+        "background-tint": #d9d9d6,
         "font-base": #222,
         "font-dark": #047584,
         "font-light": rgb(0 0 0 / 0.7),
@@ -59,6 +59,9 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/typography";
 @use "@nationalarchives/frontend/nationalarchives/variables/grid";
 
+// Redeclare $orange to match OHOS orange
+$orange: #fa8334;
+
 .tna-heading--l,
 .tna-heading--m {
     @include colourTools.colour-font("font-base");
@@ -68,30 +71,9 @@
     padding: 1rem !important;
 }
 
-.tna-pagination {
-    justify-content: space-between !important;
-}
-
 .tna-background--accent {
     --font-base: #000;
     --font-dark: #000;
-}
-
-.ohos-search {
-    @include spacing.space-above;
-
-    display: flex;
-    align-items: stretch;
-
-    &__input {
-        display: block;
-        flex: 1;
-
-        @include typography.relative-font-size(20);
-
-        @include colourTools.colour-border("keyline-dark", 1px, solid);
-        border-right: none;
-    }
 }
 
 .ohos-stats {
@@ -234,14 +216,13 @@ These are Etna specific components, created using BEM and following our guidelin
 @import "includes/record-related-content";
 @import "includes/search/search-button";
 @import "includes/search/search-results";
-@import "includes/search/search-results-hero";
 @import "includes/search/search-buckets";
 @import "includes/search/search-sort-view";
 @import "includes/search/search-filters";
 @import "includes/search/catalogue-search-grid";
 @import "includes/search/search-results__list-card";
 @import "includes/search/global-search";
-@import "includes/search/search-landing-hero";
+@import "includes/search/search-hero";
 @import "includes/search/search-landing-buckets";
 @import "includes/search/featured-search";
 @import "includes/search/long-filters";
@@ -280,6 +261,8 @@ These are Etna specific components, created using BEM and following our guidelin
 
 @import "ohos/header";
 @import "ohos/footer";
+@import "ohos/pagination";
+@import "ohos/tags";
 
 /* Un-comment when front-end toolkit is fixed
 
@@ -412,7 +395,7 @@ Modified to match the existing site (for now)
 
     .generic-intro,
     .generic-intro__meta {
-        @include colourTools.invert;
+        @include colourTools.contrast;
         background-color: #343338 !important;
         color: #fff !important;
 
@@ -528,7 +511,6 @@ Modified to match the existing site (for now)
 .container,
 .search-landing-buckets__link,
 .search-buckets__link,
-.search-results-hero__form-search-box,
 .search-filters__search,
 [class^="col-"],
 [class*=" col-"] {
@@ -668,7 +650,7 @@ Modified to match the existing site (for now)
 // tna-useful-info component - 'Good to know' information from event page
 
 .tna-useful-info {
-    @include colourTools.light-accent-background;
+    @include colourTools.accent-light;
     color: colourTools.brand-colour("black");
     padding: 1.5rem 2rem 2rem 2rem;
     margin-top: 2rem;
@@ -701,4 +683,9 @@ Modified to match the existing site (for now)
         font-weight: 500;
         margin-top: 0.5rem;
     }
+}
+
+// off-black header
+.tna-header--off-black {
+    background-color: $color--off-black;
 }
