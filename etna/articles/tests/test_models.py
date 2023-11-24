@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from wagtail.models import Site
 
-from ..models import ArticleIndexPage, ArticlePage, ArticleTag
+from ..models import ArticlePage, ArticleTag
 
 
 class TestArticleTagClean(TestCase):
@@ -29,45 +29,3 @@ class TestArticleTagClean(TestCase):
         tag.clean()
         self.assertEqual(tag.skos_id, "Test_3")
 
-
-class TestArticleIndexPage(TestCase):
-    def setUp(self):
-        self.root_page = Site.objects.get().root_page
-
-        self.article_index_page = ArticleIndexPage(
-            title="Article Index Page",
-            intro="test",
-            teaser_text="test",
-        )
-        self.root_page.add_child(instance=self.article_index_page)
-
-        self.article_page1 = ArticlePage(
-            title="Article page 1",
-            intro="test",
-            teaser_text="test",
-        )
-        self.article_index_page.add_child(instance=self.article_page1)
-
-        self.article_page2 = ArticlePage(
-            title="Article page 2",
-            intro="test",
-            teaser_text="test",
-        )
-        self.article_index_page.add_child(instance=self.article_page2)
-
-        self.article_page3 = ArticlePage(
-            title="Article page 3",
-            intro="test",
-            teaser_text="test",
-        )
-        self.article_index_page.add_child(instance=self.article_page3)
-
-    def test_get_article_pages(self):
-        context = self.article_index_page.get_context(request=None)
-        self.assertEqual(len(context["article_pages"]), 3)
-
-    def test_check_article_pages(self):
-        context = self.article_index_page.get_context(request=None)
-        children = self.article_index_page.get_children()
-        for i, page in enumerate(context["article_pages"]):
-            self.assertEqual(page.title, children[i].title)

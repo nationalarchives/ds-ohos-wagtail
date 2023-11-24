@@ -62,5 +62,5 @@ config/settings/local.py
 .npm
 .nvm
 
-# media
+media
 coverage.xml
