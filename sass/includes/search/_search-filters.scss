@@ -90,6 +90,12 @@
         margin-bottom: 1rem;
     }
 
+    &__label,
+    &__checkbox,
+    &__submit {
+        cursor: pointer;
+    }
+
     &__submit {
         @extend .search-button;
         display: block;
@@ -98,12 +104,6 @@
         &:not(&__heading) {
             margin-top: 0.5rem;
         }
-    }
-
-    &__label,
-    &__checkbox,
-    &__submit {
-        cursor: pointer;
     }
 
     &__label {
