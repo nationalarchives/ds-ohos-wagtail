@@ -59,75 +59,6 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/typography";
 @use "@nationalarchives/frontend/nationalarchives/variables/grid";
 
-// Redeclare $orange to match OHOS orange
-$orange: #fa8334;
-
-.tna-heading--l,
-.tna-heading--m {
-    @include colourTools.colour-font("font-base");
-}
-
-.tna-aside {
-    padding: 1rem !important;
-}
-
-.tna-background--accent {
-    --font-base: #000;
-    --font-dark: #000;
-}
-
-.ohos-stats {
-    padding: 0;
-
-    list-style: none;
-
-    &__item {
-        margin-bottom: 2rem;
-
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 1rem;
-
-        @include colourTools.colour-font("font-dark");
-        @include typography.main-font-weight-bold;
-
-        .fa-solid {
-            width: 5rem;
-            height: 5rem;
-
-            flex: 0 0 5rem;
-
-            @include colourTools.colour-font("contrast-font-dark");
-            font-size: 1.75em;
-            text-align: center;
-            line-height: 5rem;
-
-            @include colourTools.colour-background("font-dark");
-
-            border-radius: 100%;
-        }
-    }
-
-    &__stat {
-        line-height: 1.25;
-    }
-
-    &__number {
-        display: block;
-
-        @include colourTools.colour-font("font-base");
-        font-size: 1.25em;
-    }
-}
-
-.ohos-section-info {
-    padding: 1rem 1.5rem;
-
-    border: #fa8334 0.25rem solid;
-    border-left-width: 3rem;
-}
-
 /*
 
 ==============
@@ -274,7 +205,76 @@ Modified to match the existing site (for now)
 
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Roboto+Mono&display=swap");
+@import "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Roboto+Mono&display=swap";
+
+// Redeclare $orange to match OHOS orange
+$orange: #fa8334;
+
+.tna-heading--l,
+.tna-heading--m {
+    @include colourTools.colour-font("font-base");
+}
+
+.tna-aside {
+    padding: 1rem !important;
+}
+
+.tna-background--accent {
+    --font-base: #000;
+    --font-dark: #000;
+}
+
+.ohos-stats {
+    padding: 0;
+
+    list-style: none;
+
+    &__item {
+        margin-bottom: 2rem;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+
+        @include colourTools.colour-font("font-dark");
+        @include typography.main-font-weight-bold;
+
+        .fa-solid {
+            width: 5rem;
+            height: 5rem;
+
+            flex: 0 0 5rem;
+
+            @include colourTools.colour-font("contrast-font-dark");
+            font-size: 1.75em;
+            text-align: center;
+            line-height: 5rem;
+
+            @include colourTools.colour-background("font-dark");
+
+            border-radius: 100%;
+        }
+    }
+
+    &__stat {
+        line-height: 1.25;
+    }
+
+    &__number {
+        display: block;
+
+        @include colourTools.colour-font("font-base");
+        font-size: 1.25em;
+    }
+}
+
+.ohos-section-info {
+    padding: 1rem 1.5rem;
+
+    border: #fa8334 0.25rem solid;
+    border-left-width: 3rem;
+}
 
 .tna-template {
     overflow: initial !important;
@@ -352,6 +352,19 @@ Modified to match the existing site (for now)
             flex-direction: row-reverse;
         }
     }
+
+    // tna-container variant which is full-width at mobile - used on what's on landing page
+    &--full-width-mobile {
+        @include media.on-mobile {
+            padding-left: 0;
+            padding-right: 0;
+
+            .tna-column {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
 }
 
 .tna-chip {
@@ -373,6 +386,7 @@ Modified to match the existing site (for now)
         // ELEMENT SPECIFIC TO THIS SITE
         background-color: #343338 !important;
     }
+
     .tna-breadcrumbs {
         margin-bottom: 0;
         color: #fff !important;
@@ -386,6 +400,7 @@ Modified to match the existing site (for now)
 
     .generic-intro {
         padding-bottom: 4rem;
+
         h1 {
             &:last-child {
                 padding-bottom: 2rem;
@@ -468,12 +483,10 @@ Modified to match the existing site (for now)
     }
 }
 
-.tna-container--centred {
-    justify-content: center;
-}
-
+/* stylelint-disable no-descending-specificity */
 .highlight-gallery {
     color: #fff;
+
     .tna-heading {
         color: inherit;
     }
@@ -623,21 +636,6 @@ Modified to match the existing site (for now)
     }
 }
 
-// tna-container variant which is full-width at mobile - used on what's on landing page
-.tna-container {
-    &--full-width-mobile {
-        @include media.on-mobile {
-            padding-left: 0;
-            padding-right: 0;
-
-            .tna-column {
-                padding-left: 0;
-                padding-right: 0;
-            }
-        }
-    }
-}
-
 // tna-scene-setter modifiers
 
 .tna-scene-setter {
@@ -646,17 +644,6 @@ Modified to match the existing site (for now)
         font-weight: $font-weight-light;
     }
 }
-
-// tna-useful-info component - 'Good to know' information from event page
-
-.tna-useful-info {
-    @include colourTools.accent-light;
-    color: colourTools.brand-colour("black");
-    padding: 1.5rem 2rem 2rem 2rem;
-    margin-top: 2rem;
-}
-
-//
 
 .event-hero {
     .tna-breadcrumbs {
@@ -673,7 +660,7 @@ Modified to match the existing site (for now)
     }
 
     .tna-breadcrumbs__item {
-        &:before {
+        &::before {
             color: $color--white;
         }
     }
@@ -689,3 +676,5 @@ Modified to match the existing site (for now)
 .tna-header--off-black {
     background-color: $color--off-black;
 }
+
+/* stylelint-enable no-descending-specificity */
