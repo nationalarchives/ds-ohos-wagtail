@@ -120,49 +120,6 @@ class TestRecordView(TestCase):
             response.resolver_match.view_name, "details-page-machine-readable"
         )
         self.assertTemplateUsed(response, "records/record_detail.html")
-        
-    
-    @responses.activate
-    def test_record_rendered_for_record_creators(self):
-        responses.add(
-            responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
-            json={
-                "hits": {
-                    "hits": [
-                        {
-                            "_source": {
-                                "@admin": {
-                                    "id": "F74321",
-                                },
-                                "identifier": [
-                                    {
-                                        "faid": "F74321",
-                                        "primary": True,
-                                        "type": "faid",
-                                        "value": "F74321",
-                                    },
-                                ],
-                                "@template": {
-                                    "details": {
-                                        "primaryIdentifier": "F74321",
-                                        "type": "person",
-                                    }
-                                },
-                            },
-                        }
-                    ],
-                },
-            },
-        )
-
-        response = self.client.get("/catalogue/id/F74321/")
-
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(
-            response.resolver_match.view_name, "details-page-machine-readable"
-        )
-        self.assertTemplateUsed(response, "records/record_creators.html")
 
 
 class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):

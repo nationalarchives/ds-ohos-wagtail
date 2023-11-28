@@ -486,7 +486,7 @@ class UnexpectedParsingIssueTest(SimpleTestCase):
         record = self.records_client.fetch(iaid="C123456")
 
         self.assertEqual(record.related_articles, ())
-        
+
 
 class RecordModelCatalogueTests(SimpleTestCase):
     maxDiff = None

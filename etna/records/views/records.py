@@ -72,10 +72,6 @@ def record_detail_view(request, iaid):
     try:
         # for any record
         record = records_client.fetch(iaid=iaid, expand=True)
-
-        if record.custom_record_type == "CREATORS":
-            page_type = "Record creators page"
-            template_name = "records/record_creators.html"
     except DoesNotExist:
         raise Http404
 

@@ -16,10 +16,6 @@ def forTemplate(cls):
 @forTemplate
 class BucketKeys(StrEnum):
     NONTNA = "nonTna"
-    CREATOR = "creator"
-    ARCHIVE = "archive"
-    INSIGHT = "insight"
-    HIGHLIGHT = "highlight"
 
 
 @forTemplate
@@ -141,12 +137,6 @@ CATALOGUE_BUCKETS = BucketList(
                 Aggregation.CATALOGUE_SOURCE,
             ],
         ),
-        Bucket(
-            key="creator",
-            label="Record creators",
-            description="Results for original creators of records (for example organisations, businesses, people, diaries and manors) that match your search term.",
-            aggregations=DEFAULT_AGGREGATIONS + [Aggregation.TYPE, Aggregation.COUNTRY],
-        ),
     ]
 )
 
@@ -154,7 +144,6 @@ FEATURED_BUCKETS = BucketList(
     [
         Bucket(key="tna", label="Records at The National Archives"),
         Bucket(key="nonTna", label="Records at other UK archives"),
-        Bucket(key="creator", label="Record creators"),
     ]
 )
 
