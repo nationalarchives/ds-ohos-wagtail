@@ -15,11 +15,7 @@ from django.utils.safestring import mark_safe
 from pyquery import PyQuery as pq
 
 from ..analytics.mixins import DataLayerMixin
-from ..ciim.constants import (
-    ARCHIVE_NRA_RECORDS_COLLECTION,
-    ARCHIVE_RECORD_CREATORS_COLLECTION,
-    TNA_URLS,
-)
+
 from ..ciim.models import APIModel
 from ..ciim.utils import (
     NOT_PROVIDED,
@@ -31,10 +27,7 @@ from ..ciim.utils import (
     strip_html,
 )
 from ..records.classes import (
-    AccessionsInfo,
-    ArchiveCollections,
     CollectionInfo,
-    ContactInfo,
     FurtherInfo,
 )
 from .converters import IAIDConverter
@@ -518,43 +511,6 @@ class Record(DataLayerMixin, APIModel):
         return mark_safe(self.template.get("title", ""))
 
     @cached_property
-    def archive_contact_info(self) -> Optional[ContactInfo]:
-        """
-        Extracts data from the api "_source.description" attribute if available.
-        Then transforms that data to be represented by ContactInfo.
-        The data is extracted from html tags that are stored in the 'value' attribute.
-        These tags are fixed and only for this method.
-
-        Returns ContactInfo or None if data is not available.
-        """
-        contact_info = None
-        for description in self.get("description", ()):
-            if value := description.get("ephemera", {}).get("value", ""):
-                # convert to lower case for extraction
-                value = value.replace("mapURL", "mapurl")
-                value = value.replace("jobTitle", "jobtitle")
-                value = value.replace("firstName", "firstname")
-                value = value.replace("lastName", "lastname")
-                document = pq(value)
-                contact_info = ContactInfo(
-                    address_line1=document("addressline1").text(),
-                    address_town=document("addresstown").text(),
-                    postcode=document("postcode").text(),
-                    address_country=document("addresscountry").text(),
-                    map_url=document("mapurl").text(),
-                    url=document("url").text(),
-                    telephone=document("telephone").text(),
-                    fax=document("fax").text(),
-                    email=document("email").text(),
-                    corresp_addr=document("correspaddr").text(),
-                    contact_job_title=document("jobtitle").text(),
-                    contact_title=document("title").text(),
-                    contact_first_name=document("firstname").text(),
-                    contact_last_name=document("lastname").text(),
-                )
-        return contact_info
-
-    @cached_property
     def archive_further_info(self) -> Optional[FurtherInfo]:
         """
         Extracts data from the api "_source.place" attribute if available.
@@ -673,66 +629,6 @@ class Record(DataLayerMixin, APIModel):
                 )
 
         return collection_info
-
-    @cached_property
-    def archive_collections(self) -> ArchiveCollections:
-        """
-        Combines record creators info and nra records info as both have similar structure representations.
-        The combined data is is then represented by ArchiveCollections.
-
-        Returns archive collection info for record creators and nra records
-        """
-        # NOTE: this is the specicfic order of these list record creators and nra records
-        collection_info_list = [
-            self._get_trasformed_archive_record_creators_info(collection)
-            for collection in ARCHIVE_RECORD_CREATORS_COLLECTION
-        ]
-        collection_info_list.extend(
-            [
-                self._get_transformed_archive_nra_records_info(collection)
-                for collection in ARCHIVE_NRA_RECORDS_COLLECTION
-            ]
-        )
-
-        archive_collections = ArchiveCollections(
-            # remove empty values
-            collection_info_list=[
-                item for item in collection_info_list if item is not None
-            ]
-        )
-        return archive_collections
-
-    @cached_property
-    def archive_accessions(self) -> Optional[AccessionsInfo]:
-        """
-        Extracts data from the api "_source.@template.accumulationDates" attribute if available.
-        Then transforms that data to be represented by AccessionsInfo.
-        The data is extracted from html tags that are stored with the 'accumulationDates' attribute.
-        These tags are fixed and only for this method.
-
-        Returns AccessionsInfo or None if data is not available.
-        """
-        accessions_info = None
-        if accumulation_dates := self.template.get("accumulationDates", ""):
-            document = pq(accumulation_dates)
-            # extract year as a list of strings
-            year_list = document.find("accessionyear").text().split()
-            accession_years = {}
-            for year in year_list:
-                # transfrom year values {year:url}
-                accession_years.update(
-                    {
-                        year: f"{TNA_URLS.get('tna_accessions')}/{year}/{year[2:]}returns/{year[2:]}ac{self.reference_number}.htm"
-                    }
-                )
-            accessions_info = AccessionsInfo(
-                accession_years=accession_years,
-            )
-        return accessions_info
-
-    @cached_property
-    def archive_repository_url(self) -> str:
-        return self.get("repository.url", "")
 
     @cached_property
     def alternative_names(self) -> tuple(dict):

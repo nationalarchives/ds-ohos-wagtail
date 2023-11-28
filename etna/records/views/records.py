@@ -73,12 +73,7 @@ def record_detail_view(request, iaid):
         # for any record
         record = records_client.fetch(iaid=iaid, expand=True)
 
-        # check archive record
-        if record.custom_record_type == "ARCHON":
-            page_type = "Archive details page"
-            template_name = "records/archive_detail.html"
-            context.update(discovery_browse=TNA_URLS.get("discovery_browse"))
-        elif record.custom_record_type == "CREATORS":
+        if record.custom_record_type == "CREATORS":
             page_type = "Record creators page"
             template_name = "records/record_creators.html"
     except DoesNotExist:
