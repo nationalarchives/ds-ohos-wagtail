@@ -30,88 +30,26 @@
             <a href="{% if form.group.value == bucketkeys.ARCHIVE.value %}{% record_url record level_or_archive='Archive' form_group=form.group.value %}{% else %}{% record_url record level_or_archive=record.level form_group=form.group.value %}{% endif %}" class="search-results__list-card-link" data-link="{{ record.reference_prefixed_summary_title }}" data-link-type="Search results list" search-bucket="{{ buckets.current.label }}">
                 {% if record.reference_number %}<span class="sr-only">{{ record.reference_number }}</span>{% endif %}
                 {{ record.summary_title }}
+
+                {# API data required before this can be properly connected to it #}
+                (Type)
             </a>
         </h4>
         <p class="search-results__list-card-description">
             {{ record.listing_description }}
         </p>
-        <dl class="tna-dl tna-dl--plain tna-dl--icon-padding tna-!--margin-bottom-s">
-            {% if record.held_by %}
-                <dt>
-                    <i class="fa-solid fa-landmark"></i>
-                    Held by
-                </dt>
-                <dd>{{ record.held_by }}</dd>
-            {% endif %}
-
+        <dl class="tna-dl tna-dl--plain tna-!--margin-bottom-s">
             {% if record.date_created %}
-                <dt>
-                    <i class="fa-solid fa-calendar"></i>
-                    Date
-                </dt>
+                <dt>Date</dt>
                 <dd>
                     <date>{{ record.date_created }}</date>
                 </dd>
             {% endif %}
 
-            {% if record.reference_number %}
-            <dt>
-                <i class="fa-solid fa-database"></i>
-                {% if form.group.value == 'archive' %}
-                Archon code
-                {% else %}
-                Reference
-                {% endif %}
-            </dt>
-            <dd>{{ record.reference_number }}</dd>
-            {% endif %}
-
-            <!--
-            {% if record.record_opening %}
-                <dt>
-                    Record opening date:
-                </dt>
-                <dd>{{ record.record_opening }}</dd>
-            {% endif %}
-            -->
-            {% if form.group.value == bucketkeys.CREATOR.value and record.type %}
-                <dt>
-                    Type
-                </dt>
-                <dd>{{ record.type }}</dd>
-            {% endif %}
-
-            {% comment %}Debug attributes. Output to allow k-int to adjust the ES index{% endcomment %}
-            <!--
-            <dt>
-                IAID:
-            </dt>
-
-            <dd>{{ record.iaid }}</dd>>
-            <dt>
-                Score:
-            </dt>
-            <dd;>{{ record.score }}</dd>
-            -->
-            {% comment %}End debug attributes.{% endcomment %}
+            {# API data required before this can be properly connected to it #}
+            <dt>Collection</dt>
+            <dd>Hardcoded until API response is available</dd>
         </dl>
 
         {% include 'includes/tags.html' %}
-
-
-    {% if record.is_digitised %}
-        {% if record.closure_status not in closure_closed_status %}
-            <div class="search-results__list-card-delivery-options--grid">
-                <a href="{% record_url record %}" aria-hidden="true" tabindex="-1" data-link="{{ record.reference_prefixed_summary_title }}" data-link-type="Search result thumbnail link" data-position="{{forloop.counter0}}" search-bucket="{{ buckets.current.label }}">
-                <img src="{% static 'images/grid-placeholder.png' %}"  class="search-results__list-card-delivery-options-img search-image-grid" alt="" />
-                </a>
-                <a href="{% record_url record %}" class="search-results__list-card-delivery-options-link">
-                    <p class="search-results__list-card-delivery-options-desc search-results-grid">
-                        <span class="sr-only">{{ record.reference_prefixed_summary_title }} is</span>
-                        Available online
-                    </p>
-                </a>
-            </div>
-        {% endif %}
-    {% endif %}
 </li>
