@@ -53,7 +53,7 @@ def record_url(
             return record.non_reference_number_url
         if form_group == "nonTna":
             is_tna = False
-        elif form_group in ("tna", "digitised"):
+        elif form_group in ("tna"):
             is_tna = True
         else:
             is_tna = record.is_tna

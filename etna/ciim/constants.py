@@ -119,13 +119,6 @@ CATALOGUE_BUCKETS = BucketList(
             + [Aggregation.COLLECTION, Aggregation.LEVEL, Aggregation.CLOSURE],
         ),
         Bucket(
-            key="digitised",
-            label="Online records at The National Archives",
-            description="Results for records available to download and held at The National Archives that match your search term.",
-            aggregations=DEFAULT_AGGREGATIONS
-            + [Aggregation.COLLECTION, Aggregation.LEVEL, Aggregation.CLOSURE],
-        ),
-        Bucket(
             key="nonTna",
             label="Records at other UK archives",
             description="Results for records held at other archives in the UK (and not at The National Archives) that match your search term.",

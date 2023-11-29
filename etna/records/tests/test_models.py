@@ -243,19 +243,6 @@ class RecordModelTests(SimpleTestCase):
             ],
         )
 
-    def test_is_digitised_returns_false_when_data_not_present(self):
-        self.assertEqual(self.record.is_digitised, False)
-
-    def test_is_digitised_returns_true_when_true_value_present(self):
-        # patch raw data
-        self.record._raw["digitised"] = True
-        self.assertEqual(self.record.is_digitised, True)
-
-    def test_is_digitised_returns_false_when_false_value_present(self):
-        # patch raw data
-        self.record._raw["digitised"] = False
-        self.assertEqual(self.record.is_digitised, False)
-
     def test_is_tna_default(self):
         # The test fixture includes the following, so this should
         # return True by default

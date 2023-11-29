@@ -226,10 +226,6 @@ class Record(DataLayerMixin, APIModel):
             return self.get("legal.status", default="")
 
     @cached_property
-    def is_digitised(self) -> bool:
-        return self.get("digitised", default=self.template.get("digitised", False))
-
-    @cached_property
     def availability_delivery_surrogates(self) -> str:
         return self.get("availability.delivery.surrogate", default="")
 
