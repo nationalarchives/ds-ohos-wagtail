@@ -38,12 +38,7 @@ def record_url(
         return TNA_URLS.get("discovery_rec_default_fmt").format(iaid=record.iaid)
 
     if order_from_discovery:
-        if record.custom_record_type == "ARCHON":
-            return TNA_URLS.get("discovery_rec_archon_fmt").format(iaid=record.iaid)
-        elif record.custom_record_type == "CREATORS":
-            return TNA_URLS.get("discovery_rec_creators_fmt").format(iaid=record.iaid)
-        else:
-            return TNA_URLS.get("discovery_rec_default_fmt").format(iaid=record.iaid)
+        return TNA_URLS.get("discovery_rec_default_fmt").format(iaid=record.iaid)
 
     if record:
         if use_non_reference_number_url:

@@ -6,7 +6,6 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils import timezone
 
-from ...ciim.constants import TNA_URLS
 from ...ciim.exceptions import DoesNotExist
 from ...ciim.paginator import APIPaginator
 from ..api import records_client

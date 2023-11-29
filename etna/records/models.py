@@ -20,12 +20,10 @@ from ..ciim.utils import (
     NOT_PROVIDED,
     ValueExtractionError,
     extract,
-    find,
-    find_all,
     format_link,
     strip_html,
 )
-from ..records.classes import CollectionInfo, FurtherInfo
+from ..records.classes import FurtherInfo
 from .converters import IAIDConverter
 
 logger = logging.getLogger(__name__)
