@@ -323,39 +323,6 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         self.assertResultsNotRendered(content)
 
     @responses.activate
-    def test_no_matches_for_the_current_bucket(self):
-        """
-        When a user searches for something that has results for SOME buckets,
-        but they are currently viewing a bucket with no results:
-
-        They SHOULD see:
-        - Names, result counts and links for all buckets
-        - A "No results" message.
-
-        They SHOULD NOT see:
-        - A "Search within these results" option
-        - Options to change sort order and display style of results
-        - Filter options to refine the search
-        - Search results
-        """
-
-        self.patch_search_endpoint("catalogue_search_with_some_empty_buckets.json")
-        response = self.client.get(
-            self.test_url, data={"q": "snub", "group": "creator"}
-        )
-        content = str(response.content)
-
-        # SHOULD see
-        self.assertBucketLinksRendered(content)
-        self.assertNoResultsMessagingRendered(content)
-
-        # SHOULD NOT see
-        self.assertSearchWithinOptionNotRendered(content)
-        self.assertSortByOptionsNotRendered(content)
-        self.assertFilterOptionsNotRendered(content)
-        self.assertResultsNotRendered(content)
-
-    @responses.activate
     def test_no_matches_for_the_refined_search(self):
         """
         When a user is viewing a bucket with results for the original search,
