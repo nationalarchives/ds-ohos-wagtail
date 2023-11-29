@@ -83,7 +83,7 @@ def record_detail_view(request, iaid):
     #     image = Image.search.filter(rid=page.media_reference_id).first()
 
     # Back to search - default url
-    back_to_search_url = reverse("search-featured")
+    back_to_search_url = reverse("search-catalogue")
 
     # Back to search button - update url when timestamp is not expired
 

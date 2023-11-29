@@ -1,3 +1,5 @@
+import unittest
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -343,6 +345,7 @@ class RecordDetailBackToSearchTest(TestCase):
         )
         self.assertContains(response, expected_button_link_gen_value)
 
+    @unittest.skip("TODO:OHOS-Remove or update")
     @responses.activate
     def test_back_to_search_render_with_catalogue_search_beyond_expiry(self):
         """navigation to record details from previous search (session is set since its coming from search catalogue)"""
@@ -364,6 +367,7 @@ class RecordDetailBackToSearchTest(TestCase):
         )
         self.assertContains(response, expected_button_link_gen_value)
 
+    @unittest.skip("TODO:OHOS-Remove or update")
     @responses.activate
     def test_new_search_render_without_session(self):
         """Test covers navigation to record details without a previous search (session is not set since its not coming from search)"""

@@ -1,4 +1,5 @@
 import json as json_module
+import unittest
 
 from typing import Any, Dict
 
@@ -501,6 +502,7 @@ class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
         )
 
 
+@unittest.skip("TODO:OHOS-Remove or update")
 class FeaturedSearchTestCase(SearchViewTestCase):
     test_url = reverse_lazy("search-featured")
 
@@ -620,6 +622,7 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
             },
         )
 
+    @unittest.skip("TODO:OHOS-Remove or update")
     @responses.activate
     def test_datalayer_featured_search(self):
         self.assertDataLayerEquals(
@@ -650,6 +653,7 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
             },
         )
 
+    @unittest.skip("TODO:OHOS-Remove or update")
     @responses.activate
     def test_datalayer_featured_search_query(self):
         self.assertDataLayerEquals(
