@@ -3,7 +3,7 @@
 {{ selected_filters_count|json_script:"selected_filters_count" }}
 <script>
     $noOfFilters = JSON.parse(document.getElementById('selected_filters_count').textContent);
-    let $buttonHtml= "Filters <span class='filter-indicator'>"+ $noOfFilters +"</span>";
+    let $buttonHtml= "Show filters <span class='filter-indicator'>"+ $noOfFilters +"</span><img src=\"/static/images/fontawesome-svgs/chevron-down-white.svg\" width=\"20\" height=\"20\" style=\"display:inline-block;margin-left:10px;\">";
 </script>
 
 <div class="search-results">
@@ -31,18 +31,10 @@
     {% if page.object_list %}
         <h2 class="sr-only">Results</h2>
 
-        {% if form.cleaned_data.display == "grid" %}
-            <ul class="search-results__list--grid" id="analytics-results-list">
-                {% for record in page %}
-                    {% include './search_results__list-card--grid.html' %}
-                {% endfor %}
-            </ul>
-        {% else %}
-            <ul class="search-results__list" id="analytics-results-list">
-                {% for record in page %}
-                    {% include './search_results__list-card.html' %}
-                {% endfor %}
-            </ul>
-        {% endif %}
+        <ul class="search-results__list" id="analytics-results-list">
+            {% for record in page %}
+                {% include './search_results__list-card.html' %}
+            {% endfor %}
+        </ul>
     {% endif %}
 </div>
