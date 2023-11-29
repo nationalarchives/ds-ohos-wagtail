@@ -36,19 +36,13 @@
                 Commented out as discussed on https://github.com/nationalarchives/ds-ohos-wagtail/pull/26
                 This will require some additional logic once we are working with OHOS data
                 {% if record.held_by %}
-                    <dt>
-                        <i class="fa-solid fa-landmark"></i>
-                        Held by
-                    </dt>
+                    <dt>Held by</dt>
                     <dd>{{ record.held_by }}</dd>
                 {% endif %}
             {% endcomment %}
 
             {% if record.date_created %}
-                <dt>
-                    <i class="fa-solid fa-calendar"></i>
-                    Date
-                </dt>
+                <dt>Date</dt>
                 <dd>
                     <date>{{ record.date_created }}</date>
                 </dd>
@@ -59,7 +53,6 @@
                 This will require some additional logic once we are working with OHOS data
                 {% if record.reference_number %}
                     <dt>
-                        <i class="fa-solid fa-database"></i>
                         {% if form.group.value == 'archive' %}
                         Archon code
                         {% else %}
