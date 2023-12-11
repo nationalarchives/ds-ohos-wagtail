@@ -655,22 +655,12 @@ class ClientFetchTest(SimpleTestCase):
 
     @responses.activate
     def test_with_iaid(self):
-        self.records_client.fetch(iaid="C198022")
+        self.records_client.fetch(id="C198022")
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
             responses.calls[0].request.url,
             f"{settings.CLIENT_BASE_URL}/fetch?metadataId=C198022",
-        )
-
-    @responses.activate
-    def test_with_id(self):
-        self.records_client.fetch(id="ADM 223/3")
-
-        self.assertEqual(len(responses.calls), 1)
-        self.assertEqual(
-            responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/fetch?id=ADM+223%2F3",
         )
 
     @responses.activate

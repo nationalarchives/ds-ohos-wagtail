@@ -286,8 +286,8 @@ class ClientAPI:
             # Yes 'metadata_id' is inconsistent with the 'iaid' argument name, but this
             # API argument name is temporary, and 'iaid' will be replaced more broadly with
             # something more generic soon
-            "metadataId": iaid,
-            "id": id,
+            "metadataId": id,
+            # "id": id,
             "template": template,
             "expand": expand,
         }

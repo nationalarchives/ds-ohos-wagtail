@@ -21,10 +21,10 @@ class LazyRecord(SimpleLazyObject):
     """
 
     def __init__(self, iaid: str):
-        self.__dict__["iaid"] = iaid
+        self.__dict__["id"] = iaid
 
         def _fetch_record():
-            return records_client.fetch(iaid=iaid)
+            return records_client.fetch(id=iaid)
 
         super().__init__(_fetch_record)
 
@@ -33,10 +33,10 @@ class LazyRecord(SimpleLazyObject):
         Overrides ``SimpleLazyObject.__getattribute__()`` to allow access to
         ``iaid`` without fetching the full record details from CIIM.
         """
-        if name == "iaid" and "iaid" in self.__dict__:
+        if name == "id" and "id" in self.__dict__:
             # The stored ``iaid`` value is not preserved when copying or
             # pickling; hence the extra conditional.
-            return self.__dict__["iaid"]
+            return self.__dict__["id"]
         return super().__getattribute__(name)
 
 
@@ -54,7 +54,7 @@ class RecordChoiceField(CharField):
         if value in self.empty_values:
             return None
         try:
-            records_client.fetch(iaid=value)
+            records_client.fetch(id=value)
         except HTTPError:
             raise ValidationError(
                 f"Record data could not be retrieved using iaid '{value}'.",
@@ -118,27 +118,27 @@ class RecordField(Field):
     def to_python(self, value):
         """
         Return ``None`` if the value is empty. Otherwise, create and return a
-        ``LazyRecord`` from the stored "iaid" value.
+        ``LazyRecord`` from the stored "id" value.
         """
         return self._convert_to_record_instance(value)
 
     def from_db_value(self, value, expression, connection):
         """
         Return ``None`` if the value is empty. Otherwise, create and return a
-        ``LazyRecord`` from the stored "iaid" value.
+        ``LazyRecord`` from the stored "id" value.
         """
         return self._convert_to_record_instance(value)
 
     def get_prep_value(self, value):
         """
         If the value is a ``Record`` or ``LazyRecord`` instance, extract the
-        "iaid" string to store in the DB for this field.
+        "id" string to store in the DB for this field.
         """
         return self._extract_record_iaid(value)
 
     def value_to_string(self, model_instance):
         """
-        Overrides ``Field.value_to_string`` to ensure the "iaid" string
+        Overrides ``Field.value_to_string`` to ensure the "id" string
         value is used for serialization (e.g. when converting field values
         into JSON for Wagtail revision content, or surfacing in a REST api).
         """

@@ -20,7 +20,7 @@ from etna.records import views as records_views
 from etna.search import views as search_views
 
 register_converter(converters.ReferenceNumberConverter, "reference_number")
-register_converter(converters.IAIDConverter, "iaid")
+register_converter(converters.IDConverter, "id")
 
 
 # Used by /sentry-debug/
@@ -50,7 +50,7 @@ if settings.SENTRY_DEBUG_URL_ENABLED:
 # Public URLs that are meant to be cached.
 public_urls = [
     path(
-        r"catalogue/id/<iaid:iaid>/",
+        r"catalogue/id/<id:id>/",
         setting_controlled_login_required(
             records_views.record_detail_view, "RECORD_DETAIL_REQUIRE_LOGIN"
         ),
