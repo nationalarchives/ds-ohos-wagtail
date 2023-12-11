@@ -134,13 +134,6 @@ CATALOGUE_BUCKETS = BucketList(
     ]
 )
 
-FEATURED_BUCKETS = BucketList(
-    [
-        Bucket(key="tna", label="Records at The National Archives"),
-        Bucket(key="nonTna", label="Records at other UK archives"),
-    ]
-)
-
 COLLECTION_NAMES = {
     "A": "Alienation Office",
     "AB": "UK Atomic Energy Authority",

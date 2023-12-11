@@ -17,7 +17,6 @@ from ..ciim.client import Aggregation, SortBy, SortOrder, Stream, Template
 from ..ciim.constants import (
     CATALOGUE_BUCKETS,
     CLOSURE_CLOSED_STATUS,
-    FEATURED_BUCKETS,
     Bucket,
     BucketKeys,
     BucketList,
@@ -27,7 +26,7 @@ from ..ciim.constants import (
 from ..ciim.paginator import APIPaginator
 from ..ciim.utils import underscore_to_camelcase
 from ..records.api import records_client
-from .forms import CatalogueSearchForm, FeaturedSearchForm
+from .forms import CatalogueSearchForm
 
 logger = logging.getLogger(__name__)
 
@@ -672,59 +671,3 @@ class CatalogueSearchLongFilterView(BaseLongFilterOptionsView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         return super().get_context_data(url_name="search-catalogue", **kwargs)
-
-
-class FeaturedSearchView(BaseSearchView):
-    api_method_name = "search_all"
-    form_class = FeaturedSearchForm
-    template_name = "search/featured_search.html"
-    search_tab = SearchTabs.ALL.value
-    featured_search_total_count = 0
-    page_type = "Featured search page"
-    page_title = "Featured search"
-
-    def setup(self, request: HttpRequest, *args: Any, **kwargs: Any) -> None:
-        super().setup(request, *args, **kwargs)
-
-    def get_api_kwargs(self, form: Form) -> Dict[str, Any]:
-        return {
-            "q": self.query or None,
-            "filter_aggregations": [
-                f"group:{bucket.key}" for bucket in FEATURED_BUCKETS
-            ],
-            "size": 3,
-        }
-
-    def get_buckets_for_display(self) -> Dict[str, Bucket]:
-        """
-        This method is similar in principal to the `BucketMixin` version, but
-        to work for this view, returns a `dict` instead of a `BucketList`, and
-        instead of receiving additional argument values, `result_count` and
-        `results` are set on each bucket using data from `self.api_result`.
-        """
-        buckets = {}
-        for i, bucket in enumerate(copy.deepcopy(FEATURED_BUCKETS)):
-            # NOTE: The API might not have been called if the form was invalid
-            if self.api_result:
-                results_for_bucket = self.api_result[i]
-                bucket.result_count = results_for_bucket.total_count
-                bucket.results = results_for_bucket.hits
-            buckets[bucket.key] = bucket
-        return buckets
-
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        self.set_session_info()
-        return super().get_context_data(
-            buckets=self.get_buckets_for_display(),
-            **kwargs,
-        )
-
-    def get_result_count(self):
-        """
-        Overrides BaseSearchView.get_result_count() to return the combined
-        totals from all buckets.
-        """
-        total = 0
-        for bucket in self.get_buckets_for_display().values():
-            total += bucket.result_count
-        return total

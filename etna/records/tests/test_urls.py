@@ -149,9 +149,7 @@ class TestMachineReadableDetailsRouteResolution(TestCase):
         resolver = resolve("/catalogue/id/43f766a9-e968-4b82-93dc-8cf11a841d41/")
 
         self.assertEqual(resolver.view_name, "details-page-machine-readable")
-        self.assertEqual(
-            resolver.kwargs["id"], "43f766a9-e968-4b82-93dc-8cf11a841d41"
-        )
+        self.assertEqual(resolver.kwargs["id"], "43f766a9-e968-4b82-93dc-8cf11a841d41")
 
 
 class TestMachineReadableDetailsURL(TestCase):
