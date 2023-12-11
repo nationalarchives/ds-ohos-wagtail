@@ -278,11 +278,14 @@ PASSWORD_REQUIRED_TEMPLATE = "password_pages/password_required.html"
 
 
 # API Client
+API_CLIENT_NAME_PREFIX = os.getenv(
+    "API_CLIENT_NAME_PREFIX"
+)  # mandatory name to identify the client URL
 
-CLIENT_BASE_URL = os.getenv("KONG_CLIENT_BASE_URL")
-CLIENT_KEY = os.getenv("KONG_CLIENT_KEY")
+CLIENT_BASE_URL = os.getenv(f"{API_CLIENT_NAME_PREFIX}_CLIENT_BASE_URL")
+CLIENT_KEY = os.getenv(f"{API_CLIENT_NAME_PREFIX}_CLIENT_KEY")
 CLIENT_VERIFY_CERTIFICATES = strtobool(
-    os.getenv("KONG_CLIENT_VERIFY_CERTIFICATES", "True")
+    os.getenv(f"{API_CLIENT_NAME_PREFIX}_CLIENT_VERIFY_CERTIFICATES", "True")
 )
 
 # Rich Text Features
