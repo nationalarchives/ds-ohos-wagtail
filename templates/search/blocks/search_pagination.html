@@ -17,7 +17,13 @@
         {% for i in page_range %}
             {% if i == page.paginator.ELLIPSIS %}
             <li class="tna-pagination__item tna-pagination__item--ellipses">&ctdot;</li>
-            {% else %}
+
+            {% comment %}
+                Rosetta API will return up to 5000 results so cap the pagination there.
+                @TODO: The hard coded 250 needs to be replaced with a BE variable or pagination results be changed to return a truncated array
+                Truncating the array would avoid the extra template logic that's currently used
+            {% endcomment %}
+            {% elif i <= 250 %}
                 <li class="tna-pagination__item{% if page.number == i %} tna-pagination__item--current{% endif %}">
                     <a class="tna-button{% if page.number == i %} tna-button--accent{% endif %} tna-pagination__link" href="?{% query_string_include 'page' i %}" aria-label="Page {{ i }}" data-link-type="Pagination" data-link="{{ i }}" role="button"{% if page.number == i %} aria-current="page"{% endif %}>
                         {{ i }}
@@ -26,7 +32,12 @@
             {% endif %}
         {% endfor %}
     </ul>
-    {% if page.has_next %}
+    {% comment %}
+        Rosetta API will return up to 5000 results so cap the pagination there.
+        @TODO: The hard coded 250 needs to be replaced with a BE variable or pagination results be changed to return a truncated array
+        Truncating the array would avoid the extra template logic that's currently used
+    {% endcomment %}
+    {% if page.has_next and page.next_page_number <= 250 %}
         <div class="tna-pagination__next">
             <a class="tna-button tna-pagination__link" href="?{% query_string_include 'page' page.next_page_number %}" role="button" rel="next" data-link-type="Pagination"  data-link="Next page">
                 <span class="tna-pagination__link-title">Next</span>
