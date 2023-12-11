@@ -64,25 +64,6 @@ public_urls = [
         name="details-page-human-readable",
     ),
     path(
-        "records/image/<path:location>",
-        records_views.image_serve,
-        name="image-serve",
-    ),
-    path(
-        r"records/images/<iaid:iaid>/<str:sort>/",
-        setting_controlled_login_required(
-            records_views.image_viewer, "IMAGE_VIEWER_REQUIRE_LOGIN"
-        ),
-        name="image-viewer",
-    ),
-    path(
-        r"records/images/<iaid:iaid>/",
-        setting_controlled_login_required(
-            records_views.image_browse, "IMAGE_VIEWER_REQUIRE_LOGIN"
-        ),
-        name="image-browse",
-    ),
-    path(
         r"search/",
         setting_controlled_login_required(
             search_views.SearchLandingView.as_view(), "SEARCH_VIEWS_REQUIRE_LOGIN"

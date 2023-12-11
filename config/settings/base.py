@@ -138,7 +138,6 @@ LOGIN_URL = "/accounts/login"
 LOGIN_REDIRECT_URL = "/"
 WAGTAIL_FRONTEND_LOGIN_URL = LOGIN_URL
 # View access control
-IMAGE_VIEWER_REQUIRE_LOGIN = strtobool(os.getenv("IMAGE_VIEWER_REQUIRE_LOGIN", "True"))
 RECORD_DETAIL_REQUIRE_LOGIN = strtobool(
     os.getenv("RECORD_DETAIL_REQUIRE_LOGIN", "True")
 )
@@ -285,7 +284,6 @@ CLIENT_KEY = os.getenv("KONG_CLIENT_KEY")
 CLIENT_VERIFY_CERTIFICATES = strtobool(
     os.getenv("KONG_CLIENT_VERIFY_CERTIFICATES", "True")
 )
-IMAGE_PREVIEW_BASE_URL = os.getenv("KONG_IMAGE_PREVIEW_BASE_URL")
 
 # Rich Text Features
 # https://docs.wagtail.io/en/stable/advanced_topics/customisation/page_editing_interface.html#limiting-features-in-a-rich-text-field

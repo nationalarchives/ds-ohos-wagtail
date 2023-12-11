@@ -630,24 +630,3 @@ class Record(DataLayerMixin, APIModel):
     @cached_property
     def publication_note(self) -> list(str):
         return self.template.get("publicationNote", [])
-
-
-@dataclass
-class Image:
-    """Represents an image item returned by Client API."""
-
-    location: str
-    # Sort position of this image. Used to create the image-viewer URL
-    # and to fetch this particular image from a series of images.
-    # sort is an str that contains an int with a leading zero if less
-    # than ten.
-    sort: str
-    thumbnail_location: str
-
-    @property
-    def thumbnail_url(self):
-        """Use thumbnail URL is available, otherwise fallback to image-serve."""
-        if self.thumbnail_location:
-            return f"{settings.IMAGE_PREVIEW_BASE_URL}{self.thumbnail_location}"
-        elif self.location:
-            return reverse("image-serve", kwargs={"location": self.location})

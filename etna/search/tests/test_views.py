@@ -20,7 +20,6 @@ from ..views import CatalogueSearchView
 
 @override_settings(
     CLIENT_BASE_URL=f"{settings.CLIENT_BASE_URL}",
-    IMAGE_PREVIEW_BASE_URL="https://media.preview/",
 )
 class SearchViewTestCase(WagtailTestUtils, TestCase):
     maxDiff = None
