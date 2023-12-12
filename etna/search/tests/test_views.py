@@ -466,7 +466,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
             # SHOULD see
             self.assertNoResultsMessagingRendered(content)
             self.assertIn(
-                "<li>Try removing any filters that you may have applied</li>", content
+                "<li>Try different spellings or search terms</li>", content
             )
             self.assertSearchWithinOptionRendered(content)
             self.assertIn(from_date_field, response.context["form"].errors)
