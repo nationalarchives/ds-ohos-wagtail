@@ -465,9 +465,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
 
             # SHOULD see
             self.assertNoResultsMessagingRendered(content)
-            self.assertIn(
-                "<li>Try different spellings or search terms</li>", content
-            )
+            self.assertIn("<li>Try different spellings or search terms</li>", content)
             self.assertSearchWithinOptionRendered(content)
             self.assertIn(from_date_field, response.context["form"].errors)
             self.assertIn(
