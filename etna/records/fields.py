@@ -17,24 +17,24 @@ class LazyRecord(SimpleLazyObject):
     The return type for ``RecordField``, which lazily fetches the
     record details from CIIM when the value is interacted with in some way;
     For example, when requesting a ``Record`` attribute value other than
-    ``iaid``, or requesting a string representation of it.
+    ``id``, or requesting a string representation of it.
     """
 
-    def __init__(self, iaid: str):
-        self.__dict__["id"] = iaid
+    def __init__(self, id: str):
+        self.__dict__["id"] = id
 
         def _fetch_record():
-            return records_client.fetch(id=iaid)
+            return records_client.fetch(id=id)
 
         super().__init__(_fetch_record)
 
     def __getattribute__(self, name: str) -> Any:
         """
         Overrides ``SimpleLazyObject.__getattribute__()`` to allow access to
-        ``iaid`` without fetching the full record details from CIIM.
+        ``id`` without fetching the full record details from CIIM.
         """
         if name == "id" and "id" in self.__dict__:
-            # The stored ``iaid`` value is not preserved when copying or
+            # The stored ``id`` value is not preserved when copying or
             # pickling; hence the extra conditional.
             return self.__dict__["id"]
         return super().__getattribute__(name)
@@ -44,7 +44,7 @@ class RecordChoiceField(CharField):
     """
     A custom Django form field that presents a record chooser widget
     by default and validates that a record can be found again from
-    the selected record's ``iaid`` value.
+    the selected record's ``id`` value.
     """
 
     widget = RecordChooser
@@ -57,7 +57,7 @@ class RecordChoiceField(CharField):
             records_client.fetch(id=value)
         except HTTPError:
             raise ValidationError(
-                f"Record data could not be retrieved using iaid '{value}'.",
+                f"Record data could not be retrieved using id '{value}'.",
                 code="invalid",
             )
 
@@ -65,7 +65,7 @@ class RecordChoiceField(CharField):
 class RecordField(Field):
     """
     A model field that presents editors with a ``RecordChooser`` widget
-    to allow selection of a record from CIIM, stores the ``iaid`` of
+    to allow selection of a record from CIIM, stores the ``id`` of
     that record in the database, then converts it into a ``LazyRecord``
     when the model instance is retrieved again from the database.
     """
@@ -105,7 +105,7 @@ class RecordField(Field):
             return value
         if value in cls.empty_values:
             return None
-        return LazyRecord(iaid=value)
+        return LazyRecord(id=value)
 
     @classmethod
     def _extract_record_iaid(cls, value):

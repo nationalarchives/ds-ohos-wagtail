@@ -21,8 +21,6 @@
                 <span class="sr-only">Reference number {{ record.reference_number }}: </span>
                 {% endif %}
                 {{ record.summary_title }}
-                {# API data required before this can be properly connected to it #}
-                (Type)
             </a>
         </h3>
 
@@ -70,9 +68,10 @@
                 {% endif %}
             {% endcomment %}
 
-            {# API data required before this can be properly connected to it #}
-            <dt>Collection</dt>
-            <dd>Hardcoded until API response is available</dd>
+            {% if record.collection %}
+                <dt>{{ 'collection'|as_label }}</dt>
+                <dd>{{ record.collection }}</dd>
+            {% endif %}
 
         </dl>
 

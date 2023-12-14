@@ -54,13 +54,14 @@ class Stream(StrEnum):
     INTERPRETIVE = "interpretive"
 
 
-class SortBy(StrEnum):
+class Sort(StrEnum):
     """Options for sorting /search results by a given field."""
 
     RELEVANCE = ""
-    TITLE = "title"
-    DATE_CREATED = "dateCreated"
-    DATE_OPENING = "dateOpening"
+    TITLE_ASC = "title:asc"
+    TITLE_DESC = "title:desc"
+    DATE_ASC = "date:asc"
+    DATE_DESC = "date:desc"
 
 
 class SortOrder(StrEnum):
@@ -96,6 +97,7 @@ def prepare_filter_aggregations(items: Optional[list]) -> Optional[str]:
     before-prepare: "heldBy:Labour History Archive and Study Centre (People's History Museum/University of Central Lancashire)"
     after-prepare:  "heldBy:Labour History Archive and Study Centre People's History Museum University of Central Lancashire "
     """
+    print(f"items={items}")
     if not items:
         return None
 
@@ -239,17 +241,20 @@ class ClientAPI:
         item_type: Type = Record,
     ) -> ResultList:
         try:
-            hits = response_data["hits"]["hits"]
+            hits = response_data["data"]
         except KeyError:
             hits = []
         try:
-            total_count = response_data["hits"]["total"]["value"]
+            total_count = response_data["stats"]["total"]
         except KeyError:
             total_count = len(hits)
 
-        aggregations_data = response_data.get("aggregations", {})
+        aggregations_data = response_data.get("aggregations", [])
         if bucket_counts is None:
-            bucket_counts = aggregations_data.get("group", {}).get("buckets", [])
+            if not aggregations_data:
+                bucket_counts = []
+            else:
+                pass  # TODO:Rosetta
 
         return ResultList(
             hits=hits,
@@ -262,10 +267,7 @@ class ClientAPI:
     def fetch(
         self,
         *,
-        iaid: Optional[str] = None,
         id: Optional[str] = None,
-        template: Optional[Template] = None,
-        expand: Optional[bool] = None,
     ) -> Record:
         """Make request and return response for Client API's /fetch endpoint.
 
@@ -273,23 +275,12 @@ class ClientAPI:
 
         Keyword arguments:
 
-        iaid:
-            Return match on Information Asset Identifier - iaid (or similar primary identifier)
         id:
-            Generic identifier. Matches on references_number or iaid
-        template:
-            @template data to include with response
-        expand:
-            include @next and @previous record with response. Client API defaults to false
+            Generic identifier. Matches various id's
+            Ex: returns match on Information Asset Identifier - iaid (or similar primary identifier), creator records faid
         """
         params = {
-            # Yes 'metadata_id' is inconsistent with the 'iaid' argument name, but this
-            # API argument name is temporary, and 'iaid' will be replaced more broadly with
-            # something more generic soon
-            "metadataId": id,
-            # "id": id,
-            "template": template,
-            "expand": expand,
+            "id": id,
         }
 
         # Get HTTP response from the API
@@ -310,19 +301,17 @@ class ClientAPI:
     def search(
         self,
         *,
+        group: Optional[str] = "community",
         q: Optional[str] = None,
-        web_reference: Optional[str] = None,
-        opening_start_date: Optional[Union[date, datetime]] = None,
-        opening_end_date: Optional[Union[date, datetime]] = None,
+        opening_start_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
+        opening_end_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
+        stream: Optional[Stream] = None,
         created_start_date: Optional[Union[date, datetime]] = None,
         created_end_date: Optional[Union[date, datetime]] = None,
-        stream: Optional[Stream] = None,
-        sort_by: Optional[SortBy] = None,
-        sort_order: Optional[SortOrder] = None,
-        template: Optional[Template] = None,
+        sort: Optional[Sort] = None,
         aggregations: Optional[list[Aggregation]] = None,
         filter_aggregations: Optional[list[str]] = None,
-        filter_keyword: Optional[str] = None,
+        filter_keyword: Optional[str] = None,  # TODO:Rosetta
         offset: Optional[int] = None,
         size: Optional[int] = None,
     ) -> ResultList:
@@ -337,16 +326,10 @@ class ClientAPI:
 
         q:
             String to query all indexed fields
-        web_reference:
-            Return matches on references_number
         stream:
             Restrict results to given stream
-        sort_by:
+        sort:
             Field to sort results.
-        sortOrder:
-            Order of sorted results
-        template:
-            @template data to include with response
         aggregations:
             aggregations to include with response. Number returned can be set
             by optional count suffix: <aggregation>:<number-to-return>
@@ -361,37 +344,34 @@ class ClientAPI:
         """
         params = {
             "q": q,
-            "webReference": web_reference,
-            "stream": stream,
-            "sort": sort_by,
-            "sortOrder": sort_order,
-            "template": template,
-            "aggregations": aggregations,
-            "filterAggregations": prepare_filter_aggregations(filter_aggregations),
-            "filter": filter_keyword,
+            # "fields": f"stream:{stream}",
+            "sort": sort,
+            "aggs": aggregations,
+            "filter": prepare_filter_aggregations(filter_aggregations) or [],
+            # "filter": filter_keyword,
             "from": offset,
             "size": size,
         }
-
-        if opening_start_date:
-            params["openingStartDate"] = self.format_datetime(
-                opening_start_date, supplementary_time=time.min
-            )
-
-        if opening_end_date:
-            params["openingEndDate"] = self.format_datetime(
-                opening_end_date, supplementary_time=time.max
-            )
-
+        print(f"aggregations={aggregations}")
+        print(f"filter_aggregations={filter_aggregations}")
+        # print(f"filter:{params.get('filter','')}")
+        # params["filter"] =[]
         if created_start_date:
-            params["createdStartDate"] = self.format_datetime(
-                created_start_date, supplementary_time=time.min
-            )
+            if group == "community":
+                params["filter"] += [f"fromDate:(>={created_start_date})"]
+            else:
+                params["createdStartDate"] = self.format_datetime(
+                    created_start_date, supplementary_time=time.min
+                )
 
         if created_end_date:
-            params["createdEndDate"] = self.format_datetime(
-                created_end_date, supplementary_time=time.max
-            )
+            if group == "community":
+                params["filter"] += [f"toDate:(<={created_end_date})"]
+            else:
+                params["createdEndDate"] = self.format_datetime(
+                    created_end_date, supplementary_time=time.max
+                )
+        print(f"""param[filter]={params["filter"]}""")
 
         # Get HTTP response from the API
         response = self.make_request(f"{self.base_url}/search", params=params)
@@ -400,15 +380,18 @@ class ClientAPI:
         response_data = response.json()
 
         # Pull out the separate ES responses
-        bucket_counts_data, results_data = response_data["responses"]
+        bucket_counts_data = []
+        aggregations = response_data["aggregations"]
+        for aggregation in aggregations:
+            if aggregation.get("name", "") == "group":
+                bucket_counts_data = aggregation.get("entries", [])
+        results_data = response_data
 
         # Return a single ResultList, using bucket counts from the first ES response,
         # and full hit/aggregation data from the second.
         return self.resultlist_from_response(
             results_data,
-            bucket_counts=bucket_counts_data["aggregations"]
-            .get("group", {})
-            .get("buckets", ()),
+            bucket_counts=bucket_counts_data,
         )
 
     def search_unified(
@@ -418,7 +401,7 @@ class ClientAPI:
         web_reference: Optional[str] = None,
         stream: Optional[Stream] = None,
         template: Optional[Template] = None,
-        sort_by: Optional[SortBy] = None,
+        sort_by: Optional[Sort] = None,
         sort_order: Optional[SortOrder] = None,
         offset: Optional[int] = None,
         size: Optional[int] = None,
@@ -539,6 +522,7 @@ class ClientAPI:
         """Make request to Client API."""
         params = self.prepare_request_params(params)
         response = self.session.get(url, params=params, timeout=self.timeout)
+        print(f"Client.ClientAPI.make_request................response.url={response.url}")
         self._raise_for_status(response)
         return response
 
