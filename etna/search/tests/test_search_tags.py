@@ -153,7 +153,7 @@ class RenderFieldsAsHiddenTest(SimpleTestCase):
 
     @mock.patch.object(BoundField, "as_hidden", return_value="", autospec=True)
     def test_exclude(self, mocked_as_hidden):
-        exclude_names = ("q", "group", "sort_by")
+        exclude_names = ("q", "group", "sort")
 
         # call the function under test
         render_fields_as_hidden(self.form, exclude=" ".join(exclude_names))
@@ -204,7 +204,7 @@ class RenderSortTest(SimpleTestCase):
         )
 
     def test_render_sort_input_input_id(self):
-        expected_html = '<select name="sort_by" class="search-sort-view__form-select" id="id_sort_by_somevalue">'
+        expected_html = '<select name="sort" class="search-sort-view__form-select" id="id_sort_somevalue">'
         self.assertIn(
             expected_html, render_sort_input(self.form, id_suffix="somevalue")
         )
