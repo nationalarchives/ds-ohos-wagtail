@@ -1,0 +1,28 @@
+{% load records_tags %}
+
+<h3 class="tna-heading-m">
+    <a href="{% record_url record form_group=form.group.value %}" class="search-results__list-card-heading-link" data-link="" data-link-type="Search results list" search-bucket="{{ buckets.current.label }}">
+        {% if record.ciim_id %}
+            <span class="sr-only">CIIM Id {{ record.ciim_id }}: </span>
+        {% endif %}
+        {{ record.summary_title }}
+    </a>
+</h3>
+
+<p class="search-results__list-card-description">
+    {{ record.listing_description }}
+</p>
+
+<dl class="tna-dl tna-dl--plain tna-!--margin-bottom-s">
+    {% if record.date_created %}
+        <dt>{{ 'date_created'|as_label }}</dt>
+        <dd>
+            <date>{{ record.date_created }}</date>
+        </dd>
+    {% endif %}
+    {% if record.collection %}
+        <dt>{{ 'collection'|as_label }}</dt>
+        <dd>{{ record.collection }}</dd>
+    {% endif %}
+</dl>
+{% include 'includes/tags.html' %}

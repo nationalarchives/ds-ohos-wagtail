@@ -137,14 +137,13 @@ class Record(DataLayerMixin, APIModel):
         return raw
 
     def _get_raw_summary_title(self) -> str:
-        if self.group == "community":
-            return self.template.get("summary", "")
-        else:
-            try:
-                return "... ".join(self.highlights["@template.details.summaryTitle"])
-            except KeyError:
-                pass
-            return self.template.get("summaryTitle", "")
+        # TODO:Rosetta
+        # try:
+        #     return "... ".join(self.highlights["@template.details.summaryTitle"])
+        # except KeyError:
+        #     pass
+        # return self.template.get("summaryTitle", "")
+        return self.summary
 
     def get_url(self, use_reference_number: bool = True) -> str:
         if use_reference_number and self.reference_number:
@@ -184,13 +183,8 @@ class Record(DataLayerMixin, APIModel):
         return False
 
     @cached_property
-    def type(self) -> Union[str, None]:
-        # TODO:Rosetta
-        # try:
-        #     return self.template["type"]
-        # except KeyError:
-        #     return self.get("@datatype.base", None)
-        return self.template.get("type", None)
+    def type(self) -> str:
+        return self.template.get("type", "")
 
     @cached_property
     def access_conditions(self) -> str:
@@ -221,7 +215,9 @@ class Record(DataLayerMixin, APIModel):
         """
         Returns the records full description value with all HTML left intact.
         """
-        return mark_safe(self._get_raw_description())
+        # TODO:Rosetta
+        # return mark_safe(self._get_raw_description())
+        return self._get_raw_description()
 
     @cached_property
     def listing_description(self) -> str:
@@ -231,16 +227,19 @@ class Record(DataLayerMixin, APIModel):
         will be left in-tact, but and other HTML is stripped.
         """
         if raw := self._get_raw_description(use_highlights=True):
-            return mark_safe(strip_html(raw, preserve_marks=True))
+            # TODO:Rosetta
+            # return mark_safe(strip_html(raw, preserve_marks=True))
+            return raw
         return ""
 
     def _get_raw_description(self, use_highlights: bool = False) -> str:
-        if use_highlights:
-            try:
-                # TODO:Rosetta
-                return "... ".join(self.highlights["@template.details.description"])
-            except KeyError:
-                pass
+        # TODO:Rosetta
+        # if use_highlights:
+        #     try:
+        #         # TODO:Rosetta
+        #         return "... ".join(self.highlights["@template.details.description"])
+        #     except KeyError:
+        #         pass
         return self.template.get("description", False)
 
     @cached_property
@@ -274,14 +273,6 @@ class Record(DataLayerMixin, APIModel):
         return ""
 
     @cached_property
-    def collection(self) -> str:
-        return self.template.get("collection", "")
-
-    @cached_property
-    def location(self) -> str:
-        return self.template.get("location", "")
-
-    @cached_property
     def date_created(self) -> str:
         if self.group == "community":
             return self.template.get("creationDate", "")
@@ -293,7 +284,7 @@ class Record(DataLayerMixin, APIModel):
 
     @cached_property
     def level(self) -> str:
-        return self.get("level.value", self.template.get("level", ""))
+        return self.template.get("level", "")
 
     @cached_property
     def level_code(self) -> int:
@@ -393,11 +384,6 @@ class Record(DataLayerMixin, APIModel):
             return source
         return ""
 
-    @cached_property
-    def group(self) -> str:
-        return self.template.get("group", "")
-
-
     def get_gtm_content_group(self) -> str:
         """
         Overrides DataLayerMixin.get_gtm_content_group() to
@@ -467,7 +453,9 @@ class Record(DataLayerMixin, APIModel):
 
     @cached_property
     def title(self) -> str:
-        return mark_safe(self.template.get("title", ""))
+        # TODO:Rosetta
+        # return mark_safe(self.template.get("title", ""))
+        return self.template.get("title", "")
 
     @cached_property
     def archive_further_info(self) -> Optional[FurtherInfo]:
@@ -602,3 +590,58 @@ class Record(DataLayerMixin, APIModel):
     @cached_property
     def publication_note(self) -> list(str):
         return self.template.get("publicationNote", str)
+
+    @cached_property
+    def uuid(self) -> str:
+        return self.template.get("uuid", "")
+
+    @cached_property
+    def ciim_id(self) -> str:
+        return self.template.get("ciimId", "")
+
+    @cached_property
+    def identifier(self) -> str:
+        return self.template.get("identifier", "")
+
+    @cached_property
+    def identifier(self) -> str:
+        return self.template.get("identifier", "")
+
+    @cached_property
+    def group(self) -> str:
+        return self.template.get("group", "")
+
+    @cached_property
+    def collection(self) -> str:
+        return self.template.get("collection", "")
+
+    @cached_property
+    def collection_id(self) -> str:
+        return self.template.get("collectionId", "")
+
+    @cached_property
+    def location(self) -> str:
+        return self.template.get("location", "")
+
+    @cached_property
+    def format(self) -> str:
+        return self.template.get("format", "")
+
+    @cached_property
+    def summary(self) -> str:
+        return self.template.get("summary", "")
+
+    @cached_property
+    def rights(self) -> str:
+        return self.template.get("rights", "")
+
+    @cached_property
+    def subject(self) -> list(str):
+        return self.template.get("subject", [])
+
+    def get_ciim_url(self) -> str:
+        try:
+            return reverse("details-page-machine-readable", kwargs={"id": self.ciim_id})
+        except NoReverseMatch:
+            pass
+        return ""

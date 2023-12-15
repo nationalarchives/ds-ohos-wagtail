@@ -498,7 +498,7 @@ class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
         )
 
 
-@unittest.skip("TODO:OHOS-Remove or update")
+@unittest.skip("TODO:Rosetta")
 class FeaturedSearchTestCase(SearchViewTestCase):
     test_url = reverse_lazy("search-featured")
 
@@ -618,7 +618,7 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
             },
         )
 
-    @unittest.skip("TODO:OHOS-Remove or update")
+    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_datalayer_featured_search(self):
         self.assertDataLayerEquals(
@@ -649,7 +649,7 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
             },
         )
 
-    @unittest.skip("TODO:OHOS-Remove or update")
+    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_datalayer_featured_search_query(self):
         self.assertDataLayerEquals(

@@ -176,7 +176,7 @@ class BaseCollectionSearchForm(forms.Form):
     location = DynamicMultipleChoiceField(
         label="Location",
         required=False,
-    )    
+    )
     place = DynamicMultipleChoiceField(
         label="Place",
         required=False,

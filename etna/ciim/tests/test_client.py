@@ -1,4 +1,5 @@
 import unittest
+
 from datetime import datetime
 
 from django.conf import settings
@@ -158,7 +159,7 @@ class ClientSearchTest(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/search?sort=dateCreated",
         )
 
-    @unittest.skip("TODO:OHOS-Remove or update")
+    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_with_sort_date_opening(self):
         self.records_client.search(sort=Sort.DATE_OPENING)
@@ -179,7 +180,7 @@ class ClientSearchTest(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/search?sort=",
         )
 
-    @unittest.skip("TODO:OHOS-Remove or update")
+    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_with_sort_order_asc(self):
         self.records_client.search(sort_order=SortOrder.ASC)
@@ -190,7 +191,7 @@ class ClientSearchTest(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/search?sortOrder=asc",
         )
 
-    @unittest.skip("TODO:OHOS-Remove or update")
+    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_with_sort_order_desc(self):
         self.records_client.search(sort_order=SortOrder.DESC)
@@ -464,7 +465,7 @@ class ClientSearchUnifiedTest(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/searchUnified?template=results",
         )
 
-    @unittest.skip("TODO:OHOS-Remove or update")
+    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_with_sort_title(self):
         self.records_client.search_unified(sort_by=Sort.TITLE_ASC)
@@ -475,7 +476,7 @@ class ClientSearchUnifiedTest(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/searchUnified?sort=title:asc",
         )
 
-    @unittest.skip("TODO:OHOS-Remove or update")
+    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_with_sort_date_created(self):
         self.records_client.search_unified(sort_by=Sort.DATE_ASC)
@@ -486,7 +487,7 @@ class ClientSearchUnifiedTest(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/searchUnified?sort=dateCreated",
         )
 
-    @unittest.skip("TODO:OHOS-Remove or update")
+    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_with_sort_date_opening(self):
         self.records_client.search_unified(sort_by=Sort.DATE_OPENING)
@@ -507,7 +508,7 @@ class ClientSearchUnifiedTest(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/searchUnified?sort=",
         )
 
-    # @unittest.skip("TODO:OHOS-Remove or update")
+    # @unittest.skip("TODO:Rosetta")
     # @responses.activate
     # def test_with_sort_order_asc(self):
     #     self.records_client.search_unified(sort_order=Sort.ASC)
