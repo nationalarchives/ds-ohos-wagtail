@@ -97,7 +97,6 @@ def prepare_filter_aggregations(items: Optional[list]) -> Optional[str]:
     before-prepare: "heldBy:Labour History Archive and Study Centre (People's History Museum/University of Central Lancashire)"
     after-prepare:  "heldBy:Labour History Archive and Study Centre People's History Museum University of Central Lancashire "
     """
-    print(f"items={items}")
     if not items:
         return None
 
@@ -352,10 +351,6 @@ class ClientAPI:
             "from": offset,
             "size": size,
         }
-        print(f"aggregations={aggregations}")
-        print(f"filter_aggregations={filter_aggregations}")
-        # print(f"filter:{params.get('filter','')}")
-        # params["filter"] =[]
         if created_start_date:
             if group == "community":
                 params["filter"] += [f"fromDate:(>={created_start_date})"]
@@ -371,7 +366,6 @@ class ClientAPI:
                 params["createdEndDate"] = self.format_datetime(
                     created_end_date, supplementary_time=time.max
                 )
-        print(f"""param[filter]={params["filter"]}""")
 
         # Get HTTP response from the API
         response = self.make_request(f"{self.base_url}/search", params=params)
@@ -522,7 +516,6 @@ class ClientAPI:
         """Make request to Client API."""
         params = self.prepare_request_params(params)
         response = self.session.get(url, params=params, timeout=self.timeout)
-        print(f"Client.ClientAPI.make_request................response.url={response.url}")
         self._raise_for_status(response)
         return response
 
