@@ -206,8 +206,8 @@ def resolve_links(markup):
 
     def link_from_span(span):
         if link := pq(span).attr("link"):
-            if iaid := re.match(r"\$link\((?P<id>[C0-9]*)\)", link).group("id"):
-                url = reverse("details-page-machine-readable", kwargs={"id": iaid})
+            if id := re.match(r"\$link\((?P<id>[C0-9]*)\)", link).group("id"):
+                url = reverse("details-page-machine-readable", kwargs={"id": id})
                 return pq(f'<a href="{url}">{pq(span).text()}</a>')
         if link := pq(span).attr("href"):
             return pq(f'<a href="{link}">{pq(span).text()}</a>')

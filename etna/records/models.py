@@ -76,7 +76,7 @@ class Record(DataLayerMixin, APIModel):
         try:
             candidate = self.template["iaid"]
         except KeyError:
-            candidate = self.get("@admin.id", default="")
+            candidate = self.get("id", default="")
 
         try:
             # fallback for Record Creators
@@ -132,18 +132,19 @@ class Record(DataLayerMixin, APIModel):
 
     @cached_property
     def summary_title(self) -> str:
+        if self.group == "community":
+            return self.summary
+        # TODO:Rosetta
         if raw := self._get_raw_summary_title():
             return mark_safe(strip_html(raw, preserve_marks=True))
         return raw
 
     def _get_raw_summary_title(self) -> str:
-        # TODO:Rosetta
-        # try:
-        #     return "... ".join(self.highlights["@template.details.summaryTitle"])
-        # except KeyError:
-        #     pass
-        # return self.template.get("summaryTitle", "")
-        return self.summary
+        try:
+            return "... ".join(self.highlights["@template.details.summaryTitle"])
+        except KeyError:
+            pass
+        return self.template.get("summaryTitle", "")
 
     def get_url(self, use_reference_number: bool = True) -> str:
         if use_reference_number and self.reference_number:
@@ -274,6 +275,7 @@ class Record(DataLayerMixin, APIModel):
 
     @cached_property
     def date_created(self) -> str:
+        # TODO:Rosetta
         if self.group == "community":
             return self.template.get("creationDate", "")
         return self.template.get("dateCreated", "")
@@ -639,9 +641,13 @@ class Record(DataLayerMixin, APIModel):
     def subject(self) -> list(str):
         return self.template.get("subject", [])
 
+    @cached_property
     def get_ciim_url(self) -> str:
         try:
-            return reverse("details-page-machine-readable", kwargs={"id": self.ciim_id})
+            if self.ciim_id:
+                return reverse(
+                    "details-page-machine-readable", kwargs={"id": self.ciim_id}
+                )
         except NoReverseMatch:
             pass
         return ""

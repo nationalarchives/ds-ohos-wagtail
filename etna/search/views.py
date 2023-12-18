@@ -13,7 +13,7 @@ from django.views.generic import FormView, TemplateView
 from wagtail.coreutils import camelcase_to_underscore
 
 from ..analytics.mixins import SearchDataLayerMixin
-from ..ciim.client import Aggregation, Sort, SortOrder, Stream, Template
+from ..ciim.client import Aggregation, Sort, Stream
 from ..ciim.constants import (
     CATALOGUE_BUCKETS,
     CLOSURE_CLOSED_STATUS,
