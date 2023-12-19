@@ -651,3 +651,7 @@ class Record(DataLayerMixin, APIModel):
         except NoReverseMatch:
             pass
         return ""
+
+    @cached_property
+    def item_url(self) -> str:
+        return self.template.get("itemURL", "")

@@ -43,4 +43,12 @@ FIELD_LABELS = {
     "restrictions_on_use": "Restrictions on use",
     "publication_note": "Publication note",
     "collection": "Collection",
+    "item_url": "Item URL",
+    "rights": "Rights",
+    "format": "Format",
+    "location": "Location",
+    "subject": "subject",
+    "level": "Level",
+    "type": "Type",
+    "identifier": "Identifier",
 }
