@@ -1,6 +1,5 @@
 {% load records_tags %}
 
-
 {% if record.reference_number %}
     <tr>
         <th scope="row">{{ 'reference_number'|as_label }}</th>
@@ -46,11 +45,11 @@
             {% for related_material in record.related_materials %}
                 {% if related_material.description %}
                     <p>{{related_material.description}}
-                    {% if related_material.links %}
-                        {% for link in related_material.links %}
-                            <a href="{{ link.href }}">{{ link.text }}</a>
-                        {% endfor %}
-                    {% endif %}
+                        {% if related_material.links %}
+                            {% for link in related_material.links %}
+                                <a href="{{ link.href }}">{{ link.text }}</a>
+                            {% endfor %}
+                        {% endif %}
                     </p>
                 {% endif %}
             {% endfor %}
@@ -74,11 +73,11 @@
     <tr>
         <th scope="row">{{ 'held_by'|as_label }}</th>
         <td>
-        {% if record.held_by_url %}
-            <a href="{{ record.held_by_url }}">{{ record.held_by }}</a>
-        {% else %}
-            {{ record.held_by }}
-        {% endif %}
+            {% if record.held_by_url %}
+                <a href="{{ record.held_by_url }}">{{ record.held_by }}</a>
+            {% else %}
+                {{ record.held_by }}
+            {% endif %}
         </td>
     </tr>
 {% endif %}
@@ -112,25 +111,25 @@
     <tr>
         <th scope="row">{{ 'language'|as_label }}</th>
         <td>
-        {% for item in record.language %}
-            <p>{{ item }}</p>
-        {% endfor %}
+            {% for item in record.language %}
+                <p>{{ item }}</p>
+            {% endfor %}
         </td>
     </tr>
 {% endif %}
 {% if record.map_designation %}
     <tr>
         <th scope="row">{{ 'map_designation'|as_label }}</th>
-        <<td>{{ record.map_designation }}</td>
+        <td>{{ record.map_designation }}</td>
     </tr>
 {% endif %}
 {% if record.creator %}
     <tr>
         <th scope="row">{{ 'creator'|as_label }}</th>
         <td>
-        {% for item in record.creator %}
-            <p>{{ item }}</p>
-        {% endfor %}
+            {% for item in record.creator %}
+                <p>{{ item }}</p>
+            {% endfor %}
         </td>
     </tr>
 {% endif %}
@@ -147,10 +146,10 @@
     </tr>
 {% endif %}
 {% if record.dimensions %}
-    <tr>
-        <th scope="row">{{ 'dimensions'|as_label }}</th>
-        <td>{{ record.dimensions }}</td>
-    </tr>
+<tr>
+    <th scope="row">{{ 'dimensions'|as_label }}</th>
+    <td>{{ record.dimensions }}</td>
+</tr>
 {% endif %}
 {% if record.access_condition %}
     <tr>
@@ -162,9 +161,9 @@
     <tr>
         <th scope="row">{{ 'immediate_source_of_acquisition'|as_label }}</th>
         <td>
-        {% for item in record.immediate_source_of_acquisition %}
-            <p>{{ item }}</p>
-        {% endfor %}
+            {% for item in record.immediate_source_of_acquisition %}
+                <p>{{ item }}</p>
+            {% endfor %}
         </td>
     </tr>
 {% endif %}

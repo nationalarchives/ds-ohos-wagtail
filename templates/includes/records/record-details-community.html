@@ -1,7 +1,5 @@
 {% load records_tags %}
 
-
-
 {% if record.title %}
     <tr>
         <th scope="row">{{ 'title'|as_label }}</th>
@@ -60,9 +58,9 @@
     <tr>
         <th scope="row">{{ 'subject'|as_label }}</th>
         <td>
-        {% for sub in record.subject %}
-            <p>{{sub}}</p>
-        {% endfor %}
+            {% for sub in record.subject %}
+                <p>{{ sub }}</p>
+            {% endfor %}
         </td>
     </tr>
 {% endif %}
@@ -78,4 +76,3 @@
         <td>{{ record.type }}</td>
     </tr>
 {% endif %}
-        
