@@ -32,14 +32,7 @@ class ReferenceNumberConverter:
 class IDConverter(StringConverter):
     """Converter used to extract an IAID from a URL."""
 
-    ohos_pattern = (
-        "media-[a-zA-Z0-9\-]{1,}"
-        "|wmk-[a-zA-Z0-9\-]{1,}"
-        "|swop-[a-zA-Z0-9\-]{1,}"
-        "|pcw-[a-zA-Z0-9\-]{1,}"
-        "|shc-[a-zA-Z0-9\-]{1,}"
-        "|osc-[a-zA-Z0-9\-]{1,}"
-    )
+    ohos_pattern = "media-[a-zA-Z0-9\-]{1,}|wmk-[a-zA-Z0-9\-]{1,}|swop-[a-zA-Z0-9\-]{1,}|pcw-[a-zA-Z0-9\-]{1,}|shc-[a-zA-Z0-9\-]{1,}|osc-[a-zA-Z0-9\-]{1,}"
     etna_pattern = (
         "[ACDFN][0-9]{1,8}|[a-f0-9]{8}-?([a-f0-9]{4}-?){3}[a-f0-9]{12}(_[1-9])?"
     )

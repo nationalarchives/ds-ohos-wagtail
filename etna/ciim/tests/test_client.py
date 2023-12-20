@@ -183,7 +183,7 @@ class ClientSearchTest(SimpleTestCase):
     @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_with_sort_order_asc(self):
-        self.records_client.search(sort_order=SortOrder.ASC)
+        self.records_client.search(sort_order="")
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
@@ -194,7 +194,7 @@ class ClientSearchTest(SimpleTestCase):
     @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_with_sort_order_desc(self):
-        self.records_client.search(sort_order=SortOrder.DESC)
+        self.records_client.search(sort_order="")
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
@@ -508,7 +508,7 @@ class ClientSearchUnifiedTest(SimpleTestCase):
 
     @responses.activate
     def test_with_sort_order_asc(self):
-        self.records_client.search_unified(sort_order=Sort.ASC)
+        self.records_client.search_unified(sort_order="")
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
@@ -518,7 +518,7 @@ class ClientSearchUnifiedTest(SimpleTestCase):
 
     @responses.activate
     def test_with_sort_order_desc(self):
-        self.records_client.search_unified(sort_order=SortOrder.DESC)
+        self.records_client.search_unified(sort_order="")
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
@@ -567,7 +567,7 @@ class ClientFetchTest(SimpleTestCase):
 
     @responses.activate
     def test_with_iaid(self):
-        self.records_client.fetch(id="C198022")
+        self.records_clien.fetch(id="C198022")
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
