@@ -358,7 +358,7 @@ class UnexpectedParsingIssueTest(SimpleTestCase):
     def test_hierarchy_with_no_identifier_is_skipped(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(
                 records=[
                     create_record(
@@ -391,7 +391,7 @@ class UnexpectedParsingIssueTest(SimpleTestCase):
 
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(records=[record]),
         )
 
@@ -425,7 +425,7 @@ class UnexpectedParsingIssueTest(SimpleTestCase):
 
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(records=[record]),
         )
 
@@ -466,7 +466,7 @@ class UnexpectedParsingIssueTest(SimpleTestCase):
 
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(records=[record]),
         )
 

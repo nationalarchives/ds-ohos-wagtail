@@ -31,7 +31,7 @@ class SettingControlledLoginRequiredTest(WagtailTestUtils, TestCase):
         )
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(
                 records=[
                     create_record(

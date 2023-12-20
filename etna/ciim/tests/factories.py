@@ -82,7 +82,7 @@ def create_record(
                 detail[key] = value
 
     # return {"_source": source}  # TODO:Rosetta
-    return {"data": [detail]}
+    return {"data": detail}
 
 
 def create_media(

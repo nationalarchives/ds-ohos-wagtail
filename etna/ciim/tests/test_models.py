@@ -18,7 +18,7 @@ class ClientAPIExceptionTest(SimpleTestCase):
     def test_raises_does_not_exist(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json={"hits": {"total": {"value": 0, "relation": "eq"}, "hits": []}},
         )
 
@@ -29,7 +29,7 @@ class ClientAPIExceptionTest(SimpleTestCase):
     def test_raises_multiple_objects_returned(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json={"hits": {"total": {"value": 2, "relation": "eq"}, "hits": [{}, {}]}},
         )
 
@@ -87,7 +87,7 @@ class ClientExceptionTest(SimpleTestCase):
     def test_raises_invalid_iaid_match(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             status=500,
         )
 

@@ -69,7 +69,7 @@ class TestRecordDisambiguationView(TestCase):
 
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(
                 records=[
                     create_record(iaid="C123456", reference_number="ADM 223/3"),
@@ -92,7 +92,7 @@ class TestRecordView(TestCase):
     def test_no_matches_respond_with_404(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(records=[]),
         )
 
@@ -107,7 +107,7 @@ class TestRecordView(TestCase):
     def test_record_rendered_for_single_result(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(
                 records=[
                     create_record(iaid="C123456"),
@@ -133,7 +133,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -153,7 +153,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -173,7 +173,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -193,7 +193,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -213,7 +213,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -233,7 +233,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -253,7 +253,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -273,7 +273,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -293,7 +293,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -310,7 +310,7 @@ class RecordDetailBackToSearchTest(TestCase):
     def setUp(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(
                 records=[
                     create_record(iaid="C13359805"),

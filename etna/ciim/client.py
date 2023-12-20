@@ -247,7 +247,7 @@ class ClientAPI:
         *,
         id: Optional[str] = None,
     ) -> Record:
-        """Make request and return response for Client API's /fetch endpoint.
+        """Make request and return response for Client API's /get endpoint.
         Used to fetch a single item by its identifier.
         Keyword arguments:
         id:
