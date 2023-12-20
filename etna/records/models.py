@@ -606,10 +606,6 @@ class Record(DataLayerMixin, APIModel):
         return self.template.get("identifier", "")
 
     @cached_property
-    def identifier(self) -> str:
-        return self.template.get("identifier", "")
-
-    @cached_property
     def group(self) -> str:
         return self.template.get("group", "")
 
