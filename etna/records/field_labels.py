@@ -47,7 +47,7 @@ FIELD_LABELS = {
     "rights": "Rights",
     "format": "Format",
     "location": "Location",
-    "subject": "subject",
+    "subject": "Subject",
     "level": "Level",
     "type": "Type",
     "identifier": "Identifier",
