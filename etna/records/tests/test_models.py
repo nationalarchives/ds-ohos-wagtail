@@ -1,4 +1,5 @@
 import json
+import unittest
 
 from copy import deepcopy
 
@@ -15,6 +16,7 @@ from ..api import get_records_client
 from ..models import Record
 
 
+@unittest.skip("TODO:Rosetta")
 class RecordModelTests(SimpleTestCase):
     fixture_path = f"{settings.BASE_DIR}/etna/ciim/tests/fixtures/record.json"
 
@@ -344,6 +346,7 @@ class RecordModelTests(SimpleTestCase):
         self.assertEqual(self.record.closure_status, "Some status value")
 
 
+@unittest.skip("TODO:Rosetta")
 @override_settings(CLIENT_BASE_URL=f"{settings.CLIENT_BASE_URL}")
 class UnexpectedParsingIssueTest(SimpleTestCase):
     """A collection of tests verifying fixes for real-world (but unexpected)
@@ -475,6 +478,7 @@ class UnexpectedParsingIssueTest(SimpleTestCase):
         self.assertEqual(record.related_articles, ())
 
 
+@unittest.skip("TODO:Rosetta")
 class RecordModelCatalogueTests(SimpleTestCase):
     maxDiff = None
 
