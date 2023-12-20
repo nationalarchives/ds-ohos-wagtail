@@ -653,5 +653,16 @@ class Record(DataLayerMixin, APIModel):
         return ""
 
     @cached_property
+    def get_collection_url(self) -> str:
+        try:
+            if self.collection_id:
+                return reverse(
+                    "details-page-machine-readable", kwargs={"id": self.collection_id}
+                )
+        except NoReverseMatch:
+            pass
+        return ""
+
+    @cached_property
     def item_url(self) -> str:
         return self.template.get("itemURL", "")

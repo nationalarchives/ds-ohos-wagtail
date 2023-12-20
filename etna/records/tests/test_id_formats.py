@@ -16,6 +16,12 @@ class TestIDFormats(SimpleTestCase):
             ("iaid_D", "D431198"),
             ("iaid_F", "F257629"),
             ("iaid_N", "N14562581"),
+            ("ohos-media", "media-wmk-20485"),
+            ("ohos-osc", "osc-16758"),
+            ("ohos-swop", "swop-49209"),
+            ("ohos-wmk", "wmk-16758"),
+            ("ohos-shc-1", "shc-7694-6-1-1-4"),
+            ("ohos-shc-2", "shc-CC1174-2-1-1-1"),
         ):
             id_regex = re.compile(IDConverter.regex)
             with self.subTest(label):

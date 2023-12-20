@@ -17,6 +17,7 @@ def record_url(
     base_record: Record = None,
     form_group: str = "",
     use_non_reference_number_url: bool = True,
+    use_collection_id: bool = False,
 ) -> str:
     """
     Return the URL for the provided `record`, which should always be a
@@ -34,7 +35,9 @@ def record_url(
 
     form_group: use with results from search queries, value determines ex: community, tna, nonTna results
     """
-    if form_group == "community":
+    if form_group == "community" or record.group == "community":
+        if use_collection_id:
+            return record.get_collection_url
         return record.get_ciim_url
 
     if is_editorial and settings.FEATURE_RECORD_LINKS_GO_TO_DISCOVERY and record.iaid:
