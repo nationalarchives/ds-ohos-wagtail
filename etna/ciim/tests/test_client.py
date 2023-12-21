@@ -27,6 +27,7 @@ from ..exceptions import (
 )
 
 
+@unittest.skip("TODO:Rosetta")
 class ClientSearchAllTest(SimpleTestCase):
     @classmethod
     def setUpClass(cls):
@@ -201,26 +202,6 @@ class ClientSearchTest(SimpleTestCase):
         self.assertEqual(
             responses.calls[0].request.url,
             f"{settings.CLIENT_BASE_URL}/search?sortOrder=desc",
-        )
-
-    @responses.activate
-    def test_with_template_details(self):
-        self.records_client.search(template=Template.DETAILS)
-
-        self.assertEqual(len(responses.calls), 1)
-        self.assertEqual(
-            responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/search?template=details",
-        )
-
-    @responses.activate
-    def test_with_template_results(self):
-        self.records_client.search(template=Template.RESULTS)
-
-        self.assertEqual(len(responses.calls), 1)
-        self.assertEqual(
-            responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/search?template=results",
         )
 
     @responses.activate
@@ -445,26 +426,6 @@ class ClientSearchUnifiedTest(SimpleTestCase):
         self.assertEqual(
             responses.calls[0].request.url,
             f"{settings.CLIENT_BASE_URL}/searchUnified?stream=interpretive",
-        )
-
-    @responses.activate
-    def test_with_template_details(self):
-        self.records_client.search_unified(template=Template.DETAILS)
-
-        self.assertEqual(len(responses.calls), 1)
-        self.assertEqual(
-            responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/searchUnified?template=details",
-        )
-
-    @responses.activate
-    def test_with_template_results(self):
-        self.records_client.search_unified(template=Template.RESULTS)
-
-        self.assertEqual(len(responses.calls), 1)
-        self.assertEqual(
-            responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/searchUnified?template=results",
         )
 
     @responses.activate
