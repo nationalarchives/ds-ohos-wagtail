@@ -372,56 +372,6 @@ class ClientAPI:
             bucket_counts=bucket_counts_data,
         )
 
-    def search_all(
-        self,
-        *,
-        q: Optional[str] = None,
-        aggregations: Optional[list[Aggregation]] = None,
-        filter_aggregations: Optional[list[str]] = None,
-        template: None,  # TODO:Rosetta
-        offset: Optional[int] = None,
-        size: Optional[int] = None,
-    ) -> Tuple[ResultList]:
-        """Make request and return response for Client API's /searchAll endpoint.
-        Search metadata across multiple buckets in parallel. Returns results
-        and an aggregation for each provided bucket
-        Keyword arguments:
-        q:
-            String to query all indexed fields
-        aggregations:
-            aggregations to include with response. Number returned can be set
-            by optional count suffix: <aggregation>:<number-to-return>
-        filter_aggregations:
-            filter results set by aggregation
-        template:
-            @template data to include with response
-        offset:
-            Offset for results. Mapped to 'from' before making request
-        size:
-            Number of results to return
-        """
-        params = {
-            "q": q,
-            "aggregations": aggregations,
-            "filterAggregations": prepare_filter_aggregations(filter_aggregations),
-            "template": template,
-            "from": offset,
-            "size": size,
-        }
-
-        # Get HTTP response from the API
-        response = self.make_request(f"{self.base_url}/searchAll", params=params)
-
-        # Convert the HTTP response to a Python dict
-        response_data = response.json()
-
-        # The API returns a series of ES 'responses', with results for each 'bucket'.
-        # Each of these responses is converted to it's own `ResultList`, and the collective
-        # `ResultList` objects returned as tuple.
-        return tuple(
-            self.resultlist_from_response(r) for r in response_data.get("responses", ())
-        )
-
     def search_unified(
         self,
         *,

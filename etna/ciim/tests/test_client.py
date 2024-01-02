@@ -28,17 +28,6 @@ from ..exceptions import (
 
 
 @unittest.skip("TODO:Rosetta")
-class ClientSearchAllTest(SimpleTestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.records_client = get_records_client()
-
-    def setUp(self):
-        responses.add(responses.GET, f"{settings.CLIENT_BASE_URL}/searchAll", json={})
-
-
-@unittest.skip("TODO:Rosetta")
 class ClientSearchTest(SimpleTestCase):
     def setUp(self):
         self.records_client = get_records_client()

@@ -30,7 +30,7 @@ class SearchTabs(StrEnum):
 class Aggregation(StrEnum):
     """Aggregated counts to include with response.
 
-    Supported by /search and /searchAll endpoints.
+    Supported by /search endpoints.
     """
 
     TOPIC = "topic"
