@@ -70,7 +70,7 @@ def record_detail_view(request, id):
 
     try:
         # for any record
-        record = records_client.fetch(id=id)
+        record = records_client.get(id=id)
     except DoesNotExist:
         raise Http404
 

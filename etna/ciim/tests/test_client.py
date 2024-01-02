@@ -521,7 +521,7 @@ class ClientFetchTest(SimpleTestCase):
 
     @responses.activate
     def test_no_arguments_makes_request_with_no_parameters(self):
-        self.records_client.fetch()
+        self.records_client.get()
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
@@ -530,7 +530,7 @@ class ClientFetchTest(SimpleTestCase):
 
     @responses.activate
     def test_with_iaid(self):
-        self.records_clien.fetch(id="C198022")
+        self.records_clien.get(id="C198022")
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
@@ -613,7 +613,7 @@ class TestClientFetchReponse(SimpleTestCase):
             ClientAPIServiceUnavailableError,
             "failure to get a peer from the ring-balancer",
         ):
-            self.records_client.fetch()
+            self.records_client.get()
 
     @responses.activate
     def test_raises_client_api_error_on_elastic_search_error(self):
@@ -637,7 +637,7 @@ class TestClientFetchReponse(SimpleTestCase):
         with self.assertRaisesMessage(
             ClientAPIServiceUnavailableError, "all shards failed"
         ):
-            self.records_client.fetch()
+            self.records_client.get()
 
     @responses.activate
     def test_raises_client_api_error_on_java_error(self):
@@ -662,7 +662,7 @@ class TestClientFetchReponse(SimpleTestCase):
         with self.assertRaisesMessage(
             ClientAPIBadRequestError, "Failed to convert value of type"
         ):
-            self.records_client.fetch()
+            self.records_client.get()
 
     @responses.activate
     def test_internal_server_error(self):
@@ -678,7 +678,7 @@ class TestClientFetchReponse(SimpleTestCase):
         with self.assertRaisesMessage(
             ClientAPIInternalServerError, "Internal Server Error"
         ):
-            self.records_client.fetch()
+            self.records_client.get()
 
     @responses.activate
     def test_default_exception(self):
@@ -692,7 +692,7 @@ class TestClientFetchReponse(SimpleTestCase):
         )
 
         with self.assertRaisesMessage(ClientAPICommunicationError, "I'm a teapot"):
-            self.records_client.fetch()
+            self.records_client.get()
 
     @responses.activate
     def test_valid_response(self):
@@ -702,7 +702,7 @@ class TestClientFetchReponse(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(records=[record_data]),
         )
-        result = self.records_client.fetch()
+        result = self.records_client.get()
         self.assertIsInstance(result, Record)
         self.assertEqual(
             result.reference_number,
@@ -717,7 +717,7 @@ class TestClientFetchReponse(SimpleTestCase):
             json=create_response(records=[]),
         )
         with self.assertRaises(DoesNotExist):
-            self.records_client.fetch()
+            self.records_client.get()
 
     @responses.activate
     def test_raises_multipleobjectsreturned_when_multiple_results_received(self):
@@ -727,7 +727,7 @@ class TestClientFetchReponse(SimpleTestCase):
             json=create_response(records=[create_record(), create_record()]),
         )
         with self.assertRaises(MultipleObjectsReturned):
-            self.records_client.fetch()
+            self.records_client.get()
 
 
 @unittest.skip("TODO:Rosetta")

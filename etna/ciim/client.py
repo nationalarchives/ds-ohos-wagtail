@@ -242,17 +242,17 @@ class ClientAPI:
             bucket_counts=bucket_counts,
         )
 
-    def fetch(
+    def get(
         self,
         *,
         id: Optional[str] = None,
     ) -> Record:
         """Make request and return response for Client API's /get endpoint.
-        Used to fetch a single item by its identifier.
+        Used to get a single item by its identifier.
         Keyword arguments:
         id:
             Generic identifier. Matches various id's
-            Ex: returns match on Information Asset Identifier - iaid (or similar primary identifier), creator records faid
+            Ex: returns match on Ciim Id, Information Asset Identifier - iaid (or similar primary identifier), creator records faid
         """
         params = {
             "id": id,
@@ -489,7 +489,7 @@ class ClientAPI:
         size: Optional[int] = None,
     ) -> ResultList:
         """Make request and return response for Client API's /fetchAll endpoint.
-        Used to fetch a all items by for the given identifier(s).
+        Used to fetch all items by for the given identifier(s).
         Fetch all metadata with a generic identifier, iaid or replicaId (rid).
         Keyword arguments:
         ids:

@@ -177,7 +177,7 @@ class SearchLandingView(SearchDataLayerMixin, BucketsMixin, TemplateView):
     page_title = "Search landing"
 
     def get_context_data(self, **kwargs):
-        # Make empty search to fetch aggregations
+        # Make empty search to get aggregations
         self.api_result = records_client.search(
             aggregations=[
                 Aggregation.CATALOGUE_SOURCE,
@@ -286,7 +286,7 @@ class BaseSearchView(SearchDataLayerMixin, ClientAPIMixin, GETFormView):
 
     def process_valid_form(self, form: Form) -> HttpResponse:
         """
-        When the form is valid, fetch results from the API, take any actions
+        When the form is valid, get results from the API, take any actions
         based on the result, then render everything to a template.
         """
         self.api_result = self.get_api_result(form)
