@@ -204,10 +204,6 @@ class Record(DataLayerMixin, APIModel):
         return self.get("availability.delivery.surrogate", default="")
 
     @cached_property
-    def media_reference_id(self) -> str:
-        return self.get("multimedia.@admin.id", default="")
-
-    @cached_property
     def source(self) -> str:
         return self.get("source.value", default="")
 

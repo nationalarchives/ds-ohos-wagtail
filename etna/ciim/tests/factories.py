@@ -11,7 +11,6 @@ def create_record(
     description="description",
     earliest="1900",
     latest="2100",
-    media_reference_id="0f183772-6fa7-4fb4-b608-412cf6fa8204",
     hierarchy=None,
     related=None,
     source_values: Optional[Dict[str, Any]] = None,
@@ -54,14 +53,6 @@ def create_record(
     #     "summary": {
     #         "title": summary_title,
     #     },
-    #     "multimedia": [
-    #         {
-    #             "@entity": "reference",
-    #             "@admin": {
-    #                 "id": media_reference_id,
-    #             },
-    #         }
-    #     ],
     #     "related": related,
     #     "description": [{"value": description}],
     #     "legal": {"status": "Open"},
