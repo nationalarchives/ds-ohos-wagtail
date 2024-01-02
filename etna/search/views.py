@@ -432,6 +432,7 @@ class BaseFilteredSearchView(BaseSearchView):
         return dict(
             stream=self.api_stream,
             q=self.query or None,
+            group=form.cleaned_data.get("group"),
             aggregations=self.get_api_aggregations(),
             filter_aggregations=self.get_api_filter_aggregations(form),
             filter_keyword=form.cleaned_data.get("filter_keyword"),
@@ -659,7 +660,7 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
 class CatalogueSearchLongFilterView(BaseLongFilterOptionsView):
     api_method_name = "search"
     api_stream = Stream.EVIDENTIAL
-    default_group = "tna"
+    default_group = "community"
     form_class = CatalogueSearchForm
     template_name = "search/long_filter_options.html"
     page_type = "Catalogue search long filter page"

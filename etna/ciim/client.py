@@ -276,7 +276,7 @@ class ClientAPI:
     def search(
         self,
         *,
-        group: Optional[str] = "community",
+        group: Optional[str],
         q: Optional[str] = None,
         opening_start_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
         opening_end_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
