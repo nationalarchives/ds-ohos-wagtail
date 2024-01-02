@@ -76,32 +76,6 @@ def create_record(
     return {"data": detail}
 
 
-def create_media(
-    location="66/KV/2/444a48ad-f9eb-4f40-b159-396dc7fa6875.jpg",
-    thumbnail_location="66/COPY/KV/2/444a48ad-f9eb-4f40-b159-396dc7fa6875.jpg",
-    sort="01",
-):
-    return {
-        "_source": {
-            "processed": {
-                "original": {
-                    "location": location,
-                    "public": True,
-                    "resizable": True,
-                    "@type": "image",
-                },
-                "preview": {
-                    "location": thumbnail_location,
-                    "public": True,
-                    "resizable": True,
-                    "@type": "image",
-                },
-            },
-            "sort": sort,
-        }
-    }
-
-
 def create_response(records=None, aggregations=None, total_count=None):
     """Create a sample Elasticsearch response for provided records.
 
