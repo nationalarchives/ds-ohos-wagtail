@@ -13,7 +13,6 @@ import responses
 
 from etna.core.test_utils import prevent_request_warnings
 
-from ...ciim.tests.factories import create_response
 from ..forms import CatalogueSearchForm
 from ..views import CatalogueSearchView
 
