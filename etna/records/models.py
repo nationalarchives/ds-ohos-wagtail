@@ -14,6 +14,7 @@ from django.utils.safestring import mark_safe
 from pyquery import PyQuery as pq
 
 from ..analytics.mixins import DataLayerMixin
+from ..ciim.constants import BucketKeys
 from ..ciim.models import APIModel
 from ..ciim.utils import (
     NOT_PROVIDED,
@@ -132,7 +133,7 @@ class Record(DataLayerMixin, APIModel):
 
     @cached_property
     def summary_title(self) -> str:
-        if self.group == "community":
+        if self.group == BucketKeys.COMMUNITY:
             return self.summary
         # TODO:Rosetta
         if raw := self._get_raw_summary_title():
@@ -272,7 +273,7 @@ class Record(DataLayerMixin, APIModel):
     @cached_property
     def date_created(self) -> str:
         # TODO:Rosetta
-        if self.group == "community":
+        if self.group == BucketKeys.COMMUNITY:
             return self.template.get("creationDate", "")
         return self.template.get("dateCreated", "")
 

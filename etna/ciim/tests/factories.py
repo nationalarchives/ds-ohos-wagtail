@@ -104,17 +104,23 @@ def create_search_response(records=None, aggregations=None, total_count=None):
     if not records:
         records = []
 
-    if not aggregations:
-        aggregations = {}
+    if aggregations:
+        aggregations_list = [aggregations]
+    else:
+        aggregations_list = []
 
     if not total_count:
         total_count = len(records)
 
     return {
-        "responses": [
+        "data": [
             create_response(aggregations=aggregations, total_count=total_count),
             create_response(records=records, total_count=total_count),
-        ]
+        ],
+        "aggregations": aggregations_list,
+        "stats": {
+            "total": total_count,
+        },
     }
 
 

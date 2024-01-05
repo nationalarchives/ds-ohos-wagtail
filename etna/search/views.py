@@ -645,7 +645,7 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
     api_method_name = "search"
     api_stream = Stream.EVIDENTIAL
     bucket_list = CATALOGUE_BUCKETS
-    default_group = "community"
+    default_group = BucketKeys.COMMUNITY
     form_class = CatalogueSearchForm
     template_name = "search/catalogue_search.html"
     search_tab = SearchTabs.CATALOGUE.value
@@ -660,7 +660,7 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
 class CatalogueSearchLongFilterView(BaseLongFilterOptionsView):
     api_method_name = "search"
     api_stream = Stream.EVIDENTIAL
-    default_group = "community"
+    default_group = BucketKeys.COMMUNITY
     form_class = CatalogueSearchForm
     template_name = "search/long_filter_options.html"
     page_type = "Catalogue search long filter page"

@@ -22,7 +22,7 @@ from django.utils.timezone import get_current_timezone
 
 import requests
 
-from etna.ciim.constants import Aggregation
+from etna.ciim.constants import Aggregation, BucketKeys
 from etna.records.models import Record
 
 from .exceptions import (
@@ -78,7 +78,7 @@ def prepare_filter_aggregations(items: Optional[list]) -> Optional[str]:
     after-prepare:  "heldBy:Labour History Archive and Study Centre People's History Museum University of Central Lancashire "
     """
     if not items:
-        return None
+        return []
 
     regex = r"([/():,\&\-\|+@!.])"
     subst = " "
@@ -276,7 +276,7 @@ class ClientAPI:
     def search(
         self,
         *,
-        group: Optional[str],
+        group: Optional[str] = None,
         q: Optional[str] = None,
         opening_start_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
         opening_end_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
@@ -336,7 +336,7 @@ class ClientAPI:
             )
 
         if created_start_date:
-            if group == "community":
+            if group == BucketKeys.COMMUNITY:
                 params["filter"] += [f"fromDate:(>={created_start_date})"]
             else:
                 params["createdStartDate"] = self.format_datetime(
@@ -344,7 +344,7 @@ class ClientAPI:
                 )
 
         if created_end_date:
-            if group == "community":
+            if group == BucketKeys.COMMUNITY:
                 params["filter"] += [f"toDate:(<={created_end_date})"]
             else:
                 params["createdEndDate"] = self.format_datetime(
@@ -359,6 +359,7 @@ class ClientAPI:
 
         # Pull out the separate ES responses
         bucket_counts_data = []
+
         aggregations = response_data["aggregations"]
         for aggregation in aggregations:
             if aggregation.get("name", "") == "group":

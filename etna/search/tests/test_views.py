@@ -29,10 +29,8 @@ class SearchViewTestCase(WagtailTestUtils, TestCase):
             responses.GET,
             f"{settings.CLIENT_BASE_URL}/search",
             json={
-                "responses": [
-                    create_response(),
-                    create_response(),
-                ]
+                "data": [],
+                "aggregations": [],
             },
         )
 
