@@ -287,7 +287,7 @@ def prepare_filter_aggregations(items: Optional[list]) -> Optional[str]:
     subst = " "
     field_list_to_prepare = ["heldBy"]
     filter_prepared_list = []
-    fields_using_or_operator = ["heldBy", "collection", "level"]
+    fields_using_or_operator = ["heldBy", "level"]
 
     for item in items:
         field, value = item.split(":", 1)
