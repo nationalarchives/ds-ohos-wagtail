@@ -37,7 +37,7 @@ class Record(DataLayerMixin, APIModel):
         This method recieves the raw JSON data dict recieved from
         Client API and makes it available to the instance as `self._raw`.
         """
-        self._raw = raw_data.get("detail") or raw_data
+        self._raw = raw_data.get("details") or raw_data
         # TODO:Rosetta
         # self.score = raw_data.get("_score")
         self.highlights = raw_data.get("highLight") or {}
