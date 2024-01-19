@@ -2,8 +2,6 @@ import json
 
 from typing import Any, Dict, Optional
 
-from etna.ciim.exceptions import DoesNotExist
-
 
 def create_record(
     group="tna",
