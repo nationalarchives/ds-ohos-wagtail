@@ -300,7 +300,7 @@ class ClientAPI:
         # Convert the HTTP response to a Python dict
         response_data = response.json()
 
-        # Pull out the separate ES responses # TODO:Rosetta
+        # Pull out the separate ES responses # TODO:Rosetta for fixed counts incl when no results are returned
         bucket_counts_data = []
 
         aggregations = response_data["aggregations"]
