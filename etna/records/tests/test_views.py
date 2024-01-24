@@ -87,7 +87,6 @@ class TestRecordDisambiguationView(TestCase):
         self.assertTemplateUsed(response, "records/record_detail.html")
 
 
-@unittest.skip("TODO:Rosetta")
 class TestRecordView(TestCase):
     @responses.activate
     @prevent_request_warnings
@@ -95,7 +94,7 @@ class TestRecordView(TestCase):
         responses.add(
             responses.GET,
             f"{settings.CLIENT_BASE_URL}/get",
-            json=create_response(records=[]),
+            json=create_response(status_code=404),
         )
 
         response = self.client.get("/catalogue/id/C123456/")
@@ -110,14 +109,26 @@ class TestRecordView(TestCase):
         responses.add(
             responses.GET,
             f"{settings.CLIENT_BASE_URL}/get",
-            json=create_response(
-                records=[
-                    create_record(iaid="C123456"),
-                ]
-            ),
+            json=create_response(record=create_record(iaid="C123456")),
         )
 
         response = self.client.get("/catalogue/id/C123456/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.resolver_match.view_name, "details-page-machine-readable"
+        )
+        self.assertTemplateUsed(response, "records/record_detail.html")
+
+    @responses.activate
+    def test_community_record_rendered(self):
+        responses.add(
+            responses.GET,
+            f"{settings.CLIENT_BASE_URL}/get",
+            json=create_response(record=create_record(group="community")),
+        )
+
+        response = self.client.get("/catalogue/id/pcw-12345/")
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
