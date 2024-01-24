@@ -238,7 +238,7 @@ class Record(DataLayerMixin, APIModel):
         #         return "... ".join(self.highlights["@template.details.description"])
         #     except KeyError:
         #         pass
-        return self.template.get("description", False)
+        return self.template.get("description", "")
 
     @cached_property
     def content(self) -> str:
@@ -635,7 +635,7 @@ class Record(DataLayerMixin, APIModel):
         return self.template.get("subject", [])
 
     @cached_property
-    def get_ciim_url(self) -> str:
+    def ciim_url(self) -> str:
         try:
             if self.ciim_id:
                 return reverse(
@@ -646,7 +646,7 @@ class Record(DataLayerMixin, APIModel):
         return ""
 
     @cached_property
-    def get_collection_url(self) -> str:
+    def collection_url(self) -> str:
         try:
             if self.collection_id:
                 return reverse(
