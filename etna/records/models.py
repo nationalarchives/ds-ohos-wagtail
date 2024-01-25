@@ -596,7 +596,12 @@ class Record(DataLayerMixin, APIModel):
 
     @cached_property
     def ciim_id(self) -> str:
-        return self.template.get("ciimId", "")
+        ciim_id = self.template.get("ciimId", "")
+        if ciim_id and re.match(IDConverter.regex, ciim_id):
+            # value is not guaranteed to be a valid 'id', so we must
+            # check it before returning it as one
+            return ciim_id
+        return ""
 
     @cached_property
     def identifier(self) -> str:

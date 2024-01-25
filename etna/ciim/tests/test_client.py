@@ -529,12 +529,12 @@ class ClientFetchTest(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(record=create_record(group="community")),
         )
-        self.records_client.get(id="SWOP-0000000")
+        self.records_client.get(id="swop-0000000")
 
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
             responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/get?id=SWOP-0000000",
+            f"{settings.CLIENT_BASE_URL}/get?id=swop-0000000",
         )
 
 
@@ -850,8 +850,8 @@ class TestClientSearchReponse(SimpleTestCase):
             f"{settings.CLIENT_BASE_URL}/search",
             json=create_search_response(
                 records=[
-                    create_record(group="community", ciim_id="ID1"),
-                    create_record(group="community", ciim_id="ID2"),
+                    create_record(group="community", ciim_id="swop-49209"),
+                    create_record(group="community", ciim_id="wmk-16758"),
                 ]
             ),
             # TODO:Rosetta
@@ -884,8 +884,8 @@ class TestClientSearchReponse(SimpleTestCase):
         self.assertEqual(len(response.hits), 2)
         self.assertTrue(isinstance(response.hits[0], Record))
         self.assertTrue(isinstance(response.hits[1], Record))
-        self.assertEqual(response.hits[0].ciim_id, "ID1")
-        self.assertEqual(response.hits[1].ciim_id, "ID2")
+        self.assertEqual(response.hits[0].ciim_id, "swop-49209")
+        self.assertEqual(response.hits[1].ciim_id, "wmk-16758")
 
 
 @unittest.skip("TODO:Rosetta")

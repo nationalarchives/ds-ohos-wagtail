@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional
 def create_record(
     group="tna",
     iaid="C0000000",
-    ciim_id="SWOP-0000000",
+    ciim_id="swop-0000000",
     admin_source="mongo",
     reference_number="ADM 223/3",
     summary_title="Summary Title",
