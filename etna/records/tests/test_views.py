@@ -320,17 +320,12 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         self.assertIn(desired_datalayer_script_tag, html_decoded_response)
 
 
-@unittest.skip("TODO:Rosetta")
 class RecordDetailBackToSearchTest(TestCase):
     def setUp(self):
         responses.add(
             responses.GET,
             f"{settings.CLIENT_BASE_URL}/get",
-            json=create_response(
-                records=[
-                    create_record(iaid="C13359805"),
-                ]
-            ),
+            json=create_response(record=create_record(iaid="C13359805")),
         )
 
         self.record_detail_url = reverse(
@@ -360,12 +355,11 @@ class RecordDetailBackToSearchTest(TestCase):
         )
         self.assertContains(response, expected_button_link_gen_value)
 
-    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_back_to_search_render_with_catalogue_search_beyond_expiry(self):
         """navigation to record details from previous search (session is set since its coming from search catalogue)"""
 
-        search_url_gen_html_resp = "/search/featured/"
+        search_url_gen_html_resp = "/search/catalogue/"
 
         session = self.client.session
         session["back_to_search_url"] = search_url_gen_html_resp
@@ -382,12 +376,11 @@ class RecordDetailBackToSearchTest(TestCase):
         )
         self.assertContains(response, expected_button_link_gen_value)
 
-    @unittest.skip("TODO:Rosetta")
     @responses.activate
     def test_new_search_render_without_session(self):
         """Test covers navigation to record details without a previous search (session is not set since its not coming from search)"""
 
-        new_search_url = reverse("search-featured")
+        new_search_url = reverse("search-catalogue")
 
         response = self.client.get(self.record_detail_url)
 
