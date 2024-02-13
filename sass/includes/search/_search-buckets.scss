@@ -28,6 +28,13 @@
             min-height: 100px;
             font-family: $font__supria-sans;
             font-size: 1.2rem;
+            
+            & i {
+                color: #067584;
+                margin-right:1em;
+                display:block;
+            }
+
 
             &:first-child {
                 margin-left: 0;
