@@ -215,9 +215,10 @@ class Record(DataLayerMixin, APIModel):
         """
         if raw := self._get_raw_description():
             if self.group == BucketKeys.COMMUNITY:
-                allow_tags = ['a', 'br']
-                updated_value = raw.replace('\n','<br />' )
-                return mark_safe(strip_html(updated_value, allow_tags=allow_tags))
+                allow_tags = ["a", "br", "p"]
+                updated_value = raw.replace("\n", "<br />")
+                strip_html_value = strip_html(updated_value, allow_tags=allow_tags)
+                return mark_safe(strip_html_value)
             # TODO:Rosetta
             # return mark_safe(raw)
             return raw
