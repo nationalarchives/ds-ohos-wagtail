@@ -264,6 +264,7 @@ def strip_html(value: str, preserve_marks=False, allow_tags=None):
         tags.append("mark")
     return bleach.clean(value, tags=tags, strip=True)
 
+
 def prepare_filter_aggregations(items: Optional[list]) -> Optional[str]:
     """
     Filter format in items: 'field:value', 'field:value:or'
