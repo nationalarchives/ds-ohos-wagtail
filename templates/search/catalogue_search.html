@@ -19,6 +19,18 @@
 {% block breadcrumb %}
 {% endblock %}
 
+{% block extra_css %}
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+    integrity="sha256-+bdWuWOXMFkX0v9Cvr3OWClPiYefDQz9GGZP/7xZxdc="
+    crossorigin="anonymous">
+{% endblock %}
+
 {% block content %}
     {{ form.non_field_errors }}
 
@@ -64,6 +76,12 @@
             {% include './blocks/visualisation_menu.html' %}
         {% endif %}
 
+        <div class="tna-container">
+            <div class="tna-column tna-column--full">
+                {% include './blocks/search_results_map.html' %}
+            </div>
+        </div>
+
         {% if buckets.current.result_count > 0 %}
             <div class="tna-container">
                 <div class="tna-column tna-column--full">
@@ -108,4 +126,6 @@
 
 {% block extra_js %}
     <script src="{% static 'scripts/catalogue_search.js' %}"></script>
+
+    <script src="{% static 'scripts/search_results_map.js' %}"></script>
 {% endblock %}
