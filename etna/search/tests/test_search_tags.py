@@ -33,6 +33,12 @@ class QueryStringTest(SimpleTestCase):
 
         self.assertEqual(result, "page=2")
 
+    def test_without_parameter(self):
+        context = {"request": self.factory.get("?page=1")}
+        result = query_string_include(context)
+
+        self.assertEqual(result, "page=1")
+
 
 class QueryStringExcludeTest(SimpleTestCase):
     def setUp(self):
