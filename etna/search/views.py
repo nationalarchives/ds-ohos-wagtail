@@ -4,6 +4,7 @@ import re
 
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
+from django.conf import settings
 from django.core.paginator import Page as PaginatorPage
 from django.forms import Form
 from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadRequest
@@ -654,6 +655,13 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         self.set_session_info()
+        kwargs.update(
+            default_geo_data={
+                "lat": settings.FEATURE_GEO_LAT,
+                "lon": settings.FEATURE_GEO_LON,
+                "zoom": settings.FEATURE_GEO_ZOOM,
+            }
+        )
         return super().get_context_data(**kwargs)
 
 
