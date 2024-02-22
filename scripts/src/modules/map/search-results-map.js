@@ -1,4 +1,13 @@
+/**
+ * LeafletJS
+ * Docs - {@link https://leafletjs.com/}
+ */
 import L from "leaflet";
+
+/**
+ * Leaflet Marker Cluster plugin
+ * Docs - {@link https://github.com/Leaflet/Leaflet.markercluster}
+ */
 import "leaflet.markercluster";
 
 // Data will be replaced with dynamic API data in a future phase
@@ -35,18 +44,25 @@ const dataToGeoJson = {
 };
 
 export default function () {
-    // Get lat, lng, and zoom query string parameters to set initial map state
-    let queryStringParams = new URLSearchParams(document.location.search);
 
-    const hasLatAndLng = queryStringParams.get("lat") && queryStringParams.get("lng");
+    const mapElement = document.getElementById("ohos-search-results-map");
 
-    const initialLat = hasLatAndLng ? queryStringParams.get("lat") : 54.4700;
-    const initialLng = hasLatAndLng ? queryStringParams.get("lng") : -5.6689;
-    const initialZoom = queryStringParams.get("zoom") ?? 3;
+    // Get lat, lon, and zoom query string parameters to set initial map state
+    const queryStringParams = new URLSearchParams(document.location.search);
+
+    const queryStringHasLatAndLon = queryStringParams.get("lat") && queryStringParams.get("lon");
+
+    const defaultLat = mapElement.dataset.jsDefaultLat;
+    const defaultLon = mapElement.dataset.jsDefaultLon;
+    const defaultZoom = mapElement.dataset.jsDefaultZoom;
+
+    const initialLat = queryStringHasLatAndLon ? queryStringParams.get("lat") : defaultLat;
+    const initialLon = queryStringHasLatAndLon ? queryStringParams.get("lon") : defaultLon;
+    const initialZoom = queryStringParams.get("zoom") ?? defaultZoom;
 
     // Initialize map
-    const map = L.map("ohos-search-results-map", {
-        center: [initialLat, initialLng],
+    const map = L.map(mapElement, {
+        center: [initialLat, initialLon],
         minZoom: 3,
         zoom: initialZoom,
         zoomControl: false, // Disable default zoom control so it can be positioned in the top right corner
@@ -124,8 +140,8 @@ export default function () {
             layer.bindPopup(popupTemplate, popupOptions);
         },
         // Create markers and add to marker cluster group
-        pointToLayer(feature, latlng) {
-            const marker = L.marker(latlng, { icon: markerIcon });
+        pointToLayer(feature, latlon) {
+            const marker = L.marker(latlon, { icon: markerIcon });
             markers.addLayer(marker);
             return marker;
         },
@@ -133,14 +149,14 @@ export default function () {
 
     // Add moveend event listener to map and update queryParams for link sharing
     map.on("moveend", function () {
-        const { lat, lng } = map.getCenter();
+        const { lat, lng: lon } = map.getCenter();
         const zoom = map.getZoom();
 
-        const state = { lat, lng, zoom };
+        const state = { lat, lon, zoom };
         const url = new URL(location);
-        url.searchParams.set("lat", lat);
-        url.searchParams.set("lng", lng);
-        url.searchParams.set("zoom", zoom);
+        lat && url.searchParams.set("lat", lat);
+        lon && url.searchParams.set("lon", lon);
+        zoom && url.searchParams.set("zoom", zoom);
 
         history.pushState(state, "", url);
     });
