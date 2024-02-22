@@ -21,14 +21,13 @@ def is_date(value) -> bool:
 
 
 @register.simple_tag(takes_context=True)
-def query_string_include(context, key: str = "", value: Union[str, int] = "") -> str:
+def query_string_include(context, key: str, value: Union[str, int]) -> str:
     """Add key, value to current query string."""
 
     request = context["request"]
 
     query_dict = request.GET.copy()
-    if key and value:
-        query_dict[key] = value
+    query_dict[key] = value
 
     return query_dict.urlencode()
 
