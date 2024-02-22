@@ -95,7 +95,11 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'scripts/catalogue_search.js' %}"></script>
+    {% if form.views.value != views.MAP.value %}
+        <script src="{% static 'scripts/catalogue_search.js' %}"></script>
+    {% endif %}
 
-    <script src="{% static 'scripts/search_results_map.js' %}"></script>
+    {% if form.views.value == views.MAP.value %}
+        <script src="{% static 'scripts/search_results_map.js' %}"></script>
+    {% endif %}
 {% endblock %}
