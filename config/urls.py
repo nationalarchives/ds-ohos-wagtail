@@ -9,6 +9,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.utils.urlpatterns import decorate_urlpatterns
 
+from etna.api.urls import api_router
 from etna.core.cache_control import (
     apply_default_cache_control,
     apply_default_vary_headers,
@@ -20,7 +21,7 @@ from etna.records import views as records_views
 from etna.search import views as search_views
 
 register_converter(converters.ReferenceNumberConverter, "reference_number")
-register_converter(converters.IAIDConverter, "iaid")
+register_converter(converters.IDConverter, "id")
 
 
 # Used by /sentry-debug/
@@ -43,6 +44,11 @@ private_urls = [
     path("healthcheck/", include("etna.healthcheck.urls")),
 ]
 
+if settings.FEATURE_ENABLE_API_V2:
+    private_urls = [
+        path("api/v2/", api_router.urls),
+    ] + private_urls
+
 if settings.SENTRY_DEBUG_URL_ENABLED:
     # url is toggled via the SENTRY_DEBUG_URL_ENABLED .env var
     private_urls.append(path("sentry-debug/", trigger_error))
@@ -50,7 +56,7 @@ if settings.SENTRY_DEBUG_URL_ENABLED:
 # Public URLs that are meant to be cached.
 public_urls = [
     path(
-        r"catalogue/id/<iaid:iaid>/",
+        r"catalogue/id/<id:id>/",
         setting_controlled_login_required(
             records_views.record_detail_view, "RECORD_DETAIL_REQUIRE_LOGIN"
         ),
@@ -64,39 +70,12 @@ public_urls = [
         name="details-page-human-readable",
     ),
     path(
-        "records/image/<path:location>",
-        records_views.image_serve,
-        name="image-serve",
-    ),
-    path(
-        r"records/images/<iaid:iaid>/<str:sort>/",
-        setting_controlled_login_required(
-            records_views.image_viewer, "IMAGE_VIEWER_REQUIRE_LOGIN"
-        ),
-        name="image-viewer",
-    ),
-    path(
-        r"records/images/<iaid:iaid>/",
-        setting_controlled_login_required(
-            records_views.image_browse, "IMAGE_VIEWER_REQUIRE_LOGIN"
-        ),
-        name="image-browse",
-    ),
-    path(
         r"search/",
         setting_controlled_login_required(
             search_views.SearchLandingView.as_view(), "SEARCH_VIEWS_REQUIRE_LOGIN"
         ),
         name="search",
     ),
-    # TODO:OHOS-Remove or update
-    # path(
-    #     r"search/featured/",
-    #     setting_controlled_login_required(
-    #         search_views.FeaturedSearchView.as_view(), "SEARCH_VIEWS_REQUIRE_LOGIN"
-    #     ),
-    #     name="search-featured",
-    # ),
     path(
         r"search/catalogue/",
         setting_controlled_login_required(

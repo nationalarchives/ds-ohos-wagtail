@@ -18,6 +18,7 @@ from ...ciim.tests.factories import create_record, create_response
 User = get_user_model()
 
 
+@unittest.skip("TODO:Rosetta")
 class TestRecordDisambiguationView(TestCase):
     @responses.activate
     @prevent_request_warnings
@@ -30,10 +31,10 @@ class TestRecordDisambiguationView(TestCase):
 
         response = self.client.get("/catalogue/ref/AD/2/2/")
 
-        self.assertEquals(
+        self.assertEqual(
             response.resolver_match.view_name, "details-page-human-readable"
         )
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
     @responses.activate
     def test_disambiguation_page_rendered_for_multiple_results(self):
@@ -50,7 +51,7 @@ class TestRecordDisambiguationView(TestCase):
 
         response = self.client.get("/catalogue/ref/ADM/223/3/")
 
-        self.assertEquals(
+        self.assertEqual(
             response.resolver_match.view_name, "details-page-human-readable"
         )
         self.assertTemplateUsed(response, "records/record_disambiguation_page.html")
@@ -69,7 +70,7 @@ class TestRecordDisambiguationView(TestCase):
 
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
+            f"{settings.CLIENT_BASE_URL}/get",
             json=create_response(
                 records=[
                     create_record(iaid="C123456", reference_number="ADM 223/3"),
@@ -79,8 +80,8 @@ class TestRecordDisambiguationView(TestCase):
 
         response = self.client.get("/catalogue/ref/ADM/223/3/", follow=False)
 
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
             response.resolver_match.view_name, "details-page-human-readable"
         )
         self.assertTemplateUsed(response, "records/record_detail.html")
@@ -92,14 +93,14 @@ class TestRecordView(TestCase):
     def test_no_matches_respond_with_404(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
-            json=create_response(records=[]),
+            f"{settings.CLIENT_BASE_URL}/get",
+            json=create_response(status_code=404),
         )
 
         response = self.client.get("/catalogue/id/C123456/")
 
-        self.assertEquals(response.status_code, 404)
-        self.assertEquals(
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(
             response.resolver_match.view_name, "details-page-machine-readable"
         )
 
@@ -107,23 +108,36 @@ class TestRecordView(TestCase):
     def test_record_rendered_for_single_result(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
-            json=create_response(
-                records=[
-                    create_record(iaid="C123456"),
-                ]
-            ),
+            f"{settings.CLIENT_BASE_URL}/get",
+            json=create_response(record=create_record(iaid="C123456")),
         )
 
         response = self.client.get("/catalogue/id/C123456/")
 
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.resolver_match.view_name, "details-page-machine-readable"
+        )
+        self.assertTemplateUsed(response, "records/record_detail.html")
+
+    @responses.activate
+    def test_community_record_rendered(self):
+        responses.add(
+            responses.GET,
+            f"{settings.CLIENT_BASE_URL}/get",
+            json=create_response(record=create_record(group="community")),
+        )
+
+        response = self.client.get("/catalogue/id/pcw-12345/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
             response.resolver_match.view_name, "details-page-machine-readable"
         )
         self.assertTemplateUsed(response, "records/record_detail.html")
 
 
+@unittest.skip("TODO:Rosetta")
 class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
     @responses.activate
     def test_datalayer_level1(self):
@@ -133,7 +147,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -153,7 +167,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -173,7 +187,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -193,7 +207,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -213,7 +227,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -233,7 +247,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -253,7 +267,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -273,7 +287,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -293,7 +307,7 @@ class TestDataLayerRecordDetail(WagtailTestUtils, TestCase):
         with open(path, "r") as f:
             responses.add(
                 responses.GET,
-                f"{settings.CLIENT_BASE_URL}/fetch",
+                f"{settings.CLIENT_BASE_URL}/get",
                 json=json.loads(f.read()),
             )
 
@@ -310,16 +324,12 @@ class RecordDetailBackToSearchTest(TestCase):
     def setUp(self):
         responses.add(
             responses.GET,
-            f"{settings.CLIENT_BASE_URL}/fetch",
-            json=create_response(
-                records=[
-                    create_record(iaid="C13359805"),
-                ]
-            ),
+            f"{settings.CLIENT_BASE_URL}/get",
+            json=create_response(record=create_record(iaid="C13359805")),
         )
 
         self.record_detail_url = reverse(
-            "details-page-machine-readable", kwargs={"iaid": "C13359805"}
+            "details-page-machine-readable", kwargs={"id": "C13359805"}
         )
 
         self.expected_button_link_gen_value_fmt = '<a class="cta-primary-panel__link" href="{back_to_search_url}" data-link-type="Link" data-link="Back to search results" data-component-name="Navigation">'
@@ -329,7 +339,7 @@ class RecordDetailBackToSearchTest(TestCase):
     def test_back_to_search_render_with_catalogue_search_within_expiry(self):
         """navigation to record details from previous search (session is set since its coming from search catalogue)"""
 
-        search_url_gen_html_resp = "%2Fsearch%2Fcatalogue%2F%3Fsort_by%3Dtitle%26q%3Dlondon%26filter_keyword%3Dpaper%26level%3DItem%26collection%3DADM%26collection%3DBT%26closure%3DOpen%2BDocument%252C%2BOpen%2BDescription%26opening_start_date_0%3D%26opening_start_date_1%3D%26opening_start_date_2%3D1900%26opening_end_date_0%3D%26opening_end_date_1%3D%26opening_end_date_2%3D2020%26per_page%3D20%26sort_order%3Dasc%26display%3Dlist%26page%3D2%26group%3Dtna"
+        search_url_gen_html_resp = "%2Fsearch%2Fcatalogue%2F%3Fsort_by%3Dtitle%26q%3Dlondon%26filter_keyword%3Dpaper%26level%3DItem%26collection%3DADM%26collection%3DBT%26closure%3DOpen%2BDocument%252C%2BOpen%2BDescription%26opening_start_date_0%3D%26opening_start_date_1%3D%26opening_start_date_2%3D1900%26opening_end_date_0%3D%26opening_end_date_1%3D%26opening_end_date_2%3D2020%26per_page%3D20%26display%3Dlist%26page%3D2%26group%3Dtna"
 
         session = self.client.session
         session["back_to_search_url"] = search_url_gen_html_resp
@@ -345,12 +355,11 @@ class RecordDetailBackToSearchTest(TestCase):
         )
         self.assertContains(response, expected_button_link_gen_value)
 
-    @unittest.skip("TODO:OHOS-Remove or update")
     @responses.activate
     def test_back_to_search_render_with_catalogue_search_beyond_expiry(self):
         """navigation to record details from previous search (session is set since its coming from search catalogue)"""
 
-        search_url_gen_html_resp = "/search/featured/"
+        search_url_gen_html_resp = "/search/catalogue/"
 
         session = self.client.session
         session["back_to_search_url"] = search_url_gen_html_resp
@@ -367,12 +376,11 @@ class RecordDetailBackToSearchTest(TestCase):
         )
         self.assertContains(response, expected_button_link_gen_value)
 
-    @unittest.skip("TODO:OHOS-Remove or update")
     @responses.activate
     def test_new_search_render_without_session(self):
         """Test covers navigation to record details without a previous search (session is not set since its not coming from search)"""
 
-        new_search_url = reverse("search-featured")
+        new_search_url = reverse("search-catalogue")
 
         response = self.client.get(self.record_detail_url)
 

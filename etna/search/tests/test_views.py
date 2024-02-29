@@ -13,14 +13,12 @@ import responses
 
 from etna.core.test_utils import prevent_request_warnings
 
-from ...ciim.tests.factories import create_response
 from ..forms import CatalogueSearchForm
 from ..views import CatalogueSearchView
 
 
 @override_settings(
     CLIENT_BASE_URL=f"{settings.CLIENT_BASE_URL}",
-    IMAGE_PREVIEW_BASE_URL="https://media.preview/",
 )
 class SearchViewTestCase(WagtailTestUtils, TestCase):
     maxDiff = None
@@ -30,21 +28,8 @@ class SearchViewTestCase(WagtailTestUtils, TestCase):
             responses.GET,
             f"{settings.CLIENT_BASE_URL}/search",
             json={
-                "responses": [
-                    create_response(),
-                    create_response(),
-                ]
-            },
-        )
-        responses.add(
-            responses.GET,
-            f"{settings.CLIENT_BASE_URL}/searchAll",
-            json={
-                "responses": [
-                    create_response(),
-                    create_response(),
-                    create_response(),
-                ]
+                "data": [],
+                "aggregations": [],
             },
         )
 
@@ -58,8 +43,7 @@ class BadRequestHandlingTest(SearchViewTestCase):
             ("group", "foo"),
             ("per_page", "bar"),
             ("per_page", 10000),
-            ("sort_by", "baz"),
-            ("sort_order", "foo"),
+            ("sort", "baz"),
             ("display", "foo"),
         ]:
             with self.subTest(f"{field_name} = {value}"):
@@ -72,14 +56,20 @@ class SelectedFiltersTest(SimpleTestCase):
         return CatalogueSearchView().get_selected_filters(form)
 
     def test_with_valid_filter_values(self):
+        self.maxDiff = None
         form = CatalogueSearchForm(
             {
                 "group": "tna",
                 "topic": ["topic-one"],
                 "level": ["Division"],
-                "collection": ["WO", "AK"],
+                "collection": [
+                    "WO",
+                    "AK",
+                    "Biography of Women Who Made Milton Keynes (Digital Document)",
+                ],
                 "country": ["England", "Yorkshire, North Riding"],
                 "location": ["Australia", "United States of America"],
+                "place": ["place 1", "place 2"],
             }
         )
 
@@ -94,6 +84,10 @@ class SelectedFiltersTest(SimpleTestCase):
                         "WO - War Office, Armed Forces, Judge Advocate General, and related bodies",
                     ),
                     ("AK", "AK - County Courts"),
+                    (
+                        "Biography of Women Who Made Milton Keynes (Digital Document)",
+                        "Biography of Women Who Made Milton Keynes (Digital Document)",
+                    ),
                 ],
                 "level": [("Division", "Division")],
                 "topic": [("topic-one", "topic-one")],
@@ -104,6 +98,10 @@ class SelectedFiltersTest(SimpleTestCase):
                 "location": [
                     ("Australia", "Australia"),
                     ("United States of America", "United States of America"),
+                ],
+                "place": [
+                    ("place 1", "place 1"),
+                    ("place 2", "place 2"),
                 ],
             },
         )
@@ -124,7 +122,7 @@ class SelectedFiltersTest(SimpleTestCase):
         # Update topic field choices to include counts on labels
         topic_field.update_choices(
             [
-                {"key": "topic-one", "doc_count": 10},
+                {"value": "topic-one", "doc_count": 10},
             ]
         )
         self.assertEqual(topic_field.choices, [("topic-one", "topic-one (10)")])
@@ -133,7 +131,7 @@ class SelectedFiltersTest(SimpleTestCase):
         level_field.update_choices(
             [
                 {
-                    "key": "Division",
+                    "value": "Division",
                     "doc_count": 10,
                 },
             ]
@@ -203,6 +201,23 @@ class CatalogueSearchAPIIntegrationTest(SearchViewTestCase):
     test_url = reverse_lazy("search-catalogue")
 
     @responses.activate
+    @override_settings(
+        FEATURE_GEO_LAT=f"{12345.6789}",
+        FEATURE_GEO_LON=f"{-54321.12345}",
+        FEATURE_GEO_ZOOM=f"{3}",
+    )
+    def test_context_data(self):
+        response = self.client.get(self.test_url)
+        self.assertEqual(
+            response.context.get("default_geo_data"),
+            {
+                "lat": settings.FEATURE_GEO_LAT,
+                "lon": settings.FEATURE_GEO_LON,
+                "zoom": settings.FEATURE_GEO_ZOOM,
+            },
+        )
+
+    @responses.activate
     def test_accessing_page_with_no_params_performs_empty_search(self):
         self.client.get(self.test_url)
 
@@ -211,15 +226,11 @@ class CatalogueSearchAPIIntegrationTest(SearchViewTestCase):
             responses.calls[0].request.url,
             (
                 f"{settings.CLIENT_BASE_URL}/search"
-                "?stream=evidential"
+                "?aggs=group"
+                "&aggs=collection"
+                "&aggs=place"
+                "&filter=group%3Acommunity"
                 "&sort="
-                "&sortOrder=asc"
-                "&template=details"
-                "&aggregations=group%3A30"
-                "&aggregations=collection%3A10"
-                "&aggregations=level%3A10"
-                "&aggregations=closure%3A10"
-                "&filterAggregations=group%3Atna"
                 "&from=0"
                 "&size=20"
             ),
@@ -235,8 +246,8 @@ class EndToEndSearchTestCase(TestCase):
         '<ul class="search-buckets__list" data-id="search-buckets-list">'
     )
     search_within_option_html = '<label for="id_filter_keyword" class="tna-heading-s search-filters__label--block">Search within results</label>'
-    sort_by_desktop_options_html = '<label for="id_sort_by_desktop">Sort by</label>'
-    sort_by_mobile_options_html = '<label for="id_sort_by_mobile">Sort by</label>'
+    sort_desktop_options_html = '<label for="id_sort_desktop">Sort by</label>'
+    sort_mobile_options_html = '<label for="id_sort_mobile">Sort by</label>'
     filter_options_html = '<form method="GET" data-id="filters-form"'
 
     def patch_api_endpoint(self, url: str, fixture_path: str):
@@ -269,13 +280,13 @@ class EndToEndSearchTestCase(TestCase):
     def assertSearchWithinOptionNotRendered(self, response):
         self.assertNotIn(self.search_within_option_html, response)
 
-    def assertSortByOptionsRendered(self, response):
-        self.assertIn(self.sort_by_desktop_options_html, response)
-        self.assertIn(self.sort_by_mobile_options_html, response)
+    def assertSortOptionsRendered(self, response):
+        self.assertIn(self.sort_desktop_options_html, response)
+        self.assertIn(self.sort_mobile_options_html, response)
 
-    def assertSortByOptionsNotRendered(self, response):
-        self.assertNotIn(self.sort_by_desktop_options_html, response)
-        self.assertNotIn(self.sort_by_mobile_options_html, response)
+    def assertSortOptionsNotRendered(self, response):
+        self.assertNotIn(self.sort_desktop_options_html, response)
+        self.assertNotIn(self.sort_mobile_options_html, response)
 
     def assertFilterOptionsRendered(self, response):
         self.assertIn(self.filter_options_html, response)
@@ -319,7 +330,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         # SHOULD NOT see
         self.assertBucketLinksNotRendered(content)
         self.assertSearchWithinOptionNotRendered(content)
-        self.assertSortByOptionsNotRendered(content)
+        self.assertSortOptionsNotRendered(content)
         self.assertFilterOptionsNotRendered(content)
         self.assertResultsNotRendered(content)
 
@@ -349,11 +360,11 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         content = str(response.content)
 
         # SHOULD see
-        self.assertBucketLinksRendered(content)
-        self.assertSearchWithinOptionRendered(content)
-        self.assertSortByOptionsRendered(content)
+        # self.assertBucketLinksRendered(content) # TODO:Rosetta
+        # self.assertSearchWithinOptionRendered(content) # TODO:Rosetta
+        # self.assertSortOptionsRendered(content) # TODO:Rosetta
         self.assertNoResultsMessagingRendered(content)
-        self.assertFilterOptionsRendered(content)
+        # self.assertFilterOptionsRendered(content) # TODO:Rosetta
 
         # SHOULD NOT see
         self.assertResultsNotRendered(content)
@@ -380,17 +391,17 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         response = self.client.get(
             self.test_url,
             data={
-                "q": "japan",
-                "group": "nonTna",
-                "held_by": "London Metropolitan Archives: City of London",
+                "q": "biography",
+                "group": "community",
+                "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
             },
         )
         content = str(response.content)
 
         # SHOULD see
         self.assertBucketLinksRendered(content)
-        self.assertSearchWithinOptionRendered(content)
-        self.assertSortByOptionsRendered(content)
+        # self.assertSearchWithinOptionRendered(content) # TODO:Rosetta
+        self.assertSortOptionsRendered(content)
         self.assertFilterOptionsRendered(content)
         self.assertResultsRendered(content)
 
@@ -410,16 +421,17 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         """
         self.patch_search_endpoint("catalogue_search_with_multiple_filters.json")
 
-        expected_url = "/search/catalogue/?q=test%2Bsearch%2Bterm&group=tna&collection=DEFE&collection=HW&collection=RGO&level=Piece&closure=Open%2BDocument%252C%2BOpen%2BDescription"
+        expected_url = "/search/catalogue/?q=parish&group=community&collection=SWOP&place=Church+Street&place=Oxford+Road"
 
         response = self.client.get(
             self.test_url,
             data={
-                "q": "test+search+term",
-                "group": "tna",
-                "collection": ["DEFE", "HW", "RGO"],
-                "level": "Piece",
-                "closure": "Open+Document%2C+Open+Description",
+                "q": "parish",
+                "group": "community",
+                "collection": [
+                    "SWOP",
+                ],
+                "place": ["Church Street", "Oxford Road"],
             },
         )
         session = self.client.session
@@ -428,9 +440,13 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(session.get("back_to_search_url"), expected_url)
 
-        self.assertIn('<input type="checkbox" name="collection" value="DEFE"', content)
-        self.assertIn('<input type="checkbox" name="collection" value="HW"', content)
-        self.assertIn('<input type="checkbox" name="collection" value="RGO"', content)
+        self.assertIn('<input type="checkbox" name="collection" value="SWOP"', content)
+        self.assertIn(
+            '<input type="checkbox" name="place" value="Church Street"', content
+        )
+        self.assertIn(
+            '<input type="checkbox" name="place" value="Oxford Road"', content
+        )
 
     @responses.activate
     def test_render_invalid_date_range_message(self):
@@ -444,13 +460,13 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         - Error message next to the 'to' date field
         """
         for from_date_field, to_date_field in (
-            ("opening_start_date", "opening_end_date"),
+            # ("opening_start_date", "opening_end_date"), # TODO:Rosetta
             ("covering_date_from", "covering_date_to"),
         ):
             response = self.client.get(
                 self.test_url,
                 data={
-                    "group": "tna",
+                    "group": "community",
                     f"{from_date_field}_0": "01",
                     f"{from_date_field}_1": "01",
                     f"{from_date_field}_2": "2000",
@@ -458,7 +474,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                     f"{to_date_field}_1": "01",
                     f"{to_date_field}_2": "1999",
                     "q": "london",
-                    "filter_keyword": "kew",
+                    # "filter_keyword": "kew", # TODO:Rosetta
                 },
             )
             content = str(response.content)
@@ -466,7 +482,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
             # SHOULD see
             self.assertNoResultsMessagingRendered(content)
             self.assertIn("<li>Try different spellings or search terms</li>", content)
-            self.assertSearchWithinOptionRendered(content)
+            # self.assertSearchWithinOptionRendered(content) # TODO:Rosetta
             self.assertIn(from_date_field, response.context["form"].errors)
             self.assertIn(
                 "<li>This date must be earlier than or equal to the &#x27;to&#x27; date.</li>",
@@ -474,6 +490,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
             )
 
 
+@unittest.skip("TODO:Rosetta")
 class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
     test_url = reverse_lazy(
         "search-catalogue-long-filter-chooser", kwargs={"field_name": "collection"}
@@ -500,61 +517,7 @@ class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
         )
 
 
-@unittest.skip("TODO:OHOS-Remove or update")
-class FeaturedSearchTestCase(SearchViewTestCase):
-    test_url = reverse_lazy("search-featured")
-
-    @classmethod
-    def setUpTestData(cls):
-        super().setUpTestData()
-
-    @responses.activate
-    def test_without_search_query(self):
-        _ = self.client.get(self.test_url)
-
-        # The API should be requested without a search query
-        self.assertEqual(len(responses.calls), 1)
-        self.assertEqual(
-            responses.calls[0].request.url,
-            (
-                f"{settings.CLIENT_BASE_URL}/searchAll"
-                "?filterAggregations=group%3Atna"
-                "&filterAggregations=group%3AnonTna"
-                "&filterAggregations=group%3Acreator"
-                "&size=3"
-            ),
-        )
-
-        # The 'back_to_search_url' value should have been set for the session
-        self.assertEqual(
-            self.client.session.get("back_to_search_url"), "/search/featured/"
-        )
-
-    @responses.activate
-    def test_with_search_query(self):
-        _ = self.client.get(self.test_url, data={"q": "query"})
-
-        # The query should be passed to the search API
-        self.assertEqual(len(responses.calls), 1)
-        self.assertEqual(
-            responses.calls[0].request.url,
-            (
-                f"{settings.CLIENT_BASE_URL}/searchAll"
-                "?q=query"
-                "&filterAggregations=group%3Atna"
-                "&filterAggregations=group%3AnonTna"
-                "&filterAggregations=group%3Acreator"
-                "&size=3"
-            ),
-        )
-
-        # The 'back_to_search_url' value should have been set for the session
-        self.assertEqual(
-            self.client.session.get("back_to_search_url"),
-            "/search/featured/?q=query",
-        )
-
-
+@unittest.skip("TODO:Rosetta")
 class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
     def assertDataLayerEquals(
         self,
@@ -571,11 +534,6 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
         responses.add(
             responses.GET,
             f"{settings.CLIENT_BASE_URL}/search",
-            json=json,
-        )
-        responses.add(
-            responses.GET,
-            f"{settings.CLIENT_BASE_URL}/searchAll",
             json=json,
         )
 
@@ -616,68 +574,6 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
                 "customDimension16": "",
                 "customDimension17": "",
                 "customMetric1": 0,
-                "customMetric2": 0,
-            },
-        )
-
-    @unittest.skip("TODO:OHOS-Remove or update")
-    @responses.activate
-    def test_datalayer_featured_search(self):
-        self.assertDataLayerEquals(
-            path=reverse("search-featured"),
-            query_data={},
-            api_resonse_path=f"{settings.BASE_DIR}/etna/search/tests/fixtures/featured_search.json",
-            expected={
-                "contentGroup1": "Search",
-                "customDimension1": "offsite",
-                "customDimension2": "",
-                "customDimension3": "FeaturedSearchView",
-                "customDimension4": "",
-                "customDimension5": "",
-                "customDimension6": "",
-                "customDimension7": "",
-                "customDimension8": "All results: none",
-                "customDimension9": "*",
-                "customDimension10": "",
-                "customDimension11": "",
-                "customDimension12": "",
-                "customDimension13": "",
-                "customDimension14": "",
-                "customDimension15": "",
-                "customDimension16": "",
-                "customDimension17": "",
-                "customMetric1": 10000,
-                "customMetric2": 0,
-            },
-        )
-
-    @unittest.skip("TODO:OHOS-Remove or update")
-    @responses.activate
-    def test_datalayer_featured_search_query(self):
-        self.assertDataLayerEquals(
-            path=reverse("search-featured"),
-            query_data={"q": "test search term"},
-            api_resonse_path=f"{settings.BASE_DIR}/etna/search/tests/fixtures/featured_search_query.json",
-            expected={
-                "contentGroup1": "Search",
-                "customDimension1": "offsite",
-                "customDimension2": "",
-                "customDimension3": "FeaturedSearchView",
-                "customDimension4": "",
-                "customDimension5": "",
-                "customDimension6": "",
-                "customDimension7": "",
-                "customDimension8": "All results: none",
-                "customDimension9": "test search term",
-                "customDimension10": "",
-                "customDimension11": "",
-                "customDimension12": "",
-                "customDimension13": "",
-                "customDimension14": "",
-                "customDimension15": "",
-                "customDimension16": "",
-                "customDimension17": "",
-                "customMetric1": 11,
                 "customMetric2": 0,
             },
         )

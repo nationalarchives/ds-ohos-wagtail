@@ -11,18 +11,25 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 
-from distutils.sysconfig import get_python_lib
-from distutils.util import strtobool
+from sysconfig import get_path
 
 import sentry_sdk
 
 from sentry_sdk.integrations.django import DjangoIntegration
 
 from ..versioning import get_git_sha
+from .util import strtobool
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
+WAGTAILAPI_BASE_URL = os.getenv("WAGTAILAPI_BASE_URL", "")
+WAGTAIL_HEADLESS_PREVIEW = {
+    "CLIENT_URLS": {},  # defaults to an empty dict. You must at the very least define the default client URL.
+    "SERVE_BASE_URL": None,  # can be used for HeadlessServeMixin
+    "REDIRECT_ON_PREVIEW": False,  # set to True to redirect to the preview instead of using the Wagtail default mechanism
+    "ENFORCE_TRAILING_SLASH": True,  # set to False in order to disable the trailing slash enforcement
+}
 
 DEBUG = strtobool(os.getenv("DEBUG", "False"))
 
@@ -76,6 +83,9 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "birdbath",
+    "wagtail.api.v2",
+    "rest_framework",
+    "wagtail_headless_preview",
 ]
 
 SITE_ID = 1
@@ -104,7 +114,7 @@ TEMPLATES = [
         "DIRS": [
             os.path.join(BASE_DIR, "templates"),
             os.path.join(
-                get_python_lib(), "nationalarchives-frontend-django/templates"
+                get_path("platlib"), "nationalarchives-frontend-django/templates"
             ),
         ],
         "APP_DIRS": True,
@@ -138,7 +148,6 @@ LOGIN_URL = "/accounts/login"
 LOGIN_REDIRECT_URL = "/"
 WAGTAIL_FRONTEND_LOGIN_URL = LOGIN_URL
 # View access control
-IMAGE_VIEWER_REQUIRE_LOGIN = strtobool(os.getenv("IMAGE_VIEWER_REQUIRE_LOGIN", "True"))
 RECORD_DETAIL_REQUIRE_LOGIN = strtobool(
     os.getenv("RECORD_DETAIL_REQUIRE_LOGIN", "True")
 )
@@ -263,7 +272,9 @@ WAGTAIL_SITE_NAME = "etna"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = os.getenv("WAGTAILADMIN_BASE_URL", "https://www.example.com")
+WAGTAILADMIN_BASE_URL = os.getenv(
+    "WAGTAILADMIN_BASE_URL", "https://nationalarchives.gov.uk"
+)
 
 # For search results within Wagtail itself
 WAGTAILSEARCH_BACKENDS = {
@@ -279,13 +290,15 @@ PASSWORD_REQUIRED_TEMPLATE = "password_pages/password_required.html"
 
 
 # API Client
+API_CLIENT_NAME_PREFIX = os.getenv(
+    "API_CLIENT_NAME_PREFIX"
+)  # mandatory name to identify the client URL
 
-CLIENT_BASE_URL = os.getenv("KONG_CLIENT_BASE_URL")
-CLIENT_KEY = os.getenv("KONG_CLIENT_KEY")
+CLIENT_BASE_URL = os.getenv(f"{API_CLIENT_NAME_PREFIX}_CLIENT_BASE_URL")
+CLIENT_KEY = os.getenv(f"{API_CLIENT_NAME_PREFIX}_CLIENT_KEY")
 CLIENT_VERIFY_CERTIFICATES = strtobool(
-    os.getenv("KONG_CLIENT_VERIFY_CERTIFICATES", "True")
+    os.getenv(f"{API_CLIENT_NAME_PREFIX}_CLIENT_VERIFY_CERTIFICATES", "True")
 )
-IMAGE_PREVIEW_BASE_URL = os.getenv("KONG_IMAGE_PREVIEW_BASE_URL")
 
 # Rich Text Features
 # https://docs.wagtail.io/en/stable/advanced_topics/customisation/page_editing_interface.html#limiting-features-in-a-rich-text-field
@@ -399,3 +412,12 @@ FEATURE_FEEDBACK_MECHANISM_ENABLED = strtobool(
 )
 # show pages upto the page number set by this value
 FEATURE_PAGE_LIMIT = os.getenv("FEATURE_PAGE_LIMIT", "1")
+# max number of records the API search returns
+FEATURE_RECORD_LIMIT = os.getenv("FEATURE_RECORD_LIMIT", "5000")
+
+# Not in scope for OHOS
+FEATURE_ENABLE_API_V2 = False
+
+FEATURE_GEO_LAT = os.getenv("FEATURE_GEO_LAT", "54.7246201949245")
+FEATURE_GEO_LON = os.getenv("FEATURE_GEO_LON", "-4.614257812500001")
+FEATURE_GEO_ZOOM = os.getenv("FEATURE_GEO_ZOOM", "6")

@@ -3,6 +3,12 @@
     display: flex;
     align-items: flex-start;
 
+    @media only screen and (max-width: $screen__md) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: -0.5rem;
+    }
+
     &__heading {
         font-size: 1rem;
         margin: 0;
@@ -130,6 +136,7 @@
 
 .search-others {
     margin: 0;
+    margin-bottom: 2rem;
     padding-bottom: 1rem;
     background-color: $color__grey-300;
 
@@ -144,6 +151,6 @@
         background: #eeedf3;
         min-height: 44px;
         width: 100%;
-        margin-bottom: 1rem;
+        margin-bottom: 1.6rem;
     }
 }

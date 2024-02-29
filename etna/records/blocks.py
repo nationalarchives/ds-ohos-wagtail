@@ -4,6 +4,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 from wagtail import blocks
+from wagtail.api import APIField
 from wagtail.images.blocks import ImageChooserBlock
 
 from ..ciim.exceptions import ClientAPIError
@@ -90,11 +91,11 @@ class RecordChooserBlock(blocks.ChooserBlock):
             return value
 
         try:
-            return records_client.fetch(iaid=value)
+            return records_client.get(id=value)
         except ClientAPIError:
             # If there's a connection issue with Client API, return a stub Record
             # so we have something to render on the ResultsPage edit form.
-            return self.target_model(raw_data={"iaid": value})
+            return self.target_model(raw_data={"id": value})
 
     def get_form_state(self, value):
         return self.widget.get_value_data(value)
@@ -118,6 +119,13 @@ class RecordLinkBlock(blocks.StructBlock):
 
     class Meta:
         icon = "archive"
+
+    def collection(self):
+        return self.record.reference_number
+
+    api_fields = [
+        APIField("collection"),
+    ]
 
 
 class RecordLinksBlock(blocks.StructBlock):
