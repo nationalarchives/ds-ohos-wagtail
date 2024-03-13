@@ -25,7 +25,6 @@ from etna.core.models import (
     NewLabelMixin,
     RequiredHeroImageMixin,
 )
-from etna.core.serializers import RichTextSerializer
 from etna.core.utils import skos_id_from_text
 
 from .blocks import ArticlePageStreamBlock
