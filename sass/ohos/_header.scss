@@ -65,7 +65,22 @@
 }
 
 @include media.on-mobile {
-    .tna-header__navigation-items {
-        // background: #fff !important;
+    .tna-header {
+        &__navigation-items {
+            gap: 0;
+            @include colour.colour-css-vars;
+            @include colour.colour-background("page-background");
+            // background: #fff !important;
+        }
+
+        &__navigation-item-link {
+            @include colour.colour-font("font-base", true);
+            border-left: 0.5rem transparent solid;
+
+            &--selected {
+                @include colour.colour-font("font-dark", true);
+                @include colour.colour-border("font-dark");
+            }
+        }
     }
 }
