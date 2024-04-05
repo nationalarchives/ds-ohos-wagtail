@@ -280,7 +280,7 @@ const chartForceSimulation = (data, options = {}) => {
     node.select("circle")
       .attr("r", d => d.radius)
 
-    node.select("image")
+    node.select("use")
       .attr("x", d => d.radius * Math.sin(selectedIconAngleRadians) - 14)
       .attr("y", d => -d.radius * Math.cos(selectedIconAngleRadians) - 14)
 
