@@ -187,7 +187,7 @@ const chartForceSimulation = (data, options = {}) => {
   const node = svg.selectAll("a")
     .data(dataWithRadius)
     .join("a")
-    .attr("xlink:href", d => createHref(d.term, d.type));
+    .attr("href", d => createHref(d.term, d.type));
 
   // Append circle to each group
   node.append("circle")
@@ -204,7 +204,7 @@ const chartForceSimulation = (data, options = {}) => {
     if (isSelectedItem(d.term, d.type)) {
       d3.select(this)
         .append("use")
-        .attr("xlink:href", "#selected-icon")
+        .attr("href", "#selected-icon")
         .attr("width", "28")
         .attr("height", "28")
         .attr("x", d => d.radius * Math.sin(selectedIconAngleRadians) - 14)
