@@ -1,3 +1,7 @@
+/**
+ * This file is used to turn the raw data into a format that can be used by the chart
+ * It's not intended for this step to be required in the final implementation
+ */
 import { sampleData } from './data/sample_2k_swop_output_21.02.24.js';
 
 const termsAndTypes = [];

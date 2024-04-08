@@ -1,6 +1,10 @@
 import * as d3 from "d3";
 import debounce from "../../modules/debounce";
 
+/**
+ * process-sample-data.js is used to turn the raw data into a format that can be used by the chart
+ * It's not intended for this step to be required in the final implementation
+ */
 import { termsRange } from "./process-sample-data.js";
 
 const SELECTED_PARAM_NAME = "chart_selected";
@@ -248,7 +252,7 @@ const chartForceSimulation = (data, options = {}) => {
       }
 
     if(disableAnimation) {
-      simulation.stop().tick(300);
+      simulation.nodes(data).stop().tick(300);
       node.attr("transform", d => `translate(${d.x}, ${d.y})`);
     } else {
       simulation.nodes(data)
