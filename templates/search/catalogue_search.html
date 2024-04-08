@@ -43,13 +43,13 @@
             {% include './blocks/visualisation_menu.html' %}
         {% endif %}
 
-        {# If statement to check if it's a tag view #}
+        {% if form.views.value == views.TAG.value %}
             <div class="tna-container">
                 <div class="tna-column tna-column--full">
                     {% include './blocks/search_results_tag_frequency.html' %}
                 </div>
             </div>
-        {# Endif tag view #}
+        {% endif %}
 
         {# Map view is displayed without results and filters #}
         {% if form.views.value == views.MAP.value %}
