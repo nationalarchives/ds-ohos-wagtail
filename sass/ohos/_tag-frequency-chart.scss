@@ -28,5 +28,9 @@
     &__chart {
         background-color: $color__grey-300;
         height: 550px;
+
+        a {
+            border-radius: 50%;
+        }
     }
 }
