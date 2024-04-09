@@ -78,7 +78,7 @@ class CommunityRecordModelTests(SimpleTestCase):
         )
         self.assertEqual(
             self.record.description,
-            ' in bold  <p> in para </p>in span<a href="http://test.com">atag</a>custom tag<br>line2',
+            'in bold  <p> in para </p>in span<a href="http://test.com" rel="noopener noreferrer">atag</a>custom tag<br>line2',
         )
 
     def test_group(self):

@@ -1,10 +1,10 @@
 import re
 
+from builtins import set
+from collections.abc import Sequence
 from typing import Any, Dict, Optional
 
 from django.urls import NoReverseMatch, reverse
-from collections.abc import Sequence
-from builtins import set
 
 import nh3
 
@@ -316,20 +316,39 @@ def prepare_filter_aggregations(items: Sequence[str] | None) -> list[str] | None
     return filter_prepared_list
 
 
-def strip_html(value: str, *, preserve_marks, ensure_spaces):
+def strip_html(
+    value: str,
+    *,
+    preserve_marks: bool = False,
+    ensure_spaces: bool = False,
+    allow_tags: Optional[set] = None,
+) -> str:
     """
     Temporary HTML sanitiser to remove unwanted tags from data.
-    K-int will eventually sanitise this at API level.
-    preserve_marks=True will keep <mark> tags in the output, otherwise they are removed.
+    TODO:this will eventually be sanitised at API level.
 
-    Replacing <span> and <p> tags is necessary to prevent "bunched" data,
-    "This is a<span>test</span>example" will return as "This is atestexample"
-    without the placement of the space.
+    value:
+        the value to be sanitised
+    preserver_marks:
+        allow pre-defined tags for styling
+    ensure_spaces:
+        allow pre-defined tags and replaces them with whitespace
+    allow_tags:
+        sets the tags that are allowed
     """
     clean_tags = {"span", "p"} if ensure_spaces else set()
-    clean_html = nh3.clean(
-        value, tags={*clean_tags, "mark"} if preserve_marks else clean_tags
-    )
+
+    if allow_tags is None:
+        allow_tags = set()
+
+    tags = set()
+    if preserve_marks:
+        tags.add("mark")
+    tags.update(clean_tags)
+    tags.update(allow_tags)
+
+    clean_html = nh3.clean(value, tags=tags)
+
     for tag in clean_tags:
         opening_regex = rf"<{tag}[^>]*>"
         closing_regex = rf"</{tag}>"
