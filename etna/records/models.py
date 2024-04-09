@@ -137,7 +137,7 @@ class Record(DataLayerMixin, APIModel):
             return self.summary
         # TODO:Rosetta
         if raw := self._get_raw_summary_title():
-            return mark_safe(strip_html(raw, preserve_marks=True))
+            return mark_safe(strip_html(raw, preserve_marks=True, ensure_spaces=True))
         return raw
 
     def _get_raw_summary_title(self) -> str:
@@ -236,7 +236,7 @@ class Record(DataLayerMixin, APIModel):
             return self.description
         # TODO:Rosetta tna,nonTna
         if raw := self._get_raw_description(use_highlights=True):
-            return mark_safe(strip_html(raw, preserve_marks=True))
+            return mark_safe(strip_html(raw, preserve_marks=True, ensure_spaces=True))
         return ""
 
     def _get_raw_description(self, use_highlights: bool = False) -> str:

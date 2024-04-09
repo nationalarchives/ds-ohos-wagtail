@@ -3,8 +3,10 @@ import re
 from typing import Any, Dict, Optional
 
 from django.urls import NoReverseMatch, reverse
+from collections.abc import Sequence
+from builtins import set
 
-import bleach
+import nh3
 
 from pyquery import PyQuery as pq
 
@@ -257,14 +259,7 @@ def format_link(link_html: str) -> Dict[str, str]:
     return {"href": href, "id": id, "text": document.text()}
 
 
-def strip_html(value: str, preserve_marks=False, allow_tags=None):
-    tags = allow_tags or []
-    if preserve_marks:
-        tags.append("mark")
-    return bleach.clean(value, tags=tags, strip=True)
-
-
-def prepare_filter_aggregations(items: Optional[list]) -> Optional[str]:
+def prepare_filter_aggregations(items: Sequence[str] | None) -> list[str] | None:
     """
     Filter format in items: 'field:value', 'field:value:or'
     Prepares i.e. removes/replaces special chars from a filter fields' value to be passed to the api
@@ -319,3 +314,25 @@ def prepare_filter_aggregations(items: Optional[list]) -> Optional[str]:
             filter_prepared_list = updated_list_for_or_operator
 
     return filter_prepared_list
+
+
+def strip_html(value: str, *, preserve_marks, ensure_spaces):
+    """
+    Temporary HTML sanitiser to remove unwanted tags from data.
+    K-int will eventually sanitise this at API level.
+    preserve_marks=True will keep <mark> tags in the output, otherwise they are removed.
+
+    Replacing <span> and <p> tags is necessary to prevent "bunched" data,
+    "This is a<span>test</span>example" will return as "This is atestexample"
+    without the placement of the space.
+    """
+    clean_tags = {"span", "p"} if ensure_spaces else set()
+    clean_html = nh3.clean(
+        value, tags={*clean_tags, "mark"} if preserve_marks else clean_tags
+    )
+    for tag in clean_tags:
+        opening_regex = rf"<{tag}[^>]*>"
+        closing_regex = rf"</{tag}>"
+        clean_html = re.sub(opening_regex, " ", clean_html)
+        clean_html = re.sub(closing_regex, "", clean_html)
+    return clean_html.lstrip()
