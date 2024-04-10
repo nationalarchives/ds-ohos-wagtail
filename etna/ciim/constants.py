@@ -645,6 +645,7 @@ LEVELS = (
 LEVEL_CHOICES = tuple((level, level) for level in LEVELS)
 
 
+@forTemplate
 class Display(StrEnum):
     """Display type to support veiw, template."""
 
@@ -658,6 +659,7 @@ class Views(StrEnum):
 
     LIST = "list"
     MAP = "map"
+    TAG = "tag"
 
 
 TYPE_NAMES = {
