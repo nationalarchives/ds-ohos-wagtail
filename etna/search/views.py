@@ -345,7 +345,7 @@ class BaseSearchView(SearchDataLayerMixin, ClientAPIMixin, GETFormView):
             result_count=self.get_result_count(),
             bucketkeys=BucketKeys,
             searchtabs=SearchTabs,
-            vis_views=VisViews,
+            vis_view=VisViews,
             display=Display,
             closure_closed_status=CLOSURE_CLOSED_STATUS,
             **kwargs,
@@ -404,7 +404,7 @@ class BaseFilteredSearchView(BaseSearchView):
             "sort": self.default_sort,
             "per_page": self.default_per_page,
             "display": self.default_display,
-            "vis_views": self.default_view,
+            "vis_view": self.default_view,
         }
 
     @property
@@ -669,8 +669,8 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
                 "lon": settings.FEATURE_GEO_LON,
                 "zoom": settings.FEATURE_GEO_ZOOM,
             },
-            map_view_url=f'{reverse("search-catalogue")}?{urlencode({"group": BucketKeys.COMMUNITY, "vis_views": VisViews.MAP})}',
-            tag_view_url=f'{reverse("search-catalogue")}?{urlencode({"group": BucketKeys.COMMUNITY, "vis_views": VisViews.TAG})}',
+            map_view_url=f'{reverse("search-catalogue")}?{urlencode({"group": BucketKeys.COMMUNITY, "vis_view": VisViews.MAP})}',
+            tag_view_url=f'{reverse("search-catalogue")}?{urlencode({"group": BucketKeys.COMMUNITY, "vis_view": VisViews.TAG})}',
         )
         return super().get_context_data(**kwargs)
 
