@@ -1,8 +1,18 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/colour";
 @use "@nationalarchives/frontend/nationalarchives/variables/typography";
 
+.custom_icon {
+    //background:blue;
+    background-image: url('/static/images/tag.svg');
+    background-repeat: no-repeat;
+    background-position-x: 20%;
+    background-position-y: 50%;
+}
+
 .search-visualisation-nav {
     margin-bottom: 2rem;
+
+
 
     &__list {
         display: flex;
@@ -72,6 +82,8 @@
         @media only screen and (max-width: $screen__md) {
             flex-direction: column;
         }
+
+
     }
 
     &__link {
@@ -92,7 +104,11 @@
 
         &[aria-current="true"] {
             border-color: currentColor;
+            width:60%;
+            padding-top:0.8em;
+            padding-bottom: 0.8em;
         }
+
     }
 
     &__disabled {
