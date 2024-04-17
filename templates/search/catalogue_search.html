@@ -115,8 +115,6 @@
     {% if form.vis_view.value == vis_view.MAP.value %}
         <script src="{% static 'scripts/search_results_map.js' %}"></script>
     {% else %}
-        {% if form.vis_view.value == vis_view.TIMELINE.value %}
-        {% endif %}
         <script src="{% static 'scripts/catalogue_search.js' %}"></script>
     {% endif %}
 
