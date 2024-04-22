@@ -105,9 +105,7 @@
 
                   // Access the corresponding record count from chart data
                   const recordCount = chartData[clickedIndex];
-
-                  // Display an alert with the record count
-                  //alert(`You clicked on the ${centuryLabels[clickedIndex]}. There are ${recordCount} records.`);
+                  
                   window.location = `./?vis_view=timeline&timeline_type=decade&creation_date_from=${centuryLabels[clickedIndex]}#decade-counts-chart`;
                 }
               };
