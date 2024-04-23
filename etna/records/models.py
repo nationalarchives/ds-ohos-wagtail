@@ -678,6 +678,7 @@ class Record(DataLayerMixin, APIModel):
         """
         Returns the data in the value attribute for the tag type when present
         in the enrichment otherwise empty list.
+        [{"value": <some value 1>},{"value": <some value 2>}]
 
         tag_type:
             values which are defined by API response @template.details.enrichment keys,
