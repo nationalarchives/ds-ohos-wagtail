@@ -201,7 +201,6 @@ const chartForceSimulation = (data, options = {}) => {
 </symbol>
 `);
 
-
     // Create a group for each circle and text element
     const node = svg
         .selectAll("a")
