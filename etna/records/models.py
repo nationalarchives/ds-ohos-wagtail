@@ -678,7 +678,7 @@ class Record(DataLayerMixin, APIModel):
         """
         Returns the data in the value attribute for the tag type when present
         in the enrichment otherwise empty list.
-        [{"value": <some value 1>},{"value": <some value 2>}]
+        [{"value": "some value 1", "url":"some value 3"},{"value": "some value 2", "url":"some value 4"}]
 
         tag_type:
             values which are defined by API response @template.details.enrichment keys,
@@ -690,6 +690,8 @@ class Record(DataLayerMixin, APIModel):
                 data = {}
                 if value := item.get("value", ""):
                     data.update(value=value)
+                if url := item.get("url", ""):
+                    data.update(url=url)
                 if data:
                     return_value.append(data)
         return return_value
@@ -724,3 +726,8 @@ class Record(DataLayerMixin, APIModel):
     @cached_property
     def enrichment_misc(self):
         return self._get_tags(TagTypes.MISCELLANEOUS)
+
+    @cached_property
+    def enrichment_date(self):
+        return self._get_tags(TagTypes.DATE)
+
