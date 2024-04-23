@@ -183,11 +183,19 @@ const chartForceSimulation = (data, options = {}) => {
   <g transform="rotate(0 14 14)"> 
     <circle cx="14.0000" cy="14.0000" r="13.5" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
     <path fill="none" stroke="#FFFFFF" stroke-width="2" d="M 
-      ${14 + Math.cos(Math.PI / 4) * (13.5 - 7)}  ${14 + Math.sin(Math.PI / 4) * (13.5 - 7)}  L 
-      ${14 - Math.cos(Math.PI / 4) * (13.5 - 7)}  ${14 - Math.sin(Math.PI / 4) * (13.5 - 7)}  "/>
+      ${14 + Math.cos(Math.PI / 4) * (13.5 - 7)}  ${
+          14 + Math.sin(Math.PI / 4) * (13.5 - 7)
+      }  L 
+      ${14 - Math.cos(Math.PI / 4) * (13.5 - 7)}  ${
+          14 - Math.sin(Math.PI / 4) * (13.5 - 7)
+      }  "/>
     <path fill="none" stroke="#FFFFFF" stroke-width="2" d="M 
-      ${14 + Math.sin(Math.PI / 4) * (13.5 - 7)}  ${14 - Math.cos(Math.PI / 4) * (13.5 - 7)}  L 
-      ${14 - Math.sin(Math.PI / 4) * (13.5 - 7)}  ${14 + Math.cos(Math.PI / 4) * (13.5 - 7)}  "/>
+      ${14 + Math.sin(Math.PI / 4) * (13.5 - 7)}  ${
+          14 - Math.cos(Math.PI / 4) * (13.5 - 7)
+      }  L 
+      ${14 - Math.sin(Math.PI / 4) * (13.5 - 7)}  ${
+          14 + Math.cos(Math.PI / 4) * (13.5 - 7)
+      }  "/>
   </g>
 </symbol>
 `);
