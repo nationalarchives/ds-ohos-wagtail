@@ -659,7 +659,27 @@ class VisViews(StrEnum):
 
     LIST = "list"
     MAP = "map"
+    TIMELINE = "timeline"
     TAG = "tag"
+
+
+@forTemplate
+class TagTypes(StrEnum):
+    """Tag types values defined by @template.details.enrichment keys"""
+
+    LOCATION = "loc"
+    PERSON = "per"
+    ORGANISATION = "org"
+    MISCELLANEOUS = "misc"
+
+
+@forTemplate
+class TimelineTypes(StrEnum):
+    """The timeline view types that can be displayed"""
+
+    CENTURY = "century"  # for items distributed by century
+    DECADE = "decade"  # for items distributed by decade for a century
+    YEAR = "year"  # for items distributed by year for a decade
 
 
 TYPE_NAMES = {
