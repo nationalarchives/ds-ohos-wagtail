@@ -199,7 +199,8 @@ class CommunityRecordModelTests(SimpleTestCase):
             ]
         }
         with self.assertRaisesMessage(
-            ValidationError, "https://www.notawiki.org/wiki/123 value is not a valid wikidata URL."
+            ValidationError,
+            "https://www.notawiki.org/wiki/123 value is not a valid wikidata URL.",
         ):
             _ = self.record.enrichment_loc
 
