@@ -20,6 +20,7 @@
     &__label {
         display: block;
         @include typography.relative-font-size(20);
+        margin-bottom:0.8em;
     }
 
     &__form {
