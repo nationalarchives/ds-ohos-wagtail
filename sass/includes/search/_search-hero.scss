@@ -20,7 +20,7 @@
     &__label {
         display: block;
         @include typography.relative-font-size(20);
-        margin-bottom:0.8em;
+        margin-bottom: 0.8em;
     }
 
     &__form {
@@ -171,16 +171,18 @@
 }
 
 .interactive-choice {
-    background:#8aa49d;
+    background: #8aa49d;
 
     h2 {
-        padding-bottom:0.5em;
+        padding-bottom: 0.5em;
     }
+
     img {
-        border-radius:10px;
+        border-radius: 10px;
+        vertical-align: text-top;
     }
 }
 
 .tna-pagination {
-    margin-bottom:2em;
+    margin-bottom: 2em;
 }
