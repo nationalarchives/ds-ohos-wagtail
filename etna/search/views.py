@@ -9,9 +9,7 @@ from django.conf import settings
 from django.core.paginator import Page as PaginatorPage
 from django.forms import Form
 from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadRequest
-from django.urls import reverse
 from django.utils import timezone
-from django.utils.http import urlencode
 from django.views.generic import FormView, TemplateView
 
 from wagtail.coreutils import camelcase_to_underscore
