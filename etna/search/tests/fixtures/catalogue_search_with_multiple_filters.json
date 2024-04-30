@@ -417,51 +417,6 @@
             ]
         },
         {
-            "name": "place",
-            "entries": [
-                {
-                    "value": "Church Street",
-                    "doc_count": 127
-                },
-                {
-                    "value": "Paul's Row",
-                    "doc_count": 8
-                },
-                {
-                    "value": "High Street area",
-                    "doc_count": 6
-                },
-                {
-                    "value": "Queen Square",
-                    "doc_count": 6
-                },
-                {
-                    "value": "Castle Street",
-                    "doc_count": 5
-                },
-                {
-                    "value": "Priory Road",
-                    "doc_count": 3
-                },
-                {
-                    "value": "White Hart Street",
-                    "doc_count": 3
-                },
-                {
-                    "value": "Church Lane",
-                    "doc_count": 2
-                },
-                {
-                    "value": "Church Road",
-                    "doc_count": 2
-                },
-                {
-                    "value": "Oxford Road",
-                    "doc_count": 2
-                }
-            ]
-        },
-        {
             "name": "group",
             "entries": [
                 {
