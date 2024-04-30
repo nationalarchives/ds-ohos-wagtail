@@ -415,7 +415,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         """
         self.patch_search_endpoint("catalogue_search_with_multiple_filters.json")
 
-        expected_url = "/search/catalogue/?q=parish&group=community&collection=SWOP"
+        expected_url = "/search/catalogue/?q=parish&group=community&collection=SWOP&collection=People%27s+Collection+Wales"
 
         response = self.client.get(
             self.test_url,
@@ -424,6 +424,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                 "group": "community",
                 "collection": [
                     "SWOP",
+                    "People's Collection Wales",
                 ],
             },
         )
