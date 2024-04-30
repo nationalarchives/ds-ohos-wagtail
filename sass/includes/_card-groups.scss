@@ -52,7 +52,8 @@
 
             &:hover,
             &:active {
-                color: $color__navy;
+                //color: $color__navy;
+                color: $color__black;
             }
 
             &:visited {
@@ -133,6 +134,8 @@
 
             &:active {
                 color: $color__navy;
+                // color: $color__black;
+                // background:red;
             }
 
             &:hover {
@@ -221,4 +224,8 @@
 
 .aria-desc-card {
     display: none;
+}
+
+.tna-hgroup__title {
+    color:black;
 }
