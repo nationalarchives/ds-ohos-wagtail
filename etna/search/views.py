@@ -79,11 +79,11 @@ class BucketsMixin:
         bucket_list = copy.deepcopy(self.bucket_list)
 
         # set `result_count` for each bucket
-        doc_counts_by_key = {
-            group["value"]: group["doc_count"] for group in self.get_bucket_counts()
+        bucket_counts_by_key = {
+            entries["value"]: entries["count"] for entries in self.get_bucket_counts()
         }
         for bucket in bucket_list:
-            bucket.result_count = doc_counts_by_key.get(bucket.key, 0)
+            bucket.result_count = bucket_counts_by_key.get(bucket.key, 0)
 
         if current := self.get_current_bucket_key():
             # set 'is_current=True' for the relevant bucket

@@ -282,17 +282,13 @@ class ClientAPI:
             if group == BucketKeys.COMMUNITY:
                 params["filter"] += [f"fromDate:(>={created_start_date})"]
             else:
-                params["createdStartDate"] = self.format_datetime(
-                    created_start_date, supplementary_time=time.min
-                )
+                params["filter"] += [f"createdStartDate:(>={created_start_date})"]
 
         if created_end_date:
             if group == BucketKeys.COMMUNITY:
                 params["filter"] += [f"toDate:(<={created_end_date})"]
             else:
-                params["createdEndDate"] = self.format_datetime(
-                    created_end_date, supplementary_time=time.max
-                )
+                params["filter"] += [f"createdEndDate:(<={created_end_date})"]
 
         # Get HTTP response from the API
         response = self.make_request(f"{self.base_url}/search", params=params)
@@ -300,16 +296,16 @@ class ClientAPI:
         # Convert the HTTP response to a Python dict
         response_data = response.json()
 
-        # Pull out the separate ES responses # TODO:Rosetta for fixed counts incl when no results are returned
         bucket_counts_data = []
 
-        aggregations = response_data["aggregations"]
-        for aggregation in aggregations:
-            if aggregation.get("name", "") == "group":
-                bucket_counts_data = aggregation.get("entries", [])
+        # combine enties for all groups across OHOS and TNA
+        for bucket in response_data.get("buckets", []):
+            if bucket.get("name", "") == "group":
+                for entry in bucket.get("entries", []):
+                    bucket_counts_data.append(entry)
 
-        # Return a single ResultList, using bucket counts from the first ES response,
-        # and full hit/aggregation data from the second.
+        # Return a single ResultList, using bucket counts from "fabbuckets",
+        # and full hit/aggregation data from "data".
         return self.resultlist_from_response(
             response_data,
             bucket_counts=bucket_counts_data,

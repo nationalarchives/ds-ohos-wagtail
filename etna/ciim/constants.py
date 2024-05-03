@@ -46,7 +46,7 @@ class Aggregation(StrEnum):
 
 
 DEFAULT_AGGREGATIONS = [
-    Aggregation.GROUP
+    # Aggregation.GROUP # TODO: keep until we know we don't need for ETNA
     # TODO:Rosetta + ":30",  # Fetch more 'groups' so that we receive counts for any bucket/tab options we might be showing.
 ]
 
@@ -120,21 +120,36 @@ CATALOGUE_BUCKETS = BucketList(
             key=BucketKeys.COMMUNITY,
             label="Results from community collections",
             description="Results for records held at The National Archives that match your search term.",
-            aggregations=DEFAULT_AGGREGATIONS + [Aggregation.COLLECTION],
+            # TODO: keep until we know we don't need for ETNA
+            # aggregations=DEFAULT_AGGREGATIONS + [Aggregation.COLLECTION],
+            aggregations=[Aggregation.COLLECTION],
         ),
         Bucket(
             key=BucketKeys.TNA,
             label="Results from The National Archives",
             description="Results for records held at The National Archives that match your search term.",
-            aggregations=DEFAULT_AGGREGATIONS
-            + [Aggregation.COLLECTION, Aggregation.LEVEL, Aggregation.CLOSURE],
+            # TODO: keep until we know we don't need for ETNA
+            # aggregations=DEFAULT_AGGREGATIONS
+            # + [Aggregation.COLLECTION, Aggregation.LEVEL, Aggregation.CLOSURE],
+            aggregations=[
+                Aggregation.COLLECTION,
+                Aggregation.LEVEL,
+                Aggregation.CLOSURE,
+            ],
         ),
         Bucket(
             key=BucketKeys.NONTNA,
             label="Results from Other Archives",
             description="Results for records held at other archives in the UK (and not at The National Archives) that match your search term.",
-            aggregations=DEFAULT_AGGREGATIONS
-            + [
+            # TODO: keep until we know we don't need for ETNA
+            # aggregations=DEFAULT_AGGREGATIONS
+            # + [
+            #     Aggregation.COLLECTION,
+            #     Aggregation.CLOSURE,
+            #     Aggregation.HELD_BY,
+            #     Aggregation.CATALOGUE_SOURCE,
+            # ],
+            aggregations=[
                 Aggregation.COLLECTION,
                 Aggregation.CLOSURE,
                 Aggregation.HELD_BY,
