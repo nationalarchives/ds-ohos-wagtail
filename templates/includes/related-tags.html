@@ -3,7 +3,7 @@
 {% endcomment %}
 
 <div class="record-details__related-tags">
-    <h3>Related tags</h3>
+    <h3>Related <tags></tags></h3>
 
     <dl class="record-details__related-tags-list">
         <dt>Locations:</dt>
@@ -21,4 +21,6 @@
         <dt>Date:</dt>
         {% include 'includes/tags-wiki.html' with tag=record.enrichment_date css_extn_style="other" %}
     </dl>
+
+    <p class="record-details__related-tags-warning"><i class="ohos-search-results-map__info-icon fa-solid fa-circle-info"></i><b>Please note:</b> Related tags are generated using artificial intelligence and may include errors.</p>
 </div>
