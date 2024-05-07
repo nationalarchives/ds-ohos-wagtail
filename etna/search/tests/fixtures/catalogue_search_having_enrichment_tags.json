@@ -3,10 +3,15 @@
         {
             "@template": {
                 "details": {
-                    "level": "item",
+                    "copiesInformation": [
+                        "1"
+                    ],
                     "description": "the northern bank of the river Thames, looking NE",
-                    "summary": "View of the figurehead of the Upper Thames Sailing Club, originally from the battleship 'Vengeance'. Bourne End, Wooburn. 1936",
+                    "level": "item",
+                    "primaryIdentifier": "swop-49008",
+                    "summaryTitle": "View of the figurehead of the Upper Thames Sailing Club, originally from the battleship 'Vengeance'. Bourne End, Wooburn. 1936",
                     "title": "View of the figurehead of the Upper Thames Sailing Club, originally from the battleship 'Vengeance'. Bourne End, Wooburn. 1936",
+                    "summary": "View of the figurehead of the Upper Thames Sailing Club, originally from the battleship 'Vengeance'. Bourne End, Wooburn. 1936",
                     "uuid": "4dae30e8-9fb5-3264-955b-f50cbef2357c",
                     "creationDateTo": "1936",
                     "creationDateFrom": "1936",
@@ -18,49 +23,6 @@
                     "group": "community",
                     "status": "publish",
                     "repository": "High Wycombe Library",
-                    "enrichment": {
-                        "date": [
-                            {
-                                "from": "1936",
-                                "to": "1936",
-                                "value": "1936"
-                            },
-                            {
-                                "from": "1925",
-                                "to": "1925",
-                                "value": "1925"
-                            }
-                        ],
-                        "loc": [
-                            {
-                                "value": "Bourne End",
-                                "url": "https://www.wikidata.org/wiki/Q2059003"
-                            },
-                            {
-                                "value": "Wooburn",
-                                "url": "https://www.wikidata.org/wiki/Q2740404"
-                            },
-                            {
-                                "value": "Britannia",
-                                "url": "https://www.wikidata.org/wiki/Q138396"
-                            }
-                        ],
-                        "org": [
-                            {
-                                "value": "Upper Thames Sailing Club"
-                            }
-                        ],
-                        "per": [
-                            {
-                                "value": "Arthur Jackson"
-                            }
-                        ],
-                        "misc": [
-                            {
-                                "value": "Vengeance"
-                            }
-                        ]
-                    },
                     "subjects": [
                         "Monument",
                         "Memorial",
@@ -79,24 +41,108 @@
                     "value": "SWOP",
                     "doc_count": 1
                 }
-            ]
-        },
+            ],
+            "total": 0,
+            "other": 0
+        }
+    ],
+    "stats": {
+        "total": 1,
+        "results": 1,
+        "providers": 2,
+        "latency": 32.0
+    },
+    "found": false,
+    "buckets": [
         {
             "name": "group",
             "entries": [
                 {
                     "value": "community",
-                    "doc_count": 1
+                    "count": 216637
                 }
-            ]
+            ],
+            "total": 216637,
+            "other": 0
+        },
+        {
+            "name": "group",
+            "entries": [
+                {
+                    "value": "record",
+                    "count": 34972443
+                },
+                {
+                    "value": "tna",
+                    "count": 24926034
+                },
+                {
+                    "value": "nonTna",
+                    "count": 11049250
+                },
+                {
+                    "value": "digitised",
+                    "count": 9063756
+                },
+                {
+                    "value": "medalCard",
+                    "count": 5481174
+                },
+                {
+                    "value": "will",
+                    "count": 1016324
+                },
+                {
+                    "value": "aggregation",
+                    "count": 730449
+                },
+                {
+                    "value": "seamenRegister",
+                    "count": 684418
+                },
+                {
+                    "value": "creator",
+                    "count": 272392
+                },
+                {
+                    "value": "britishWarMedal",
+                    "count": 157424
+                },
+                {
+                    "value": "organisation",
+                    "count": 141526
+                },
+                {
+                    "value": "navalReserve",
+                    "count": 137920
+                },
+                {
+                    "value": "image",
+                    "count": 80606
+                },
+                {
+                    "value": "person",
+                    "count": 61869
+                },
+                {
+                    "value": "business",
+                    "count": 36367
+                },
+                {
+                    "value": "manor",
+                    "count": 22076
+                },
+                {
+                    "value": "family",
+                    "count": 10554
+                },
+                {
+                    "value": "archive",
+                    "count": 3525
+                }
+            ],
+            "total": 88848107,
+            "other": 0
         }
-    ],
-    "stats": {
-        "total": 1,
-        "providers": 1,
-        "transformations": 1,
-        "provider_latency": 6,
-        "transformation_latency": 3
-    },
-    "found": true
+    ]
 }

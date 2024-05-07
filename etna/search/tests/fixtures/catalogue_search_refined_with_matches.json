@@ -3,192 +3,623 @@
         {
             "@template": {
                 "details": {
-                    "level": "item",
-                    "description": "Biography of Margaret Powell outlining her contribution to Milton Keynes. Powell was a sheep farmer, and lived and worked at Tattenhoe Bare Farm. Upon her death, Powell left a two million pound legacy to be used for the enhancement of facilities and services for elderly and disabled people in the area, which was set up as The Margaret Powell Foundation. Milton Keynes Community Foundation look after the Margaret Powell Foundation Fund and, in recognition of her philanthropy, their building on Midsummer Boulevard has been renamed Margaret Powell House. The biography also goes into detail about the Electric Sheep sculpture at Milton Keynes Theatre.",
-                    "summary": "Biography of Margaret Powell (Digital Document)",
-                    "title": "Biography of Margaret Powell",
-                    "identifier": "WMK/009",
-                    "uuid": "f42b3081-0e6e-3fff-835b-56da06f1d06a",
-                    "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
-                    "collectionId": "wmk-20469",
+                    "creator": "Milton Keynes Fawcett Society Group",
+                    "description": "Biographies of the ten women featured in the exhibition 'Women who made Milton Keynes' produced by the Milton Keynes group of The Fawcett Society. The exhibition explored the lives and contributions of ten pioneering women notable for their work and achievements in developing Milton Keynes. The project formed part of the MK50 celebrations in 2017, marking the 50th anniversary of the designation of the new town. Includes an introduction written by the group.",
+                    "level": "collection",
+                    "primaryIdentifier": "wmk-20469",
+                    "summaryTitle": "Biography of Women Who Made Milton Keynes (Digital Document)",
+                    "title": "Biography of Women Who Made Milton Keynes",
                     "type": "Digital Document",
-                    "rights": "Milton Keynes Fawcett Society Group",
-                    "ciimId": "wmk-20501",
-                    "group": "community"
+                    "summary": "Biography of Women Who Made Milton Keynes (Digital Document)",
+                    "identifier": "WMK",
+                    "uuid": "faa028f5-7f74-3001-b07a-16ee46b2ee06",
+                    "creationDateTo": "2018",
+                    "creationDateFrom": "2017",
+                    "creationDate": "2017-2018",
+                    "ciimId": "wmk-20469",
+                    "group": "community",
+                    "accessStatus": "Open",
+                    "repository": "Milton Keynes City Discovery Centre"
                 }
             }
         },
         {
             "@template": {
                 "details": {
-                    "level": "item",
-                    "description": "Biography of Margaret Sale, detailing her involvement in the creation of the Bletchley Park Trust and the fight to preserve the wartime history of the site. The biography also includes details of her husband Tony's project to re-build the Colossus computer, and their involvement in the establishment of The National Museum of Computing.",
-                    "summary": "Biography of Margaret Sale (Digital Document)",
-                    "title": "Biography of Margaret Sale",
-                    "identifier": "WMK/011",
-                    "uuid": "78025945-c3cb-3332-81cd-77d08aadad59",
-                    "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
-                    "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "ciimId": "wmk-20508",
-                    "group": "community"
-                }
-            }
-        },
-        {
-            "@template": {
-                "details": {
-                    "level": "item",
-                    "description": "Biography of Avril Dankworth and her passion for music education, detailing her creation of the National Youth Music Camps, based at The Stables, Wavendon.",
-                    "summary": "Biography of Avril Dankworth (Digital Document)",
-                    "title": "Biography of Avril Dankworth",
-                    "identifier": "WMK/004",
-                    "uuid": "59597ddf-02d8-35f1-bbeb-4cb957f8b8d9",
-                    "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
-                    "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "rights": "Milton Keynes Fawcett Society Group",
-                    "ciimId": "wmk-20482",
-                    "group": "community"
-                }
-            }
-        },
-        {
-            "@template": {
-                "details": {
-                    "level": "item",
-                    "description": "Biography of Matilda Kessler detailing her activities and achievements in the development of Milton Keynes. These include her appointment as a Magistrate to the Fenny Stratford Bench, establishing the first Citizens Advice Bureau in Bletchley, co-founding the Milton Keynes Mental Health Association, being a member of the Open University Council and writing the publication 'The Story of the Magistrates Courts in Milton Keynes'.",
-                    "summary": "Biography of Matilda Kessler (Digital Document)",
-                    "title": "Biography of Matilda Kessler",
-                    "identifier": "WMK/007",
-                    "uuid": "17f976af-973e-3fcb-b0c2-22d11772f417",
-                    "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
-                    "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "ciimId": "wmk-20491",
-                    "group": "community"
-                }
-            }
-        },
-        {
-            "@template": {
-                "details": {
-                    "level": "item",
+                    "creator": "Barbara Mayor",
                     "description": "Biography of Teresa Collard detailing her activities related to her role as Arts and Entertainments Officer with Milton Keynes Borough Council, 1975-1984. These activities include: co-founding the Music and Arts Community Action Project (MADCAP), running February Festival of the Arts, setting up the Jennie Lee Theatre at Bletchley Leisure Centre, setting up Milton Keynes' first art gallery at Milton Keynes Central Library and helping to launch the project for a major commercial theatre to be built, which is now Milton Keynes Theatre.",
-                    "summary": "Biography of Teresa Collard (Digital Document)",
+                    "level": "item",
+                    "primaryIdentifier": "wmk-20479",
+                    "summaryTitle": "Biography of Teresa Collard (Digital Document)",
                     "title": "Biography of Teresa Collard",
+                    "type": "Digital Document",
+                    "summary": "Biography of Teresa Collard (Digital Document)",
                     "identifier": "WMK/003",
                     "uuid": "2dd0dac8-5c26-3c17-9116-74c9c4974509",
+                    "creationDateTo": "2017",
+                    "creationDateFrom": "2017",
+                    "creationDate": "2017",
                     "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
                     "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "rights": "Milton Keynes Fawcett Society Group",
+                    "location": "Central Milton Keynes",
                     "ciimId": "wmk-20479",
-                    "group": "community"
+                    "group": "community",
+                    "accessStatus": "Open",
+                    "repository": "Milton Keynes City Discovery Centre"
                 }
             }
         },
         {
             "@template": {
                 "details": {
+                    "creator": "Liz Whitelegg",
+                    "description": "Biography of Margaret Sale, detailing her involvement in the creation of the Bletchley Park Trust and the fight to preserve the wartime history of the site. The biography also includes details of her husband Tony's project to re-build the Colossus computer, and their involvement in the establishment of The National Museum of Computing.",
                     "level": "item",
-                    "description": "Biography of Margaret Durbridge detailing her activities and achievements in helping to plan Milton Keynes new town. These include being the only woman on the Board of the Milton Keynes Development Corporation, also sitting on the Transport Group, chairing the Social Policy Committee and championing the redways cycle and pedestrian system. In the community, Durbridge was governor of a number of schools and was invited to become a member of the Open University Council. She was awarded an OBE in 1977.",
-                    "summary": "Biography of Margaret Durbridge (Digital Document)",
-                    "title": "Biography of Margaret Durbridge",
-                    "identifier": "WMK/005",
-                    "uuid": "64e64938-7b5c-3ea9-ac70-04e8d14b4807",
+                    "primaryIdentifier": "wmk-20508",
+                    "summaryTitle": "Biography of Margaret Sale (Digital Document)",
+                    "title": "Biography of Margaret Sale",
+                    "type": "Digital Document",
+                    "summary": "Biography of Margaret Sale (Digital Document)",
+                    "identifier": "WMK/011",
+                    "uuid": "78025945-c3cb-3332-81cd-77d08aadad59",
+                    "creationDateTo": "2017",
+                    "creationDateFrom": "2017",
+                    "creationDate": "2017",
                     "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
                     "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "rights": "Milton Keynes Fawcett Society Group",
-                    "ciimId": "wmk-20485",
-                    "group": "community"
+                    "location": "Bletchley",
+                    "ciimId": "wmk-20508",
+                    "group": "community",
+                    "accessStatus": "Open",
+                    "repository": "Milton Keynes City Discovery Centre"
                 }
             }
         },
         {
             "@template": {
                 "details": {
+                    "creator": "Gill Bryan",
+                    "description": "Biography of Margaret Powell outlining her contribution to Milton Keynes. Powell was a sheep farmer, and lived and worked at Tattenhoe Bare Farm. Upon her death, Powell left a two million pound legacy to be used for the enhancement of facilities and services for elderly and disabled people in the area, which was set up as The Margaret Powell Foundation. Milton Keynes Community Foundation look after the Margaret Powell Foundation Fund and, in recognition of her philanthropy, their building on Midsummer Boulevard has been renamed Margaret Powell House. The biography also goes into detail about the Electric Sheep sculpture at Milton Keynes Theatre.",
                     "level": "item",
-                    "description": "Biography of Liz Leyh detailing her activities and achievements in relation to Milton Keynes. These activities include being the first artist in residence of a new town, engaging residents in community art and sculpture, and creating the concrete cows.",
-                    "summary": "Biography of Liz Leyh (Digital Document)",
-                    "title": "Biography of Liz Leyh",
-                    "identifier": "WMK/008",
-                    "uuid": "86e28df5-c79f-37e5-b56a-df5cf286c572",
+                    "primaryIdentifier": "wmk-20501",
+                    "summaryTitle": "Biography of Margaret Powell (Digital Document)",
+                    "title": "Biography of Margaret Powell",
+                    "type": "Digital Document",
+                    "summary": "Biography of Margaret Powell (Digital Document)",
+                    "identifier": "WMK/009",
+                    "uuid": "f42b3081-0e6e-3fff-835b-56da06f1d06a",
+                    "creationDateTo": "2017",
+                    "creationDateFrom": "2017",
+                    "creationDate": "2017",
                     "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
                     "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "ciimId": "wmk-20495",
-                    "group": "community"
+                    "location": "Central Milton Keynes",
+                    "ciimId": "wmk-20501",
+                    "group": "community",
+                    "accessStatus": "Open",
+                    "repository": "Milton Keynes City Discovery Centre"
                 }
             }
         },
         {
             "@template": {
                 "details": {
+                    "creator": "Margaret Gallagher",
+                    "description": "Biography of Avril Dankworth and her passion for music education, detailing her creation of the National Youth Music Camps, based at The Stables, Wavendon.",
                     "level": "item",
-                    "description": "Biographical notes on ten women who featured in an exhibition organised by the Milton Keynes group of the Fawcett Society, Milton Keynes Central Library, November-December 2017. Introduction to the project and women featured, August 2018.",
-                    "summary": "Biography of Women Who Made Milton Keynes (Digital Document)",
-                    "title": "Biography of Women Who Made Milton Keynes",
-                    "identifier": "WMK/001",
-                    "uuid": "873c5740-a797-3c35-9582-b7caf3937de5",
+                    "primaryIdentifier": "wmk-20482",
+                    "summaryTitle": "Biography of Avril Dankworth (Digital Document)",
+                    "title": "Biography of Avril Dankworth",
+                    "type": "Digital Document",
+                    "summary": "Biography of Avril Dankworth (Digital Document)",
+                    "identifier": "WMK/004",
+                    "uuid": "59597ddf-02d8-35f1-bbeb-4cb957f8b8d9",
+                    "creationDateTo": "2017",
+                    "creationDateFrom": "2017",
+                    "creationDate": "2017",
                     "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
                     "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "ciimId": "wmk-20471",
-                    "group": "community"
+                    "ciimId": "wmk-20482",
+                    "group": "community",
+                    "accessStatus": "Open",
+                    "repository": "Milton Keynes City Discovery Centre"
                 }
             }
         },
         {
             "@template": {
                 "details": {
+                    "creator": "Gill Bryan",
+                    "description": "Biography of Matilda Kessler detailing her activities and achievements in the development of Milton Keynes. These include her appointment as a Magistrate to the Fenny Stratford Bench, establishing the first Citizens Advice Bureau in Bletchley, co-founding the Milton Keynes Mental Health Association, being a member of the Open University Council and writing the publication 'The Story of the Magistrates Courts in Milton Keynes'.",
                     "level": "item",
-                    "description": "Biography of Jane Henshaw detailing her activities and achievements in relation to health, education and business development in Milton Keynes. These include serving on the Board of Trustees for the establishment of Willen Hospice, leading the project that established the MK Education Business Partnership with the Chamber of Commerce, developing the format adopted as information technology (IT) certification in schools and setting up LINKS magazine - the Education-Industry Liaison Committee Newsletter.",
-                    "summary": "Biography of Jane Henshaw (Digital Document)",
-                    "title": "Biography of Jane Henshaw",
-                    "identifier": "WMK/006",
-                    "uuid": "ee4140fe-a7a4-3e43-a5cc-66b565457b25",
+                    "primaryIdentifier": "wmk-20491",
+                    "summaryTitle": "Biography of Matilda Kessler (Digital Document)",
+                    "title": "Biography of Matilda Kessler",
+                    "type": "Digital Document",
+                    "summary": "Biography of Matilda Kessler (Digital Document)",
+                    "identifier": "WMK/007",
+                    "uuid": "17f976af-973e-3fcb-b0c2-22d11772f417",
+                    "creationDateTo": "2017",
+                    "creationDateFrom": "2017",
+                    "creationDate": "2017",
                     "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
                     "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "ciimId": "wmk-20488",
-                    "group": "community"
+                    "location": "Bletchley",
+                    "ciimId": "wmk-20491",
+                    "group": "community",
+                    "accessStatus": "Open",
+                    "repository": "Milton Keynes City Discovery Centre"
                 }
             }
         },
         {
             "@template": {
                 "details": {
+                    "creator": "Ap Iwan, Llwyd",
+                    "description": "Llwyd ap Iwan begins this letter to his family by noting that a long time has passed since they have been in touch.  He recently received a copy of E. Pan Jones's biography of his father, as well as a photograph of his father's grave.  He has not written to thank E. Pan Jones yet, as he is still rather offended by the somewhat plain appearance of the volume.  He asks what is the general opinion of the book. He has seen a note from O. M. Edwards which is not particularly complimentary.      \n\nHe recently heard from his brother, Mihangel: both he and his wife had been unwell recently.  Llwyd says that they have had a hard winter in the Andes, but it was no worse than the winters in the Chubut valley.  He asks Rhys to send him some fishing flies, of the type which he uses to catch trout, as well as some fishing lines.",
                     "level": "item",
-                    "description": "Biography of Deirdre Battista detailing the activities and projects with which she has been involved in Milton Keynes. These include: co-ordinating the United Kingdom leg of the Sacred Run for Life and Land, hosting Native American lacrosse players promoting land rights, instigating the One World Quilt programme and co-ordinating the construction of a Millenium Sculpture - the Circle of Hearts Medicine Wheel at Willen Lake.",
-                    "summary": "Biography of Deirdre Battista (Digital Document)",
-                    "title": "Biography of Deirdre Battista",
-                    "identifier": "WMK/002",
-                    "uuid": "4eee74ce-dfce-33a5-9e0e-a6dfa026b429",
-                    "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
-                    "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "rights": "Milton Keynes Fawcett Society Group",
-                    "ciimId": "wmk-20476",
-                    "group": "community"
+                    "primaryIdentifier": "pcw-13828",
+                    "summaryTitle": "Letter from Llwyd ap Iwan to his mother, Mrs Anne Jones, and his sister and brother-in-law, Professor Thomas Rhys and Myfanwy, 22 October 1904 [page 1, image 1 of 2]",
+                    "title": "Letter from Llwyd ap Iwan to his mother, Mrs Anne Jones, and his sister and brother-in-law, Professor Thomas Rhys and Myfanwy, 22 October 1904 [page 1, image 1 of 2]",
+                    "descriptionCy": "Mae Llwyd ap Iwan yn cychwyn y llythyr hwn at ei deulu trwy nodi nad ydynt wedi bod mewn cysylltiad ers amser.  Yn ddiweddar, derbyniodd gopi o fywgraffiad E. Pan Jones o'i dad, ynghyd â llun o fedd ei dad.  Nid yw wedi ysgrifennu i ddiolch i E. Pan Jones eto, gan ei fod wedi digio ato braidd am gyhoeddi'r gyfrol 'mewn gwisg mor wael'.  Fe hoffai wybod beth yw'r farn gyffredinol am y gyfrol.  Gwelodd nodyn gan O. M. Edwards nad oedd yn ganmoliaethus iawn.  \n\nDerbyniodd air gan ei frawd, Mihangel yn ddiweddar. Roedd yntau a'i wraig wedi bod yn bur wael.  Dywed eu bod wedi cael gaeaf caled yn yr Andes, ond nid oedd ddim gwaeth na'r gaeafau arferol yn nyffryn Camwy.  Gofynna i Rhys anfon plu pysgota ato, y math a ddefnyddir ar gyfer dal brithyll, yn ogystal â 'casting line' a 'line bysgota'.",
+                    "summary": "Letter from Llwyd ap Iwan to his mother, Mrs Anne Jones, and his sister and brother-in-law, Professor Thomas Rhys and Myfanwy, 22 October 1904 [page 1, image 1 of 2]",
+                    "titleCy": "Llythyr oddi wrth Llwyd ap Iwan at ei fam, Mrs Anne Jones, a'i chwaer a'i frawd yng nghyfraith, yr Athro Thomas Rhys a Myfanwy, 22 Hydref 1904 [tudalen 1, delwedd 1 o 2]",
+                    "itemURL": "https://www.peoplescollection.wales/items/13828",
+                    "uuid": "aa9caaa7-8202-3610-b4a3-6f2104a70e9b",
+                    "creationDateTo": "1904-10-22",
+                    "creationDateFrom": "1904-10-22",
+                    "creationDate": "22 October 1904",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "rights": "Bangor University Archives and Special Collections",
+                    "ciimId": "pcw-13828",
+                    "group": "community",
+                    "licence": "Bangor University Archives and Special Collections All Rights Reserved",
+                    "status": "published",
+                    "subjects": [
+                        "Letters"
+                    ]
                 }
             }
         },
         {
             "@template": {
                 "details": {
+                    "creator": "John Ball",
+                    "description": "Name: Christ College Chapel\n\nDedication: St Nicholas\n\nDenomination: Anglican\n\nBuilt: 13th century with 19th century additions\n\nPhotography: John Ball\nDate: 5 August 2009 (exterior); 19 November 2009 (interior)\nCamera: Nikon D50 digital SLR\n\nNote 1. Christ's College was originally the chapel of a Dominican friary. It was changed, in 1531 into a seat of learning, under a dean and nineteen prebendaries, and is now attached to a diocesan college of Lampeter; has an antique stone cross, and monuments of several bishops; and includes buildings in the monastic style, of imposing aspect, erected in 1864, at a cost of £10,000. [Extracted from The Imperial Gazetteer of England and Wales. Vol I-II, by John Marius Wilson, published by A. Fullarton & Co., Edinburgh, 1872. Accessible on-line at <a href=\"http://search.ancestry.co.uk/iexec/?htx=List&dbid=7254&offerid=0%3a7858%3a0\" target=\"_blank\">Ancestry.co.uk</a> (subscription required)]  \n\nNote 2. The chapel is a fine example of thirteenth century work, though like all the medieval buildings it was much restored by Gilbert Scott in the nineteenth century. More remarkable survivals are the two halls with their fine fifteenth century open timber roofs. Of the cloister, chapter house and other monastic buildings nothing remains but their position can be deduced from documents. In the 1530s momentous changes affected England and Wales. Henry VIII brought all of Wales under his control; this involved the creation of new Welsh counties, including Breconshire. At the same time the King made himself the Head of the Church and then dissolved the monasteries. This combination of events resulted in the foundation of  'the College of Christ of Brecknock' in 1541 to provide education in this area and thus would 'the Welsh rudeness soon be framed to English civility'! [Further historical details on the <a href=\"http://www.christcollegebrecon.com/about/History_of_Christ_College.php\" target=\"_blank\">Christ College</a> school website]  \n\nNote 3. (Censuses) Christ College is enumerated on the 1871, 1881, 1891, 1901, and 1911 population censuses. <a href=\"brecon9census.html\">Examine transcripts</a> of each of these censuses, showing the names and details of all resident staff, servants, and pupils.\n\nImage 2:\n\nChrist College Chapel, viewed from the northeast.\n\nImage 3: \n\nCollegiate Chapel, Brecon (drawn by Mrs Lathbury, engraved by S. Rawle 1813, in Rees, 1815) Note the absence of the bell tower.\n\nNote 4. (Refers to engraving above) Christ College Church is situated in the suburb of St David's, on the banks of the Usk, at a short distance from the bridge. The history of the original foundation at this place is not known. It is ascertained to have been a monastery of Black Friars, with an apportionment church dedicated to St Nicholas. The present college church is only sixty-three feet in length by twenty-four in breadth, and comprises merely the choir and chancel of the original edifice. [Extracted from The Beauties of England and Wales: or Original Delineations , Topographical, Historical, and Descriptive – Vol. XVIII, South Wales, by Thomas Rees, London, 1815]  \n\nNote 5. Conventual church of Dominican Friary, dedicated to St Nicholas, founded before 1269, attached to secular college from 1541. The Ordnance Survey 1:500 map of Brecon (1888) depicts remains of the nave with north aisle. This is 80 m east-west by 32 m. The former chancel, adapted as college chapel, is 20 m by 10 m. Three main periods of restoration, 17th century, 1860s, and 1926. Early English style. The chancel of the church of the Friary is now incorporated into St Nicholas's Chapel. Lancet windows. Sedilia under trefoil canopies, partly rebuilt. Seventeenth century choir stalls. The nave was ruinous by the 17th century, and the remains lie to the southwest of the chapel. Originally 88' x 27'. Northwest door remains, with round-headed arch with Romanesque style moulding. [Details from CADW listed buildings database, accessed on-line (as NPRN 301834) at the <a href=\"http://www.coflein.gov.uk/\" target=\"_blank\">Coflein Website</a>]\n\nImage 4:\n\nWar memorial, west wall, and entrance to Christ College Chapel, viewed from inside the remains of the original nave.\n\nNote 6. The west end of the chapel is filled up by a solid wall with deeply moulded entrance, which has been surmounted by a bell-turret, and enclosed by an ante chapel, in which are contained some interesting monuments, especially one in memory of the Lucys (see interior photographs, below). The remains of the nave consist of the main walls up to the height of the window-cills, and a part of the main arcade on the north side, with a circular-headed north doorway. A portion of the east end of the north aisle was restored some years ago, and is used as a vestry. [Description extracted from The Illustrated History and Biography of Brecknockshire, by Edwin Poole, published by the author, Brecknock, 1886]\n\nImage 5:\n\nColumn on interior of west wall of original nave.\n\nInterior photographs\n\nImage 6, 7:\n\nCarved figures and memorial inscriptions of the LUCY family, just inside the entrance to the chapel (see Note 6).\n\nNote 6. The marble monument commemorates the death of Richard Lucy, whose effigy is recumbent with his wife by his side, and their eldest son Gam Lucy a youth of only 22 years of age in a fine flowing full bottomed wig and a sword by his side, stands on a lower step at their feet. At the top of the monument is a shield, below which is a Latin inscription. An English translation is inscribed on the front of the base supporting the effigies:\n\nHere lyes interr'd ye Reverend Learned, & ingenious RICHARD LUCY, Master of Arts, Chancellor of the Cathedral Church of St David's, Treasurer of this Collegiate Church, & Rector of Aberedw in ye County of Radnor Who departed this life Sept. 12th 1690, Aged 65. He was descended of an Antient & Honourable Family, Son to ye Right Reverend Father in God, WILLIAM LUCY, late Lord Bishop of St David's. He was married to ye Vertuous Madame FLORENCE GAMES, sister and co-heiress of JOHN Games, Esq., Son of ye Worll Worthily Honoured HOO GAMES of Newton, Esq., by whom he had six Children who died young; the eldest, GAM LUCY, lyes buried here, who died Feb. 17th, 1697, aged 22.\n\n[Originally transcribed circa 1805 by Theophilus Jones and reproduced in The Illustrated History and Biography of Brecknockshire, by Edwin Poole, published by the author, Brecknock, 1886]  \n\nRichard Lucy was a descendant of Bishop William Lucy, of the Lucy family of Charlecote in Warwickshire. Upon the Restoration in 1660, William Lucy was recommended by King Charles II to the chapter of St David's, and elected bishop of that see. He was the grandson of Sir Thomas Lucy of Charlecote, knight. [Source: The History of Brecknockshire, by Theophilus Jones (1805/1809), Glanusk Edition (Vol 4) Brecknock Society, 1930]\n\nImage 8, 9:\n\nChrist Church College, showing (Image 8) the east window, altar, lancet windows in the north and south walls, and (Image 9) the ceiling.\n\nImage 10:\n\nEast window, Christ Church College.\n\nImage 11:\n\nThe Altar, backed by a modern triptych illustrating the Crucifixion, the Last Supper, and the Resurrection.\n\nInterior shots <a href=\"http://www.jlb2011.co.uk/walespic/churches/brecon9a.htm\">continue on page 2</a>",
                     "level": "item",
-                    "description": "Biography of Dr. Marjorie Reid, detailing her involvement in the creation of Willen Hospice. Revolutionising the provision of palliative care and medicine for the new city, Dr. Reid went on to be the Hospice's first medical director.",
-                    "summary": "Biography of Marjorie Reid (Digital Document)",
-                    "title": "Biography of Marjorie Reid",
-                    "identifier": "WMK/010",
-                    "uuid": "bfef3b8c-1e69-398d-875a-8a91c1cba0af",
-                    "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
-                    "collectionId": "wmk-20469",
-                    "type": "Digital Document",
-                    "ciimId": "wmk-20504",
-                    "group": "community"
+                    "primaryIdentifier": "pcw-1603116",
+                    "summaryTitle": "Christ College Chapel, Llanfaes, Brecon, Breconshire",
+                    "title": "Christ College Chapel, Llanfaes, Brecon, Breconshire",
+                    "descriptionCy": "Name: Christ College Chapel\n\nDedication: St Nicholas\n\nDenomination: Anglican\n\nBuilt: 13th century with 19th century additions\n\nPhotography: John Ball\nDate: 5 August 2009 (exterior); 19 November 2009 (interior)\nCamera: Nikon D50 digital SLR\n\nNote 1. Christ's College was originally the chapel of a Dominican friary. It was changed, in 1531 into a seat of learning, under a dean and nineteen prebendaries, and is now attached to a diocesan college of Lampeter; has an antique stone cross, and monuments of several bishops; and includes buildings in the monastic style, of imposing aspect, erected in 1864, at a cost of £10,000. [Extracted from The Imperial Gazetteer of England and Wales. Vol I-II, by John Marius Wilson, published by A. Fullarton & Co., Edinburgh, 1872. Accessible on-line at <a href=\"http://search.ancestry.co.uk/iexec/?htx=List&dbid=7254&offerid=0%3a7858%3a0\" target=\"_blank\">Ancestry.co.uk</a> (subscription required)]  \n\nNote 2. The chapel is a fine example of thirteenth century work, though like all the medieval buildings it was much restored by Gilbert Scott in the nineteenth century. More remarkable survivals are the two halls with their fine fifteenth century open timber roofs. Of the cloister, chapter house and other monastic buildings nothing remains but their position can be deduced from documents. In the 1530s momentous changes affected England and Wales. Henry VIII brought all of Wales under his control; this involved the creation of new Welsh counties, including Breconshire. At the same time the King made himself the Head of the Church and then dissolved the monasteries. This combination of events resulted in the foundation of  'the College of Christ of Brecknock' in 1541 to provide education in this area and thus would 'the Welsh rudeness soon be framed to English civility'! [Further historical details on the <a href=\"http://www.christcollegebrecon.com/about/History_of_Christ_College.php\" target=\"_blank\">Christ College</a> school website]  \n\nNote 3. (Censuses) Christ College is enumerated on the 1871, 1881, 1891, 1901, and 1911 population censuses. <a href=\"brecon9census.html\">Examine transcripts</a> of each of these censuses, showing the names and details of all resident staff, servants, and pupils.\n\nImage 2:\n\nChrist College Chapel, viewed from the northeast.\n\nImage 3: \n\nCollegiate Chapel, Brecon (drawn by Mrs Lathbury, engraved by S. Rawle 1813, in Rees, 1815) Note the absence of the bell tower.\n\nNote 4. (Refers to engraving above) Christ College Church is situated in the suburb of St David's, on the banks of the Usk, at a short distance from the bridge. The history of the original foundation at this place is not known. It is ascertained to have been a monastery of Black Friars, with an apportionment church dedicated to St Nicholas. The present college church is only sixty-three feet in length by twenty-four in breadth, and comprises merely the choir and chancel of the original edifice. [Extracted from The Beauties of England and Wales: or Original Delineations , Topographical, Historical, and Descriptive – Vol. XVIII, South Wales, by Thomas Rees, London, 1815]  \n\nNote 5. Conventual church of Dominican Friary, dedicated to St Nicholas, founded before 1269, attached to secular college from 1541. The Ordnance Survey 1:500 map of Brecon (1888) depicts remains of the nave with north aisle. This is 80 m east-west by 32 m. The former chancel, adapted as college chapel, is 20 m by 10 m. Three main periods of restoration, 17th century, 1860s, and 1926. Early English style. The chancel of the church of the Friary is now incorporated into St Nicholas's Chapel. Lancet windows. Sedilia under trefoil canopies, partly rebuilt. Seventeenth century choir stalls. The nave was ruinous by the 17th century, and the remains lie to the southwest of the chapel. Originally 88' x 27'. Northwest door remains, with round-headed arch with Romanesque style moulding. [Details from CADW listed buildings database, accessed on-line (as NPRN 301834) at the <a href=\"http://www.coflein.gov.uk/\" target=\"_blank\">Coflein Website</a>]\n\nImage 4:\n\nWar memorial, west wall, and entrance to Christ College Chapel, viewed from inside the remains of the original nave.\n\nNote 6. The west end of the chapel is filled up by a solid wall with deeply moulded entrance, which has been surmounted by a bell-turret, and enclosed by an ante chapel, in which are contained some interesting monuments, especially one in memory of the Lucys (see interior photographs, below). The remains of the nave consist of the main walls up to the height of the window-cills, and a part of the main arcade on the north side, with a circular-headed north doorway. A portion of the east end of the north aisle was restored some years ago, and is used as a vestry. [Description extracted from The Illustrated History and Biography of Brecknockshire, by Edwin Poole, published by the author, Brecknock, 1886]\n\nImage 5:\n\nColumn on interior of west wall of original nave.\n\nInterior photographs\n\nImage 6, 7:\n\nCarved figures and memorial inscriptions of the LUCY family, just inside the entrance to the chapel (see Note 6).\n\nNote 6. The marble monument commemorates the death of Richard Lucy, whose effigy is recumbent with his wife by his side, and their eldest son Gam Lucy a youth of only 22 years of age in a fine flowing full bottomed wig and a sword by his side, stands on a lower step at their feet. At the top of the monument is a shield, below which is a Latin inscription. An English translation is inscribed on the front of the base supporting the effigies:\n\nHere lyes interr'd ye Reverend Learned, & ingenious RICHARD LUCY, Master of Arts, Chancellor of the Cathedral Church of St David's, Treasurer of this Collegiate Church, & Rector of Aberedw in ye County of Radnor Who departed this life Sept. 12th 1690, Aged 65. He was descended of an Antient & Honourable Family, Son to ye Right Reverend Father in God, WILLIAM LUCY, late Lord Bishop of St David's. He was married to ye Vertuous Madame FLORENCE GAMES, sister and co-heiress of JOHN Games, Esq., Son of ye Worll Worthily Honoured HOO GAMES of Newton, Esq., by whom he had six Children who died young; the eldest, GAM LUCY, lyes buried here, who died Feb. 17th, 1697, aged 22.\n\n[Originally transcribed circa 1805 by Theophilus Jones and reproduced in The Illustrated History and Biography of Brecknockshire, by Edwin Poole, published by the author, Brecknock, 1886]  \n\nRichard Lucy was a descendant of Bishop William Lucy, of the Lucy family of Charlecote in Warwickshire. Upon the Restoration in 1660, William Lucy was recommended by King Charles II to the chapter of St David's, and elected bishop of that see. He was the grandson of Sir Thomas Lucy of Charlecote, knight. [Source: The History of Brecknockshire, by Theophilus Jones (1805/1809), Glanusk Edition (Vol 4) Brecknock Society, 1930]\n\nImage 8, 9:\n\nChrist Church College, showing (Image 8) the east window, altar, lancet windows in the north and south walls, and (Image 9) the ceiling.\n\nImage 10:\n\nEast window, Christ Church College.\n\nImage 11:\n\nThe Altar, backed by a modern triptych illustrating the Crucifixion, the Last Supper, and the Resurrection.\n\nInterior shots <a href=\"http://www.jlb2011.co.uk/walespic/churches/brecon9a.htm\">continue on page 2</a>",
+                    "summary": "Christ College Chapel, Llanfaes, Brecon, Breconshire",
+                    "titleCy": "Christ College Chapel, Llanfaes, Brecon, Breconshire",
+                    "itemURL": "https://www.peoplescollection.wales/items/1603116",
+                    "uuid": "b920928f-cb2f-3097-bfc5-1f1bd74cbc4d",
+                    "creationDateTo": "1969-12-31",
+                    "creationDateFrom": "1969-12-31",
+                    "creationDate": "31 December 1969",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "rights": "John Ball",
+                    "ciimId": "pcw-1603116",
+                    "group": "community",
+                    "status": "published"
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "Heini Gruffudd (interviewee)\nAndrea Hammel (interviewer)\nMorris Brodie (interviewer)",
+                    "description": "This audio clip is from an oral history interview with Heini Gruffudd, recorded by Centre for the Movement of People, Aberystwyth University, on 23 September 2021. In the clip, Heini talks about his mother’s, Kate Bosse-Griffiths's, identity. \n\n<strong>Kate Bosse-Griffiths – a short biography.</strong>\n\nKate Bosse-Griffiths was a Jewish refugee who fled to Britain from Germany in 1937. She married Welshman John Gwyn Griffiths in September 1939 and moved to Pentre in the Rhondda. She learned Welsh and became a passionate advocate for the Welsh language, even publishing poetry and books in Welsh. The family moved to Swansea after the war, where she continued to write for the Welsh-language press, supporting the creation of the Cymdeithas yr Iaith (Welsh Language Society) in 1962. She died in Swansea in 1998.\n\n<strong>Transcript</strong>\n\nAnd, in a way, you can relate that to an anti-establishment view. I mean, she, she’d lived under the National Socialist system in Germany—well, I mean, that could be regarded as how an establishment can rule immorally etc. etc. So, she was quite willing here, if, if she saw injustice by the establishment, ‘Well dear me, I’m not going to give into that kind of immoral establishment’. So, you can link it, then, to her experiences; I mean, her positivity for gaining basic rights for the Welsh language would be compatible to her opposition to the regime in Germany. You sometimes see refugees or...becoming more English than English, you know, in order to fit in. Well, I don’t know with her if she became more Welsh than Welsh, you know.\n\n<strong>Source.</strong>\n\nCentre for the Movement of People, Aberystwyth University, Oral history interview with Heini Gruffudd (23 September 2021)",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1899136",
+                    "summaryTitle": "Audio clip from an oral history interview with Heini Gruffudd: Kate Bosse-Griffiths's, identity, Swansea, 23 September 2021",
+                    "title": "Audio clip from an oral history interview with Heini Gruffudd: Kate Bosse-Griffiths's, identity, Swansea, 23 September 2021",
+                    "descriptionCy": "This audio clip is from an oral history interview with Heini Gruffudd, recorded by Centre for the Movement of People, Aberystwyth University, on 23 September 2021. In the clip, Heini talks about his mother’s, Kate Bosse-Griffiths's, identity. \n\n<strong>Kate Bosse-Griffiths – a short biography.</strong>\n\nKate Bosse-Griffiths was a Jewish refugee who fled to Britain from Germany in 1937. She married Welshman John Gwyn Griffiths in September 1939 and moved to Pentre in the Rhondda. She learned Welsh and became a passionate advocate for the Welsh language, even publishing poetry and books in Welsh. The family moved to Swansea after the war, where she continued to write for the Welsh-language press, supporting the creation of the Cymdeithas yr Iaith (Welsh Language Society) in 1962. She died in Swansea in 1998.\n\n<strong>Transcript</strong>\n\nAnd, in a way, you can relate that to an anti-establishment view. I mean, she, she’d lived under the National Socialist system in Germany—well, I mean, that could be regarded as how an establishment can rule immorally etc. etc. So, she was quite willing here, if, if she saw injustice by the establishment, ‘Well dear me, I’m not going to give into that kind of immoral establishment’. So, you can link it, then, to her experiences; I mean, her positivity for gaining basic rights for the Welsh language would be compatible to her opposition to the regime in Germany. You sometimes see refugees or...becoming more English than English, you know, in order to fit in. Well, I don’t know with her if she became more Welsh than Welsh, you know.\n\n<strong>Source.</strong>\n\nCentre for the Movement of People, Aberystwyth University, Oral history interview with Heini Gruffudd (23 September 2021)",
+                    "summary": "Audio clip from an oral history interview with Heini Gruffudd: Kate Bosse-Griffiths's, identity, Swansea, 23 September 2021",
+                    "titleCy": "Audio clip from an oral history interview with Heini Gruffudd: Kate Bosse-Griffiths's, identity, Swansea, 23 September 2021",
+                    "itemURL": "https://www.peoplescollection.wales/items/1899136",
+                    "uuid": "cf35dc42-ce66-382f-b8b2-2bd0bd2f05aa",
+                    "creationDateTo": "1999",
+                    "creationDateFrom": "1930",
+                    "creationDate": "1930s, 1940s, 1950s, 1960s, 1970s, 1980s, 1990s",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "rights": "Centre for the Movement of People, Aberystwyth University",
+                    "ciimId": "pcw-1899136",
+                    "group": "community",
+                    "lon": "-3.943522969821",
+                    "lat": "51.621525182356",
+                    "status": "published",
+                    "subjects": [
+                        "'OTHER: Community and Social'",
+                        "'OTHER: Religion and Beliefs'",
+                        "'Religious communities'",
+                        "'World Faiths'",
+                        "'Second World War (1939-45)'",
+                        "jewish",
+                        "Jewish Community",
+                        "hebrew",
+                        "Jews",
+                        "World War 2",
+                        "WW2",
+                        "refugee",
+                        "holocaust",
+                        "language",
+                        "Welsh language",
+                        "identity"
+                    ]
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "No Author Specified",
+                    "description": "Elim Eisteddfod Cwmdare Biography of the late Alderman Rees Llewellyn J.P, Bwllfa: A written copy of the biography of Rees Llewellyn, and notes relating to the translation into English.",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1864056",
+                    "summaryTitle": "A handwritten draft of the biography, citing Rees Llewellyn's early days.",
+                    "title": "A handwritten draft of the biography, citing Rees Llewellyn's early days.",
+                    "descriptionCy": "Elim Eisteddfod Cwmdare Biography of the late Alderman Rees Llewellyn J.P, Bwllfa: A written copy of the biography of Rees Llewellyn, and notes relating to the translation into English.",
+                    "summary": "A handwritten draft of the biography, citing Rees Llewellyn's early days.",
+                    "titleCy": "A handwritten draft of the biography, citing Rees Llewellyn's early days.",
+                    "itemURL": "https://www.peoplescollection.wales/items/1864056",
+                    "uuid": "7bdc1d9c-a242-358f-987f-d32a709226ce",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "ciimId": "pcw-1864056",
+                    "group": "community",
+                    "lon": "-3.471000465318",
+                    "lat": "51.719369307540",
+                    "status": "published",
+                    "subjects": [
+                        "'Homes and Homelife'",
+                        "'People and Family'",
+                        "'OTHER: Community and Social'",
+                        "'Political Parties'",
+                        "'Trade Unionism and Labour Disputes'",
+                        "biography",
+                        "rees llewellyn",
+                        "dafydd llewellyn",
+                        "cwmdare"
+                    ]
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "No Author Specified",
+                    "description": "Elim Eisteddfod Cwmdare Biography of the late Alderman Rees Llewellyn J.P, Bwllfa: A written untranslated Welsh photocopy of the Biography of Rees Llewellyn, 5th May 1921. Pages 1-100. Remaining pages available upon request. (101-187)",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1865581",
+                    "summaryTitle": "Elim Eisteddfod Cwmdare Biography of the late Alderman Rees Llewellyn J.P, Bwllfa",
+                    "title": "Elim Eisteddfod Cwmdare Biography of the late Alderman Rees Llewellyn J.P, Bwllfa",
+                    "descriptionCy": "Elim Eisteddfod Cwmdare Biography of the late Alderman Rees Llewellyn J.P, Bwllfa: A written untranslated Welsh photocopy of the Biography of Rees Llewellyn, 5th May 1921. Pages 1-100. Remaining pages available upon request. (101-187)",
+                    "summary": "Elim Eisteddfod Cwmdare Biography of the late Alderman Rees Llewellyn J.P, Bwllfa",
+                    "titleCy": "Elim Eisteddfod Cwmdare Biography of the late Alderman Rees Llewellyn J.P, Bwllfa",
+                    "itemURL": "https://www.peoplescollection.wales/items/1865581",
+                    "uuid": "8399fb1c-ed4e-3785-ba6b-bd38b13ffcb8",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "ciimId": "pcw-1865581",
+                    "group": "community",
+                    "lon": "-3.471000465318",
+                    "lat": "51.719369307540",
+                    "status": "published",
+                    "subjects": [
+                        "'Homes and Homelife'",
+                        "'People and Family'",
+                        "'OTHER: Community and Social'",
+                        "'Churches / Chapels / Other Places of Worship'",
+                        "'Farms and Smallholdings'",
+                        "'Mountains / Hills'",
+                        "'Political Parties'",
+                        "'Trade Unionism and Labour Disputes'",
+                        "biography",
+                        "rees llewellyn",
+                        "dafydd llewellyn",
+                        "elizabeth llewellyn",
+                        "cwmdare"
+                    ]
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "Dr Mark Redknap",
+                    "description": "Norse was the Scandinavian language of the Vikings. It was still quite similar to English, and these two languages assimilated in the Viking-settled areas of northern and eastern England. There are many place-names of Norse origin around the coasts of Wales.The audio extract is from a Norse skaldic poem by Þorkell hamarskáld celebrating the victory by Magnus Barelegs at the Battle of the Menai Straits (AD1081). In 1081 a combined Welsh and Norwegian force defeated the Normans at the Battle of the Menai Straits. Viking court poet Þorkell hamarskáld celebrates the victory, in particular the role of Norwegian king Magnós berfœttr (Magnus Barelegs). The poem would have been composed and performed orally around or soon after AD1100. Transcription of the audio passage:Dunði broddr á brynju. Bragningr skaut af magni. Sveigði allvaldr Egða Alm. Stọkk blód á hjalma. Strengs fló hagl í hringa, Hné ferð, en lét verða Họrða gramr í harðri Hjarlsókn banat jarli. English translation:Arrow drummed on mail-coat. The chieftain shot forcefully. The mighty ruler of the people of Agder bent his bow. Blood sprayed on helmets. Bowstring-hail flew into ring-mail, the troop fell, and the prince of the people of Hordaland caused the earl to be slain in a hard fight for land.English translation by Judith Jesch. Source: J. Jesch 1996, 'Norse historical traditions and the Historia Gruffudd vab Kenan: Magnós berfœttr and Haraldr hárfagri' in K. Maund, Gruffudd ap Cynan. A Collaborative Biography, 117-47.Old Norse reading by Professor John Hines, Cardiff University.",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-12592",
+                    "summaryTitle": "Old norse",
+                    "title": "Old norse",
+                    "descriptionCy": "Norseg oedd iaith Scandinafaidd y Llychlynwyr. Roedd yn dra thebyg i Saesneg y cyfnod, ac fe gymhathodd y ddwy iaith yn ardaloedd Llychlynnaidd gogledd a dwyrain Lloegr. Ceir nifer o enwau lleoedd o darddiad Llychlynnaidd o amgylch arfordiroedd Cymru.Ym 1081 trechwyd y Normaniaid gan fyddin gyfunol Gymreig a Norwyaidd ym mrwydr afon Menai. Yn y gerdd hon, mae'r bardd llys Llychlynnaidd Þorkell hamarskáld yn dathlu'r fuddugoliaeth, yn enwedig cyfraniad y brenin Norwyaidd Magnós berfœttr (Magnus Goesnoeth). Cyfansoddwyd y gerdd i'w datgan ar lafar tua OC 1100.Darllenir y gerdd gan yr Athro John Hines, Prifysgol Caerdydd. Trawsysgrif o'r clip sainDunði broddr á brynju. Bragningr skaut af magni. Sveigði allvaldr Egða Alm. Stọkk blód á hjalma. Strengs fló hagl í hringa, Hné ferð, en lét verða Họrða gramr í harðri Hjarlsókn banat jarli. Cyfieithad i'r GymraegSaeth yn taro cot-mael. A'r pennaeth yn saethu'n galed. Plygodd arweinydd grymus Agder ei fwa. Taenwyd gwaed dros yr helmedau. Hyrddiodd saethau'r bwâu i mewn i'r mael, syrthiodd y fintai, a lladdwyd yr iarll gan dywysog Hordaland mewn brwydr ffyrnig dros dir.",
+                    "summary": "Old norse",
+                    "titleCy": "Hen Norseg",
+                    "itemURL": "https://www.peoplescollection.wales/items/12592",
+                    "uuid": "aace83a5-ccd3-3493-846d-9582069400a8",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "ciimId": "pcw-12592",
+                    "group": "community",
+                    "status": "published",
+                    "subjects": [
+                        "'People and Family'"
+                    ]
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "John Ball",
+                    "description": "Dedication: Unknown\n\nDenomination: Anglican\n\nBuilt: 1789\nRebuilt: 1864, to design by Sir George Gilbert Scott\n\nPhotography: John Ball\nDate: 18 March 2007 (exterior shots); 16 August 2009 (interior shots)\nCamera: Nikon D50 digital SLR\n\nNotes: 1. Betws Penpont church has no known dedication. The first identifiable church on the site was a chapel of ease to Llanspyddid, erected by the Williams family, owners of the nearby house of Penpont. Its erection is not dated but by 1738 it was ruinous. A new chapel was built in 1789 and this probably included a tower with a bee-hive top similar to that on the old church at Llansantffraid-juxta-Usk. It was at this time too that the churchyard was walled. In 1864 the chapel was rebuilt in Early English style by Sir George Gilbert Scott. It was given the status of parish church in 1880. [Source: <a href=\"http://www.cpat.demon.co.uk/projects/longer/churches/brecon/16934.htm\" target=\"_blank\">Clwyd Powys Archaeological Trust (CPAT)</a> website] 2. In this parish [Llanspyddid] is a chapel, which has been augmented by Queen Anne's bounty, sometimes called Penpont chapel, and sometimes Capel y Bettws... In 1738 it became ruinous, when a hard fought contest occurred in the the ecclesiastical court at Brecon, between Penry Williams of Penpont, Esq., and the Rev Richard Williams of Aberbrân, as to the liability to repair it: Mr Williams of Aberbrân contending that the parishioners were not compellable to contribute towards rebuilding it, as it was a private oratory belonging to Castell Einon Sais or some religious house; Mr Williams of Penpont, on the other hand, insisted that it was a chapel of ease to Llanpyddid, and that though it was situated near the ruins of Castell Einon Sais, he never heard that it was considered as a religious house. After the examination of many witnesses, the court decreed that the parishioners were bound to repair and rebuild it; notwithstanding which, the late Mr Philip Williams of Penpont, about 1789, when it became again dilapidated, rebuilt it nearly at his own expense, erected a wall round the chapel yard, planted evergreens and flowering shrubs, and otherwise much improved its appearance that if a light elegant spire were substituted for the bee hive which covers the bell, it would be the most perfect sketch for the pencil that an artist could wish for or imagine. [Extracted from A History of the County of Brecknock, Volume Four, by Theophilus Jones (1804), 'Glanusk Edition' revised and edited by Sir Joseph Russell Bailey, published by the Brecknock Society, 1930] 3. In the year 1880 Bettws Penpont was made into a separate ecclesiastical district, and has been held since 1864 by the Rev Prebendary Garnons Williams. Formerly it was a chapel-of-ease to Llanspyddyd. It was restored by the parishioners in 1738; about 1780 it was again restored by Philip Williams Esq., at his own expense; and it was last beautified in 1865, under the supervision of Sir Gilbert Scott, at a cost of £1,000. The church abuts on the grounds of Penpont estate. [Source: The Illustrated History and Biography of Brecknockshire, by Edwin Poole, published by the author, Brecon, 1886]\n\nPhotography: John Ball Date: 18 March 2007 (exterior shots); 16 August 2009 (interior shots) Camera: Nikon D50 digital SLR\n\nImage 2:\n\nBetws Penpont Church, southern aspect.\n\nImage 3:\n\nNave, chancel and sanctuary.\n\nImage 4:\n\nApse ceiling above the chancel and sanctuary.\n\nImage 5-7:\n\nStained glass windows in the sanctuary (left and right) and south wall of the nave (centre).\n\nImage 8,9:\n\nNave, baptistry and font.\n\nImage 8:\n\nThe apsidal baptistry is set within the base of the round west tower. It contains a large font with a cover of oak and brass.\n\nImage 9:\n\nOn the steps of the font is an unusual barrel-shaped oak ewer with three brass bands and a brass handle. The bands are inscribed, ONE LORD, ONE FAITH, ONE BAPTISM, respectively, and dated Sept. 27. 1891.\n\nImage 10:\n\nWest window in baptistry.This window, supplied in 1913 by Messrs Powell and Sons, London, is To the glory of God and in loving memory of Garnons Williams, Priest. Born 26 December 1828. Died 24 October 1908 and of Catherine Frances, his wife. Born 20 July 1833. Died 27 December, 1892.\n\nImage 11:\n\nHatchment on north wall of baptistry.Hatchments were an innovation of the second half of the 17th century, when it became customary for a painting on board to be exhibited in on a dwelling house for several months after death, and then to be placed in the church. The hatchment above shows the arms of the Williams family of Penpont, with a scroll bearing a legend (in Latin), Prefect of the Province, and Keeper of the Rolls of the Breconshire Committals. This is the legend ascribed to all Lords Lieutenant of the County during their term of office. It commemorates Penry Williams, who was Lord Lieutenant of Brecknockshire from 1836 to 1847.\n\n[Caption information extracted from The Parish of Betws Penpont, by Rev E. H. V. Rees, first published 1969, reprinted 1997]",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1597931",
+                    "summaryTitle": "Betws Penpont Church, Llanspyddid, Breconshire",
+                    "title": "Betws Penpont Church, Llanspyddid, Breconshire",
+                    "descriptionCy": "Dedication: Unknown\n\nDenomination: Anglican\n\nBuilt: 1789\nRebuilt: 1864, to design by Sir George Gilbert Scott\n\nPhotography: John Ball\nDate: 18 March 2007 (exterior shots); 16 August 2009 (interior shots)\nCamera: Nikon D50 digital SLR\n\nNotes: 1. Betws Penpont church has no known dedication. The first identifiable church on the site was a chapel of ease to Llanspyddid, erected by the Williams family, owners of the nearby house of Penpont. Its erection is not dated but by 1738 it was ruinous. A new chapel was built in 1789 and this probably included a tower with a bee-hive top similar to that on the old church at Llansantffraid-juxta-Usk. It was at this time too that the churchyard was walled. In 1864 the chapel was rebuilt in Early English style by Sir George Gilbert Scott. It was given the status of parish church in 1880. [Source: <a href=\"http://www.cpat.demon.co.uk/projects/longer/churches/brecon/16934.htm\" target=\"_blank\">Clwyd Powys Archaeological Trust (CPAT)</a> website] 2. In this parish [Llanspyddid] is a chapel, which has been augmented by Queen Anne's bounty, sometimes called Penpont chapel, and sometimes Capel y Bettws... In 1738 it became ruinous, when a hard fought contest occurred in the the ecclesiastical court at Brecon, between Penry Williams of Penpont, Esq., and the Rev Richard Williams of Aberbrân, as to the liability to repair it: Mr Williams of Aberbrân contending that the parishioners were not compellable to contribute towards rebuilding it, as it was a private oratory belonging to Castell Einon Sais or some religious house; Mr Williams of Penpont, on the other hand, insisted that it was a chapel of ease to Llanpyddid, and that though it was situated near the ruins of Castell Einon Sais, he never heard that it was considered as a religious house. After the examination of many witnesses, the court decreed that the parishioners were bound to repair and rebuild it; notwithstanding which, the late Mr Philip Williams of Penpont, about 1789, when it became again dilapidated, rebuilt it nearly at his own expense, erected a wall round the chapel yard, planted evergreens and flowering shrubs, and otherwise much improved its appearance that if a light elegant spire were substituted for the bee hive which covers the bell, it would be the most perfect sketch for the pencil that an artist could wish for or imagine. [Extracted from A History of the County of Brecknock, Volume Four, by Theophilus Jones (1804), 'Glanusk Edition' revised and edited by Sir Joseph Russell Bailey, published by the Brecknock Society, 1930] 3. In the year 1880 Bettws Penpont was made into a separate ecclesiastical district, and has been held since 1864 by the Rev Prebendary Garnons Williams. Formerly it was a chapel-of-ease to Llanspyddyd. It was restored by the parishioners in 1738; about 1780 it was again restored by Philip Williams Esq., at his own expense; and it was last beautified in 1865, under the supervision of Sir Gilbert Scott, at a cost of £1,000. The church abuts on the grounds of Penpont estate. [Source: The Illustrated History and Biography of Brecknockshire, by Edwin Poole, published by the author, Brecon, 1886]\n\nPhotography: John Ball Date: 18 March 2007 (exterior shots); 16 August 2009 (interior shots) Camera: Nikon D50 digital SLR\n\nImage 2:\n\nBetws Penpont Church, southern aspect.\n\nImage 3:\n\nNave, chancel and sanctuary.\n\nImage 4:\n\nApse ceiling above the chancel and sanctuary.\n\nImage 5-7:\n\nStained glass windows in the sanctuary (left and right) and south wall of the nave (centre).\n\nImage 8,9:\n\nNave, baptistry and font.\n\nImage 8:\n\nThe apsidal baptistry is set within the base of the round west tower. It contains a large font with a cover of oak and brass.\n\nImage 9:\n\nOn the steps of the font is an unusual barrel-shaped oak ewer with three brass bands and a brass handle. The bands are inscribed, ONE LORD, ONE FAITH, ONE BAPTISM, respectively, and dated Sept. 27. 1891.\n\nImage 10:\n\nWest window in baptistry.This window, supplied in 1913 by Messrs Powell and Sons, London, is To the glory of God and in loving memory of Garnons Williams, Priest. Born 26 December 1828. Died 24 October 1908 and of Catherine Frances, his wife. Born 20 July 1833. Died 27 December, 1892.\n\nImage 11:\n\nHatchment on north wall of baptistry.Hatchments were an innovation of the second half of the 17th century, when it became customary for a painting on board to be exhibited in on a dwelling house for several months after death, and then to be placed in the church. The hatchment above shows the arms of the Williams family of Penpont, with a scroll bearing a legend (in Latin), Prefect of the Province, and Keeper of the Rolls of the Breconshire Committals. This is the legend ascribed to all Lords Lieutenant of the County during their term of office. It commemorates Penry Williams, who was Lord Lieutenant of Brecknockshire from 1836 to 1847.\n\n[Caption information extracted from The Parish of Betws Penpont, by Rev E. H. V. Rees, first published 1969, reprinted 1997]",
+                    "summary": "Betws Penpont Church, Llanspyddid, Breconshire",
+                    "titleCy": "Betws Penpont Church, Llanspyddid, Breconshire",
+                    "itemURL": "https://www.peoplescollection.wales/items/1597931",
+                    "uuid": "e407711f-a6ac-391d-b131-2a3f12634e82",
+                    "creationDateTo": "1969-12-31",
+                    "creationDateFrom": "1969-12-31",
+                    "creationDate": "31 December 1969",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "rights": "John Ball",
+                    "ciimId": "pcw-1597931",
+                    "group": "community",
+                    "status": "published"
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "West Wales Veterans Archive",
+                    "description": "<p>This is a short written description of Dame Stephanie Shirley&#39;s career and the items contained in her &#39;story&#39; for the West Wales Veterans Archive.</p>",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1855866",
+                    "summaryTitle": "Dame Stephanie Shirley: short career biography",
+                    "title": "Dame Stephanie Shirley: short career biography",
+                    "summary": "Dame Stephanie Shirley: short career biography",
+                    "titleCy": "Y Fonesig Stephanie Shirley: bywgraffiad gyrfa fer",
+                    "itemURL": "https://www.peoplescollection.wales/items/1855866",
+                    "uuid": "be529dc7-714c-3677-bfd2-c6c470c45d29",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "ciimId": "pcw-1855866",
+                    "group": "community",
+                    "status": "published",
+                    "subjects": [
+                        "'Second World War (1939-45)'",
+                        "dame stephanie shirley ch",
+                        "kindertransport",
+                        "ww2",
+                        "\"refugee from nazis\"",
+                        "jewish refugee",
+                        "Oswestry",
+                        "vera buchthal",
+                        "renate buchthal",
+                        "information technology"
+                    ]
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "John Ball",
+                    "description": "Dedication: St David\n\nDenomination: Anglican\n\nBuilt: 14th century (tower)\n\nPhotography: John Ball\nDate: 22 August 2009\nCamera: Nikon D50 digital SLR\n\nNote 1 \nSt David's church at Llywel lies in a small valley converging on the Usk valley about 18 km to the west of Brecon. The tower [shown right] could be basically 14th century with 15th century alterations on the basis of its plainness and a blocked east window. Most of building claimed to be Late Perpendicular of about the 1480s. However there is evidence that the chancel was added on, and the mixture of windows in the nave suggests extra fenestration was inserted. There is little sign of any Victorian rebuilding except perhaps on the north wall of the nave. Internally, there is an early medieval stone and the cast of another, a significantly early font, and the village stocks. [The complete text is available on the <a href=\"http://www.cpat.demon.co.uk/projects/longer/churches/brecon/16903.htm\" target=\"_blank\">Clwyd-Powys Archaeological Trust </a> (CPAT) website]\n\nImage 1: \n\n14th century west tower.\n\nImage 2: North-eastern aspect of St David's Church.   \n\nNote 2 The west tower may be partly 14th century. Otherwise it and the big nave and chancel mostly have features of circa 1480-1520. Three bays of the old screen were placed in the opening between the tower and nave in 1869. In the south wall is a shallow tomb recess. There is a pillar stone with Ogham symbols and a plaster replica of the Llywel Stone, now in the British Museum. There are stocks of 1798 under the tower, and there is a monument to Sybil Morgan, circa 1600. [Extracted from: The Old Parish Churches of Mid Wales, by Mike Salter, <a href=\"http://www.follypublications.co.uk/\" target=\"_blank\">Folly Publications</a>, Malvern, 2003; ISBN 1-871731-62-3]\n\nImage 3:\n\nNave and chancel. The rood screen is a 20th century addition. \n\nNote 3. The parish church stands in an isolated part, but with half a dozen houses in its immediate vicinity, although there are now to be seen the ruins of several others. Within the sacred edifice everything is a model of good order and cleanliness. The rood loft has disappeared , but the door leading up to it, and the door in the wall above still remain. The chancel is decently paved with tiles, and the nave is covered with wood; no monuments are anywhere to be seen on the ground. The reredos [below] is of painted tiles, and was erected at the cost of D. T. Jeffreys, Esq., to the memory of his uncle, D. Jeffreys Powell, Esq., in 1888. The east window is of painted glass, and was erected to the memory of Lewis Powell, Esq., M.D., M.R.I., by his sister Sybil in 1872. [Source: The History of Brecknockshire, by Theophilus Jones (1805/1809), Glanusk Edition (Vol 4) Brecknock Society, 1930]\n\nImage 4: \n\nAltar and tiled reredos in the sanctuary. \n\nNote 4. Although its founder was St Llwyel, the church is dedicated to St David, because of a struggle in the 13th century between the bishops of St David and Llandaff during which Llywel Church was sequestrated by the bishop of St David's. It was at this time that the name of the church was changed from Llywel to Llantrisant – the Church of the Three Saints.  [Source: St Davids Church Llywel, by Peter Maddox (from the writings of Canon Josiah Jones-Davies, Vicar of Llywel 1947-82), Church in Wales Publications, Penarth, undated] \n\nNote 5. [The church] is said to have originally been dedicated to three saints: David, Darn (Paternus), and Teilo; and known as Llantrisant. Its name was changed when it was granted to the Chapter of Saint David sometime between 1203 and 1229. [Source: <a href=\"http://en.wikipedia.org/wiki/Llywel\" target=\"_blank\">Wikipedia</a>]\n\nImage 5: \n\nThe east window, erected in 1872 in memory of Lewis Powell, depicts the baptism and crucifixion of Christ. \n\nImage 6:\n\nThe door in the south porch dates from the 15th century. \n\nImage 7-9:\n\nA plaster cast of the 6th century Llywel Stone (Image 7, 8), and Aberhydfer Stone (Image 9).\n\nNote 6. Llywel Stone: the Latin inscription on one face (above left) reads The stone of Maqutrenus Salicidunus. The opposite face of the stone (above centre) is decorated with symbols and human figures, while the edges bear <a href=\"http://en.wikipedia.org/wiki/Ogham_script\" target=\"_blank\">Ogham Script</a>. The original Llywel Stone is in the British Museum. [Source: <a href=\"http://www.wiz.to/llywel/page1.htm\" target=\"_blank\">Welcome to Llywel</a> website]  \n\nNote 7. Aberhydfer Stone (above right): \"In August 1954... Canon Jones-Davies went for a walk at Aberhydfer... In a hedge-cum-dry stone wall... blocking a disused trackway along the Usk, the Canon was pleasantly surprised to recognize an Ogham-inscribed stone. It was moved to his church at Llywel...\" [Source: <a href=\"http://www.ucl.ac.uk/archaeology/cisp/database/stone/abhyd_1.html\" target=\"_blank\">Celtic Inscribed Stones Project</a>, Department of History, and Institute of Archaeology, University College London]\n\nImage 10:\n\nThe Llywel stocks, now situated in the vestry.\n\nNote 8. There are several yew and other trees here, and on the south side of the churchyard is a small building used as a schoolroom, a house, and the ruins of another. Under a tree in this part of the churchyard is also the remains of the parish stocks, fixed upright, but the seat is no longer to be seen. [Source: The History of Brecknockshire, by Theophilus Jones (1806), Glanusk Edition (Vol 4) Brecknock Society, 1930] \n\nNote 9. The stocks were made in 1798 to replace the stocks and whipping post of 1771. Most parishes had stocks, intended chiefly for the punishment of vagrants, although the stocks at nearby Llanfrynach were first used to punish the carpenter who made them. He got drunk on the money he received for making them! [Source: St Davids Church Llywel, by Peter Maddox (from the writings of Canon Josiah Jones-Davies, Vicar of Llywel 1947-82), Church in Wales Publications, Penarth, undated]\n\nImage 11: \n\nThe small plaque beneath the monument states\n\"D. Mainwaring, Carmarthen\".\n\nEarly 17th century memorial to Sybil Jeffreys, on south wall of nave.\n\nHERE LYETH THE BODY\n\nOF S'BIL THE WIFE OF\n\nHOWELL MORGAN ESQ\n\nTHE DAUGHTER OF\n\nTHOMAS JEFFREYS\n\nOF CEVEN ROSSAN IN\n\nLLYWELL·GENT·THEY\n\nHAD ISSUE MORGAN\n\nTHOMAS & ELIZABETH ·\n\nSHE DIED THE·1 DAY\n\nOF JANUARY·1600.\n\nNote 10. Interestingly, in volume 4 of the Glanusk Edition (1930), Sir Joseph Bailey comments that Theophilus Jones (1806) recorded Sybil's year of death as 1687 and footnotes that \"Theo. Jones was correct, as there is a letter extant from Howell Morgan to Hugh Thomas, dated Llywel, 6 Aug. 1715. Harl. MS. 7001,  f. 466.\"  Edwin Poole (1886) also gives Sybil's year of death as 1687. [Sources: The History of Brecknockshire, by Theophilus Jones (1806), Glanusk Edition (Vol 4) Brecknock Society, 1930; and The Illustrated History and Biography of Brecknockshire, by Edwin Poole, published by the author, Brecon, 1886]",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1606531",
+                    "summaryTitle": "St David's Church, Llywel, Breconshire",
+                    "title": "St David's Church, Llywel, Breconshire",
+                    "descriptionCy": "Dedication: St David\n\nDenomination: Anglican\n\nBuilt: 14th century (tower)\n\nPhotography: John Ball\nDate: 22 August 2009\nCamera: Nikon D50 digital SLR\n\nNote 1 \nSt David's church at Llywel lies in a small valley converging on the Usk valley about 18 km to the west of Brecon. The tower [shown right] could be basically 14th century with 15th century alterations on the basis of its plainness and a blocked east window. Most of building claimed to be Late Perpendicular of about the 1480s. However there is evidence that the chancel was added on, and the mixture of windows in the nave suggests extra fenestration was inserted. There is little sign of any Victorian rebuilding except perhaps on the north wall of the nave. Internally, there is an early medieval stone and the cast of another, a significantly early font, and the village stocks. [The complete text is available on the <a href=\"http://www.cpat.demon.co.uk/projects/longer/churches/brecon/16903.htm\" target=\"_blank\">Clwyd-Powys Archaeological Trust </a> (CPAT) website]\n\nImage 1: \n\n14th century west tower.\n\nImage 2: North-eastern aspect of St David's Church.   \n\nNote 2 The west tower may be partly 14th century. Otherwise it and the big nave and chancel mostly have features of circa 1480-1520. Three bays of the old screen were placed in the opening between the tower and nave in 1869. In the south wall is a shallow tomb recess. There is a pillar stone with Ogham symbols and a plaster replica of the Llywel Stone, now in the British Museum. There are stocks of 1798 under the tower, and there is a monument to Sybil Morgan, circa 1600. [Extracted from: The Old Parish Churches of Mid Wales, by Mike Salter, <a href=\"http://www.follypublications.co.uk/\" target=\"_blank\">Folly Publications</a>, Malvern, 2003; ISBN 1-871731-62-3]\n\nImage 3:\n\nNave and chancel. The rood screen is a 20th century addition. \n\nNote 3. The parish church stands in an isolated part, but with half a dozen houses in its immediate vicinity, although there are now to be seen the ruins of several others. Within the sacred edifice everything is a model of good order and cleanliness. The rood loft has disappeared , but the door leading up to it, and the door in the wall above still remain. The chancel is decently paved with tiles, and the nave is covered with wood; no monuments are anywhere to be seen on the ground. The reredos [below] is of painted tiles, and was erected at the cost of D. T. Jeffreys, Esq., to the memory of his uncle, D. Jeffreys Powell, Esq., in 1888. The east window is of painted glass, and was erected to the memory of Lewis Powell, Esq., M.D., M.R.I., by his sister Sybil in 1872. [Source: The History of Brecknockshire, by Theophilus Jones (1805/1809), Glanusk Edition (Vol 4) Brecknock Society, 1930]\n\nImage 4: \n\nAltar and tiled reredos in the sanctuary. \n\nNote 4. Although its founder was St Llwyel, the church is dedicated to St David, because of a struggle in the 13th century between the bishops of St David and Llandaff during which Llywel Church was sequestrated by the bishop of St David's. It was at this time that the name of the church was changed from Llywel to Llantrisant – the Church of the Three Saints.  [Source: St Davids Church Llywel, by Peter Maddox (from the writings of Canon Josiah Jones-Davies, Vicar of Llywel 1947-82), Church in Wales Publications, Penarth, undated] \n\nNote 5. [The church] is said to have originally been dedicated to three saints: David, Darn (Paternus), and Teilo; and known as Llantrisant. Its name was changed when it was granted to the Chapter of Saint David sometime between 1203 and 1229. [Source: <a href=\"http://en.wikipedia.org/wiki/Llywel\" target=\"_blank\">Wikipedia</a>]\n\nImage 5: \n\nThe east window, erected in 1872 in memory of Lewis Powell, depicts the baptism and crucifixion of Christ. \n\nImage 6:\n\nThe door in the south porch dates from the 15th century. \n\nImage 7-9:\n\nA plaster cast of the 6th century Llywel Stone (Image 7, 8), and Aberhydfer Stone (Image 9).\n\nNote 6. Llywel Stone: the Latin inscription on one face (above left) reads The stone of Maqutrenus Salicidunus. The opposite face of the stone (above centre) is decorated with symbols and human figures, while the edges bear <a href=\"http://en.wikipedia.org/wiki/Ogham_script\" target=\"_blank\">Ogham Script</a>. The original Llywel Stone is in the British Museum. [Source: <a href=\"http://www.wiz.to/llywel/page1.htm\" target=\"_blank\">Welcome to Llywel</a> website]  \n\nNote 7. Aberhydfer Stone (above right): \"In August 1954... Canon Jones-Davies went for a walk at Aberhydfer... In a hedge-cum-dry stone wall... blocking a disused trackway along the Usk, the Canon was pleasantly surprised to recognize an Ogham-inscribed stone. It was moved to his church at Llywel...\" [Source: <a href=\"http://www.ucl.ac.uk/archaeology/cisp/database/stone/abhyd_1.html\" target=\"_blank\">Celtic Inscribed Stones Project</a>, Department of History, and Institute of Archaeology, University College London]\n\nImage 10:\n\nThe Llywel stocks, now situated in the vestry.\n\nNote 8. There are several yew and other trees here, and on the south side of the churchyard is a small building used as a schoolroom, a house, and the ruins of another. Under a tree in this part of the churchyard is also the remains of the parish stocks, fixed upright, but the seat is no longer to be seen. [Source: The History of Brecknockshire, by Theophilus Jones (1806), Glanusk Edition (Vol 4) Brecknock Society, 1930] \n\nNote 9. The stocks were made in 1798 to replace the stocks and whipping post of 1771. Most parishes had stocks, intended chiefly for the punishment of vagrants, although the stocks at nearby Llanfrynach were first used to punish the carpenter who made them. He got drunk on the money he received for making them! [Source: St Davids Church Llywel, by Peter Maddox (from the writings of Canon Josiah Jones-Davies, Vicar of Llywel 1947-82), Church in Wales Publications, Penarth, undated]\n\nImage 11: \n\nThe small plaque beneath the monument states\n\"D. Mainwaring, Carmarthen\".\n\nEarly 17th century memorial to Sybil Jeffreys, on south wall of nave.\n\nHERE LYETH THE BODY\n\nOF S'BIL THE WIFE OF\n\nHOWELL MORGAN ESQ\n\nTHE DAUGHTER OF\n\nTHOMAS JEFFREYS\n\nOF CEVEN ROSSAN IN\n\nLLYWELL·GENT·THEY\n\nHAD ISSUE MORGAN\n\nTHOMAS & ELIZABETH ·\n\nSHE DIED THE·1 DAY\n\nOF JANUARY·1600.\n\nNote 10. Interestingly, in volume 4 of the Glanusk Edition (1930), Sir Joseph Bailey comments that Theophilus Jones (1806) recorded Sybil's year of death as 1687 and footnotes that \"Theo. Jones was correct, as there is a letter extant from Howell Morgan to Hugh Thomas, dated Llywel, 6 Aug. 1715. Harl. MS. 7001,  f. 466.\"  Edwin Poole (1886) also gives Sybil's year of death as 1687. [Sources: The History of Brecknockshire, by Theophilus Jones (1806), Glanusk Edition (Vol 4) Brecknock Society, 1930; and The Illustrated History and Biography of Brecknockshire, by Edwin Poole, published by the author, Brecon, 1886]",
+                    "summary": "St David's Church, Llywel, Breconshire",
+                    "titleCy": "St David's Church, Llywel, Breconshire",
+                    "itemURL": "https://www.peoplescollection.wales/items/1606531",
+                    "uuid": "e90b14d6-908c-3d1e-9eb6-4e11d6e4e75d",
+                    "creationDateTo": "1969-12-31",
+                    "creationDateFrom": "1969-12-31",
+                    "creationDate": "31 December 1969",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "rights": "John Ball",
+                    "ciimId": "pcw-1606531",
+                    "group": "community",
+                    "status": "published"
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "John Ball",
+                    "description": "Name: Bethel Chapel\n\nDenomination: Calvinistic Methodist\n\nBuilt: 1820\nRebuilt: 1869\n\nPhotography: Dai Bevan\nDate: 18 September 2007\nCamera: Kodak Z7590 Zoom digital\n\nNote 1: Bethel Chapel was built in 1820, and rebuilt in 1869, to the design of architect Thomas Thomas of Landore. The chapel is built in the Sub-Classical and Simple Round-Headed style of the gable entry type. By 1995 the chapel was in such a state of disrepair services had to be held in the vestry, and by 2000 the chapel had been converted into flats. The building is Grade 2 listed. [Source: <a href=\"http://www.coflein.gov.uk/\" target=\"_blank\">Coflein Database</a> (NPRN: 6252)]\n\nNote 2: 1869, by Rev. Thomas Thomas. Converted to flats in 2000. Stucco with long arched windows and centre triplet, typical of Thomas, but instead of a pediment, a parapet with scrolls and a vase finial, more theatrical than Thomas's later works. [Source: The Buildings of Wales: Carmarthenshire and Ceredigion, by Thomas Lloyd, Julian Orbach, & Robert Scourfield, Yale University Press, New Haven and London, 2006; ISBN 0-300-10179-1]\n\nNote 3: Now, in part at least, a chapel of rest. The chapel has a claim to fame in its one-time minister Evan Phillips (1829-19120), a local lad who abandoned a career as a tailor to join the Welsh Methodist Revival and returned here to preach his famously succinct sermons for which he was known as 'Evan Phillips twenty minutes' see <a href=\"http://yba.llgc.org.uk/en/s-PHIL-EVA-1829.html\" target=\"_blank\">Welsh Biography Online</a> website. [Source: <a href=\"http://www.geolocation.ws/v/W/File:Capel Bethel, Church Street - geograph.org.uk - 808610.jpg/-/en\" target=\"_blank\">GeoLocation</a> website]",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1598051",
+                    "summaryTitle": "Bethel Calvinistic Methodist Chapel, Church Lane, Newcastle Emlyn, Carmarthenshire Bethel Chapel, Newcastle Emlyn",
+                    "title": "Bethel Calvinistic Methodist Chapel, Church Lane, Newcastle Emlyn, Carmarthenshire Bethel Chapel, Newcastle Emlyn",
+                    "descriptionCy": "Name: Bethel Chapel\n\nDenomination: Calvinistic Methodist\n\nBuilt: 1820\nRebuilt: 1869\n\nPhotography: Dai Bevan\nDate: 18 September 2007\nCamera: Kodak Z7590 Zoom digital\n\nNote 1: Bethel Chapel was built in 1820, and rebuilt in 1869, to the design of architect Thomas Thomas of Landore. The chapel is built in the Sub-Classical and Simple Round-Headed style of the gable entry type. By 1995 the chapel was in such a state of disrepair services had to be held in the vestry, and by 2000 the chapel had been converted into flats. The building is Grade 2 listed. [Source: <a href=\"http://www.coflein.gov.uk/\" target=\"_blank\">Coflein Database</a> (NPRN: 6252)]\n\nNote 2: 1869, by Rev. Thomas Thomas. Converted to flats in 2000. Stucco with long arched windows and centre triplet, typical of Thomas, but instead of a pediment, a parapet with scrolls and a vase finial, more theatrical than Thomas's later works. [Source: The Buildings of Wales: Carmarthenshire and Ceredigion, by Thomas Lloyd, Julian Orbach, & Robert Scourfield, Yale University Press, New Haven and London, 2006; ISBN 0-300-10179-1]\n\nNote 3: Now, in part at least, a chapel of rest. The chapel has a claim to fame in its one-time minister Evan Phillips (1829-19120), a local lad who abandoned a career as a tailor to join the Welsh Methodist Revival and returned here to preach his famously succinct sermons for which he was known as 'Evan Phillips twenty minutes' see <a href=\"http://yba.llgc.org.uk/en/s-PHIL-EVA-1829.html\" target=\"_blank\">Welsh Biography Online</a> website. [Source: <a href=\"http://www.geolocation.ws/v/W/File:Capel Bethel, Church Street - geograph.org.uk - 808610.jpg/-/en\" target=\"_blank\">GeoLocation</a> website]",
+                    "summary": "Bethel Calvinistic Methodist Chapel, Church Lane, Newcastle Emlyn, Carmarthenshire Bethel Chapel, Newcastle Emlyn",
+                    "titleCy": "Bethel Calvinistic Methodist Chapel, Church Lane, Newcastle Emlyn, Carmarthenshire Bethel Chapel, Newcastle Emlyn",
+                    "itemURL": "https://www.peoplescollection.wales/items/1598051",
+                    "uuid": "9531c214-8ec8-3ff0-b497-4ea1af9e6a2c",
+                    "creationDateTo": "1969-12-31",
+                    "creationDateFrom": "1969-12-31",
+                    "creationDate": "31 December 1969",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "rights": "John Ball",
+                    "ciimId": "pcw-1598051",
+                    "group": "community",
+                    "status": "published"
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "IWM (Production company)Lyn E Smith (recorder)Leslie Hardman (interviewee/speaker)",
+                    "description": "This audio clip from an oral history interview with Leslie Hardman was recorded by the Imperial War Museums on 22 September 1997. In the clip, Leslie talks about entering Bergen-Belsen Concentration Camp.\n&lt;strong&gt;Leslie Hardman – a short biography.&lt;/strong&gt;\nReverend Leslie Hardman was born in Glynneath, near Neath in 1913, to a Jewish family. He moved to Manchester as a child, trained to become a rabbi, and got a job as a minister in Leeds in 1936. During the Second World War, he became an army chaplain and was posted to Belgium and the Netherlands. After his unit crossed into Germany, he was the first Jewish British Army chaplain to enter Bergen-Belsen concentration camp. He supervised the burial of approximately 20,000 victims at the camp. He later served as the rabbi at the Hendon United Synagogue in London.\n&lt;strong&gt;Transcript&lt;/strong&gt;\nI got to the gates, first the soldiers wouldn’t let me in, I think they were all terrified, full of nerves. Anyhow, I eventually got in…to the gates, there was a young girl there…young girl, maybe a young woman. She saw the Magen David on my uniform, so she saw I was Jewish, well she wanted to rush forward and hug me. She looked so repulsive that I, I, I moved backwards, and as she moved forwards, she was…she was liable to fall, but I managed to control myself and kept her, kept her on her feet. And then, as we walked a few yards later, there was about eight or ten people lying on the ground. And I said, “Why aren’t they in their huts?”—there was some huts nearby—she said, “They’re dead! And so, we’ll all be dead if more help…doesn’t come quickly.” Right, so then…I moved, or then I met three or four women who could talk to me, and then I started to learn about the gruesome, horrific things the Nazis did.\n&lt;strong&gt;Source.&lt;/strong&gt;\n&lt;a href=&quot;&lt;a href=&quot;<a href=\"https://www.iwm.org.uk/collections/item/object/80016769&quot;&quot;&gt;https://www.iwm.org.uk/collections/item/object/80016769&quot;&lt;/a&gt;\">https://www.iwm.org.uk/collections/item/object/80016769&quot;&quot;&gt;https://w...</a> target=&quot;_blank&quot;&gt;Imperial War Museum, Oral history interview with Leslie Hardman, 22 September 1997&lt;/a&gt; [accessed 17 August 2022]\nDepository: Imperial War Museums.",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1896846",
+                    "summaryTitle": "Audio clip from an oral history interview with Leslie Hardman: entering Bergen-Belsen Concentration Camp, 22 September 1997",
+                    "title": "Audio clip from an oral history interview with Leslie Hardman: entering Bergen-Belsen Concentration Camp, 22 September 1997",
+                    "descriptionCy": "This audio clip from an oral history interview with Leslie Hardman was recorded by the Imperial War Museums on 22 September 1997. In the clip, Leslie talks about entering Bergen-Belsen Concentration Camp.\n&lt;strong&gt;Leslie Hardman – a short biography.&lt;/strong&gt;\nReverend Leslie Hardman was born in Glynneath, near Neath in 1913, to a Jewish family. He moved to Manchester as a child, trained to become a rabbi, and got a job as a minister in Leeds in 1936. During the Second World War, he became an army chaplain and was posted to Belgium and the Netherlands. After his unit crossed into Germany, he was the first Jewish British Army chaplain to enter Bergen-Belsen concentration camp. He supervised the burial of approximately 20,000 victims at the camp. He later served as the rabbi at the Hendon United Synagogue in London.\n&lt;strong&gt;Transcript&lt;/strong&gt;\nI got to the gates, first the soldiers wouldn’t let me in, I think they were all terrified, full of nerves. Anyhow, I eventually got in…to the gates, there was a young girl there…young girl, maybe a young woman. She saw the Magen David on my uniform, so she saw I was Jewish, well she wanted to rush forward and hug me. She looked so repulsive that I, I, I moved backwards, and as she moved forwards, she was…she was liable to fall, but I managed to control myself and kept her, kept her on her feet. And then, as we walked a few yards later, there was about eight or ten people lying on the ground. And I said, “Why aren’t they in their huts?”—there was some huts nearby—she said, “They’re dead! And so, we’ll all be dead if more help…doesn’t come quickly.” Right, so then…I moved, or then I met three or four women who could talk to me, and then I started to learn about the gruesome, horrific things the Nazis did.\n&lt;strong&gt;Source.&lt;/strong&gt;\n&lt;a href=&quot;&lt;a href=&quot;<a href=\"https://www.iwm.org.uk/collections/item/object/80016769&quot;&quot;&gt;https://www.iwm.org.uk/collections/item/object/80016769&quot;&lt;/a&gt;\">https://www.iwm.org.uk/collections/item/object/80016769&quot;&quot;&gt;https://w...</a> target=&quot;_blank&quot;&gt;Imperial War Museum, Oral history interview with Leslie Hardman, 22 September 1997&lt;/a&gt; [accessed 17 August 2022]\nDepository: Imperial War Museums.",
+                    "summary": "Audio clip from an oral history interview with Leslie Hardman: entering Bergen-Belsen Concentration Camp, 22 September 1997",
+                    "titleCy": "Audio clip from an oral history interview with Leslie Hardman: entering Bergen-Belsen Concentration Camp, 22 September 1997",
+                    "itemURL": "https://www.peoplescollection.wales/items/1896846",
+                    "uuid": "64ae4151-2c3a-3497-8b5e-3a0e0469b3fd",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "ciimId": "pcw-1896846",
+                    "group": "community",
+                    "lon": "9.908532955291",
+                    "lat": "52.760329279340",
+                    "status": "published",
+                    "subjects": [
+                        "'Religious communities'",
+                        "'OTHER: War",
+                        "Protest and Politics'",
+                        "'OTHER: Religion and Beliefs'",
+                        "'Second World War (1939-45)'",
+                        "jewish",
+                        "Jewish Community",
+                        "hebrew",
+                        "Jews",
+                        "World War 2",
+                        "ww2",
+                        "refugee",
+                        "holocaust",
+                        "liberation"
+                    ]
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "Historic Dock Project",
+                    "description": "<p>A Short Biography on the life of Alex Givvons, Pill Resident; Rugby Player, Code Breaker, Son of a West Indian man from St Thomas; Brother of Trevor Williams who also played for Oldham, Black History of Newport; A Pre-Windrush Story of a Welsh International adored by many; Oldham R.L. Hall of Fame Inductee</p>",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1849356",
+                    "summaryTitle": "Alex Givvons, Newport Native, Rugby Player, Welsh International",
+                    "title": "Alex Givvons, Newport Native, Rugby Player, Welsh International",
+                    "descriptionCy": "<p>Bywgraffiad Byr ar fywyd Alex Givvons, Preswylydd Pill; chwaraewr rygbi, torrwr côd, mab i wr o India&#39;r Gorllewin o St Thomas; brawd Trevor Williams a oedd hefyd yn chwarae i Oldham; Hanes Du of Casnewydd; Stori Cyn-Windrush am chwaraewr rhyngwladol Cymreig sy&#39;n cael ei charu gan lawer; Oriel Anfarwolion Oldham R.L.</p>",
+                    "summary": "Alex Givvons, Newport Native, Rugby Player, Welsh International",
+                    "titleCy": "Alex Givvons, brodor Casnewydd, Chwaraewr Rygbi, Cymro Rhyngwladol",
+                    "itemURL": "https://www.peoplescollection.wales/items/1849356",
+                    "uuid": "a6421c21-95b9-34f3-8d25-3a7adb4fb8fc",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "ciimId": "pcw-1849356",
+                    "group": "community",
+                    "status": "published",
+                    "subjects": [
+                        "'Rugby'",
+                        "Black History",
+                        "code breakers",
+                        "pre windrush",
+                        "Sport",
+                        "Rugby",
+                        "Cross Keys",
+                        "pill harriers",
+                        "Pill",
+                        "pillgwenlly"
+                    ]
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "IWM (production company)\nPeter M. Hart (recorder)\nHermann Rothman (interviewee/speaker)",
+                    "description": "This audio clip is from an interview with Ernie Hunter, recorded by Imperial War Museums in February 2008. In the clip, Herman talks about the religious services at Gwrych Castle.\n\n<strong>Herman Rothman – a short biography.</strong>\n\nHerman Rothman was born in Berlin, Germany, in 1924 to Polish Jewish parents. He arrived in Britain as a refugee on the Kindertransport in August 1939 and went to the hachshara (agricultural training centre) at Gwrych Castle, Abergale. He later joined the British Army, serving in Western Europe, and was the first person to translate Hitler’s will after it was discovered hidden in the shoulder pad of a leading Nazi. He later became a lawyer in London.\n\n<strong>About Gwrych Castle. </strong>\n\nBetween 1939 and 1941, Gwrych Castle in Abergele, Denbighshire, was the home to 200 Jewish refugee children who had fled from Nazi-occupied Europe. The castle was used as an agricultural training centre, set up by Zionist organisations, in preparation for youths to emigrate to the British Mandate of Palestine (now Israel). Youth Aliyah and Bachad were two of the organisations that sponsored some of the children who stayed here. Following Nazi persecution in Germany, approximately 20 of these training centres were created throughout Great Britain and Gwrych Castle would become the largest. \n\nUse of the castle was offered for free by the owner, Lord Dundonald, since it was in a very poor condition. The amenities at the castle were restricted due to most of the rooms being unfit to live in. Religious studies and agricultural work kept the children busy but sports, outdoor activities and social gatherings were also encouraged.\n\n<strong>Transcript</strong>\n\nIt was a…an Orthodox religious establishment. Everybody – every member could read, of course, fluent Hebrew, and we conducted the services – very, very lovely services. And they…they thought I had a fairly good – they discovered I had a fairly good voice, and very often I was taken to lead the services there, which I found…I found uplifted, if that’s the right word.\n\n<strong>Source.</strong>\n\n<a href=\"https://www.iwm.org.uk/collections/item/object/80030726\" target=\"_blank\">Imperial War Museum, Oral history interview with Herman Rothman, February 2008 [accessed 20 July 2022]</a>",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1891961",
+                    "summaryTitle": "Audio clip from an oral history interview with Herman Rothman talking about religious services at Gwrych Castle, 1939",
+                    "title": "Audio clip from an oral history interview with Herman Rothman talking about religious services at Gwrych Castle, 1939",
+                    "descriptionCy": "This audio clip is from an interview with Ernie Hunter, recorded by Imperial War Museums in February 2008. In the clip, Herman talks about the religious services at Gwrych Castle.\n\n<strong>Herman Rothman – a short biography.</strong>\n\nHerman Rothman was born in Berlin, Germany, in 1924 to Polish Jewish parents. He arrived in Britain as a refugee on the Kindertransport in August 1939 and went to the hachshara (agricultural training centre) at Gwrych Castle, Abergale. He later joined the British Army, serving in Western Europe, and was the first person to translate Hitler’s will after it was discovered hidden in the shoulder pad of a leading Nazi. He later became a lawyer in London.\n\n<strong>About Gwrych Castle. </strong>\n\nBetween 1939 and 1941, Gwrych Castle in Abergele, Denbighshire, was the home to 200 Jewish refugee children who had fled from Nazi-occupied Europe. The castle was used as an agricultural training centre, set up by Zionist organisations, in preparation for youths to emigrate to the British Mandate of Palestine (now Israel). Youth Aliyah and Bachad were two of the organisations that sponsored some of the children who stayed here. Following Nazi persecution in Germany, approximately 20 of these training centres were created throughout Great Britain and Gwrych Castle would become the largest. \n\nUse of the castle was offered for free by the owner, Lord Dundonald, since it was in a very poor condition. The amenities at the castle were restricted due to most of the rooms being unfit to live in. Religious studies and agricultural work kept the children busy but sports, outdoor activities and social gatherings were also encouraged.\n\n<strong>Transcript</strong>\n\nIt was a…an Orthodox religious establishment. Everybody – every member could read, of course, fluent Hebrew, and we conducted the services – very, very lovely services. And they…they thought I had a fairly good – they discovered I had a fairly good voice, and very often I was taken to lead the services there, which I found…I found uplifted, if that’s the right word.\n\n<strong>Source.</strong>\n\n<a href=\"https://www.iwm.org.uk/collections/item/object/80030726\" target=\"_blank\">Imperial War Museum, Oral history interview with Herman Rothman, February 2008 [accessed 20 July 2022]</a>",
+                    "summary": "Audio clip from an oral history interview with Herman Rothman talking about religious services at Gwrych Castle, 1939",
+                    "titleCy": "Audio clip from an oral history interview with Herman Rothman talking about religious services at Gwrych Castle, 1939",
+                    "itemURL": "https://www.peoplescollection.wales/items/1891961",
+                    "uuid": "a746dfdf-a34e-32c3-818a-c5afe2d14ef1",
+                    "creationDateTo": "1939-12",
+                    "creationDateFrom": "1939-12",
+                    "creationDate": "December 1939",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "rights": "Imperial War Museums (IWM)",
+                    "ciimId": "pcw-1891961",
+                    "group": "community",
+                    "lon": "-3.607177514739",
+                    "lat": "53.283308380966",
+                    "status": "published",
+                    "subjects": [
+                        "'Customs and Practices'",
+                        "'OTHER: Religion and Beliefs'",
+                        "'Religious communities'",
+                        "'World Faiths'",
+                        "'Second World War (1939-45)'",
+                        "jewish",
+                        "Jewish Community",
+                        "hebrew",
+                        "Jews",
+                        "World War 2",
+                        "WW2",
+                        "refugee",
+                        "holocaust",
+                        "religious observance",
+                        "kindertransport",
+                        "gwrych castle"
+                    ]
+                }
+            }
+        },
+        {
+            "@template": {
+                "details": {
+                    "creator": "Unknown",
+                    "description": "Photograph of Arnold Weil on his way to school, Köln [Cologne], April 1936.\n\n<strong>Arnold Weil – short biography.</strong>\n\nArnold was born on 31 August 1929 in Köln [Cologne]. His parents were Wolf and Sara Weil. He had one older brother, Julius, who was born on 11 October 1925. The family lived in a small apartment, which was made up of two bedrooms and a kitchen. Sara was a housewife and Wolf was an upholsterer and furniture maker. \n\nArnold attended the liberal Lützov Straße Jewish Elementary School in Köln [Cologne]. The family did not have any motor transport, so they had to get around on foot. Because of this, Arnold and his brother Julius did not have much contact as Julius spent a lot of time travelling to and from religious studies classes as well as his school – Jawne High School – which was attached to the synagogue around 45 minutes from their home. However, the brothers did play together and according to Julius, Arnold was a very sweet-looking boy.\n\nAfter the pogroms of Kristallnacht on 9-10 November 1938, Arnold’s father – Wolf – was arrested and the family did not see him again. In January 1939, when Arnold was 9 years old, his brother Julius was sent to Britain on a Kindertransport, the evacuation organised by the headmaster of his school. Arnold started work on 12 July 1942, aged 12, as an apprentice electrical engineer.\n\nIn May 1944, Henrich Himmler ordered the liquidation of the Łódź Ghetto. Between 23 June and 14 July, around 7,200 people were transported to the Chełmno Extermination Camp. Arnold and his mother were amongst those transported. He died on 7 July 1944, aged 14.\n\nAdapted from article researched and written by Catherine Le Ruez, JHASW/CHIDC volunteer.\n\n<strong>About Kristallnacht.</strong>\n\nKristallnacht, literally, ‘Night of Crystal’, is often referred to as the ‘Night of Broken Glass’. The name refers to violent anti-Jewish pogroms, which took place on 9-10 November 1938 across Germany, Austria, and the Sudetenland region of Czechoslovakia. The violent mobs destroyed hundreds of synagogues and burned and desecrated Jewish religious artifacts. Around 7,500 Jewish-owned businesses, homes, and schools were plundered, and 91 Jews were murdered. During the pogrom, 30,000 Jewish men were arrested in sent to concentration camps. \n\n<strong>Sources.</strong>\n\n<a href=\"https://www.jhasw-heritage.com/narratives/book.php?title=Arnold%20Weil\">Jewish History Association of South Wales, Arnold Weil (2021) </a> [accessed 21 January 2022] \n\n<a href=\"https://www.ushmm.org/collections/bibliography/kristallnacht\">United States Holocaust Memorial Museum, Bibliographies: Kristallnacht </a> [accessed 19 January 2022] \n\n<a href=\"https://encyclopedia.ushmm.org/content/en/article/kristallnacht\">United States Holocaust Memorial Museum, Holocaust Encyclopedia: Kristallnacht (2019) </a> [accessed 19 January 2021]",
+                    "level": "item",
+                    "primaryIdentifier": "pcw-1843991",
+                    "summaryTitle": "Photograph of Arnold Weil, Köln [Cologne], April 1936",
+                    "title": "Photograph of Arnold Weil, Köln [Cologne], April 1936",
+                    "descriptionCy": "Photograph of Arnold Weil on his way to school, Köln [Cologne], April 1936.\n\n<strong>Arnold Weil – short biography.</strong>\n\nArnold was born on 31 August 1929 in Köln [Cologne]. His parents were Wolf and Sara Weil. He had one older brother, Julius, who was born on 11 October 1925. The family lived in a small apartment, which was made up of two bedrooms and a kitchen. Sara was a housewife and Wolf was an upholsterer and furniture maker. \n\nArnold attended the liberal Lützov Straße Jewish Elementary School in Köln [Cologne]. The family did not have any motor transport, so they had to get around on foot. Because of this, Arnold and his brother Julius did not have much contact as Julius spent a lot of time travelling to and from religious studies classes as well as his school – Jawne High School – which was attached to the synagogue around 45 minutes from their home. However, the brothers did play together and according to Julius, Arnold was a very sweet-looking boy.\n\nAfter the pogroms of Kristallnacht on 9-10 November 1938, Arnold’s father – Wolf – was arrested and the family did not see him again. In January 1939, when Arnold was 9 years old, his brother Julius was sent to Britain on a Kindertransport, the evacuation organised by the headmaster of his school. Arnold started work on 12 July 1942, aged 12, as an apprentice electrical engineer.\n\nIn May 1944, Henrich Himmler ordered the liquidation of the Łódź Ghetto. Between 23 June and 14 July, around 7,200 people were transported to the Chełmno Extermination Camp. Arnold and his mother were amongst those transported. He died on 7 July 1944, aged 14.\n\nAdapted from article researched and written by Catherine Le Ruez, JHASW/CHIDC volunteer.\n\n<strong>About Kristallnacht.</strong>\n\nKristallnacht, literally, ‘Night of Crystal’, is often referred to as the ‘Night of Broken Glass’. The name refers to violent anti-Jewish pogroms, which took place on 9-10 November 1938 across Germany, Austria, and the Sudetenland region of Czechoslovakia. The violent mobs destroyed hundreds of synagogues and burned and desecrated Jewish religious artifacts. Around 7,500 Jewish-owned businesses, homes, and schools were plundered, and 91 Jews were murdered. During the pogrom, 30,000 Jewish men were arrested in sent to concentration camps. \n\n<strong>Sources.</strong>\n\n<a href=\"https://www.jhasw-heritage.com/narratives/book.php?title=Arnold%20Weil\">Jewish History Association of South Wales, Arnold Weil (2021) </a> [accessed 21 January 2022] \n\n<a href=\"https://www.ushmm.org/collections/bibliography/kristallnacht\">United States Holocaust Memorial Museum, Bibliographies: Kristallnacht </a> [accessed 19 January 2022] \n\n<a href=\"https://encyclopedia.ushmm.org/content/en/article/kristallnacht\">United States Holocaust Memorial Museum, Holocaust Encyclopedia: Kristallnacht (2019) </a> [accessed 19 January 2021]",
+                    "summary": "Photograph of Arnold Weil, Köln [Cologne], April 1936",
+                    "titleCy": "Photograph of Arnold Weil, Köln [Cologne], April 1936",
+                    "itemURL": "https://www.peoplescollection.wales/items/1843991",
+                    "uuid": "e3e641f8-a52a-3674-831b-6262ce67dc94",
+                    "collection": "People's Collection Wales",
+                    "collectionId": "pcw-0",
+                    "ciimId": "pcw-1843991",
+                    "group": "community",
+                    "lon": "6.965909707110",
+                    "lat": "50.970341435297",
+                    "status": "published",
+                    "subjects": [
+                        "'Religious communities'",
+                        "'World Faiths'",
+                        "'OTHER: Religion and Beliefs'",
+                        "'Second World War (1939-45)'",
+                        "jewish",
+                        "Jewish Community",
+                        "hebrew",
+                        "Jews",
+                        "World War 2",
+                        "ww2",
+                        "kristallnacht",
+                        "kindertransport",
+                        "holocaust"
+                    ]
                 }
             }
         }
@@ -199,27 +630,123 @@
             "name": "collection",
             "entries": [
                 {
+                    "value": "People's Collection Wales",
+                    "doc_count": 172
+                },
+                {
+                    "value": "SWOP",
+                    "doc_count": 18
+                },
+                {
                     "value": "Biography of Women Who Made Milton Keynes (Digital Document)",
                     "doc_count": 11
+                },
+                {
+                    "value": "Surrey History Centre",
+                    "doc_count": 1
                 }
-            ]
-        },
+            ],
+            "total": 0,
+            "other": 0
+        }
+    ],
+    "stats": {
+        "total": 203,
+        "results": 20,
+        "providers": 2,
+        "latency": 124.0
+    },
+    "found": false,
+    "buckets": [
         {
             "name": "group",
             "entries": [
                 {
                     "value": "community",
-                    "doc_count": 11
+                    "count": 216637
                 }
-            ]
+            ],
+            "total": 216637,
+            "other": 0
+        },
+        {
+            "name": "group",
+            "entries": [
+                {
+                    "value": "record",
+                    "count": 34972443
+                },
+                {
+                    "value": "tna",
+                    "count": 24926034
+                },
+                {
+                    "value": "nonTna",
+                    "count": 11049250
+                },
+                {
+                    "value": "digitised",
+                    "count": 9063756
+                },
+                {
+                    "value": "medalCard",
+                    "count": 5481174
+                },
+                {
+                    "value": "will",
+                    "count": 1016324
+                },
+                {
+                    "value": "aggregation",
+                    "count": 730449
+                },
+                {
+                    "value": "seamenRegister",
+                    "count": 684418
+                },
+                {
+                    "value": "creator",
+                    "count": 272392
+                },
+                {
+                    "value": "britishWarMedal",
+                    "count": 157424
+                },
+                {
+                    "value": "organisation",
+                    "count": 141526
+                },
+                {
+                    "value": "navalReserve",
+                    "count": 137920
+                },
+                {
+                    "value": "image",
+                    "count": 80606
+                },
+                {
+                    "value": "person",
+                    "count": 61869
+                },
+                {
+                    "value": "business",
+                    "count": 36367
+                },
+                {
+                    "value": "manor",
+                    "count": 22076
+                },
+                {
+                    "value": "family",
+                    "count": 10554
+                },
+                {
+                    "value": "archive",
+                    "count": 3525
+                }
+            ],
+            "total": 88848107,
+            "other": 0
         }
-    ],
-    "stats": {
-        "total": 11,
-        "providers": 1,
-        "transformations": 1,
-        "provider_latency": 7,
-        "transformation_latency": 21
-    },
-    "found": true
+    ]
 }

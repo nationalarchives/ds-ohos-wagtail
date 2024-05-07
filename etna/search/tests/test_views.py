@@ -221,8 +221,7 @@ class CatalogueSearchAPIIntegrationTest(SearchViewTestCase):
             responses.calls[0].request.url,
             (
                 f"{settings.CLIENT_BASE_URL}/search"
-                "?aggs=group"
-                "&aggs=collection"
+                "?aggs=collection"
                 "&filter=group%3Acommunity"
                 "&sort="
                 "&from=0"
