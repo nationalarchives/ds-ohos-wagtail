@@ -223,7 +223,7 @@ class Record(DataLayerMixin, APIModel):
                 swop_description = (
                     self._description_place() + " " + self._description_view()
                 )
-                return swop_description.lstrip()
+                return swop_description.strip()
 
             allow_tags = {"a", "br", "p"}
             updated_value = raw.replace("\n", "<br />")
