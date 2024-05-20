@@ -50,8 +50,8 @@ FIELD_LABELS = {
     "subjects": "Subject",
     "level": "Level",
     "type": "Type",
-    "identifier": "Identifier",
+    "identifier": "Reference",
     "provenance": "Provenance",
     "creator": "Creator",
-    "place_of_deposit": "Place of deposit",
+    "repository": "Held by",
 }
