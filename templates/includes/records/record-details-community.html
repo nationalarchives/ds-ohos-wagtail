@@ -85,12 +85,11 @@
         <td>{{ record.provenance }}</td>
     </tr>
 {% endif %}
-{% if record.place_of_deposit %}
+{% if record.repository %}
     <tr>
-        <th scope="row">{{ 'place_of_deposit'|as_label }}</th>
+        <th scope="row">{{ 'repository'|as_label }}</th>
         <td>
-            {{ record.place_of_deposit.mediator }}
-            {{ record.place_of_deposit.repository }}
+            {{ record.repository }}
         </td>
     </tr>
 {% endif %}
