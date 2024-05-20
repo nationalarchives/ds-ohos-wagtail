@@ -1,3 +1,20 @@
+.wikidata-overlay {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    border: 1px solid $color__black;
+    background-color: $color__grey-light;
+    padding: 20px;
+}
+
+
+.ohos-tag-container {
+    position: relative;
+}
+
 .ohos-tag {
     display: inline-flex;
     border: 1px solid;
@@ -66,6 +83,10 @@
             text-decoration-thickness: inherit;
             background-color: $color__off-black;
             color: $color__grey-200;
+
+            + .wikidata-overlay:not(:empty) {
+                display: block;
+            }
         }
     }
 }
