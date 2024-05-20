@@ -9,12 +9,16 @@
             <span class="ohos-tag ohos-tag--{{ css_extn_style }}">
                 <span class="ohos-tag__inner">{{ item.value }}</span>
                 {% if item.url %}
-                    <a href="{{ item.url }}" target="_blank" class="ohos-tag__link">
+                    <a href="{{ item.url }}" target="_blank" class="ohos-tag__link" data-js-wikidata-url="{{ item.url }}" data-js-wikidata-tag-type="{{ css_extn_style }}" data-js-wikidata-tag-type-label="{{ label }}">
                         Wikidata
                         <i aria-hidden="true" class="ohos-tag__link-icon fa-solid fa-external-link"></i>
                     </a>
                 {% endif %}
             </span>
+
+            {% if item.url %}
+                <div class="" data-js-wikidata-overlay="{{ item.url }}"></div>
+            {% endif %}
         </dd>
     {% endfor %}
 {% endif %}
