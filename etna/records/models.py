@@ -775,5 +775,5 @@ class Record(DataLayerMixin, APIModel):
         return self.template.get("descriptionPlace", "")
 
     @cached_property
-    def repository(self) -> Dict:
-        return self.template.get("repository", {})
+    def repository(self) -> str:
+        return self.template.get("repository", "")
