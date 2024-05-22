@@ -481,12 +481,12 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
 
         self.patch_search_endpoint("catalogue_search_having_enrichment_tags.json")
 
-        expected_url = "/search/catalogue/?q=swop-49008&group=community&collection=SWOP&vis_view=list"
+        expected_url = "/search/catalogue/?q=swop-94010&group=community&collection=SWOP&vis_view=list"
 
         response = self.client.get(
             self.test_url,
             data={
-                "q": "swop-49008",
+                "q": "swop-94010",
                 "group": "community",
                 "collection": [
                     "SWOP",
@@ -500,12 +500,12 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(session.get("back_to_search_url"), expected_url)
 
-        self.assertIn('<span class="ohos-tag__inner">Bourne End</span>', content)
-        self.assertIn('<span class="ohos-tag__inner">Arthur Jackson</span>', content)
-        self.assertIn(
-            '<span class="ohos-tag__inner">Upper Thames Sailing Club</span>', content
-        )
-        self.assertIn('<span class="ohos-tag__inner">Vengeance</span>', content)
+        self.assertIn('<span class="ohos-tag ohos-tag--location">', content)
+        self.assertIn('<span class="ohos-tag__inner">Town Hall</span>', content)
+        self.assertIn('<span class="ohos-tag ohos-tag--person">', content)
+        self.assertIn('<span class="ohos-tag__inner">Ray Whitney</span>', content)
+        self.assertIn('<span class="ohos-tag ohos-tag--organisation">', content)
+        self.assertIn('<span class="ohos-tag__inner">H.W.Society</span>', content)
 
 
 @unittest.skip("TODO:Rosetta")
