@@ -304,7 +304,7 @@ class ClientAPI:
                 for entry in bucket.get("entries", []):
                     bucket_counts_data.append(entry)
 
-        # Return a single ResultList, using bucket counts from "fabbuckets",
+        # Return a single ResultList, using bucket counts from "buckets",
         # and full hit/aggregation data from "data".
         return self.resultlist_from_response(
             response_data,
