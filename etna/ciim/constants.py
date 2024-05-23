@@ -46,7 +46,7 @@ class Aggregation(StrEnum):
 
 
 DEFAULT_AGGREGATIONS = [
-    # Aggregation.GROUP # TODO: keep until we know its not needed for ETNA
+    # Aggregation.GROUP # TODO: Keep, not in scope for Ohos-Etna at this time
     # TODO:Rosetta + ":30",  # Fetch more 'groups' so that we receive counts for any bucket/tab options we might be showing.
 ]
 
@@ -72,7 +72,7 @@ class Bucket:
         values = []
         for aggregation in self.aggregations:
             bits = aggregation.split(":")
-            # TODO:Rosetta
+            # TODO: Keep, not in scope for Ohos-Etna at this time
             values.append(bits[0])
             # if len(bits) == 2:
             #     values.append(bits[0] + ":" + bits[1])
@@ -120,7 +120,7 @@ CATALOGUE_BUCKETS = BucketList(
             key=BucketKeys.COMMUNITY,
             label="Results from community collections",
             description="Results for records held at The National Archives that match your search term.",
-            # TODO: keep until we know its not needed for ETNA
+            # TODO: Keep, not in scope for Ohos-Etna at this time
             # aggregations=DEFAULT_AGGREGATIONS + [Aggregation.COLLECTION],
             aggregations=[Aggregation.COLLECTION],
         ),
@@ -128,7 +128,7 @@ CATALOGUE_BUCKETS = BucketList(
             key=BucketKeys.TNA,
             label="Results from The National Archives",
             description="Results for records held at The National Archives that match your search term.",
-            # TODO: keep until we know its not needed for ETNA
+            # TODO: Keep, not in scope for Ohos-Etna at this time
             # aggregations=DEFAULT_AGGREGATIONS
             # + [Aggregation.COLLECTION, Aggregation.LEVEL, Aggregation.CLOSURE],
             aggregations=[Aggregation.COLLECTION],
@@ -137,7 +137,7 @@ CATALOGUE_BUCKETS = BucketList(
             key=BucketKeys.NONTNA,
             label="Results from other archives",
             description="Results for records held at other archives in the UK (and not at The National Archives) that match your search term.",
-            # TODO: keep until we know its not needed for ETNA
+            # TODO: Keep, not in scope for Ohos-Etna at this time
             # aggregations=DEFAULT_AGGREGATIONS
             # + [
             #     Aggregation.COLLECTION,

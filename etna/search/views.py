@@ -388,14 +388,15 @@ class BaseFilteredSearchView(BaseSearchView):
 
     dynamic_choice_fields = (
         "collection",
-        "level",
-        "topic",
-        "closure",
-        "held_by",
-        "catalogue_source",
-        "type",
-        "country",
-        "location",
+        # TODO: Keep, not in scope for Ohos-Etna at this time
+        # "level",
+        # "topic",
+        # "closure",
+        # "held_by",
+        # "catalogue_source",
+        # "type",
+        # "country",
+        # "location",
     )
 
     def get_initial(self) -> Dict[str, Any]:
@@ -444,9 +445,10 @@ class BaseFilteredSearchView(BaseSearchView):
             group=form.cleaned_data.get("group"),
             aggregations=self.get_api_aggregations(),
             filter_aggregations=self.get_api_filter_aggregations(form),
-            filter_keyword=form.cleaned_data.get("filter_keyword"),
-            opening_start_date=form.cleaned_data.get("opening_start_date"),
-            opening_end_date=form.cleaned_data.get("opening_end_date"),
+            # TODO: Keep, not in scope for Ohos-Etna at this time
+            # filter_keyword=form.cleaned_data.get("filter_keyword"),
+            # opening_start_date=form.cleaned_data.get("opening_start_date"),
+            # opening_end_date=form.cleaned_data.get("opening_end_date"),
             covering_date_from=form.cleaned_data.get("covering_date_from"),
             covering_date_to=form.cleaned_data.get("covering_date_to"),
             offset=(self.page_number - 1) * page_size,
@@ -559,24 +561,27 @@ class BaseFilteredSearchView(BaseSearchView):
                 for value in return_value[field_name]
             ]
 
-        if filter_keyword := form.cleaned_data.get("filter_keyword"):
-            return_value.update({"filter_keyword": [(filter_keyword, filter_keyword)]})
+        # TODO: Keep, not in scope for Ohos-Etna at this time
+        # if filter_keyword := form.cleaned_data.get("filter_keyword"):
+        #     return_value.update({"filter_keyword": [(filter_keyword, filter_keyword)]})
 
-        if opening_start_date := form.cleaned_data.get("opening_start_date"):
-            return_value["opening_start_date"] = [
-                (
-                    opening_start_date,
-                    "Record opening from: " + opening_start_date.strftime("%d %m %Y"),
-                )
-            ]
+        # TODO: Keep, not in scope for Ohos-Etna at this time
+        # if opening_start_date := form.cleaned_data.get("opening_start_date"):
+        #     return_value["opening_start_date"] = [
+        #         (
+        #             opening_start_date,
+        #             "Record opening from: " + opening_start_date.strftime("%d %m %Y"),
+        #         )
+        #     ]
 
-        if opening_end_date := form.cleaned_data.get("opening_end_date"):
-            return_value["opening_end_date"] = [
-                (
-                    opening_end_date,
-                    "Record opening to: " + opening_end_date.strftime("%d %m %Y"),
-                )
-            ]
+        # TODO: Keep, not in scope for Ohos-Etna at this time
+        # if opening_end_date := form.cleaned_data.get("opening_end_date"):
+        #     return_value["opening_end_date"] = [
+        #         (
+        #             opening_end_date,
+        #             "Record opening to: " + opening_end_date.strftime("%d %m %Y"),
+        #         )
+        #     ]
 
         if covering_date_from := form.cleaned_data.get("covering_date_from"):
             return_value["covering_date_from"] = [

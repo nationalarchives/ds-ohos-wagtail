@@ -123,24 +123,25 @@ class BaseCollectionSearchForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={"class": "search-hero__form-search-box"}),
     )
-    filter_keyword = forms.CharField(
-        label="Search within",
-        # If no filter_keyword is provided, pass None to client bypass search within
-        empty_value=None,
-        required=False,
-        widget=forms.TextInput(attrs={"class": "search-filters__search"}),
-    )
-    # Choices are supplied to this field to benefit validation. The labels
-    # are the same as the API supplied values, so aren't of much benefit
-    level = DynamicMultipleChoiceField(
-        label="Level",
-        choices=LEVEL_CHOICES,
-        required=False,
-    )
-    topic = DynamicMultipleChoiceField(
-        label="Topics",
-        required=False,
-    )
+    # TODO: Keep, not in scope for Ohos-Etna at this time
+    # filter_keyword = forms.CharField(
+    #     label="Search within",
+    #     # If no filter_keyword is provided, pass None to client bypass search within
+    #     empty_value=None,
+    #     required=False,
+    #     widget=forms.TextInput(attrs={"class": "search-filters__search"}),
+    # )
+    # # Choices are supplied to this field to benefit validation. The labels
+    # # are the same as the API supplied values, so aren't of much benefit
+    # level = DynamicMultipleChoiceField(
+    #     label="Level",
+    #     choices=LEVEL_CHOICES,
+    #     required=False,
+    # )
+    # topic = DynamicMultipleChoiceField(
+    #     label="Topics",
+    #     required=False,
+    # )
     # Choices are supplied to this field to influence labels only. The options
     # are not complete enough to be used for validation
     collection = DynamicMultipleChoiceField(
@@ -149,52 +150,53 @@ class BaseCollectionSearchForm(forms.Form):
         required=False,
         validate_input=False,
     )
-    closure = DynamicMultipleChoiceField(
-        label="Closure Status",
-        required=False,
-    )
-    catalogue_source = DynamicMultipleChoiceField(
-        label="Catalogue Sources",
-        required=False,
-    )
-    held_by = DynamicMultipleChoiceField(
-        label="Held By",
-        required=False,
-    )
-    # Choices are supplied to this field to influence labels only. The options
-    # are not complete enough to be used for validation
-    type = DynamicMultipleChoiceField(
-        label="Creator type",
-        choices=TYPE_CHOICES,
-        required=False,
-        validate_input=False,
-    )
-    country = DynamicMultipleChoiceField(
-        label="Location",  # TODO: This label is a temporary update until we have the api adjusted.
-        required=False,
-    )
-    location = DynamicMultipleChoiceField(
-        label="Location",
-        required=False,
-    )
-    place = DynamicMultipleChoiceField(
-        label="Place",
-        required=False,
-    )
-    opening_start_date = DateInputField(
-        label="From",
-        label_suffix=":",
-        required=False,
-        default_day=1,
-        default_month=1,
-    )
-    opening_end_date = DateInputField(
-        label="To",
-        label_suffix=":",
-        required=False,
-        default_day=END_OF_MONTH,
-        default_month=12,
-    )
+    # TODO: Keep, not in scope for Ohos-Etna at this time
+    # closure = DynamicMultipleChoiceField(
+    #     label="Closure Status",
+    #     required=False,
+    # )
+    # catalogue_source = DynamicMultipleChoiceField(
+    #     label="Catalogue Sources",
+    #     required=False,
+    # )
+    # held_by = DynamicMultipleChoiceField(
+    #     label="Held By",
+    #     required=False,
+    # )
+    # # Choices are supplied to this field to influence labels only. The options
+    # # are not complete enough to be used for validation
+    # type = DynamicMultipleChoiceField(
+    #     label="Creator type",
+    #     choices=TYPE_CHOICES,
+    #     required=False,
+    #     validate_input=False,
+    # )
+    # country = DynamicMultipleChoiceField(
+    #     label="Location",  # TODO: This label is a temporary update until we have the api adjusted.
+    #     required=False,
+    # )
+    # location = DynamicMultipleChoiceField(
+    #     label="Location",
+    #     required=False,
+    # )
+    # place = DynamicMultipleChoiceField(
+    #     label="Place",
+    #     required=False,
+    # )
+    # opening_start_date = DateInputField(
+    #     label="From",
+    #     label_suffix=":",
+    #     required=False,
+    #     default_day=1,
+    #     default_month=1,
+    # )
+    # opening_end_date = DateInputField(
+    #     label="To",
+    #     label_suffix=":",
+    #     required=False,
+    #     default_day=END_OF_MONTH,
+    #     default_month=12,
+    # )
     covering_date_from = DateInputField(
         label="From",
         label_suffix=":",

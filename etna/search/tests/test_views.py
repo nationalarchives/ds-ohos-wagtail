@@ -60,15 +60,17 @@ class SelectedFiltersTest(SimpleTestCase):
         form = CatalogueSearchForm(
             {
                 "group": "tna",
-                "topic": ["topic-one"],
-                "level": ["Division"],
+                # TODO: Keep, not in scope for Ohos-Etna at this time
+                # "topic": ["topic-one"],
+                # "level": ["Division"],
                 "collection": [
                     "WO",
                     "AK",
                     "Biography of Women Who Made Milton Keynes (Digital Document)",
                 ],
-                "country": ["England", "Yorkshire, North Riding"],
-                "location": ["Australia", "United States of America"],
+                # TODO: Keep, not in scope for Ohos-Etna at this time
+                # "country": ["England", "Yorkshire, North Riding"],
+                # "location": ["Australia", "United States of America"],
             }
         )
 
@@ -88,19 +90,21 @@ class SelectedFiltersTest(SimpleTestCase):
                         "Biography of Women Who Made Milton Keynes (Digital Document)",
                     ),
                 ],
-                "level": [("Division", "Division")],
-                "topic": [("topic-one", "topic-one")],
-                "country": [
-                    ("England", "England"),
-                    ("Yorkshire, North Riding", "Yorkshire, North Riding"),
-                ],
-                "location": [
-                    ("Australia", "Australia"),
-                    ("United States of America", "United States of America"),
-                ],
+                # TODO: Keep, not in scope for Ohos-Etna at this time
+                # "level": [("Division", "Division")],
+                # "topic": [("topic-one", "topic-one")],
+                # "country": [
+                #     ("England", "England"),
+                #     ("Yorkshire, North Riding", "Yorkshire, North Riding"),
+                # ],
+                # "location": [
+                #     ("Australia", "Australia"),
+                #     ("United States of America", "United States of America"),
+                # ],
             },
         )
 
+    @unittest.skip("# TODO: Keep, not in scope for Ohos-Etna at this time")
     def test_counts_are_removed_from_updated_choice_labels(self):
         form = CatalogueSearchForm(
             {
@@ -141,6 +145,7 @@ class SelectedFiltersTest(SimpleTestCase):
             },
         )
 
+    @unittest.skip("# TODO: Keep, not in scope for Ohos-Etna at this time")
     def test_with_invalid_filter_values(self):
         form = CatalogueSearchForm(
             {
@@ -152,6 +157,7 @@ class SelectedFiltersTest(SimpleTestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual(self.get_result(form), {})
 
+    @unittest.skip("TODO: Keep, not in scope for Ohos-Etna at this time")
     def test_with_partially_invalid_filter_values(self):
         form = CatalogueSearchForm(
             {
@@ -565,7 +571,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         self.assertIn('<span class="ohos-tag__inner">H.W.Society</span>', content)
 
 
-@unittest.skip("TODO:Rosetta")
+@unittest.skip("TODO: Keep, not in scope for Ohos-Etna at this time")
 class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
     test_url = reverse_lazy(
         "search-catalogue-long-filter-chooser", kwargs={"field_name": "collection"}
@@ -592,7 +598,7 @@ class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
         )
 
 
-@unittest.skip("TODO:Rosetta")
+@unittest.skip("TODO: Keep, not in scope for Ohos-Etna at this time")
 class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
     def assertDataLayerEquals(
         self,
