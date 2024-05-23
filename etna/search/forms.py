@@ -10,8 +10,9 @@ from ..ciim.client import Sort
 from ..ciim.constants import (
     CATALOGUE_BUCKETS,
     COLLECTION_CHOICES,
-    LEVEL_CHOICES,
-    TYPE_CHOICES,
+    # TODO: Keep, not in scope for Ohos-Etna at this time
+    # LEVEL_CHOICES,
+    # TYPE_CHOICES,
 )
 
 
