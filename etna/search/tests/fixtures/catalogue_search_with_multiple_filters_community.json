@@ -660,10 +660,10 @@
             "entries": [
                 {
                     "value": "community",
-                    "count": 216637
+                    "count": 5415
                 }
             ],
-            "total": 216637,
+            "total": 5415,
             "other": 0
         },
         {
@@ -671,78 +671,78 @@
             "entries": [
                 {
                     "value": "record",
-                    "count": 34972443
-                },
-                {
-                    "value": "tna",
-                    "count": 24926034
+                    "count": 1111830
                 },
                 {
                     "value": "nonTna",
-                    "count": 11049250
+                    "count": 928752
                 },
                 {
-                    "value": "digitised",
-                    "count": 9063756
-                },
-                {
-                    "value": "medalCard",
-                    "count": 5481174
-                },
-                {
-                    "value": "will",
-                    "count": 1016324
+                    "value": "tna",
+                    "count": 286707
                 },
                 {
                     "value": "aggregation",
-                    "count": 730449
-                },
-                {
-                    "value": "seamenRegister",
-                    "count": 684418
+                    "count": 83789
                 },
                 {
                     "value": "creator",
-                    "count": 272392
-                },
-                {
-                    "value": "britishWarMedal",
-                    "count": 157424
+                    "count": 19840
                 },
                 {
                     "value": "organisation",
-                    "count": 141526
+                    "count": 19794
                 },
                 {
-                    "value": "navalReserve",
-                    "count": 137920
+                    "value": "digitised",
+                    "count": 19352
                 },
                 {
                     "value": "image",
-                    "count": 80606
+                    "count": 877
                 },
                 {
-                    "value": "person",
-                    "count": 61869
+                    "value": "medalCard",
+                    "count": 655
                 },
                 {
-                    "value": "business",
-                    "count": 36367
-                },
-                {
-                    "value": "manor",
-                    "count": 22076
-                },
-                {
-                    "value": "family",
-                    "count": 10554
+                    "value": "will",
+                    "count": 428
                 },
                 {
                     "value": "archive",
-                    "count": 3525
+                    "count": 350
+                },
+                {
+                    "value": "seamenRegister",
+                    "count": 335
+                },
+                {
+                    "value": "person",
+                    "count": 39
+                },
+                {
+                    "value": "navalReserve",
+                    "count": 29
+                },
+                {
+                    "value": "britishWarMedal",
+                    "count": 10
+                },
+                {
+                    "value": "business",
+                    "count": 5
+                },
+                {
+                    "value": "family",
+                    "count": 1
+                },
+                {
+                    "value": "manor",
+                    "count": 1
                 }
             ],
-            "total": 88848107,
+            "total": 2472794,
             "other": 0
         }
     ]

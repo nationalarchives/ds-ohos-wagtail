@@ -242,6 +242,10 @@ class EndToEndSearchTestCase(TestCase):
     sort_desktop_options_html = '<label for="id_sort_desktop">Sort by</label>'
     sort_mobile_options_html = '<label for="id_sort_mobile">Sort by</label>'
     filter_options_html = '<form method="GET" data-id="filters-form"'
+    selected_bucket_html = (
+        '<option value="{group}" selected >{bucket} ({count})</option>'
+    )
+    unselected_bucket_html = '<option value="{group}"  >{bucket} ({count})</option>'
 
     def patch_api_endpoint(self, url: str, fixture_path: str):
         full_fixture_path = (
@@ -292,6 +296,21 @@ class EndToEndSearchTestCase(TestCase):
 
     def assertResultsNotRendered(self, response):
         self.assertNotIn(self.results_html, response)
+
+    def assertSelectedBucketRendered(self, group, count, bucket, response):
+        self.assertIn(
+            self.selected_bucket_html.format(group=group, count=count, bucket=bucket),
+            response,
+        )
+
+    def assertUnSelectedBucketRendered(self, group, count, bucket, response):
+        self.assertIn(
+            self.unselected_bucket_html.format(group=group, count=count, bucket=bucket),
+            response,
+        )
+
+    def assertShowingRendered(self, text, response):
+        self.assertIn(text, response)
 
 
 class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
@@ -348,19 +367,25 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         self.patch_search_endpoint("catalogue_search_empty_when_refined.json")
         response = self.client.get(
             self.test_url,
-            data={"q": "japan", "filter_keyword": "qwerty"},
+            data={
+                "q": "japan",
+                "covering_date_from_0": "01",
+                "covering_date_from_1": "01",
+                "covering_date_from_2": "5000",
+            },
         )
         content = str(response.content)
 
         # SHOULD see
-        # self.assertBucketLinksRendered(content) # TODO:Rosetta
-        # self.assertSearchWithinOptionRendered(content) # TODO:Rosetta
-        # self.assertSortOptionsRendered(content) # TODO:Rosetta
+        self.assertBucketLinksRendered(content)
+        # self.assertSearchWithinOptionRendered(content) # TODO: Rosetta - not for OHOS
+        self.assertSortOptionsRendered(content)
         self.assertNoResultsMessagingRendered(content)
-        # self.assertFilterOptionsRendered(content) # TODO:Rosetta
+        self.assertFilterOptionsRendered(content)
 
         # SHOULD NOT see
         self.assertResultsNotRendered(content)
+        self.assertSearchWithinOptionNotRendered(content)  # For OHOS
 
     @responses.activate
     def test_refined_search_with_matches(self):
@@ -375,6 +400,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         - Options to change sort order and display style of results
         - Filter options to refine the search
         - Search results
+        - Buckets rendered
 
         They SHOULD NOT see:
         -  A "No results" message.
@@ -389,17 +415,29 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                 "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
             },
         )
+        print(response.template_name)
+        print(response.resolve_template)
         content = str(response.content)
 
         # SHOULD see
         self.assertBucketLinksRendered(content)
-        # self.assertSearchWithinOptionRendered(content) # TODO:Rosetta
+        # self.assertSearchWithinOptionRendered(content) # TODO:Rosetta - not for OHOS
         self.assertSortOptionsRendered(content)
         self.assertFilterOptionsRendered(content)
         self.assertResultsRendered(content)
+        self.assertSelectedBucketRendered(
+            "community", "204", "Results from community collections", content
+        )
+        self.assertUnSelectedBucketRendered(
+            "tna", "558", "Results from The National Archives", content
+        )
+        self.assertUnSelectedBucketRendered(
+            "nonTna", "6,393", "Results from other archives", content
+        )
 
         # SHOULD NOT see
         self.assertNoResultsMessagingNotRendered(content)
+        self.assertSearchWithinOptionNotRendered(content)  # For OHOS
 
     @responses.activate
     def test_selected_filter_options_remain_visible(self):
@@ -412,7 +450,9 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
 
         Test covers create session info for Catalogue search with query.
         """
-        self.patch_search_endpoint("catalogue_search_with_multiple_filters.json")
+        self.patch_search_endpoint(
+            "catalogue_search_with_multiple_filters_community.json"
+        )
 
         expected_url = "/search/catalogue/?q=parish&group=community&collection=SWOP&collection=People%27s+Collection+Wales"
 
@@ -434,6 +474,25 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         self.assertEqual(session.get("back_to_search_url"), expected_url)
 
         self.assertIn('<input type="checkbox" name="collection" value="SWOP"', content)
+        self.assertIn(
+            '<input type="checkbox" name="collection" value="People&#x27;s Collection Wales"',
+            content,
+        )
+        self.assertSelectedBucketRendered(
+            "community", "5,415", "Results from community collections", content
+        )
+        self.assertUnSelectedBucketRendered(
+            "tna", "286,707", "Results from The National Archives", content
+        )
+        self.assertUnSelectedBucketRendered(
+            "nonTna", "928,752", "Results from other archives", content
+        )
+        self.assertShowingRendered("(of 5,345) results", content)
+        self.assertShowingRendered('for "parish"', content)
+        self.assertShowingRendered(
+            'in "<span id="analytics-current-bucket" data-current-bucket="Results from community collections">Results from community collections</span>"',
+            content,
+        )
 
     @responses.activate
     def test_render_invalid_date_range_message(self):
