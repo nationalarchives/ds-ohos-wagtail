@@ -415,8 +415,6 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                 "collection": "Biography of Women Who Made Milton Keynes (Digital Document)",
             },
         )
-        print(response.template_name)
-        print(response.resolve_template)
         content = str(response.content)
 
         # SHOULD see
