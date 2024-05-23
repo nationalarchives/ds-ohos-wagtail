@@ -282,13 +282,13 @@ class ClientAPI:
             if group == BucketKeys.COMMUNITY:
                 params["filter"] += [f"fromDate:(>={created_start_date})"]
             else:
-                params["filter"] += [f"createdStartDate:(>={created_start_date})"]
+                params["filter"] += [f"coveringFromDate:(>={created_start_date})"]
 
         if created_end_date:
             if group == BucketKeys.COMMUNITY:
                 params["filter"] += [f"toDate:(<={created_end_date})"]
             else:
-                params["filter"] += [f"createdEndDate:(<={created_end_date})"]
+                params["filter"] += [f"coveringToDate:(<={created_end_date})"]
 
         # Get HTTP response from the API
         response = self.make_request(f"{self.base_url}/search", params=params)
