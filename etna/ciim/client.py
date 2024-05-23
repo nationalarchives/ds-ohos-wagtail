@@ -223,8 +223,8 @@ class ClientAPI:
         q: Optional[str] = None,
         opening_start_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
         opening_end_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
-        created_start_date: Optional[Union[date, datetime]] = None,
-        created_end_date: Optional[Union[date, datetime]] = None,
+        covering_date_from: Optional[Union[date, datetime]] = None,
+        covering_date_to: Optional[Union[date, datetime]] = None,
         stream: Optional[Stream] = None,  # TODO:Rosetta
         aggregations: Optional[list[Aggregation]] = None,
         filter_aggregations: Optional[list[str]] = None,
@@ -278,17 +278,17 @@ class ClientAPI:
                 opening_end_date, supplementary_time=time.max
             )
 
-        if created_start_date:
+        if covering_date_from:
             if group == BucketKeys.COMMUNITY:
-                params["filter"] += [f"fromDate:(>={created_start_date})"]
+                params["filter"] += [f"fromDate:(>={covering_date_from})"]
             else:
-                params["filter"] += [f"coveringFromDate:(>={created_start_date})"]
+                params["filter"] += [f"coveringFromDate:(>={covering_date_from})"]
 
-        if created_end_date:
+        if covering_date_to:
             if group == BucketKeys.COMMUNITY:
-                params["filter"] += [f"toDate:(<={created_end_date})"]
+                params["filter"] += [f"toDate:(<={covering_date_to})"]
             else:
-                params["filter"] += [f"coveringToDate:(<={created_end_date})"]
+                params["filter"] += [f"coveringToDate:(<={covering_date_to})"]
 
         # Get HTTP response from the API
         response = self.make_request(f"{self.base_url}/search", params=params)

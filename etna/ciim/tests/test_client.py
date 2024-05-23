@@ -82,10 +82,10 @@ class ClientSearchTest(SimpleTestCase):
         )
 
     @responses.activate
-    def test_with_created_start_date(self):
+    def test_with_covering_date_from(self):
         self.records_client.search(
             group=BucketKeys.COMMUNITY,
-            created_start_date=date(year=1901, month=2, day=3),
+            covering_date_from=date(year=1901, month=2, day=3),
         )
 
         self.assertEqual(len(responses.calls), 1)
@@ -95,9 +95,9 @@ class ClientSearchTest(SimpleTestCase):
         )
 
     @responses.activate
-    def test_with_created_end_date(self):
+    def test_with_covering_date_to(self):
         self.records_client.search(
-            group=BucketKeys.COMMUNITY, created_end_date=date(year=1901, month=2, day=3)
+            group=BucketKeys.COMMUNITY, covering_date_to=date(year=1901, month=2, day=3)
         )
 
         self.assertEqual(len(responses.calls), 1)
