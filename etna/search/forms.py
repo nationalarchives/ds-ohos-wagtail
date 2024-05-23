@@ -7,12 +7,9 @@ from django.utils.functional import cached_property
 from etna.core.fields import END_OF_MONTH, DateInputField
 
 from ..ciim.client import Sort
-from ..ciim.constants import (
+from ..ciim.constants import (  # TODO: Keep, not in scope for Ohos-Etna at this time; LEVEL_CHOICES,; TYPE_CHOICES,
     CATALOGUE_BUCKETS,
     COLLECTION_CHOICES,
-    # TODO: Keep, not in scope for Ohos-Etna at this time
-    # LEVEL_CHOICES,
-    # TYPE_CHOICES,
 )
 
 
