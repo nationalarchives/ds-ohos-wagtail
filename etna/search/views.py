@@ -377,7 +377,7 @@ class BaseFilteredSearchView(BaseSearchView):
         updated to reflect data in the response.
     """
 
-    api_stream: str = ""
+    # api_stream: str = ""  # TODO: Keep, not in scope for Ohos-Etna at this time
     api_method_name: str = ""
 
     default_group: str = ""
@@ -440,7 +440,7 @@ class BaseFilteredSearchView(BaseSearchView):
     def get_api_kwargs(self, form: Form) -> Dict[str, Any]:
         page_size = form.cleaned_data.get("per_page")
         return dict(
-            stream=self.api_stream,
+            # stream=self.api_stream,  # TODO: Keep, not in scope for Ohos-Etna at this time
             q=self.query or None,
             group=form.cleaned_data.get("group"),
             aggregations=self.get_api_aggregations(),
@@ -657,7 +657,7 @@ class BaseLongFilterOptionsView(BaseFilteredSearchView):
 
 class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
     api_method_name = "search"
-    api_stream = Stream.EVIDENTIAL
+    # api_stream = Stream.EVIDENTIAL  # TODO: Keep, not in scope for Ohos-Etna at this time
     bucket_list = CATALOGUE_BUCKETS
     default_group = BucketKeys.COMMUNITY
     form_class = CatalogueSearchForm
@@ -686,7 +686,7 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
 
 class CatalogueSearchLongFilterView(BaseLongFilterOptionsView):
     api_method_name = "search"
-    api_stream = Stream.EVIDENTIAL
+    # api_stream = Stream.EVIDENTIAL  # TODO: Keep, not in scope for Ohos-Etna at this time
     default_group = BucketKeys.COMMUNITY
     form_class = CatalogueSearchForm
     template_name = "search/long_filter_options.html"

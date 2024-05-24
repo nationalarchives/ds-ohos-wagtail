@@ -221,14 +221,14 @@ class ClientAPI:
         *,
         group: Optional[str] = None,
         q: Optional[str] = None,
-        opening_start_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
-        opening_end_date: Optional[Union[date, datetime]] = None,  # TODO:Rosetta
+        # opening_start_date: Optional[Union[date, datetime]] = None,   # TODO: Keep, not in scope for Ohos-Etna at this time
+        # opening_end_date: Optional[Union[date, datetime]] = None,   # TODO: Keep, not in scope for Ohos-Etna at this time
         covering_date_from: Optional[Union[date, datetime]] = None,
         covering_date_to: Optional[Union[date, datetime]] = None,
-        stream: Optional[Stream] = None,  # TODO:Rosetta
+        # stream: Optional[Stream] = None,   # TODO: Keep, not in scope for Ohos-Etna at this time
         aggregations: Optional[list[Aggregation]] = None,
         filter_aggregations: Optional[list[str]] = None,
-        filter_keyword: Optional[str] = None,  # TODO:Rosetta
+        # filter_keyword: Optional[str] = None,   # TODO: Keep, not in scope for Ohos-Etna at this time
         sort: Optional[Sort] = None,
         offset: Optional[int] = None,
         size: Optional[int] = None,
@@ -259,24 +259,25 @@ class ClientAPI:
         """
         params = {
             "q": q,
-            # "fields": f"stream:{stream}",  # TODO:Rosetta
+            # "fields": f"stream:{stream}",  # TODO: Keep, not in scope for Ohos-Etna at this time
             "aggs": aggregations,
             "filter": prepare_filter_aggregations(filter_aggregations),
-            # "filter": filter_keyword,   # TODO:Rosetta
+            # "filter": filter_keyword,   # TODO: Keep, not in scope for Ohos-Etna at this time
             "sort": sort,
             "from": offset,
             "size": size,
         }
 
-        if opening_start_date:
-            params["openingStartDate"] = self.format_datetime(
-                opening_start_date, supplementary_time=time.min
-            )
+        # TODO: Keep, not in scope for Ohos-Etna at this time
+        #  if opening_start_date:
+        #     params["openingStartDate"] = self.format_datetime(
+        #         opening_start_date, supplementary_time=time.min
+        #     )
 
-        if opening_end_date:
-            params["openingEndDate"] = self.format_datetime(
-                opening_end_date, supplementary_time=time.max
-            )
+        # if opening_end_date:
+        #     params["openingEndDate"] = self.format_datetime(
+        #         opening_end_date, supplementary_time=time.max
+        #     )
 
         if covering_date_from:
             if group == BucketKeys.COMMUNITY:
