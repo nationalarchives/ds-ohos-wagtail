@@ -15,7 +15,10 @@
 {% if record.item_url %}
     <tr>
         <th scope="row">{{ 'item_url'|as_label }}</th>
-        <td>{{ record.item_url }}</td>
+        <td><a href="{{ record.item_url }}"
+            target="_blank"
+            >{{ record.item_url }}</a>
+        </td>
     </tr>
 {% endif %}
 {% if record.date_created %}
@@ -74,5 +77,25 @@
     <tr>
         <th scope="row">{{ 'type'|as_label }}</th>
         <td>{{ record.type }}</td>
+    </tr>
+{% endif %}
+{% if record.provenance %}
+    <tr>
+        <th scope="row">{{ 'provenance'|as_label }}</th>
+        <td>{{ record.provenance }}</td>
+    </tr>
+{% endif %}
+{% if record.repository %}
+    <tr>
+        <th scope="row">{{ 'repository'|as_label }}</th>
+        <td>
+            {{ record.repository }}
+        </td>
+    </tr>
+{% endif %}
+{% if record.creator %}
+    <tr>
+        <th scope="row">{{ 'creator'|as_label }}</th>
+        <td>{{ record.creator }}</td>
     </tr>
 {% endif %}
