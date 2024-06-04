@@ -155,13 +155,16 @@ const addResultToFormattedData = (result) => {
 const init = async () => {
     const sparqlQuery = buildSparqlQuery(uniqueWikidataIds);
     const data = await executeSparqlQuery(sparqlQuery);
-    const results = data.results.bindings;
+    const results = data?.results?.bindings || [];
 
     results.forEach((result) => {
         addResultToFormattedData(result);
     });
 
-    createWikidataOverlays(formattedData);
+    if(Object.keys(formattedData).length > 0) {
+        createWikidataOverlays(formattedData);
+    }
+
 };
 
 init().catch((error) => console.error("init - Error fetching data:", error));
