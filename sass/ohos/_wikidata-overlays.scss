@@ -1,7 +1,7 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/typography";
 
 .wikidata {
-    --spacer-size: 1em;
+    $spacer-size: 1em;
     display: none;
     position: absolute;
     top: calc(100% - 1px); // Accounts for border on hover target area
@@ -9,12 +9,12 @@
     right: 0;
     z-index: 10;
     background-color: $color__grey-light;
-    margin-top: var(--spacer-size);
+    margin-top: var($spacer-size);
     box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 25%);
 
     &::before {
         content: "";
-        height: var(--spacer-size);
+        height: var($spacer-size);
         display: block;
         position: absolute;
         bottom: 100%;
