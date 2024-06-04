@@ -7,23 +7,19 @@
     {% for item in tag|slice:":5" %}
         <dd>
             <div class="ohos-tag-container">
-                <span class="ohos-tag ohos-tag--{{ css_extn_style }}">
-                    <span class="ohos-tag__inner">{{ item.value }}</span>
+                <div class="ohos-tag ohos-tag--{{ css_extn_style }}">
+                    <div class="ohos-tag__inner">{{ item.value }}</div>
                     {% if item.url %}
-                        <a href="{{ item.url }}" target="_blank" class="ohos-tag__link" data-js-wikidata-url="{{ item.url }}" data-js-wikidata-tag-type="{{ css_extn_style }}" data-js-wikidata-tag-type-label="{{ label }}">
-                            Wikidata
-                            <i aria-hidden="true" class="ohos-tag__link-icon fa-solid fa-external-link"></i>
-                        </a>
+                        <div class="wikidata-container">
+                            <a href="{{ item.url }}" target="_blank" class="ohos-tag__link" data-js-wikidata-url="{{ item.url }}">
+                                Wikidata
+                                <i aria-hidden="true" class="ohos-tag__link-icon fa-solid fa-external-link"></i>
+                            </a>
 
-                        <div class="wikidata-overlay" data-js-wikidata-overlay="{{ item.url }}"></div>
+                            <div class="wikidata" data-js-wikidata-overlay="{{ item.url }}" data-js-wikidata-tag-type-label="{{ label }}"></div>
+                        </div>
                     {% endif %}
-                </span>
-
-                {% comment %}
-                {% if item.url %}
-                    <div class="wikidata-overlay" data-js-wikidata-overlay="{{ item.url }}"></div>
-                {% endif %}
-                {% endcomment %}
+                </div>
             </div>
         </dd>
     {% endfor %}
