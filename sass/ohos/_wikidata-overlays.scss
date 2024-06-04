@@ -9,12 +9,12 @@
     right: 0;
     z-index: 10;
     background-color: $color__grey-light;
-    margin-top: var($spacer-size);
+    margin-top: $spacer-size;
     box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 25%);
 
     &::before {
         content: "";
-        height: var($spacer-size);
+        height: $spacer-size;
         display: block;
         position: absolute;
         bottom: 100%;
