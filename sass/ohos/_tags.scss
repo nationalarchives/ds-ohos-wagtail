@@ -17,7 +17,7 @@
         text-decoration: none;
     }
 
-    background-color: var(--tag-theme-color);
+    background-color: var(--tag-theme-color, $color__grey-500);
 
     &--location {
         --tag-theme-color: #edae49;
