@@ -161,10 +161,9 @@ const init = async () => {
         addResultToFormattedData(result);
     });
 
-    if(Object.keys(formattedData).length > 0) {
+    if (Object.keys(formattedData).length > 0) {
         createWikidataOverlays(formattedData);
     }
-
 };
 
 init().catch((error) => console.error("init - Error fetching data:", error));
