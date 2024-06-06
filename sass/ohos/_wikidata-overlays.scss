@@ -57,11 +57,16 @@
         @include typography.relative-font-size(12);
     }
 
+    &__label {
+        line-height: 1.1;
+    }
+
     &__content {
         padding: 1em;
     }
 
     &__description {
+        @include typography.relative-font-size(12);
         margin-top: 0;
     }
 

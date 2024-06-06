@@ -28,7 +28,7 @@ const createTemplate = (data, tagType) => {
     const countryTemplate = data.countryLabel
         ? `<p class="wikidata__header-meta">${data.countryLabel}</p>`
         : "";
-    const titleTemplate = data.label ? `<h3>${data.label}</h3>` : "";
+    const titleTemplate = data.label ? `<h3 class="wikidata__label">${data.label}</h3>` : "";
     const descriptionTemplate = data.description
         ? `<p>${data.description}</p>`
         : "";
