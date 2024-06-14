@@ -726,10 +726,10 @@ OHOS_FILTER_AGGS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "collectionOhos"}
 CONFIG:
 Nested/Hierarchy checkboxes
 Nesting of one level i.e. "parent" -> "child/children", others are "orphan"
-collections are checkboxes on the form. 
+collections are checkboxes on the form.
 Nested collections - collections within a collection
 
-{checkbox value:aggregations} 
+{checkbox value:aggregations}
 checkbox value - name of the collection
 aggregations - name of the aggregations configured in CIMM for that "value"
 """
