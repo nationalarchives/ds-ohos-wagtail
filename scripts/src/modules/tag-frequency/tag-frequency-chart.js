@@ -25,9 +25,8 @@ const SELECTED_PARAM_NAME = "chart_selected";
 
 const urlParams = new URLSearchParams(window.location.search);
 const initialSelection = urlParams.getAll(SELECTED_PARAM_NAME);
-const chartDataType = urlParams.get('chart_data_type');
 
-const hasInitialSelection = initialSelection.length > 0 || chartDataType;
+const hasInitialSelection = initialSelection.length > 0;
 
 let currentSelection = initialSelection;
 
