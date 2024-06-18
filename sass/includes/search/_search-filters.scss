@@ -40,6 +40,7 @@
         list-style: none;
         padding-left: 0;
 
+
         &:focus {
             outline: 5px solid $color__focus-outline-light-bg;
         }
@@ -231,4 +232,9 @@
     transform: rotate(-45deg);
     border-top: 0.125rem solid;
     border-right: 0.125rem solid;
+}
+
+.search-filters__widget-list-item {
+    list-style-type: none;
+    margin-left:15px;
 }
