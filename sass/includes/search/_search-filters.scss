@@ -40,7 +40,6 @@
         list-style: none;
         padding-left: 0;
 
-
         &:focus {
             outline: 5px solid $color__focus-outline-light-bg;
         }
@@ -236,5 +235,5 @@
 
 .search-filters__widget-list-item {
     list-style-type: none;
-    margin-left:15px;
+    margin-left: 15px;
 }
