@@ -1,12 +1,13 @@
 import { aggregations } from "./data/aggregations.js";
 
 export const processAggregationData = (chartContainer) => {
-
     if (!chartContainer) {
         return;
     }
 
-    const data = JSON.parse(chartContainer.getAttribute('data-js-tag-frequency-data')) ?? aggregations;
+    const data =
+        JSON.parse(chartContainer.getAttribute("data-js-tag-frequency-data")) ??
+        aggregations;
 
     /**
      * Maximum number of entries to display in chart
@@ -21,7 +22,8 @@ export const processAggregationData = (chartContainer) => {
      *
      * Helper function to get entries by type
      */
-    const getEntriesByType = (type) => data.find((aggregation) => aggregation.name === type)?.entries;
+    const getEntriesByType = (type) =>
+        data.find((aggregation) => aggregation.name === type)?.entries;
 
     /**
      * mapDataByType
@@ -42,21 +44,26 @@ export const processAggregationData = (chartContainer) => {
         });
 
         return mappedData ?? [];
-    }
+    };
 
-    const locationEntries = getEntriesByType('enrichmentLoc');
-    const mappedLocations = mapDataByType(locationEntries, 'LOC');
+    const locationEntries = getEntriesByType("enrichmentLoc");
+    const mappedLocations = mapDataByType(locationEntries, "LOC");
 
-    const personEntries = getEntriesByType('enrichmentPer');
-    const mappedPersons = mapDataByType(personEntries, 'PER');
+    const personEntries = getEntriesByType("enrichmentPer");
+    const mappedPersons = mapDataByType(personEntries, "PER");
 
-    const orgEntries = getEntriesByType('enrichmentOrg');
-    const mappedOrgs = mapDataByType(orgEntries, 'ORG');
+    const orgEntries = getEntriesByType("enrichmentOrg");
+    const mappedOrgs = mapDataByType(orgEntries, "ORG");
 
-    const miscEntries = getEntriesByType('enrichmentMisc');
-    const mappedMisc = mapDataByType(miscEntries, 'MISC');
+    const miscEntries = getEntriesByType("enrichmentMisc");
+    const mappedMisc = mapDataByType(miscEntries, "MISC");
 
-    const allEntries = [...mappedLocations, ...mappedPersons, ...mappedOrgs, ...mappedMisc];
+    const allEntries = [
+        ...mappedLocations,
+        ...mappedPersons,
+        ...mappedOrgs,
+        ...mappedMisc,
+    ];
 
     const entriesSortedByCount = allEntries.sort((a, b) => b.count - a.count);
 
@@ -73,9 +80,10 @@ export const processAggregationData = (chartContainer) => {
 
     const dataTypeParam = urlParams.get("chart_data_type");
 
-    const categorisedEntries = dataByQueryParam[dataTypeParam] ?? dataByQueryParam.default;
+    const categorisedEntries =
+        dataByQueryParam[dataTypeParam] ?? dataByQueryParam.default;
 
     const topEntries = categorisedEntries.slice(0, MAX_ENTRIES);
 
     return topEntries;
-}
+};

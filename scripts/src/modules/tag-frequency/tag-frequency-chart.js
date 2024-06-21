@@ -1,10 +1,7 @@
 import * as d3 from "d3";
 import debounce from "../../modules/debounce";
 
-
-import { processAggregationData } from './process-aggregation-data.js';
-
-
+import { processAggregationData } from "./process-aggregation-data.js";
 
 /**
  * Shared variables between chart rendering and state
@@ -17,9 +14,9 @@ const selectedIconAngleRadians = (selectedIconAngleDegrees * Math.PI) / 180;
 /**
  * Manage Chart State
  */
-const form = document.querySelector('[data-js-form-tag-frequency]');
-const formApplyButton = document.querySelector('[data-js-tag-frequency-apply]');
-const formClearButton = document.querySelector('[data-js-tag-frequency-clear]');
+const form = document.querySelector("[data-js-form-tag-frequency]");
+const formApplyButton = document.querySelector("[data-js-tag-frequency-apply]");
+const formClearButton = document.querySelector("[data-js-tag-frequency-clear]");
 
 const SELECTED_PARAM_NAME = "chart_selected";
 
@@ -31,22 +28,29 @@ const hasInitialSelection = initialSelection.length > 0;
 let currentSelection = initialSelection;
 
 const setCurrentSelection = () => {
-    const formInputs = form.querySelectorAll(`input[name=${SELECTED_PARAM_NAME}]`);
+    const formInputs = form.querySelectorAll(
+        `input[name=${SELECTED_PARAM_NAME}]`,
+    );
 
-    currentSelection = [...formInputs].map((input) => input.getAttribute('value'));
+    currentSelection = [...formInputs].map((input) =>
+        input.getAttribute("value"),
+    );
 
     return currentSelection;
-}
+};
 
 const clearFormAndSumbit = () => {
-    form.querySelectorAll(`input[name=${SELECTED_PARAM_NAME}]`).forEach((input) => {
-        input.remove();
-    });
+    form.querySelectorAll(`input[name=${SELECTED_PARAM_NAME}]`).forEach(
+        (input) => {
+            input.remove();
+        },
+    );
 
     form.submit();
-}
+};
 
-const formMatchesInitialSelection = () => JSON.stringify(initialSelection) === JSON.stringify(currentSelection);
+const formMatchesInitialSelection = () =>
+    JSON.stringify(initialSelection) === JSON.stringify(currentSelection);
 
 /**
  * Toggle the apply button based on the current selection
@@ -54,20 +58,20 @@ const formMatchesInitialSelection = () => JSON.stringify(initialSelection) === J
 const toggleApplyButton = () => {
     setCurrentSelection();
 
-    if(formMatchesInitialSelection()) {
-        formApplyButton.setAttribute('hidden', 'hidden');
+    if (formMatchesInitialSelection()) {
+        formApplyButton.setAttribute("hidden", "hidden");
     } else {
-        formApplyButton.removeAttribute('hidden');
+        formApplyButton.removeAttribute("hidden");
     }
-}
+};
 
 const populateForm = () => {
     if (!form) return;
 
     urlParams.forEach((value, key) => {
-        const element = document.createElement('input');
+        const element = document.createElement("input");
 
-        element.type = 'hidden';
+        element.type = "hidden";
 
         element.name = key;
         element.value = value;
@@ -77,13 +81,15 @@ const populateForm = () => {
 };
 
 const addInput = (term, type) => {
-    const newInput = document.createElement('input');
+    const newInput = document.createElement("input");
 
-    const formInputs = form.querySelectorAll(`input[name=${SELECTED_PARAM_NAME}]`);
+    const formInputs = form.querySelectorAll(
+        `input[name=${SELECTED_PARAM_NAME}]`,
+    );
 
     const value = `${type}:${term}`;
 
-    newInput.type = 'hidden';
+    newInput.type = "hidden";
 
     newInput.name = SELECTED_PARAM_NAME;
     newInput.value = value;
@@ -102,7 +108,7 @@ const addInput = (term, type) => {
     if (!inserted) {
         form.appendChild(newInput);
     }
-}
+};
 
 const removeInput = (term, type) => {
     const element = form.querySelector(`input[value="${type}:${term}"]`);
@@ -110,7 +116,7 @@ const removeInput = (term, type) => {
     if (element) {
         element.remove();
     }
-}
+};
 
 /**
  * @param {String} term
@@ -118,7 +124,9 @@ const removeInput = (term, type) => {
  * @returns {Boolean}
  */
 const isSelectedItem = (term, type) => {
-    const formInputs = form.querySelectorAll(`input[name=${SELECTED_PARAM_NAME}]`);
+    const formInputs = form.querySelectorAll(
+        `input[name=${SELECTED_PARAM_NAME}]`,
+    );
 
     const matchingInput = [...formInputs].find((input) => {
         return input.value === `${type}:${term}`;
@@ -131,21 +139,19 @@ function toggleSelectedItem(selectedElement, term, type) {
     if (isSelectedItem(term, type)) {
         removeInput(term, type);
 
-        d3.select(selectedElement).select('circle')
-        .attr("stroke", "#8A8A8A",
-        )
-        .attr("stroke-width", 1);
+        d3.select(selectedElement)
+            .select("circle")
+            .attr("stroke", "#8A8A8A")
+            .attr("stroke-width", 1);
 
-        d3.select(selectedElement).select('use').remove();
-
+        d3.select(selectedElement).select("use").remove();
     } else {
         addInput(term, type);
 
-        d3.select(selectedElement).select('circle')
-        .attr("stroke", "#1E1E1E",
-        )
-        .attr("stroke-width", 5);
-
+        d3.select(selectedElement)
+            .select("circle")
+            .attr("stroke", "#1E1E1E")
+            .attr("stroke-width", 5);
 
         d3.select(selectedElement)
             .append("use")
@@ -160,7 +166,6 @@ function toggleSelectedItem(selectedElement, term, type) {
                 "y",
                 (d) => -d.radius * Math.cos(selectedIconAngleRadians) - 14,
             );
-
     }
 
     toggleApplyButton();
@@ -420,12 +425,10 @@ const chartForceSimulation = (data, options = {}) => {
 
     runForceSimulation(dataWithRadius, containerWidth, height);
 
-
-
-    d3.selectAll(node).on('click', (event) => {
-        const selectedElement = event.target.closest('.circle-group');
-        const term = d3.select(selectedElement).attr('data-term');
-        const type = d3.select(selectedElement).attr('data-type');
+    d3.selectAll(node).on("click", (event) => {
+        const selectedElement = event.target.closest(".circle-group");
+        const term = d3.select(selectedElement).attr("data-term");
+        const type = d3.select(selectedElement).attr("data-type");
 
         toggleSelectedItem(selectedElement, term, type);
     });
@@ -489,8 +492,8 @@ const init = () => {
 
     populateForm();
 
-    if(hasInitialSelection) {
-        formClearButton.removeAttribute('hidden');
+    if (hasInitialSelection) {
+        formClearButton.removeAttribute("hidden");
     }
 
     const chartCustom = chartForceSimulation(chartData, {
@@ -506,7 +509,7 @@ const init = () => {
 
     containerResizeObserver.observe(containerForceSimulation);
 
-    formClearButton.addEventListener('click', clearFormAndSumbit);
+    formClearButton.addEventListener("click", clearFormAndSumbit);
 };
 
 init();
