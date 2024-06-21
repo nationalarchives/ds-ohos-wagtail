@@ -19,6 +19,7 @@ from ..ciim.client import Aggregation, Sort
 from ..ciim.constants import (
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
+    CHILD_AGGS_ALIAS_PREFIX,
     CLOSURE_CLOSED_STATUS,
     COLLECTION_ATTR_FOR_ALL_BUCKETS,
     NESTED_CHECKBOX_VALUES_AGGS_NAMES,
@@ -663,7 +664,7 @@ class BaseFilteredSearchView(BaseSearchView):
                     PARENT_AGGS_ALIAS_PREFIX + item
                     for item in NESTED_CHECKBOX_VALUES_AGGS_NAMES.values()
                 ] + [
-                    "child-" + item
+                    CHILD_AGGS_ALIAS_PREFIX + item
                     for item in NESTED_CHECKBOX_VALUES_AGGS_NAMES.values()
                 ]
 
@@ -789,6 +790,9 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         self.set_session_info()
         module = importlib.import_module("etna.search.common")
+        q_search_param = ""
+        if q_search_term := self.form.cleaned_data.get("q"):
+            q_search_param = "&q=" + q_search_term
 
         kwargs.update(
             default_geo_data={
@@ -796,10 +800,11 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
                 "lon": settings.FEATURE_GEO_LON,
                 "zoom": settings.FEATURE_GEO_ZOOM,
             },
-            list_view_url=module.VIS_URLS.get(VisViews.LIST.value),
-            map_view_url=module.VIS_URLS.get(VisViews.MAP.value),
-            timeline_view_url=module.VIS_URLS.get(VisViews.TIMELINE.value),
-            tag_view_url=module.VIS_URLS.get(VisViews.TAG.value),
+            list_view_url=module.VIS_URLS.get(VisViews.LIST.value) + q_search_param,
+            map_view_url=module.VIS_URLS.get(VisViews.MAP.value) + q_search_param,
+            timeline_view_url=module.VIS_URLS.get(VisViews.TIMELINE.value)
+            + q_search_param,
+            tag_view_url=module.VIS_URLS.get(VisViews.TAG.value) + q_search_param,
         )
         return super().get_context_data(**kwargs)
 
