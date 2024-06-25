@@ -826,9 +826,12 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
                     for item in data:
                         add_url_params += f"&{urlencode({field:item})}"
                 elif isinstance(data, date):
-                    add_url_params += f"&{urlencode({f"{field}_0":str(data.day).zfill(2), 
-                                                    f"{field}_1":str(data.month).zfill(2), 
-                                                    f"{field}_2":str(data.year).zfill(4)})}"
+                    date_params = {
+                        f"{field}_0": str(data.day).zfill(2),
+                        f"{field}_1": str(data.month).zfill(2),
+                        f"{field}_2": str(data.year).zfill(4),
+                    }
+                    add_url_params += f"&{urlencode(date_params)}"
 
         kwargs.update(
             list_view_url=module.VIS_URLS.get(VisViews.LIST.value) + add_url_params,
