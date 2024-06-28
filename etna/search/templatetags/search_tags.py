@@ -8,7 +8,13 @@ from django.forms import Form
 from django.utils.crypto import get_random_string
 from django.utils.safestring import mark_safe
 
-from etna.ciim.constants import NESTED_PREFIX_AGGS_PAIRS, PARENT_AGGS, SearchTabs
+from etna.ciim.constants import (
+    PARENT_PREFIX_AGGS,
+    PREFIX_AGGS_PARENT_CHILD_KV,
+    SEE_MORE_PREFIX,
+    SEPERATOR,
+    SearchTabs,
+)
 
 register = template.Library()
 logger = logging.getLogger(__name__)
@@ -58,13 +64,13 @@ def query_string_exclude(
         items = query_dict.getlist(key, [])
 
         value = str(value)
-        if value.startswith(tuple(PARENT_AGGS)):
+        if value.startswith(tuple(PARENT_PREFIX_AGGS)):
             # remove parent and child aggs for that parent
             aggs = value.split(":")[0]
             filters = []
             for filter in items:
                 if filter != value and not filter.startswith(
-                    NESTED_PREFIX_AGGS_PAIRS.get(aggs)
+                    PREFIX_AGGS_PARENT_CHILD_KV.get(aggs)
                 ):
                     filters.append(filter)
             query_dict.setlist(key, filters)
@@ -144,3 +150,19 @@ def render_sort_input(form, id_suffix) -> str:
             attrs={"id": f"id_{bound_field.name}_{id_suffix}"}
         )
     return mark_safe(html)
+
+
+@register.filter
+def is_see_more(value) -> bool:
+    """returns True if the checkbox option value is a see more"""
+    if value.startswith(f"{SEE_MORE_PREFIX}{SEPERATOR}"):
+        return True
+    return False
+
+
+@register.simple_tag()
+def see_more_url(value) -> str:
+    """returns the url string from checkbox option value"""
+    values = value.split(SEPERATOR)
+    url = values[2]  # url at index 2
+    return url

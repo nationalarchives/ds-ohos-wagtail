@@ -714,13 +714,16 @@ CLOSURE_CLOSED_STATUS = [
 ]
 
 
-# Checkbox attr
+# form-checkbox-attr, ciim-aggs-name, ciim-filter-alias-name
 COLLECTION_ATTR_FOR_ALL_BUCKETS = "collection"
-# GROUP_CHECKBOX_NAME_MAP = {BucketKeys.COMMUNITY:{COLLECTION_ATTR_FOR_ALL_BUCKETS: "community"}}
-# maps name of form checkbox attr with api aggregations name {<form attr>:<api aggregations name>}
+
+# re CIIM param: aggs=<aggs-name>
+# map {<aggs-name>:<ohos-aggs-name}
 OHOS_CHECKBOX_AGGS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "community"}
-# maps name of form checkbox attr which is also filter attr with value to replace
-OHOS_FILTER_AGGS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "collectionOhos"}
+
+# re CIIM param: filter=<alias-name>:<value>
+# map: {<filter-alias-name>:<ohos-filter-alias-name>}
+OHOS_FILTER_ALIAS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "collectionOhos"}
 
 """
 CONFIG:
@@ -729,29 +732,41 @@ Nesting of one level i.e. "parent" -> "child/children", others are "orphan"
 collections are checkboxes on the form.
 Nested collections - collections within a collection
 
-{checkbox value:aggregations}
-checkbox value - name of the collection
-aggregations - name of the aggregations configured in CIMM for that "value"
+For the nested filter: <collection-name/ciim-value>:(<ciim-aggs-name>,<long-filter-ciim-aggs-name>)
 """
-NESTED_CHECKBOX_VALUES_AGGS_NAMES = {
-    "Surrey History Centre": "collectionSurrey",
-    "Morrab Photo Archive": "collectionMorrab",
+NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP = {
+    "Surrey History Centre": ("collectionSurrey", "collectionSurreyAll"),
+    "Morrab Photo Archive": ("collectionMorrab", "collectionMorrabAll"),
 }
 
-PARENT_AGGS_ALIAS_PREFIX = "parent-"
-CHILD_AGGS_ALIAS_PREFIX = "child-"
+PARENT_PREFIX = "parent-"
+CHILD_PREFIX = "child-"
+LONG_PREFIX = "long-"
 NESTED_CHILDREN_KEY = "children"
 AGGS_LOOKUP_KEY = "key"
 
-PARENT_AGGS = [
-    PARENT_AGGS_ALIAS_PREFIX + item
-    for item in NESTED_CHECKBOX_VALUES_AGGS_NAMES.values()
+PARENT_PREFIX_AGGS = [
+    PARENT_PREFIX + aggs[0] for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
 ]
 
-NESTED_PREFIX_AGGS_PAIRS = {}
-for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES.values():
-    NESTED_PREFIX_AGGS_PAIRS.update(
-        {PARENT_AGGS_ALIAS_PREFIX + aggs: CHILD_AGGS_ALIAS_PREFIX + aggs}
+PREFIX_AGGS_PARENT_CHILD_KV = {}
+for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values():
+    PREFIX_AGGS_PARENT_CHILD_KV.update(
+        {PARENT_PREFIX + aggs[0]: CHILD_PREFIX + aggs[0]}
     )
 
-NESTED_SEE_MORE_LABEL = "See more collections"
+SEE_MORE_LABEL = "See more collections"
+SEE_MORE_PREFIX = "SEE-MORE"
+SEPERATOR = "::SEP::"  # value seperator
+SEE_MORE_VALUE_FMT = (
+    f"{SEE_MORE_PREFIX}{SEPERATOR}{SEE_MORE_LABEL}{SEPERATOR}" + "{url}"
+)
+
+LONG_FILTER_PREFIX_AGGS_WITH_VALUE = [
+    f"{LONG_PREFIX+aggs[1]}:{value}"
+    for value, aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.items()
+]
+
+LONG_FILTER_PREFIX_AGGS = [
+    LONG_PREFIX + aggs[1] for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+]

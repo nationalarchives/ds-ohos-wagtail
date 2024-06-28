@@ -11,9 +11,12 @@ from ..ciim.constants import (  # TODO: Keep, not in scope for Ohos-Etna at this
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
     COLLECTION_CHOICES,
+    LONG_FILTER_PREFIX_AGGS_WITH_VALUE,
     NESTED_CHILDREN_KEY,
+    SEPERATOR,
     BucketKeys,
 )
+from .templatetags.search_tags import is_see_more
 
 
 class SearchFilterCheckboxList(forms.widgets.CheckboxSelectMultiple):
@@ -52,7 +55,14 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
             return f"{self.configured_choice_labels[data['value']]} ({count})"
         except KeyError:
             # Fall back to using the key value (which is the same in most cases)
-            return f"{data['value']} ({count})"
+
+            value = data["value"]
+            label = f"{value} ({count})"
+
+            if is_see_more(value):
+                # prepare see more label with count
+                label = value.split(SEPERATOR)[1] + f" ({count})"
+            return label
 
     def update_choices(
         self,
@@ -128,6 +138,11 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
                 choice_vals_with_hits.add(choice_val)
 
             choices.append(choice)
+
+        # remove long filters params
+        for index, value in enumerate(selected_values):
+            if value in LONG_FILTER_PREFIX_AGGS_WITH_VALUE:
+                selected_values.pop(index)
 
         for missing_value in [
             v for v in selected_values if v not in choice_vals_with_hits
