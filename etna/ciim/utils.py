@@ -12,7 +12,7 @@ from pyquery import PyQuery as pq
 
 from etna.ciim.constants import (
     CATALOGUE_BUCKETS,
-    LONG_FILTER_PREFIX_AGGS,
+    LONG_FILTER_PARAM_VALUES,
     OHOS_FILTER_ALIAS_NAME_MAP,
     PREFIX_AGGS_PARENT_CHILD_KV,
     BucketKeys,
@@ -370,6 +370,7 @@ def prepare_ohos_params(
     vis_view: Optional[str] = None,
     aggregations: Optional[List] = None,
     filter_aggregations: Optional[List] = None,
+    long_filter: Optional[bool] = False,
 ) -> Tuple:
     """
     prepares params for ciim api
@@ -381,6 +382,9 @@ def prepare_ohos_params(
     Ex:
     filters:
     <alias-name>[:<prefix-aggs-name>]:<value>
+
+    <filter-alias>[:<prefix-aggs>]:<value>
+
     "collection:<value>" -> "collectionOhos:<value>"
     "collection:parent-collectionSurrey:<value>" -> "collectionOhos:<value>"
     "collection:child-collectionSurrey:<value>" -> "collectionOhos:<value>"
@@ -412,24 +416,31 @@ def prepare_ohos_params(
 
         for index, filter in enumerate(filter_aggregations):
             filter_alias = filter.split(":")[0]
+
             if filter_alias in OHOS_FILTER_ALIAS_NAME_MAP.keys():
                 # rename filter alias
                 new_filter_alias = OHOS_FILTER_ALIAS_NAME_MAP.get(filter_alias)
                 new_filter = new_filter_alias + filter.lstrip(filter_alias)
                 try:
-                    # prefixed aggs
-                    aggs_name = filter.split(":")[1].split("-")[1]
-                    aggs_to_add.add(aggs_name)
-                    prefix_aggs_name = filter.split(":")[1]
-                    if prefix_aggs_name in LONG_FILTER_PREFIX_AGGS:
-                        # exclude long filters params after aggs name extraction
-                        pass
+                    # aggs from prefix aggs
+                    aggs = filter.split(":")[1].split("-")[1]
+
+                    # prefix_aggs = filter.split(":")[1]
+                    param_value = filter.split(":", 1)[1]
+
+                    if long_filter:
+                        if param_value in LONG_FILTER_PARAM_VALUES:
+                            # exclude long filters params after aggs name extraction
+                            aggs_to_add.add(aggs)
+
                     else:
-                        selected_nested_prefix_aggs.add(prefix_aggs_name)
+                        aggs_to_add.add(aggs)
+                        selected_nested_prefix_aggs.add(param_value.split(":")[0])
                         new_filter_aggregations.append(new_filter)
                 except IndexError:
                     # not prefixed aggs
-                    new_filter_aggregations.append(new_filter)
+                    if not long_filter:
+                        new_filter_aggregations.append(new_filter)
             else:
                 new_filter_aggregations.append(filter)
 
@@ -444,7 +455,7 @@ def prepare_ohos_params(
                     if parent in item:
                         new_filter_aggregations.pop(index)
 
-            # remove prefix from aggs
+            # remove prefix aggs
             for index, agg in enumerate(new_filter_aggregations):
                 new_filter_aggregations[index] = agg.replace(parent + ":", "").replace(
                     child + ":", ""

@@ -22,14 +22,14 @@ from ..ciim.client import Aggregation, Sort
 from ..ciim.constants import (
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
-    CHILD_PREFIX,
+    CHILD_AGGS_PREFIX,
     CLOSURE_CLOSED_STATUS,
     COLLECTION_ATTR_FOR_ALL_BUCKETS,
-    LONG_PREFIX,
+    LONG_AGGS_PREFIX,
     NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP,
     NESTED_CHILDREN_KEY,
     OHOS_CHECKBOX_AGGS_NAME_MAP,
-    PARENT_PREFIX,
+    PARENT_AGGS_PREFIX,
     PREFIX_AGGS_PARENT_CHILD_KV,
     SEE_MORE_VALUE_FMT,
     Bucket,
@@ -505,6 +505,57 @@ class BaseFilteredSearchView(BaseSearchView):
         filter_aggregations.append(f"group:{form.cleaned_data['group']}")
         return filter_aggregations
 
+    def _prepare_see_more_choice(self, aggs_rec, children, collection_name) -> None:
+        """
+        prepares see more to be extracted as a choice
+        """
+        see_more_count = aggs_rec.get("other")  # attribute that determines see more
+        if see_more_count > 0:
+            long_filter_aggs = NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.get(
+                collection_name
+            )[1]
+
+            data = f"{LONG_AGGS_PREFIX}{long_filter_aggs}:{collection_name}"
+            add_url_params = f"?{urlencode({COLLECTION_ATTR_FOR_ALL_BUCKETS:data})}"
+            _FIELDS_TO_ADD = (
+                "q",
+                "sort",
+                "collection",
+                "covering_date_from",
+                "covering_date_to",
+                "vis_view",
+                "group",
+            )
+
+            for field, data in self.form.cleaned_data.items():
+                if field in _FIELDS_TO_ADD and data:
+                    if isinstance(data, str):
+                        add_url_params += f"&{urlencode({field:data})}"
+                    elif isinstance(data, list):
+                        for filter in data:
+                            add_url_params += f"&{urlencode({field:filter})}"
+                    elif isinstance(data, date):
+                        date_params = {
+                            f"{field}_0": str(data.day).zfill(2),
+                            f"{field}_1": str(data.month).zfill(2),
+                            f"{field}_2": str(data.year).zfill(4),
+                        }
+                        add_url_params += f"&{urlencode(date_params)}"
+            url = reverse(
+                "search-catalogue-long-filter-chooser",
+                kwargs={"field_name": COLLECTION_ATTR_FOR_ALL_BUCKETS},
+            )
+            url += add_url_params
+            see_more_value = SEE_MORE_VALUE_FMT.format(url=url)
+
+            # add see more data to be extracted as choice
+            children.append(
+                {
+                    "value": see_more_value,
+                    "doc_count": see_more_count,
+                }
+            )
+
     def _transform_api_result_aggregations_for_nested_checkbox_collection(
         self, api_result: Any
     ):
@@ -558,7 +609,7 @@ class BaseFilteredSearchView(BaseSearchView):
                                     collection_name
                                 )[0]
                             )
-                            parent_aggs_name = PARENT_PREFIX + nested_aggs_name
+                            parent_aggs_name = PARENT_AGGS_PREFIX + nested_aggs_name
                             # add key for parent collections
                             api_result.aggregations[index1]["entries"][index2].update(
                                 key=parent_aggs_name
@@ -577,77 +628,9 @@ class BaseFilteredSearchView(BaseSearchView):
                                             {AGGS_LOOKUP_KEY: child_aggs_name}
                                         )
 
-                                    # derive see more
-                                    see_more_count = aggs_rec.get("other")
-                                    if see_more_count > 0:
-                                        long_filter_aggs = (
-                                            NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.get(
-                                                collection_name
-                                            )[1]
-                                        )
-                                        data = f"{LONG_PREFIX}{long_filter_aggs}:{collection_name}"
-                                        add_url_params = f"?{urlencode({COLLECTION_ATTR_FOR_ALL_BUCKETS:data})}"
-                                        _FIELDS_TO_ADD = (
-                                            "q",
-                                            "sort",
-                                            "covering_date_from",
-                                            "covering_date_to",
-                                        )
-                                        for (
-                                            field,
-                                            data,
-                                        ) in self.form.cleaned_data.items():
-                                            if field in _FIELDS_TO_ADD and data:
-                                                if isinstance(data, str):
-                                                    add_url_params += (
-                                                        f"&{urlencode({field:data})}"
-                                                    )
-                                                elif isinstance(data, list):
-                                                    for filter in data:
-                                                        filter_aggs_name = filter.split(
-                                                            ":"
-                                                        )[0]
-                                                        if (
-                                                            filter_aggs_name
-                                                            in PREFIX_AGGS_PARENT_CHILD_KV.keys()
-                                                            or filter_aggs_name
-                                                            in PREFIX_AGGS_PARENT_CHILD_KV.values()
-                                                        ):
-                                                            pass
-                                                        else:
-                                                            add_url_params += f"&{urlencode({field:filter})}"
-                                                elif isinstance(data, date):
-                                                    date_params = {
-                                                        f"{field}_0": str(
-                                                            data.day
-                                                        ).zfill(2),
-                                                        f"{field}_1": str(
-                                                            data.month
-                                                        ).zfill(2),
-                                                        f"{field}_2": str(
-                                                            data.year
-                                                        ).zfill(4),
-                                                    }
-                                                    add_url_params += (
-                                                        f"&{urlencode(date_params)}"
-                                                    )
-                                        url = reverse(
-                                            "search-catalogue-long-filter-chooser",
-                                            kwargs={
-                                                "field_name": COLLECTION_ATTR_FOR_ALL_BUCKETS
-                                            },
-                                        )
-                                        url += add_url_params
-                                        see_more_value = SEE_MORE_VALUE_FMT.format(
-                                            url=url
-                                        )
-                                        # add see more
-                                        children.append(
-                                            {
-                                                "value": see_more_value,
-                                                "doc_count": see_more_count,
-                                            }
-                                        )
+                                    self._prepare_see_more_choice(
+                                        aggs_rec, children, collection_name
+                                    )
 
                             # add children KV
                             if children:
@@ -736,11 +719,11 @@ class BaseFilteredSearchView(BaseSearchView):
             if form.cleaned_data.get("group") == "community":
                 # trims the filter labels for nested collections
                 prefix_filter_aggs = [
-                    PARENT_PREFIX + item[0]
-                    for item in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+                    PARENT_AGGS_PREFIX + aggs[0]
+                    for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
                 ] + [
-                    CHILD_PREFIX + item[0]
-                    for item in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+                    CHILD_AGGS_PREFIX + aggs[0]
+                    for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
                 ]
 
                 label_value_list = []
@@ -835,6 +818,11 @@ class BaseLongFilterOptionsView(BaseFilteredSearchView):
             return self.form_valid(form)
         return self.form_invalid(form)
 
+    def get_api_kwargs(self, form: Form) -> Dict[str, Any]:
+        kwargs = super().get_api_kwargs(form)
+        kwargs.update(long_filter=True)
+        return kwargs
+
     def get_api_aggregations(self) -> List[str]:
         """
         Overrides get_api_aggregations() to only request
@@ -858,8 +846,8 @@ class BaseLongFilterOptionsView(BaseFilteredSearchView):
         remove_aggregations = []
         long_filter_aggs_map = dict(
             [
-                (item[1], CHILD_PREFIX + item[0])
-                for item in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+                (aggs[1], CHILD_AGGS_PREFIX + aggs[0])
+                for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
             ]
         )
         for index1, aggs_rec in enumerate(api_result.aggregations):
@@ -876,7 +864,6 @@ class BaseLongFilterOptionsView(BaseFilteredSearchView):
 
                 # add child key for long filter
                 for index2, _ in enumerate(aggs_rec.get("entries", [])):
-                    # add key for parent collections
                     api_result.aggregations[index1]["entries"][index2].update(key=key)
             else:
                 remove_aggregations.append(aggs_name)
@@ -888,13 +875,15 @@ class BaseLongFilterOptionsView(BaseFilteredSearchView):
         ]
         api_result.aggregations = new_aggregations
 
+        selected_values = ()
         for value in api_result.aggregations:
             key = value.get("name")
             field_name = camelcase_to_underscore(key)
             if field_name in self.dynamic_choice_fields:
                 choice_data = value.get("entries", ())
                 form.fields[field_name].update_choices(
-                    choice_data, selected_values=form.cleaned_data.get(field_name, ())
+                    choice_data,
+                    selected_values=selected_values,
                 )
                 form[field_name].more_filter_options_available = bool(
                     value.get("other", 0)
@@ -969,7 +958,6 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
         self.set_session_info()
 
         if self.current_bucket_key == BucketKeys.COMMUNITY:
-
             add_kwargs = self._get_ohos_kwargs(**kwargs)
             kwargs.update(add_kwargs)
 

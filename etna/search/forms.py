@@ -11,7 +11,7 @@ from ..ciim.constants import (  # TODO: Keep, not in scope for Ohos-Etna at this
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
     COLLECTION_CHOICES,
-    LONG_FILTER_PREFIX_AGGS_WITH_VALUE,
+    LONG_FILTER_PARAM_VALUES,
     NESTED_CHILDREN_KEY,
     SEPERATOR,
     BucketKeys,
@@ -141,7 +141,7 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
 
         # remove long filters params
         for index, value in enumerate(selected_values):
-            if value in LONG_FILTER_PREFIX_AGGS_WITH_VALUE:
+            if value in LONG_FILTER_PARAM_VALUES:
                 selected_values.pop(index)
 
         for missing_value in [

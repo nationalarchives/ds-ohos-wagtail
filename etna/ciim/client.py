@@ -233,6 +233,7 @@ class ClientAPI:
         offset: Optional[int] = None,
         size: Optional[int] = None,
         vis_view: Optional[str] = None,
+        long_filter: Optional[bool] = False,
     ) -> ResultList:
         """Make request and return response for Client API's /search endpoint.
         Search all metadata by keyword or web_reference. Results can be
@@ -268,7 +269,7 @@ class ClientAPI:
 
         if group == BucketKeys.COMMUNITY:
             aggregations, filter_aggregations = prepare_ohos_params(
-                vis_view, aggregations, filter_aggregations
+                vis_view, aggregations, filter_aggregations, long_filter
             )
 
         params = {

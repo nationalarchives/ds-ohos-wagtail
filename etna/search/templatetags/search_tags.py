@@ -9,7 +9,9 @@ from django.utils.crypto import get_random_string
 from django.utils.safestring import mark_safe
 
 from etna.ciim.constants import (
-    PARENT_PREFIX_AGGS,
+    COLLECTION_ATTR_FOR_ALL_BUCKETS,
+    LONG_FILTER_PARAM_VALUES,
+    PARENT_PARAM_VALUES,
     PREFIX_AGGS_PARENT_CHILD_KV,
     SEE_MORE_PREFIX,
     SEPERATOR,
@@ -64,7 +66,8 @@ def query_string_exclude(
         items = query_dict.getlist(key, [])
 
         value = str(value)
-        if value.startswith(tuple(PARENT_PREFIX_AGGS)):
+
+        if value in PARENT_PARAM_VALUES:
             # remove parent and child aggs for that parent
             aggs = value.split(":")[0]
             filters = []
@@ -81,7 +84,12 @@ def query_string_exclude(
 
 
 @register.simple_tag
-def render_fields_as_hidden(form: Form, exclude: str = "", include: str = "") -> str:
+def render_fields_as_hidden(
+    form: Form,
+    exclude: str = "",
+    include: str = "",
+    exclude_nested_long_filter: bool = False,
+) -> str:
     """
     Render the supplied `form`'s fields as hidden inputs. Used within a <form> tag
     to preserve state between requests when the same Django form is rendered in
@@ -90,6 +98,7 @@ def render_fields_as_hidden(form: Form, exclude: str = "", include: str = "") ->
     `form`: The Django form to render fields for.
     `exclude`: A space-separated string of field names to NOT be rendered as hidden.
     `include`: A space-separated string of field names to be rendered as hidden.
+    `exclude_nested_long_filter`: to exclude nested long filter value from the field
     """
     include_names = include.split()
     exclude_names = exclude.split()
@@ -106,11 +115,19 @@ def render_fields_as_hidden(form: Form, exclude: str = "", include: str = "") ->
     # Utilize `BoundField.as_hidden()` to generate the return html
     html = ""
     for field in boundfields:
-        html += field.as_hidden(
-            # Add a random string to the field ID to avoid collisions with
-            # the editable versions of fields on the same page
-            attrs={"id": f"id_{field.name}_{get_random_string(3)}"}
-        )
+        if exclude_nested_long_filter and field.name == COLLECTION_ATTR_FOR_ALL_BUCKETS:
+            hidden_fmt = """<input type="hidden" name="{field}" value="{value}" id="id_collection_{suffix}">"""
+            for value in field.data:
+                if value not in LONG_FILTER_PARAM_VALUES:
+                    html += hidden_fmt.format(
+                        field=field.name, value=value, suffix=get_random_string(3)
+                    )
+        else:
+            html += field.as_hidden(
+                # Add a random string to the field ID to avoid collisions with
+                # the editable versions of fields on the same page
+                attrs={"id": f"id_{field.name}_{get_random_string(3)}"}
+            )
     return mark_safe(html)
 
 

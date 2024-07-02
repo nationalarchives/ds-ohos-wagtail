@@ -39,7 +39,7 @@
             </div>
 
             <div class="tna-column tna-column--full">
-                {% render_fields_as_hidden form exclude=field_name %}
+                {% render_fields_as_hidden form exclude_nested_long_filter=True %}
 
                 <div class="long-filters__submit-section">
                     <input type="submit" value="Apply filters" class="search-filters__submit">

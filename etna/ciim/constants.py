@@ -739,20 +739,28 @@ NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP = {
     "Morrab Photo Archive": ("collectionMorrab", "collectionMorrabAll"),
 }
 
-PARENT_PREFIX = "parent-"
-CHILD_PREFIX = "child-"
-LONG_PREFIX = "long-"
+# prefix ends with "-"
+PARENT_AGGS_PREFIX = "parent-"
+CHILD_AGGS_PREFIX = "child-"
+LONG_AGGS_PREFIX = "long-"
+
 NESTED_CHILDREN_KEY = "children"
 AGGS_LOOKUP_KEY = "key"
 
-PARENT_PREFIX_AGGS = [
-    PARENT_PREFIX + aggs[0] for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+PARENT_PARAM_VALUES = [
+    f"{PARENT_AGGS_PREFIX}{aggs[0]}:{value}"
+    for value, aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.items()
+]
+
+LONG_FILTER_PARAM_VALUES = [
+    f"{LONG_AGGS_PREFIX+aggs[1]}:{value}"
+    for value, aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.items()
 ]
 
 PREFIX_AGGS_PARENT_CHILD_KV = {}
 for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values():
     PREFIX_AGGS_PARENT_CHILD_KV.update(
-        {PARENT_PREFIX + aggs[0]: CHILD_PREFIX + aggs[0]}
+        {PARENT_AGGS_PREFIX + aggs[0]: CHILD_AGGS_PREFIX + aggs[0]}
     )
 
 SEE_MORE_LABEL = "See more collections"
@@ -761,12 +769,3 @@ SEPERATOR = "::SEP::"  # value seperator
 SEE_MORE_VALUE_FMT = (
     f"{SEE_MORE_PREFIX}{SEPERATOR}{SEE_MORE_LABEL}{SEPERATOR}" + "{url}"
 )
-
-LONG_FILTER_PREFIX_AGGS_WITH_VALUE = [
-    f"{LONG_PREFIX+aggs[1]}:{value}"
-    for value, aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.items()
-]
-
-LONG_FILTER_PREFIX_AGGS = [
-    LONG_PREFIX + aggs[1] for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
-]
