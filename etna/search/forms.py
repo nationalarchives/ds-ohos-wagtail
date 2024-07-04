@@ -11,7 +11,6 @@ from ..ciim.constants import (  # TODO: Keep, not in scope for Ohos-Etna at this
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
     COLLECTION_CHOICES,
-    LONG_FILTER_PARAM_VALUES,
     NESTED_CHILDREN_KEY,
     SEPERATOR,
     BucketKeys,
