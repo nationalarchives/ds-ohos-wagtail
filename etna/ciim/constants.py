@@ -732,7 +732,7 @@ Nesting of one level i.e. "parent" -> "child/children", others are "orphan"
 collections are checkboxes on the form.
 Nested collections - collections within a collection
 
-For the nested filter: <collection-name/ciim-value>:(<ciim-aggs-name>,<long-filter-ciim-aggs-name>)
+For the nested filter: <collection-name/ciim-value>:(<ciim-aggs-name:at-pos-1>,<long-filter-ciim-aggs-name:at-pos-2>)
 """
 NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP = {
     "Surrey History Centre": ("collectionSurrey", "collectionSurreyAll"),

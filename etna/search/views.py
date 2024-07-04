@@ -505,19 +505,32 @@ class BaseFilteredSearchView(BaseSearchView):
         filter_aggregations.append(f"group:{form.cleaned_data['group']}")
         return filter_aggregations
 
-    def _prepare_see_more_choice(self, aggs_rec, children, collection_name) -> None:
+    def _prepare_see_more_choice(
+        self, aggs_rec: Dict[str, Any], field_name: str
+    ) -> Dict:
         """
-        prepares see more to be extracted as a choice
+        Prepares see more to be extracted as a choice and then url in template.
+        aggs_rec:
+            aggregations record in the API response ex "collectionMorrab"
+        field_name:
+            name of the checkbox field
+
+        Ex:
+        see_more_value=SEE-MORE::SEP::See more collections::SEP::
+        /search/catalogue/long-filter-chooser/collection/
+        ?collection=long-collectionMorrabAll%3AMorrab+Photo+Archive
+        &collection=parent-collectionMorrab%3AMorrab+Photo+Archive&vis_view=list&group=community
         """
+        choice_data = {}
         see_more_count = aggs_rec.get("other")  # attribute that determines see more
         if see_more_count > 0:
-            long_filter_aggs = NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.get(
-                collection_name
-            )[1]
+            long_filter_aggs = NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.get(field_name)[1]
 
-            data = f"{LONG_AGGS_PREFIX}{long_filter_aggs}:{collection_name}"
+            data = f"{LONG_AGGS_PREFIX}{long_filter_aggs}:{field_name}"
             add_url_params = f"?{urlencode({COLLECTION_ATTR_FOR_ALL_BUCKETS:data})}"
-            _FIELDS_TO_ADD = (
+
+            # add params to handle return to search
+            fields_to_add = (
                 "q",
                 "sort",
                 "collection",
@@ -526,9 +539,11 @@ class BaseFilteredSearchView(BaseSearchView):
                 "vis_view",
                 "group",
             )
+            if self.form.cleaned_data.get("vis_view") == VisViews.TIMELINE:
+                fields_to_add += ("timeline_type", "creation_date_from")
 
             for field, data in self.form.cleaned_data.items():
-                if field in _FIELDS_TO_ADD and data:
+                if field in fields_to_add and data:
                     if isinstance(data, str):
                         add_url_params += f"&{urlencode({field:data})}"
                     elif isinstance(data, list):
@@ -548,13 +563,12 @@ class BaseFilteredSearchView(BaseSearchView):
             url += add_url_params
             see_more_value = SEE_MORE_VALUE_FMT.format(url=url)
 
-            # add see more data to be extracted as choice
-            children.append(
-                {
-                    "value": see_more_value,
-                    "doc_count": see_more_count,
-                }
-            )
+            choice_data = {
+                "value": see_more_value,
+                "doc_count": see_more_count,
+            }
+
+        return choice_data
 
     def _transform_api_result_aggregations_for_nested_checkbox_collection(
         self, api_result: Any
@@ -582,6 +596,7 @@ class BaseFilteredSearchView(BaseSearchView):
                        'children': [{'value': 'GYPSY ROMA TRAVELLER HISTORY MONTH: RECORDED INTERVIEWS',
                                      'doc_count': 12,
                                      'key': 'child-collectionSurrey'},
+                                     ...
                                      {'value': 'See more collections', 'doc_count': 22}]}],
                                      'total': 0,
                                      'other': 0}]
@@ -628,9 +643,10 @@ class BaseFilteredSearchView(BaseSearchView):
                                             {AGGS_LOOKUP_KEY: child_aggs_name}
                                         )
 
-                                    self._prepare_see_more_choice(
-                                        aggs_rec, children, collection_name
-                                    )
+                                    if see_more := self._prepare_see_more_choice(
+                                        aggs_rec, collection_name
+                                    ):
+                                        children.append(see_more)
 
                             # add children KV
                             if children:
@@ -906,7 +922,7 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
         Adds template tags for OHOS visualisation links
         """
         # params to append to the visual links template tags
-        _FIELDS_TO_ADD = (
+        fields_to_add = (
             "q",
             "sort",
             "collection",
@@ -930,7 +946,7 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
         # update visualisation links with search and filters
         add_url_params = ""
         for field, data in self.form.cleaned_data.items():
-            if field in _FIELDS_TO_ADD and data:
+            if field in fields_to_add and data:
                 if isinstance(data, str):
                     add_url_params += f"&{urlencode({field:data})}"
                 elif isinstance(data, list):

@@ -367,10 +367,10 @@ def strip_html(
 
 
 def prepare_ohos_params(
-    vis_view: Optional[str] = None,
-    aggregations: Optional[List] = None,
-    filter_aggregations: Optional[List] = None,
-    long_filter: Optional[bool] = False,
+    vis_view: str = None,
+    aggregations: List = None,
+    filter_aggregations: List = None,
+    long_filter: bool = False,
 ) -> Tuple:
     """
     prepares params for ciim api
@@ -382,8 +382,6 @@ def prepare_ohos_params(
     Ex:
     filters:
     <alias-name>[:<prefix-aggs-name>]:<value>
-
-    <filter-alias>[:<prefix-aggs>]:<value>
 
     "collection:<value>" -> "collectionOhos:<value>"
     "collection:parent-collectionSurrey:<value>" -> "collectionOhos:<value>"
@@ -425,7 +423,6 @@ def prepare_ohos_params(
                     # aggs from prefix aggs
                     aggs = filter.split(":")[1].split("-")[1]
 
-                    # prefix_aggs = filter.split(":")[1]
                     param_value = filter.split(":", 1)[1]
 
                     if long_filter:

@@ -260,6 +260,8 @@ class ClientAPI:
             Number of results to return
         vis_view:
             Name of the visualisation view defined for OHOS
+        long_filter:
+            Handle long filter params for API
         """
         if not aggregations:
             aggregations = []

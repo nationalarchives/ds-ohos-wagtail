@@ -5,6 +5,7 @@ from typing import Union
 
 from django import template
 from django.forms import Form
+from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.utils.safestring import mark_safe
 
@@ -15,6 +16,7 @@ from etna.ciim.constants import (
     PREFIX_AGGS_PARENT_CHILD_KV,
     SEE_MORE_PREFIX,
     SEPERATOR,
+    BucketKeys,
     SearchTabs,
 )
 
@@ -88,7 +90,7 @@ def render_fields_as_hidden(
     form: Form,
     exclude: str = "",
     include: str = "",
-    exclude_nested_long_filter: bool = False,
+    long_filter: bool = False,
 ) -> str:
     """
     Render the supplied `form`'s fields as hidden inputs. Used within a <form> tag
@@ -98,7 +100,7 @@ def render_fields_as_hidden(
     `form`: The Django form to render fields for.
     `exclude`: A space-separated string of field names to NOT be rendered as hidden.
     `include`: A space-separated string of field names to be rendered as hidden.
-    `exclude_nested_long_filter`: to exclude nested long filter value from the field
+    `long_filter`: to exclude nested long filter value from the field
     """
     include_names = include.split()
     exclude_names = exclude.split()
@@ -115,7 +117,8 @@ def render_fields_as_hidden(
     # Utilize `BoundField.as_hidden()` to generate the return html
     html = ""
     for field in boundfields:
-        if exclude_nested_long_filter and field.name == COLLECTION_ATTR_FOR_ALL_BUCKETS:
+        if long_filter and field.name == COLLECTION_ATTR_FOR_ALL_BUCKETS:
+            # to handle return to search
             hidden_fmt = """<input type="hidden" name="{field}" value="{value}" id="id_collection_{suffix}">"""
             for value in field.data:
                 if value not in LONG_FILTER_PARAM_VALUES:
@@ -183,3 +186,24 @@ def see_more_url(value) -> str:
     values = value.split(SEPERATOR)
     url = values[2]  # url at index 2
     return url
+
+
+@register.simple_tag(takes_context=True)
+def long_filter_cancel(context, field_name: str = "") -> str:
+    """Returns search url after removing long filter params"""
+
+    request = context["request"]
+
+    query_dict = request.GET.copy()
+
+    if query_dict.get("group", "") == BucketKeys.COMMUNITY:
+        query_dict.setlist(
+            field_name,
+            [
+                param
+                for param in query_dict.getlist(field_name, [])
+                if param not in LONG_FILTER_PARAM_VALUES
+            ],
+        )
+
+    return f'{reverse("search-catalogue")}?{query_dict.urlencode()}'

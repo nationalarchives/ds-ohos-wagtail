@@ -55,10 +55,8 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
             return f"{self.configured_choice_labels[data['value']]} ({count})"
         except KeyError:
             # Fall back to using the key value (which is the same in most cases)
-
             value = data["value"]
             label = f"{value} ({count})"
-
             if is_see_more(value):
                 # prepare see more label with count
                 label = value.split(SEPERATOR)[1] + f" ({count})"
@@ -108,9 +106,14 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
           ('parent-collectionMorrab:Morrab Photo Archive',
                  [('parent-collectionMorrab:Morrab Photo Archive', 'Morrab Photo Archive (10)'),
                   ('child-collectionMorrab:Miscellaneous Photos', 'Miscellaneous Photos (5)'),
-                  ('See more collections', 'See more collections (879)')]
+                  ('SEE-MORE::SEP::See more collections::SEP::
+                   /search/catalogue/long-filter-chooser/collection/
+                   ?collection=long-collectionMorrabAll%3AMorrab+Photo+Archive
+                   &collection=parent-collectionMorrab%3AMorrab+Photo+Archive&vis_view=list
+                   &group=community',
+                  'See more collections (879)')]
 
-        see more collections - will not be rendered as a checkbox, instead a link
+        see more for nested - choice data for checkbox is rendered as url in template
         """
         # Generate a new list of choices
         choice_vals_with_hits = set()
@@ -139,11 +142,6 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
 
             choices.append(choice)
 
-        # remove long filters params
-        for index, value in enumerate(selected_values):
-            if value in LONG_FILTER_PARAM_VALUES:
-                selected_values.pop(index)
-
         for missing_value in [
             v for v in selected_values if v not in choice_vals_with_hits
         ]:
@@ -151,6 +149,8 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
                 label_base = self.configured_choice_labels[missing_value]
             except KeyError:
                 label_base = missing_value
+
+            # if missing value forms part of the collection that has more, then prefix
             choices.append((missing_value, f"{label_base} (0)"))
 
         # TODO: Rosetta Etna sorts choices alphabetically
