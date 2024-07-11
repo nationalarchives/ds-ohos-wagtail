@@ -44,11 +44,23 @@ class Aggregation(StrEnum):
     COUNTRY = "country"
     LOCATION = "location"
     COMMUNITY = "community"
+    ENRICHMENT_LOC = "enrichmentLoc"
+    ENRICHMENT_ORG = "enrichmentOrg"
+    ENRICHMENT_PER = "enrichmentPer"
+    ENRICHMENT_MISC = "enrichmentMisc"
 
 
 DEFAULT_AGGREGATIONS = [
     # Aggregation.GROUP # TODO: Keep, not in scope for Ohos-Etna at this time
     # TODO:Rosetta + ":30",  # Fetch more 'groups' so that we receive counts for any bucket/tab options we might be showing.
+]
+
+TAG_VIEW_AGGREGATIONS = [
+    Aggregation.COMMUNITY.value,
+    Aggregation.ENRICHMENT_LOC.value,
+    Aggregation.ENRICHMENT_PER.value,
+    Aggregation.ENRICHMENT_ORG.value,
+    Aggregation.ENRICHMENT_MISC.value,
 ]
 
 
@@ -723,7 +735,13 @@ OHOS_CHECKBOX_AGGS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "community"}
 
 # re CIIM param: filter=<alias-name>:<value>
 # map: {<filter-alias-name>:<ohos-filter-alias-name>}
-OHOS_FILTER_ALIAS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "collectionOhos"}
+OHOS_FILTER_ALIAS_NAME_MAP = {
+    COLLECTION_ATTR_FOR_ALL_BUCKETS: "collectionOhos",
+    "chartSelected:LOC": Aggregation.ENRICHMENT_LOC,
+    "chartSelected:PER": Aggregation.ENRICHMENT_PER,
+    "chartSelected:ORG": Aggregation.ENRICHMENT_ORG,
+    "chartSelected:Misc": Aggregation.ENRICHMENT_MISC,
+}
 
 """
 CONFIG:

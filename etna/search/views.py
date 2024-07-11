@@ -32,6 +32,7 @@ from ..ciim.constants import (
     PARENT_AGGS_PREFIX,
     PREFIX_AGGS_PARENT_CHILD_KV,
     SEE_MORE_VALUE_FMT,
+    TAG_VIEW_AGGREGATIONS,
     Bucket,
     BucketKeys,
     BucketList,
@@ -403,6 +404,7 @@ class BaseFilteredSearchView(BaseSearchView):
 
     dynamic_choice_fields = (
         "collection",
+        "chart_selected",
         # TODO: Keep, not in scope for Ohos-Etna at this time
         # "level",
         # "topic",
@@ -971,6 +973,15 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
         )
 
         return kwargs
+
+    def get_api_aggregations(self) -> List[str]:
+        """
+        Overrides get_api_aggregations() to only request
+        aggregations for the form field that options have been requested for.
+        """
+        if self.form.cleaned_data.get("vis_view") == VisViews.TAG.value:
+            return TAG_VIEW_AGGREGATIONS
+        return super().get_api_aggregations()
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         self.set_session_info()

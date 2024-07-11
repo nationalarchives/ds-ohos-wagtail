@@ -335,6 +335,11 @@ class BaseCollectionSearchForm(forms.Form):
         ],
         required=False,
     )
+    # used for Tag View
+    chart_selected = DynamicMultipleChoiceField(
+        label="Chart selected",
+        required=False,
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
