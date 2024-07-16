@@ -387,6 +387,7 @@ def prepare_ohos_params(
     "collection:parent-collectionSurrey:<value>" -> "collectionOhos:<value>"
     "collection:child-collectionSurrey:<value>" -> "collectionOhos:<value>"
     "collection:long-collectionSurreyAll:<value>" -> filter removed
+    "chartSelected:<Tag Type>:<value>" -> "enrichment<Tag Type>:<value>"
     aggregations names extracted from filters:
     "collectionSurrey", "collectionMorrab", "collectionSurreyAll", "collectionMorrabAll"
     """
@@ -415,7 +416,7 @@ def prepare_ohos_params(
         for index, filter in enumerate(filter_aggregations):
             filter_alias = filter.split(":")[0]
 
-            if filter_alias == "chartSelected":
+            if filter_alias == underscore_to_camelcase("chart_selected"):
                 filter_alias = ":".join(filter.split(":", 2)[:2])
 
             if filter_alias in OHOS_FILTER_ALIAS_NAME_MAP.keys():

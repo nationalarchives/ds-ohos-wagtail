@@ -735,12 +735,21 @@ OHOS_CHECKBOX_AGGS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "community"}
 
 # re CIIM param: filter=<alias-name>:<value>
 # map: {<filter-alias-name>:<ohos-filter-alias-name>}
+# <filter-alias-name> => <camel case of form field>[:<tag type of tag view>]
 OHOS_FILTER_ALIAS_NAME_MAP = {
     COLLECTION_ATTR_FOR_ALL_BUCKETS: "collectionOhos",
-    "chartSelected:LOC": Aggregation.ENRICHMENT_LOC,
-    "chartSelected:PER": Aggregation.ENRICHMENT_PER,
-    "chartSelected:ORG": Aggregation.ENRICHMENT_ORG,
-    "chartSelected:Misc": Aggregation.ENRICHMENT_MISC,
+    "chartSelected:{tag_type}".format(
+        tag_type=TagTypes.LOCATION.upper()
+    ): Aggregation.ENRICHMENT_LOC,
+    "chartSelected:{tag_type}".format(
+        tag_type=TagTypes.PERSON.upper()
+    ): Aggregation.ENRICHMENT_PER,
+    "chartSelected:{tag_type}".format(
+        tag_type=TagTypes.ORGANISATION.upper()
+    ): Aggregation.ENRICHMENT_ORG,
+    "chartSelected:{tag_type}".format(
+        tag_type=TagTypes.MISCELLANEOUS.upper()
+    ): Aggregation.ENRICHMENT_MISC,
 }
 
 """
@@ -780,6 +789,14 @@ for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values():
     PREFIX_AGGS_PARENT_CHILD_KV.update(
         {PARENT_AGGS_PREFIX + aggs[0]: CHILD_AGGS_PREFIX + aggs[0]}
     )
+
+PREFIX_FILTER_AGGS = [
+    PARENT_AGGS_PREFIX + aggs[0]
+    for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+] + [
+    CHILD_AGGS_PREFIX + aggs[0]
+    for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+]
 
 SEE_MORE_LABEL = "See more collections"
 SEE_MORE_PREFIX = "SEE-MORE"
