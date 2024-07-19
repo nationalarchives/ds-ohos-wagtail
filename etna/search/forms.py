@@ -11,12 +11,12 @@ from ..ciim.constants import (  # TODO: Keep, not in scope for Ohos-Etna at this
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
     COLLECTION_CHOICES,
+    COLLECTION_FILTER_LABEL,
     NESTED_CHILDREN_KEY,
     PREFIX_FILTER_AGGS,
     SEPERATOR,
     BucketKeys,
     TagTypes,
-    COLLECTION_FILTER_LABEL
 )
 from .templatetags.search_tags import is_see_more
 

@@ -35,8 +35,16 @@
 {% endif %}
 {% if record.collection %}
     <tr>
-        <th scope="row">{{ 'collection'|as_label }}</th>
+        <th scope="row">{{ record.community_collection_label }}</th>
         <td><a href="{% record_url record use_collection_id=True %}">{{ record.collection }}</a></td>
+    </tr>
+{% endif %}
+{% if record.community_collection_webpage %}
+    <tr>
+        <th scope="row">{{ record.community_collection_webpage.label }}</th>
+        <td><a href="{{ record.community_collection_webpage.url }}" 
+            target="_blank">{{ record.community_collection_webpage.value }}</a>
+        </td>
     </tr>
 {% endif %}
 {% if record.rights %}

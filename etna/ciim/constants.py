@@ -807,3 +807,9 @@ SEE_MORE_VALUE_FMT = (
 )
 
 COLLECTION_FILTER_LABEL = "Community Archive"
+
+
+class CommunityLevels(StrEnum):
+    COLLECTION = "Collection"
+    ITEM = "Item"  # check api value using capitalise()
+    SERIES = "Series"

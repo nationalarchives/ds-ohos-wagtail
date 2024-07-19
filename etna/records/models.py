@@ -16,7 +16,13 @@ from django.utils.safestring import mark_safe
 from pyquery import PyQuery as pq
 
 from ..analytics.mixins import DataLayerMixin
-from ..ciim.constants import CATALOGUE_BUCKETS, BucketKeys, TagTypes
+from ..ciim.constants import (
+    CATALOGUE_BUCKETS,
+    COLLECTION_FILTER_LABEL,
+    BucketKeys,
+    CommunityLevels,
+    TagTypes,
+)
 from ..ciim.models import APIModel
 from ..ciim.utils import (
     NOT_PROVIDED,
@@ -26,6 +32,7 @@ from ..ciim.utils import (
     strip_html,
 )
 from ..records.classes import FurtherInfo
+from ..records.field_labels import FIELD_LABELS
 from .converters import IDConverter
 
 logger = logging.getLogger(__name__)
@@ -784,3 +791,69 @@ class Record(DataLayerMixin, APIModel):
 
     def _description_place(self) -> str:
         return self.template.get("descriptionPlace", "")
+
+    def _is_wmk(self) -> bool:
+        """Returns True if ciim_id identified with <Milton Keynes>"""
+        return bool(self.ciim_id[:3] == "wmk")
+
+    def _is_mpa(self) -> bool:
+        """Returns True if ciim_id identified with <Morrab Photo Archive>"""
+        return bool(self.ciim_id[:3] == "mpa")
+
+    def _is_pcw(self) -> bool:
+        """Returns True if ciim_id identified with <People's Collection Wales>"""
+        return bool(self.ciim_id[:3] == "pcw")
+
+    def _is_shc(self) -> bool:
+        """Returns True if ciim_id identified with <Surrey History Centre>"""
+        return bool(self.ciim_id[:3] == "shc")
+
+    @cached_property
+    def community_collection_label(self):
+        """
+        - must be called for a community record (usually in template)
+        - returns label value conditionally
+        """
+        field_name = "collection"
+        label = ""
+        level = self.level.capitalize()
+        if (
+            level == CommunityLevels.COLLECTION
+            and (self._is_shc() or self._is_wmk() or self._is_mpa())
+        ) or (level == CommunityLevels.ITEM and (self._is_pcw() or self._is_swop())):
+            label = COLLECTION_FILTER_LABEL.capitalize()
+
+        return label or FIELD_LABELS.get(field_name, "UNRECOGNISED FIELD NAME")
+
+    @cached_property
+    def community_collection_webpage(self):
+        """
+        - must be called for a community record (usually in template)
+        - returns data containing label, value, url for a cmmunity collection
+        """
+        data = {}
+        level = self.level.capitalize()
+        label = COLLECTION_FILTER_LABEL.title()
+        if level in (
+            CommunityLevels.ITEM,
+            CommunityLevels.SERIES,
+        ):
+            if self._is_shc():
+                data.update(
+                    label=label,
+                    value="Surrey History Centre",
+                    url="https://www.surreyarchives.org.uk/",
+                )
+            elif self._is_mpa():
+                data.update(
+                    label=label,
+                    value="Morrab Photo Archive",
+                    url="https://photoarchive.morrablibrary.org.uk/",
+                )
+            elif self._is_wmk():
+                data.update(
+                    label=label,
+                    value="Milton Keynes",
+                    url="",
+                )
+        return data
