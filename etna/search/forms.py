@@ -16,6 +16,7 @@ from ..ciim.constants import (  # TODO: Keep, not in scope for Ohos-Etna at this
     SEPERATOR,
     BucketKeys,
     TagTypes,
+    COLLECTION_FILTER_LABEL
 )
 from .templatetags.search_tags import is_see_more
 
@@ -349,7 +350,7 @@ class BaseCollectionSearchForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if kwargs and kwargs.get("data").get("group", "") == BucketKeys.COMMUNITY:
-            self.fields["collection"].label = "Community Archive"
+            self.fields["collection"].label = COLLECTION_FILTER_LABEL
 
     def clean(self):
         """

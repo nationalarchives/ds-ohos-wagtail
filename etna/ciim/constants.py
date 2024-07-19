@@ -805,3 +805,5 @@ SEPERATOR = "::SEP::"  # value seperator
 SEE_MORE_VALUE_FMT = (
     f"{SEE_MORE_PREFIX}{SEPERATOR}{SEE_MORE_LABEL}{SEPERATOR}" + "{url}"
 )
+
+COLLECTION_FILTER_LABEL = "Community Archive"
