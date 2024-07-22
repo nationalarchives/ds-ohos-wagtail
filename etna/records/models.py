@@ -809,7 +809,7 @@ class Record(DataLayerMixin, APIModel):
         return bool(self.ciim_id[:3] == "shc")
 
     @cached_property
-    def community_collection_label(self):
+    def community_collection_label(self) -> str:
         """
         - must be called for a community record (usually in template)
         - returns label value conditionally
@@ -826,7 +826,7 @@ class Record(DataLayerMixin, APIModel):
         return label or FIELD_LABELS.get(field_name, "UNRECOGNISED FIELD NAME")
 
     @cached_property
-    def community_collection_webpage(self):
+    def community_collection_webpage(self) -> Dict[str:str]:
         """
         - must be called for a community record (usually in template)
         - returns data containing label, value, url for a cmmunity collection
@@ -854,6 +854,6 @@ class Record(DataLayerMixin, APIModel):
                 data.update(
                     label=label,
                     value="Milton Keynes",
-                    url="",
+                    url="https://catalogue.mkcdc.org.uk/",
                 )
         return data
