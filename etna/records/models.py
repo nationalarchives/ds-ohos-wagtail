@@ -19,6 +19,7 @@ from ..analytics.mixins import DataLayerMixin
 from ..ciim.constants import (
     CATALOGUE_BUCKETS,
     COLLECTION_FILTER_LABEL,
+    COMMUNITY_WEBPAGE_MAP,
     BucketKeys,
     CommunityLevels,
     TagTypes,
@@ -690,17 +691,6 @@ class Record(DataLayerMixin, APIModel):
         return ""
 
     @cached_property
-    def collection_url(self) -> str:
-        try:
-            if self.collection_id:
-                return reverse(
-                    "details-page-machine-readable", kwargs={"id": self.collection_id}
-                )
-        except NoReverseMatch:
-            pass
-        return ""
-
-    @cached_property
     def item_url(self) -> str:
         return self.template.get("itemURL", "")
 
@@ -809,51 +799,77 @@ class Record(DataLayerMixin, APIModel):
         return bool(self.ciim_id[:3] == "shc")
 
     @cached_property
-    def community_collection_label(self) -> str:
+    def community_collection(self) -> Dict[str:str]:
         """
-        - must be called for a community record (usually in template)
-        - returns label value conditionally
+        - must be called for a community record (usually in template) for collection field
+        - when collection attribute has a value and various criteria are met
+          returns data attr, otherwise empty data
         """
-        field_name = "collection"
-        label = ""
-        level = self.level.capitalize()
-        if (
-            level == CommunityLevels.COLLECTION
-            and (self._is_shc() or self._is_wmk() or self._is_mpa())
-        ) or (level == CommunityLevels.ITEM and (self._is_pcw() or self._is_swop())):
-            label = COLLECTION_FILTER_LABEL.capitalize()
+        data = {}
 
-        return label or FIELD_LABELS.get(field_name, "UNRECOGNISED FIELD NAME")
+        if value := self.collection:
+
+            field_name = "collection"
+            level = self.level.capitalize()
+            label = FIELD_LABELS.get(field_name, "UNRECOGNISED FIELD NAME")
+
+            if (
+                level == CommunityLevels.COLLECTION
+                and (self._is_shc() or self._is_wmk() or self._is_mpa())
+            ) or (
+                level == CommunityLevels.ITEM and (self._is_pcw() or self._is_swop())
+            ):
+                label = COLLECTION_FILTER_LABEL
+
+            url = ""
+            is_ext_url = False
+            if self.collection_id:
+                try:
+                    url = COMMUNITY_WEBPAGE_MAP.get(self.collection_id).get("url")
+                    is_ext_url = True
+                except AttributeError:
+                    try:
+                        url = reverse(
+                            "details-page-machine-readable",
+                            kwargs={"id": self.collection_id},
+                        )
+                    except NoReverseMatch:
+                        logger.debug(
+                            f"collection_id {self.collection_id} no reverse match url"
+                        )
+
+            data.update(label=label, value=value, url=url, is_ext_url=is_ext_url)
+
+        return data
 
     @cached_property
     def community_collection_webpage(self) -> Dict[str:str]:
         """
         - must be called for a community record (usually in template)
-        - returns data containing label, value, url for a cmmunity collection
+          to add a row to the details page - label, value, url attrs
+        - when various criteria are met
+          returns data attr, otherwise empty data
         """
         data = {}
         level = self.level.capitalize()
-        label = COLLECTION_FILTER_LABEL.title()
+        label = COLLECTION_FILTER_LABEL
         if level in (
             CommunityLevels.ITEM,
             CommunityLevels.SERIES,
         ):
+            webpage_ciim_id = ""
             if self._is_shc():
-                data.update(
-                    label=label,
-                    value="Surrey History Centre",
-                    url="https://www.surreyarchives.org.uk/",
-                )
+                webpage_ciim_id = "shc-0"
             elif self._is_mpa():
-                data.update(
-                    label=label,
-                    value="Morrab Photo Archive",
-                    url="https://photoarchive.morrablibrary.org.uk/",
-                )
+                webpage_ciim_id = "mpa-0"
             elif self._is_wmk():
+                webpage_ciim_id = "wmk-0"
+
+            if webpage_ciim_id:
+                map = COMMUNITY_WEBPAGE_MAP.get(webpage_ciim_id)
                 data.update(
                     label=label,
-                    value="Milton Keynes",
-                    url="https://catalogue.mkcdc.org.uk/",
+                    value=map.get("value"),
+                    url=map.get("url"),
                 )
         return data

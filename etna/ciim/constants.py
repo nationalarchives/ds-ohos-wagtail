@@ -807,10 +807,35 @@ SEE_MORE_VALUE_FMT = (
     f"{SEE_MORE_PREFIX}{SEPERATOR}{SEE_MORE_LABEL}{SEPERATOR}" + "{url}"
 )
 
-COLLECTION_FILTER_LABEL = "Community Archive"
+COLLECTION_FILTER_LABEL = "Community archive"
 
 
 class CommunityLevels(StrEnum):
+    COMMUNITY = "Community"
     COLLECTION = "Collection"
-    ITEM = "Item"  # check api value using capitalise()
     SERIES = "Series"
+    ITEM = "Item"
+
+
+COMMUNITY_WEBPAGE_MAP = {
+    "shc-0": {
+        "value": "Surrey History Centre",
+        "url": "https://www.surreyarchives.org.uk/",
+    },
+    "mpa-0": {
+        "value": "Morrab Photo Archive",
+        "url": "https://photoarchive.morrablibrary.org.uk/",
+    },
+    "swop-0": {
+        "value": "Sharing Wycombe's Old Photographs",
+        "url": "https://swop.org.uk/",
+    },
+    "pcw-0": {
+        "value": "People's Collection Wales",
+        "url": "https://www.peoplescollection.wales/",
+    },
+    "wmk-0": {
+        "value": "Milton Keynes City Discovery Centre",
+        "url": "https://catalogue.mkcdc.org.uk/",
+    },
+}
