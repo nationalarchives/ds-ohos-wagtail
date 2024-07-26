@@ -497,7 +497,7 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                     "@template": {
                         "details": {
                             "ciimId": "mpa-13090",
-                            "level": "item",
+                            "level": "Item",
                             "collectionId": "mpa-9",
                             "collection": "some value",
                             "group": "community",
@@ -528,7 +528,7 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                     "@template": {
                         "details": {
                             "ciimId": "mpa-12345",
-                            "level": "series",
+                            "level": "Series",
                             "collectionId": "mpa-6789",
                             "collection": "some value",
                             "group": "community",
@@ -559,11 +559,11 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                     "@template": {
                         "details": {
                             "ciimId": "mpa-9",
+                            "level": "Collection",
                             "collectionId": "mpa-0",
                             "collection": "some value",
                             "group": "community",
                             "description": "description",
-                            "level": "collection",
                         }
                     }
                 },
@@ -668,11 +668,11 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                     "@template": {
                         "details": {
                             "ciimId": "wmk-6789",
+                            "level": "Collection",
                             "collectionId": "wmk-0",
                             "collection": "some value",
                             "group": "community",
                             "description": "description",
-                            "level": "collection",
                         }
                     }
                 },
