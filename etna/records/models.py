@@ -23,6 +23,7 @@ from ..ciim.constants import (
     BucketKeys,
     CommunityLevels,
     TagTypes,
+    WebpageCiimId,
 )
 from ..ciim.models import APIModel
 from ..ciim.utils import (
@@ -859,11 +860,11 @@ class Record(DataLayerMixin, APIModel):
         ):
             webpage_ciim_id = ""
             if self._is_shc():
-                webpage_ciim_id = "shc-0"
+                webpage_ciim_id = WebpageCiimId.SCH
             elif self._is_mpa():
-                webpage_ciim_id = "mpa-0"
+                webpage_ciim_id = WebpageCiimId.MPA
             elif self._is_wmk():
-                webpage_ciim_id = "wmk-0"
+                webpage_ciim_id = WebpageCiimId.WMK
 
             if webpage_ciim_id:
                 map = COMMUNITY_WEBPAGE_MAP.get(webpage_ciim_id)

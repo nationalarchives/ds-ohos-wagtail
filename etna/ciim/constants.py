@@ -817,24 +817,34 @@ class CommunityLevels(StrEnum):
     ITEM = "Item"
 
 
+class WebpageCiimId(StrEnum):
+    # Top level Id for community archive collection
+    SCH = "shc-0"
+    MPA = "mpa-0"
+    SWOP = "swop-0"
+    PCW = "pcw-0"
+    WMK = "wmk-0"
+
+
+# maps ciim if with community webpage display value and urls
 COMMUNITY_WEBPAGE_MAP = {
-    "shc-0": {
+    WebpageCiimId.SCH: {
         "value": "Surrey History Centre",
         "url": "https://www.surreyarchives.org.uk/",
     },
-    "mpa-0": {
+    WebpageCiimId.MPA: {
         "value": "Morrab Photo Archive",
         "url": "https://photoarchive.morrablibrary.org.uk/",
     },
-    "swop-0": {
+    WebpageCiimId.SWOP: {
         "value": "Sharing Wycombe's Old Photographs",
         "url": "https://swop.org.uk/",
     },
-    "pcw-0": {
+    WebpageCiimId.PCW: {
         "value": "People's Collection Wales",
         "url": "https://www.peoplescollection.wales/",
     },
-    "wmk-0": {
+    WebpageCiimId.WMK: {
         "value": "Milton Keynes City Discovery Centre",
         "url": "https://catalogue.mkcdc.org.uk/",
     },

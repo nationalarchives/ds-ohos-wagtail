@@ -63,7 +63,6 @@ def create_record(
 
     details_kv = {}
     if group == "community":
-        # # details_kv.update(ciimId=ciim_id)
         iaid = reference_number = ""
         details_kv.update(ciimId=ciim_id, group=group)
     else:
