@@ -753,6 +753,15 @@ OHOS_FILTER_ALIAS_NAME_MAP = {
     ): Aggregation.ENRICHMENT_MISC,
 }
 
+
+class CommunityCollectionNames(StrEnum):
+    SCH = "Surrey History Centre"
+    MPA = "Morrab Photo Archive"
+    SWOP = "Sharing Wycombe's Old Photographs"
+    PCW = "People's Collection Wales"
+    WMK = "Milton Keynes City Discovery Centre"
+
+
 """
 CONFIG:
 Nested/Hierarchy checkboxes
@@ -763,9 +772,9 @@ Nested collections - collections within a collection
 For the nested filter: <collection-name/ciim-value>:(<ciim-aggs-name:at-pos-1>,<long-filter-ciim-aggs-name:at-pos-2>)
 """
 NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP = {
-    "Surrey History Centre": ("collectionSurrey", "collectionSurreyAll"),
-    "Morrab Photo Archive": ("collectionMorrab", "collectionMorrabAll"),
-    "Milton Keynes City Discovery Centre": ("collectionWMK", ""),
+    CommunityCollectionNames.SCH: ("collectionSurrey", "collectionSurreyAll"),
+    CommunityCollectionNames.MPA: ("collectionMorrab", "collectionMorrabAll"),
+    CommunityCollectionNames.WMK: ("collectionWMK", ""),
 }
 
 # prefix ends with "-"
@@ -829,23 +838,23 @@ class WebpageCiimId(StrEnum):
 # maps ciim if with community webpage display value and urls
 COMMUNITY_WEBPAGE_MAP = {
     WebpageCiimId.SCH: {
-        "value": "Surrey History Centre",
+        "value": CommunityCollectionNames.SCH,
         "url": "https://www.surreyarchives.org.uk/",
     },
     WebpageCiimId.MPA: {
-        "value": "Morrab Photo Archive",
+        "value": CommunityCollectionNames.MPA,
         "url": "https://photoarchive.morrablibrary.org.uk/",
     },
     WebpageCiimId.SWOP: {
-        "value": "Sharing Wycombe's Old Photographs",
+        "value": CommunityCollectionNames.SWOP,
         "url": "https://swop.org.uk/",
     },
     WebpageCiimId.PCW: {
-        "value": "People's Collection Wales",
+        "value": CommunityCollectionNames.PCW,
         "url": "https://www.peoplescollection.wales/",
     },
     WebpageCiimId.WMK: {
-        "value": "Milton Keynes City Discovery Centre",
+        "value": CommunityCollectionNames.WMK,
         "url": "https://catalogue.mkcdc.org.uk/",
     },
 }
