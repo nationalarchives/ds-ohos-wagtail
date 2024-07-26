@@ -754,12 +754,28 @@ OHOS_FILTER_ALIAS_NAME_MAP = {
 }
 
 
-class CommunityCollectionNames(StrEnum):
-    SHC = "Surrey History Centre"
-    MPA = "Morrab Photo Archive"
-    SWOP = "Sharing Wycombe's Old Photographs"
-    PCW = "People's Collection Wales"
-    WMK = "Milton Keynes City Discovery Centre"
+class CommunityCollectionMapping(StrEnum):
+    # CollectionAbbrev = (<collection-name>, <top level/community ciim id>, <webpage url>)
+    SHC = ("Surrey History Centre", "shc-0", "https://www.surreyarchives.org.uk/")
+    MPA = (
+        "Morrab Photo Archive",
+        "mpa-0",
+        "https://photoarchive.morrablibrary.org.uk/",
+    )
+    SWOP = ("Sharing Wycombe's Old Photographs", "swop-0", "https://swop.org.uk/")
+    PCW = ("People's Collection Wales", "pcw-0", "https://www.peoplescollection.wales/")
+    WMK = (
+        "Milton Keynes City Discovery Centre",
+        "wmk-0",
+        "https://catalogue.mkcdc.org.uk/",
+    )
+
+    def __new__(cls, value, community_level_ciim_id, webpage_url):
+        obj = str.__new__(cls, [value])
+        obj._value_ = value
+        obj.community_level_ciim_id = community_level_ciim_id
+        obj.webpage_url = webpage_url
+        return obj
 
 
 """
@@ -772,9 +788,9 @@ Nested collections - collections within a collection
 For the nested filter: <collection-name/ciim-value>:(<ciim-aggs-name:at-pos-1>,<long-filter-ciim-aggs-name:at-pos-2>)
 """
 NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP = {
-    CommunityCollectionNames.SHC: ("collectionSurrey", "collectionSurreyAll"),
-    CommunityCollectionNames.MPA: ("collectionMorrab", "collectionMorrabAll"),
-    CommunityCollectionNames.WMK: ("collectionWMK", ""),
+    CommunityCollectionMapping.SHC.value: ("collectionSurrey", "collectionSurreyAll"),
+    CommunityCollectionMapping.MPA.value: ("collectionMorrab", "collectionMorrabAll"),
+    CommunityCollectionMapping.WMK.value: ("collectionWMK", ""),
 }
 
 # prefix ends with "-"
@@ -826,37 +842,26 @@ class CommunityLevels(StrEnum):
     ITEM = "Item"
 
 
-class CommunityLevelCiimId(StrEnum):
-    # Top level Id for community archive collection at level=Community
-    # is also used to identify type of record
-    # format <IdentifyingValue-0>
-    SHC = "shc-0"
-    MPA = "mpa-0"
-    SWOP = "swop-0"
-    PCW = "pcw-0"
-    WMK = "wmk-0"
-
-
 # maps ciim if with community webpage display value and urls
 COMMUNITY_WEBPAGE_MAP = {
-    CommunityLevelCiimId.SHC: {
-        "value": CommunityCollectionNames.SHC,
-        "url": "https://www.surreyarchives.org.uk/",
+    CommunityCollectionMapping.SHC.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.SHC.value,
+        "url": CommunityCollectionMapping.SHC.webpage_url,
     },
-    CommunityLevelCiimId.MPA: {
-        "value": CommunityCollectionNames.MPA,
-        "url": "https://photoarchive.morrablibrary.org.uk/",
+    CommunityCollectionMapping.MPA.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.MPA.value,
+        "url": CommunityCollectionMapping.MPA.webpage_url,
     },
-    CommunityLevelCiimId.SWOP: {
-        "value": CommunityCollectionNames.SWOP,
-        "url": "https://swop.org.uk/",
+    CommunityCollectionMapping.SWOP.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.SWOP.value,
+        "url": CommunityCollectionMapping.SWOP.webpage_url,
     },
-    CommunityLevelCiimId.PCW: {
-        "value": CommunityCollectionNames.PCW,
-        "url": "https://www.peoplescollection.wales/",
+    CommunityCollectionMapping.PCW.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.PCW.value,
+        "url": CommunityCollectionMapping.PCW.webpage_url,
     },
-    CommunityLevelCiimId.WMK: {
-        "value": CommunityCollectionNames.WMK,
-        "url": "https://catalogue.mkcdc.org.uk/",
+    CommunityCollectionMapping.WMK.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.WMK.value,
+        "url": CommunityCollectionMapping.WMK.webpage_url,
     },
 }

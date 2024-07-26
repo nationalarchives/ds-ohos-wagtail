@@ -21,7 +21,7 @@ from ..ciim.constants import (
     COLLECTION_FILTER_LABEL,
     COMMUNITY_WEBPAGE_MAP,
     BucketKeys,
-    CommunityLevelCiimId,
+    CommunityCollectionMapping,
     CommunityLevels,
     TagTypes,
 )
@@ -775,7 +775,9 @@ class Record(DataLayerMixin, APIModel):
 
     def _is_swop(self) -> bool:
         """Returns True if ciim_id identified with SWOP"""
-        return self.ciim_id.startswith(CommunityLevelCiimId.SWOP.removesuffix("0"))
+        return self.ciim_id.startswith(
+            CommunityCollectionMapping.SWOP.community_level_ciim_id.removesuffix("0")
+        )
 
     def _description_view(self) -> str:
         return self.template.get("descriptionView", "")
@@ -785,19 +787,27 @@ class Record(DataLayerMixin, APIModel):
 
     def _is_wmk(self) -> bool:
         """Returns True if ciim_id identified with <Milton Keynes>"""
-        return self.ciim_id.startswith(CommunityLevelCiimId.WMK.removesuffix("0"))
+        return self.ciim_id.startswith(
+            CommunityCollectionMapping.WMK.community_level_ciim_id.removesuffix("0")
+        )
 
     def _is_mpa(self) -> bool:
         """Returns True if ciim_id identified with <Morrab Photo Archive>"""
-        return self.ciim_id.startswith(CommunityLevelCiimId.MPA.removesuffix("0"))
+        return self.ciim_id.startswith(
+            CommunityCollectionMapping.MPA.community_level_ciim_id.removesuffix("0")
+        )
 
     def _is_pcw(self) -> bool:
         """Returns True if ciim_id identified with <People's Collection Wales>"""
-        return self.ciim_id.startswith(CommunityLevelCiimId.PCW.removesuffix("0"))
+        return self.ciim_id.startswith(
+            CommunityCollectionMapping.PCW.community_level_ciim_id.removesuffix("0")
+        )
 
     def _is_shc(self) -> bool:
         """Returns True if ciim_id identified with <Surrey History Centre>"""
-        return self.ciim_id.startswith(CommunityLevelCiimId.SHC.removesuffix("0"))
+        return self.ciim_id.startswith(
+            CommunityCollectionMapping.SHC.community_level_ciim_id.removesuffix("0")
+        )
 
     @cached_property
     def community_collection(self) -> Dict[str:str]:
@@ -858,16 +868,22 @@ class Record(DataLayerMixin, APIModel):
             CommunityLevels.ITEM,
             CommunityLevels.SERIES,
         ):
-            webpage_ciim_id = ""
+            community_level_ciim_id = ""
             if self._is_shc():
-                webpage_ciim_id = CommunityLevelCiimId.SHC
+                community_level_ciim_id = (
+                    CommunityCollectionMapping.SHC.community_level_ciim_id
+                )
             elif self._is_mpa():
-                webpage_ciim_id = CommunityLevelCiimId.MPA
+                community_level_ciim_id = (
+                    CommunityCollectionMapping.MPA.community_level_ciim_id
+                )
             elif self._is_wmk():
-                webpage_ciim_id = CommunityLevelCiimId.WMK
+                community_level_ciim_id = (
+                    CommunityCollectionMapping.WMK.community_level_ciim_id
+                )
 
-            if webpage_ciim_id:
-                map = COMMUNITY_WEBPAGE_MAP.get(webpage_ciim_id)
+            if community_level_ciim_id:
+                map = COMMUNITY_WEBPAGE_MAP.get(community_level_ciim_id)
                 data.update(
                     label=label,
                     value=map.get("value"),
