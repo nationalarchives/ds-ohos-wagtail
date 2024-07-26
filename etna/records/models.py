@@ -785,22 +785,18 @@ class Record(DataLayerMixin, APIModel):
 
     def _is_wmk(self) -> bool:
         """Returns True if ciim_id identified with <Milton Keynes>"""
-        # return bool(self.ciim_id[:3] == "wmk")
         return self.ciim_id.startswith(CommunityLevelCiimId.WMK.removesuffix("0"))
 
     def _is_mpa(self) -> bool:
         """Returns True if ciim_id identified with <Morrab Photo Archive>"""
-        # return bool(self.ciim_id[:3] == "mpa")
         return self.ciim_id.startswith(CommunityLevelCiimId.MPA.removesuffix("0"))
 
     def _is_pcw(self) -> bool:
         """Returns True if ciim_id identified with <People's Collection Wales>"""
-        # return bool(self.ciim_id[:3] == "pcw")
         return self.ciim_id.startswith(CommunityLevelCiimId.PCW.removesuffix("0"))
 
     def _is_shc(self) -> bool:
         """Returns True if ciim_id identified with <Surrey History Centre>"""
-        # return bool(self.ciim_id[:3] == "shc")
         return self.ciim_id.startswith(CommunityLevelCiimId.SHC.removesuffix("0"))
 
     @cached_property
