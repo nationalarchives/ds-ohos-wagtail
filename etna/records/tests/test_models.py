@@ -37,9 +37,10 @@ class DefaultReturnsRecordModelTests(SimpleTestCase):
         self.assertEqual(self.record.ciim_url, "")
         self.assertEqual(self.record.collection, "")
         self.assertEqual(self.record.collection_id, "")
-        self.assertEqual(self.record.collection_url, "")
         self.assertEqual(self.record.rights, "")
         self.assertEqual(self.record.subjects, [])
+        self.assertEqual(self.record.community_collection, {})
+        self.assertEqual(self.record.community_collection_webpage, {})
 
 
 class CommunityRecordModelTests(SimpleTestCase):
@@ -101,15 +102,6 @@ class CommunityRecordModelTests(SimpleTestCase):
 
     def test_collection_id(self):
         self.assertEqual(self.record.collection_id, "pcw-7890")
-
-    def test_collection_url(self):
-        self.assertEqual(
-            self.record.collection_url,
-            reverse(
-                "details-page-machine-readable",
-                kwargs={"id": self.record.collection_id},
-            ),
-        )
 
     def test_item_url(self):
         self.assertEqual(self.record.item_url, "https://www.test.url")
@@ -274,387 +266,655 @@ class CommunityRecordModelTests(SimpleTestCase):
 class CommunityRecordCollectionAttrTests(SimpleTestCase):
     maxDiff = None
 
-    def test_community_collection_label(self):
+    def test_collection_attrs(self):
         test_data = (
             (
                 # label
-                "swop_item",
+                "missing collection attr",
                 # value
                 {
                     "@template": {
                         "details": {
                             "ciimId": "swop-2897",
+                            "level": "Item",
+                            "collectionId": "swop-0",
                             "group": "community",
                             "description": "description",
-                            "level": "item",
-                            "collection": "Sharing Wycombe’s Old Photographs",
                         }
                     }
                 },
                 # expected
-                "Community archive",
+                {"community_collection": {}, "community_collection_webpage": {}},
             ),
             (
                 # label
-                "swop_anythingelse",
+                "swop: Item level",
                 # value
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "swop-123456",
+                            "ciimId": "swop-2897",
+                            "level": "Item",
+                            "collectionId": "swop-0",
+                            "collection": "some value",
                             "group": "community",
                             "description": "description",
-                            "level": "anythingelse",
-                            "collection": "Sharing Wycombe’s Old Photographs",
                         }
                     }
                 },
                 # expected
-                "Collection",
+                {
+                    "community_collection": {
+                        "label": "Community archive",
+                        "value": "some value",
+                        "url": "https://swop.org.uk/",
+                        "is_ext_url": True,
+                    },
+                    "community_collection_webpage": {},
+                },
             ),
             (
                 # label
-                "shc_collection",
+                "swop: Community level",
                 # value
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "shc-8404",
+                            "ciimId": "swop-0",
+                            "level": "Community",
                             "group": "community",
                             "description": "description",
-                            "level": "Collection",
-                            "collection": "Surrey History Centre",
                         }
                     }
                 },
                 # expected
-                "Community archive",
-            ),
-            (
-                # label
-                "shc_anythingelse",
-                # value
                 {
-                    "@template": {
-                        "details": {
-                            "ciimId": "shc-8404",
-                            "group": "community",
-                            "description": "description",
-                            "level": "anythingelse",
-                            "collection": "Surrey History Centre",
-                        }
-                    }
+                    "community_collection": {},
+                    "community_collection_webpage": {},
                 },
-                # expected
-                "Collection",
             ),
             (
                 # label
-                "mpa_collection",
-                # value
-                {
-                    "@template": {
-                        "details": {
-                            "ciimId": "mpa-123456",
-                            "group": "community",
-                            "description": "description",
-                            "level": "Collection",
-                            "collection": "Morrab Photo Archive",
-                        }
-                    }
-                },
-                # expected
-                "Community archive",
-            ),
-            (
-                # label
-                "mpa_anythingelse",
-                # value
-                {
-                    "@template": {
-                        "details": {
-                            "ciimId": "mpa-123456",
-                            "group": "community",
-                            "description": "description",
-                            "level": "anythingelse",
-                            "collection": "Morrab Photo Archive",
-                        }
-                    }
-                },
-                # expected
-                "Collection",
-            ),
-            (
-                # label
-                "pcw_item",
+                "pcw: Item level",
                 # value
                 {
                     "@template": {
                         "details": {
                             "ciimId": "pcw-383261",
+                            "level": "Item",
+                            "collectionId": "pcw-0",
+                            "collection": "some value",
                             "group": "community",
                             "description": "description",
-                            "level": "item",
-                            "collection": "People's Collection Wales",
                         }
                     }
                 },
                 # expected
-                "Community archive",
+                {
+                    "community_collection": {
+                        "label": "Community archive",
+                        "value": "some value",
+                        "url": "https://www.peoplescollection.wales/",
+                        "is_ext_url": True,
+                    },
+                    "community_collection_webpage": {},
+                },
             ),
             (
                 # label
-                "pcw_anythingelse",
+                "pcw: Community level",
                 # value
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "pcw-123456",
+                            "ciimId": "pcw-0",
+                            "level": "Community",
                             "group": "community",
                             "description": "description",
-                            "level": "anythingelse",
-                            "collection": "People's Collection Wales",
                         }
                     }
                 },
                 # expected
-                "Collection",
-            ),
-            (
-                # label
-                "wmk_collection",
-                # value
                 {
-                    "@template": {
-                        "details": {
-                            "ciimId": "wmk-123456",
-                            "group": "community",
-                            "description": "description",
-                            "level": "Collection",
-                            "collection": "Milton Keynes",
-                        }
-                    }
+                    "community_collection": {},
+                    "community_collection_webpage": {},
                 },
-                # expected
-                "Community archive",
             ),
             (
                 # label
-                "wmk_anythingelse",
-                # value
-                {
-                    "@template": {
-                        "details": {
-                            "ciimId": "wmk-123456",
-                            "group": "community",
-                            "description": "description",
-                            "level": "anythingelse",
-                            "collection": "Milton Keynes",
-                        }
-                    }
-                },
-                # expected
-                "Collection",
-            ),
-        )
-        for label, data, expected in test_data:
-            with self.subTest(label):
-                self.record = Record(raw_data=data)
-                self.assertEqual(self.record.community_collection_label, expected)
-
-    def test_community_collection_webpage(self):
-        test_data = (
-            (
-                # label
-                "shc_collection",
+                "shc: Item level",
                 # value
                 {
                     "@template": {
                         "details": {
                             "ciimId": "shc-CC1174-2-1-1-22",
-                            "group": "community",
-                            "description": "description",
                             "level": "Item",
-                            "collection": "Surrey History Centre",
+                            "collectionId": "shc-CC1174",
+                            "collection": "some value",
+                            "group": "community",
+                            "description": "description",
                         }
                     }
                 },
                 # expected
                 {
-                    "label": "Community Archive",
-                    "url": "https://www.surreyarchives.org.uk/",
-                    "value": "Surrey History Centre",
+                    "community_collection": {
+                        "label": "Collection",
+                        "value": "some value",
+                        "url": "/catalogue/id/shc-CC1174/",
+                        "is_ext_url": False,
+                    },
+                    "community_collection_webpage": {
+                        "label": "Community archive",
+                        "value": "Surrey History Centre",
+                        "url": "https://www.surreyarchives.org.uk/",
+                    },
                 },
             ),
             (
                 # label
-                "shc_series",
+                "shc: Series level",
                 # value
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "shc-123456",
-                            "group": "community",
-                            "description": "description",
+                            "ciimId": "shc-12345",  # some value
                             "level": "Series",
-                            "collection": "Surrey History Centre",
+                            "collectionId": "shc-67890",  # some value
+                            "collection": "some value",
+                            "group": "community",
+                            "description": "description",
                         }
                     }
                 },
                 # expected
                 {
-                    "label": "Community Archive",
-                    "url": "https://www.surreyarchives.org.uk/",
-                    "value": "Surrey History Centre",
+                    "community_collection": {
+                        "label": "Collection",
+                        "value": "some value",
+                        "url": "/catalogue/id/shc-67890/",
+                        "is_ext_url": False,
+                    },
+                    "community_collection_webpage": {
+                        "label": "Community archive",
+                        "value": "Surrey History Centre",
+                        "url": "https://www.surreyarchives.org.uk/",
+                    },
                 },
             ),
             (
                 # label
-                "shc_anythingelse",
+                "shc: Collection level",
                 # value
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "shc-123456",
+                            "ciimId": "shc-8404",
+                            "level": "Collection",
+                            "collectionId": "shc-0",
+                            "collection": "some value",
                             "group": "community",
                             "description": "description",
-                            "level": "anythingelse",
-                            "collection": "Surrey History Centre",
                         }
                     }
                 },
                 # expected
-                {},
+                {
+                    "community_collection": {
+                        "label": "Community archive",
+                        "value": "some value",
+                        "url": "https://www.surreyarchives.org.uk/",
+                        "is_ext_url": True,
+                    },
+                    "community_collection_webpage": {},
+                },
             ),
             (
                 # label
-                "wmk_item",
+                "shc: Community level",
                 # value
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "wmk-20479",
+                            "ciimId": "shc-0",
+                            "level": "Community",
                             "group": "community",
                             "description": "description",
-                            "level": "item",
-                            "collection": "Milton Keynes",
                         }
                     }
                 },
                 # expected
                 {
-                    "label": "Community Archive",
-                    "url": "https://catalogue.mkcdc.org.uk/",
-                    "value": "Milton Keynes",
+                    "community_collection": {},
+                    "community_collection_webpage": {},
                 },
             ),
             (
                 # label
-                "wmk_series",
-                # value
-                {
-                    "@template": {
-                        "details": {
-                            "ciimId": "wmk-123456",
-                            "group": "community",
-                            "description": "description",
-                            "level": "Series",
-                            "collection": "Milton Keynes",
-                        }
-                    }
-                },
-                # expected
-                {
-                    "label": "Community Archive",
-                    "url": "https://catalogue.mkcdc.org.uk/",
-                    "value": "Milton Keynes",
-                },
-            ),
-            (
-                # label
-                "wmk_anythingelse",
-                # value
-                {
-                    "@template": {
-                        "details": {
-                            "ciimId": "wmk-123456",
-                            "group": "community",
-                            "description": "description",
-                            "level": "anythingelse",
-                            "collection": "Milton Keynes",
-                        }
-                    }
-                },
-                # expected
-                {},
-            ),
-            (
-                # label
-                "mpa_item",
+                "mpa: Item level",
                 # value
                 {
                     "@template": {
                         "details": {
                             "ciimId": "mpa-13090",
-                            "group": "community",
-                            "description": "description",
                             "level": "item",
-                            "collection": "Morrab Photo Archive",
+                            "collectionId": "mpa-9",
+                            "collection": "some value",
+                            "group": "community",
+                            "description": "description",
                         }
                     }
                 },
                 # expected
                 {
-                    "label": "Community Archive",
-                    "url": "https://photoarchive.morrablibrary.org.uk/",
-                    "value": "Morrab Photo Archive",
+                    "community_collection": {
+                        "label": "Collection",
+                        "value": "some value",
+                        "url": "/catalogue/id/mpa-9/",
+                        "is_ext_url": False,
+                    },
+                    "community_collection_webpage": {
+                        "label": "Community archive",
+                        "value": "Morrab Photo Archive",
+                        "url": "https://photoarchive.morrablibrary.org.uk/",
+                    },
                 },
             ),
             (
                 # label
-                "mpa_series",
+                "mpa: Series level",
                 # value
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "mpa-123456",
+                            "ciimId": "mpa-12345",
+                            "level": "series",
+                            "collectionId": "mpa-6789",
+                            "collection": "some value",
                             "group": "community",
                             "description": "description",
+                        }
+                    }
+                },
+                # expected
+                {
+                    "community_collection": {
+                        "label": "Collection",
+                        "value": "some value",
+                        "url": "/catalogue/id/mpa-6789/",
+                        "is_ext_url": False,
+                    },
+                    "community_collection_webpage": {
+                        "label": "Community archive",
+                        "value": "Morrab Photo Archive",
+                        "url": "https://photoarchive.morrablibrary.org.uk/",
+                    },
+                },
+            ),
+            (
+                # label
+                "mpa: Collection level",
+                # value
+                {
+                    "@template": {
+                        "details": {
+                            "ciimId": "mpa-9",
+                            "collectionId": "mpa-0",
+                            "collection": "some value",
+                            "group": "community",
+                            "description": "description",
+                            "level": "collection",
+                        }
+                    }
+                },
+                # expected
+                {
+                    "community_collection": {
+                        "label": "Community archive",
+                        "value": "some value",
+                        "url": "https://photoarchive.morrablibrary.org.uk/",
+                        "is_ext_url": True,
+                    },
+                    "community_collection_webpage": {},
+                },
+            ),
+            (
+                # label
+                "mpa: Community level",
+                # value
+                {
+                    "@template": {
+                        "details": {
+                            "ciimId": "mpa-0",
+                            "level": "Community",
+                            "group": "community",
+                            "description": "description",
+                        }
+                    }
+                },
+                # expected
+                {
+                    "community_collection": {},
+                    "community_collection_webpage": {},
+                },
+            ),
+            (
+                # label
+                "wmk: Item level",
+                # value
+                {
+                    "@template": {
+                        "details": {
+                            "ciimId": "wmk-20501",
+                            "level": "Item",
+                            "collectionId": "wmk-20469",
+                            "collection": "some value",
+                            "group": "community",
+                            "description": "description",
+                        }
+                    }
+                },
+                # expected
+                {
+                    "community_collection": {
+                        "label": "Collection",
+                        "value": "some value",
+                        "url": "/catalogue/id/wmk-20469/",
+                        "is_ext_url": False,
+                    },
+                    "community_collection_webpage": {
+                        "label": "Community archive",
+                        "value": "Milton Keynes City Discovery Centre",
+                        "url": "https://catalogue.mkcdc.org.uk/",
+                    },
+                },
+            ),
+            (
+                # label
+                "wmk: Series level",
+                # value
+                {
+                    "@template": {
+                        "details": {
+                            "ciimId": "wmk-12345",
                             "level": "Series",
-                            "collection": "Morrab Photo Archive",
+                            "collectionId": "wmk-6789",
+                            "collection": "some value",
+                            "group": "community",
+                            "description": "description",
                         }
                     }
                 },
                 # expected
                 {
-                    "label": "Community Archive",
-                    "url": "https://photoarchive.morrablibrary.org.uk/",
-                    "value": "Morrab Photo Archive",
+                    "community_collection": {
+                        "label": "Collection",
+                        "value": "some value",
+                        "url": "/catalogue/id/wmk-6789/",
+                        "is_ext_url": False,
+                    },
+                    "community_collection_webpage": {
+                        "label": "Community archive",
+                        "value": "Milton Keynes City Discovery Centre",
+                        "url": "https://catalogue.mkcdc.org.uk/",
+                    },
                 },
             ),
             (
                 # label
-                "mpa_anythingelse",
+                "wmk: Collection level",
                 # value
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "mpa-123456",
+                            "ciimId": "wmk-6789",
+                            "collectionId": "wmk-0",
+                            "collection": "some value",
                             "group": "community",
                             "description": "description",
-                            "level": "anythingelse",
-                            "collection": "Morrab Photo Archive",
+                            "level": "collection",
                         }
                     }
                 },
                 # expected
-                {},
+                {
+                    "community_collection": {
+                        "label": "Community archive",
+                        "value": "some value",
+                        "url": "https://catalogue.mkcdc.org.uk/",
+                        "is_ext_url": True,
+                    },
+                    "community_collection_webpage": {},
+                },
+            ),
+            (
+                # label
+                "wmk: Community level",
+                # value
+                {
+                    "@template": {
+                        "details": {
+                            "ciimId": "wmk-0",
+                            "level": "Community",
+                            "group": "community",
+                            "description": "description",
+                        }
+                    }
+                },
+                # expected
+                {
+                    "community_collection": {},
+                    "community_collection_webpage": {},
+                },
             ),
         )
         for label, data, expected in test_data:
             with self.subTest(label):
                 self.record = Record(raw_data=data)
-                self.assertEqual(self.record.community_collection_webpage, expected)
+                # test collection attr updates in template
+                self.assertEqual(
+                    self.record.community_collection,
+                    expected.get("community_collection"),
+                )
+                # test data used to add a new row in template
+                self.assertEqual(
+                    self.record.community_collection_webpage,
+                    expected.get("community_collection_webpage"),
+                )
+
+    # def test_community_collection_webpage(self):
+    #     test_data = (
+    #         # (
+    #         #     # label
+    #         #     "shc_collection",
+    #         #     # value
+    #         #     {
+    #         #         "@template": {
+    #         #             "details": {
+    #         #                 "ciimId": "shc-CC1174-2-1-1-22",
+    #         #                 "group": "community",
+    #         #                 "description": "description",
+    #         #                 "level": "Item",
+    #         #                 "collection": "Surrey History Centre",
+    #         #             }
+    #         #         }
+    #         #     },
+    #         #     # expected
+    #         #     {
+    #         #         "label": "Community archive",
+    #         #         "url": "https://www.surreyarchives.org.uk/",
+    #         #         "value": "Surrey History Centre",
+    #         #     },
+    #         # ),
+    #         # (
+    #         #     # label
+    #         #     "shc_series",
+    #         #     # value
+    #         #     {
+    #         #         "@template": {
+    #         #             "details": {
+    #         #                 "ciimId": "shc-123456",
+    #         #                 "group": "community",
+    #         #                 "description": "description",
+    #         #                 "level": "Series",
+    #         #                 "collection": "Surrey History Centre",
+    #         #             }
+    #         #         }
+    #         #     },
+    #         #     # expected
+    #         #     {
+    #         #         "label": "Community archive",
+    #         #         "url": "https://www.surreyarchives.org.uk/",
+    #         #         "value": "Surrey History Centre",
+    #         #     },
+    #         # ),
+    #         (
+    #             # label
+    #             "shc_anythingelse",
+    #             # value
+    #             {
+    #                 "@template": {
+    #                     "details": {
+    #                         "ciimId": "shc-123456",
+    #                         "group": "community",
+    #                         "description": "description",
+    #                         "level": "anythingelse",
+    #                         "collection": "Surrey History Centre",
+    #                     }
+    #                 }
+    #             },
+    #             # expected
+    #             {},
+    #         ),
+    #         (
+    #             # label
+    #             "wmk_item",
+    #             # value
+    #             {
+    #                 "@template": {
+    #                     "details": {
+    #                         "ciimId": "wmk-20479",
+    #                         "group": "community",
+    #                         "description": "description",
+    #                         "level": "item",
+    #                         "collection": "Milton Keynes City Discovery Centre",
+    #                     }
+    #                 }
+    #             },
+    #             # expected
+    #             {
+    #                 "label": "Community archive",
+    #                 "url": "https://catalogue.mkcdc.org.uk/",
+    #                 "value": "Milton Keynes City Discovery Centre",
+    #             },
+    #         ),
+    #         (
+    #             # label
+    #             "wmk_series",
+    #             # value
+    #             {
+    #                 "@template": {
+    #                     "details": {
+    #                         "ciimId": "wmk-123456",
+    #                         "group": "community",
+    #                         "description": "description",
+    #                         "level": "Series",
+    #                         "collection": "Milton Keynes City Discovery Centre",
+    #                     }
+    #                 }
+    #             },
+    #             # expected
+    #             {
+    #                 "label": "Community archive",
+    #                 "url": "https://catalogue.mkcdc.org.uk/",
+    #                 "value": "Milton Keynes City Discovery Centre",
+    #             },
+    #         ),
+    #         (
+    #             # label
+    #             "wmk_anythingelse",
+    #             # value
+    #             {
+    #                 "@template": {
+    #                     "details": {
+    #                         "ciimId": "wmk-123456",
+    #                         "group": "community",
+    #                         "description": "description",
+    #                         "level": "anythingelse",
+    #                         "collection": "Milton Keynes City Discovery Centre",
+    #                     }
+    #                 }
+    #             },
+    #             # expected
+    #             {},
+    #         ),
+    #         (
+    #             # label
+    #             "mpa_item",
+    #             # value
+    #             {
+    #                 "@template": {
+    #                     "details": {
+    #                         "ciimId": "mpa-13090",
+    #                         "group": "community",
+    #                         "description": "description",
+    #                         "level": "item",
+    #                         "collection": "Morrab Photo Archive",
+    #                     }
+    #                 }
+    #             },
+    #             # expected
+    #             {
+    #                 "label": "Community archive",
+    #                 "url": "https://photoarchive.morrablibrary.org.uk/",
+    #                 "value": "Morrab Photo Archive",
+    #             },
+    #         ),
+    #         (
+    #             # label
+    #             "mpa_series",
+    #             # value
+    #             {
+    #                 "@template": {
+    #                     "details": {
+    #                         "ciimId": "mpa-123456",
+    #                         "group": "community",
+    #                         "description": "description",
+    #                         "level": "Series",
+    #                         "collection": "Morrab Photo Archive",
+    #                     }
+    #                 }
+    #             },
+    #             # expected
+    #             {
+    #                 "label": "Community archive",
+    #                 "url": "https://photoarchive.morrablibrary.org.uk/",
+    #                 "value": "Morrab Photo Archive",
+    #             },
+    #         ),
+    #         (
+    #             # label
+    #             "mpa_anythingelse",
+    #             # value
+    #             {
+    #                 "@template": {
+    #                     "details": {
+    #                         "ciimId": "mpa-123456",
+    #                         "group": "community",
+    #                         "description": "description",
+    #                         "level": "anythingelse",
+    #                         "collection": "Morrab Photo Archive",
+    #                     }
+    #                 }
+    #             },
+    #             # expected
+    #             {},
+    #         ),
+    #     )
+    #     for label, data, expected in test_data:
+    #         with self.subTest(label):
+    #             self.record = Record(raw_data=data)
+    #             self.assertEqual(self.record.community_collection_webpage, expected)
 
 
 @unittest.skip("TODO:Rosetta")
