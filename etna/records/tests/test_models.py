@@ -387,9 +387,9 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "shc-CC1174-2-1-1-22",
+                            "ciimId": "shc-9967-1-18",
                             "level": "Item",
-                            "collectionId": "shc-CC1174",
+                            "collectionId": "shc-9967-1",
                             "collection": "some value",
                             "group": "community",
                             "description": "description",
@@ -401,7 +401,7 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                     "community_collection": {
                         "label": "Collection",
                         "value": "some value",
-                        "url": "/catalogue/id/shc-CC1174/",
+                        "url": "/catalogue/id/shc-9967-1/",
                         "is_ext_url": False,
                     },
                     "community_collection_webpage": {
@@ -418,9 +418,9 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "shc-12345",  # some value
+                            "ciimId": "shc-9967-1",
                             "level": "Series",
-                            "collectionId": "shc-67890",  # some value
+                            "collectionId": "shc-9967",
                             "collection": "some value",
                             "group": "community",
                             "description": "description",
@@ -432,7 +432,7 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                     "community_collection": {
                         "label": "Collection",
                         "value": "some value",
-                        "url": "/catalogue/id/shc-67890/",
+                        "url": "/catalogue/id/shc-9967/",
                         "is_ext_url": False,
                     },
                     "community_collection_webpage": {
@@ -449,7 +449,7 @@ class CommunityRecordCollectionAttrTests(SimpleTestCase):
                 {
                     "@template": {
                         "details": {
-                            "ciimId": "shc-8404",
+                            "ciimId": "shc-9967",
                             "level": "Collection",
                             "collectionId": "shc-0",
                             "collection": "some value",
