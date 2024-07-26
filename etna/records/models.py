@@ -811,7 +811,7 @@ class Record(DataLayerMixin, APIModel):
         if value := self.collection:
 
             field_name = "collection"
-            level = self.level.capitalize()
+            level = self.level
             label = FIELD_LABELS.get(field_name, "UNRECOGNISED FIELD NAME")
 
             if (
@@ -852,7 +852,7 @@ class Record(DataLayerMixin, APIModel):
           returns data attr, otherwise empty data
         """
         data = {}
-        level = self.level.capitalize()
+        level = self.level
         label = COLLECTION_FILTER_LABEL
         if level in (
             CommunityLevels.ITEM,
