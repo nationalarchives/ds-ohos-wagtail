@@ -644,7 +644,7 @@ class BaseFilteredSearchView(BaseSearchView):
                                 if aggs_rec.get("name") == nested_aggs_name:
                                     remove_aggregations.append(nested_aggs_name)
                                     children = aggs_rec.get("entries")
-                                    for index, child in enumerate(children):
+                                    for index, _ in enumerate(children):
                                         children[index].update(
                                             {AGGS_LOOKUP_KEY: child_aggs_name}
                                         )

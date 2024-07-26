@@ -21,9 +21,9 @@ from ..ciim.constants import (
     COLLECTION_FILTER_LABEL,
     COMMUNITY_WEBPAGE_MAP,
     BucketKeys,
+    CommunityLevelCiimId,
     CommunityLevels,
     TagTypes,
-    WebpageCiimId,
 )
 from ..ciim.models import APIModel
 from ..ciim.utils import (
@@ -775,7 +775,7 @@ class Record(DataLayerMixin, APIModel):
 
     def _is_swop(self) -> bool:
         """Returns True if ciim_id identified with SWOP"""
-        return bool(self.ciim_id[:4] == "swop")
+        return self.ciim_id.startswith(CommunityLevelCiimId.SWOP.removesuffix("0"))
 
     def _description_view(self) -> str:
         return self.template.get("descriptionView", "")
@@ -785,19 +785,23 @@ class Record(DataLayerMixin, APIModel):
 
     def _is_wmk(self) -> bool:
         """Returns True if ciim_id identified with <Milton Keynes>"""
-        return bool(self.ciim_id[:3] == "wmk")
+        # return bool(self.ciim_id[:3] == "wmk")
+        return self.ciim_id.startswith(CommunityLevelCiimId.WMK.removesuffix("0"))
 
     def _is_mpa(self) -> bool:
         """Returns True if ciim_id identified with <Morrab Photo Archive>"""
-        return bool(self.ciim_id[:3] == "mpa")
+        # return bool(self.ciim_id[:3] == "mpa")
+        return self.ciim_id.startswith(CommunityLevelCiimId.MPA.removesuffix("0"))
 
     def _is_pcw(self) -> bool:
         """Returns True if ciim_id identified with <People's Collection Wales>"""
-        return bool(self.ciim_id[:3] == "pcw")
+        # return bool(self.ciim_id[:3] == "pcw")
+        return self.ciim_id.startswith(CommunityLevelCiimId.PCW.removesuffix("0"))
 
     def _is_shc(self) -> bool:
         """Returns True if ciim_id identified with <Surrey History Centre>"""
-        return bool(self.ciim_id[:3] == "shc")
+        # return bool(self.ciim_id[:3] == "shc")
+        return self.ciim_id.startswith(CommunityLevelCiimId.SHC.removesuffix("0"))
 
     @cached_property
     def community_collection(self) -> Dict[str:str]:
@@ -860,11 +864,11 @@ class Record(DataLayerMixin, APIModel):
         ):
             webpage_ciim_id = ""
             if self._is_shc():
-                webpage_ciim_id = WebpageCiimId.SCH
+                webpage_ciim_id = CommunityLevelCiimId.SHC
             elif self._is_mpa():
-                webpage_ciim_id = WebpageCiimId.MPA
+                webpage_ciim_id = CommunityLevelCiimId.MPA
             elif self._is_wmk():
-                webpage_ciim_id = WebpageCiimId.WMK
+                webpage_ciim_id = CommunityLevelCiimId.WMK
 
             if webpage_ciim_id:
                 map = COMMUNITY_WEBPAGE_MAP.get(webpage_ciim_id)

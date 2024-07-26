@@ -755,7 +755,7 @@ OHOS_FILTER_ALIAS_NAME_MAP = {
 
 
 class CommunityCollectionNames(StrEnum):
-    SCH = "Surrey History Centre"
+    SHC = "Surrey History Centre"
     MPA = "Morrab Photo Archive"
     SWOP = "Sharing Wycombe's Old Photographs"
     PCW = "People's Collection Wales"
@@ -772,7 +772,7 @@ Nested collections - collections within a collection
 For the nested filter: <collection-name/ciim-value>:(<ciim-aggs-name:at-pos-1>,<long-filter-ciim-aggs-name:at-pos-2>)
 """
 NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP = {
-    CommunityCollectionNames.SCH: ("collectionSurrey", "collectionSurreyAll"),
+    CommunityCollectionNames.SHC: ("collectionSurrey", "collectionSurreyAll"),
     CommunityCollectionNames.MPA: ("collectionMorrab", "collectionMorrabAll"),
     CommunityCollectionNames.WMK: ("collectionWMK", ""),
 }
@@ -826,9 +826,11 @@ class CommunityLevels(StrEnum):
     ITEM = "Item"
 
 
-class WebpageCiimId(StrEnum):
-    # Top level Id for community archive collection
-    SCH = "shc-0"
+class CommunityLevelCiimId(StrEnum):
+    # Top level Id for community archive collection at level=Community
+    # is also used to identify type of record
+    # format <IdentifyingValue-0>
+    SHC = "shc-0"
     MPA = "mpa-0"
     SWOP = "swop-0"
     PCW = "pcw-0"
@@ -837,23 +839,23 @@ class WebpageCiimId(StrEnum):
 
 # maps ciim if with community webpage display value and urls
 COMMUNITY_WEBPAGE_MAP = {
-    WebpageCiimId.SCH: {
-        "value": CommunityCollectionNames.SCH,
+    CommunityLevelCiimId.SHC: {
+        "value": CommunityCollectionNames.SHC,
         "url": "https://www.surreyarchives.org.uk/",
     },
-    WebpageCiimId.MPA: {
+    CommunityLevelCiimId.MPA: {
         "value": CommunityCollectionNames.MPA,
         "url": "https://photoarchive.morrablibrary.org.uk/",
     },
-    WebpageCiimId.SWOP: {
+    CommunityLevelCiimId.SWOP: {
         "value": CommunityCollectionNames.SWOP,
         "url": "https://swop.org.uk/",
     },
-    WebpageCiimId.PCW: {
+    CommunityLevelCiimId.PCW: {
         "value": CommunityCollectionNames.PCW,
         "url": "https://www.peoplescollection.wales/",
     },
-    WebpageCiimId.WMK: {
+    CommunityLevelCiimId.WMK: {
         "value": CommunityCollectionNames.WMK,
         "url": "https://catalogue.mkcdc.org.uk/",
     },
