@@ -1,4 +1,4 @@
-@use "@nationalarchives/frontend/nationalarchives/tools/colour";
+    @use "@nationalarchives/frontend/nationalarchives/tools/colour";
 
 .ohos-search-results-map-container {
     margin-bottom: 2rem;
@@ -10,7 +10,8 @@
     border-bottom: 0;
 
     &__info {
-        background-color: $color__yellow;
+        //background-color: $color__yellow;
+        background-color: #FAF0CA;
         border: 1px solid $color__off-black;
         padding: 0.5rem 1rem;
         display: flex;
@@ -19,6 +20,7 @@
         &-icon {
             @include colour.colour-font("font-dark");
             padding-right: 0.5rem;
+            height:3em;
         }
     }
 }
