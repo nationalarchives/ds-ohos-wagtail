@@ -6,10 +6,10 @@
         <ul class="tag-frequency__tags-list">
 
           
-                <a href="{% tag_type_url tag_type=tag_type.LOCATION|upper %}#tagTop" class="ohos-tag ohos-tag--location">
+                <a href="{% tag_type_url tag_type=tag_type.LOCATION|upper %}#tagTop" class="ohos-tag ohos-tag--location" aria-label="Category: Location">
 
                     <span class="ohos-tag__inner">
-                        <label for="Category: Location">Location</label>
+                        Location
                         {% if form.chart_data_type.value == 'LOC' %}
                             <i class="fa-solid fa-xmark"></i>
                         {% endif %}
@@ -19,10 +19,10 @@
 
             <li>
 
-                <a href="{% tag_type_url tag_type=tag_type.PERSON|upper %}#tagTop" class="ohos-tag ohos-tag--person">
+                <a href="{% tag_type_url tag_type=tag_type.PERSON|upper %}#tagTop" class="ohos-tag ohos-tag--person" aria-label="Category: Person">
 
                     <span class="ohos-tag__inner">
-                        <label for="Category: Person">Person</label>
+                        Person
                         {% if form.chart_data_type.value == 'PER' %}
                             <i class="fa-solid fa-xmark"></i>
                         {% endif %}
@@ -32,10 +32,10 @@
 
             <li>
 
-                <a href="{% tag_type_url tag_type=tag_type.ORGANISATION|upper %}#tagTop" class="ohos-tag ohos-tag--organisation">
+                <a href="{% tag_type_url tag_type=tag_type.ORGANISATION|upper %}#tagTop" class="ohos-tag ohos-tag--organisation" aria-label="Category: Organisation">
 
                     <span class="ohos-tag__inner">
-                        <label for="Category: Organisation">Organisation</label>
+                        Organisation
                         {% if form.chart_data_type.value == 'ORG' %}
                             <i class="fa-solid fa-xmark"></i>
                         {% endif %}
@@ -45,10 +45,10 @@
 
             <li>
 
-                <a href="{% tag_type_url tag_type=tag_type.MISCELLANEOUS|upper %}#tagTop" class="ohos-tag ohos-tag--misc">
+                <a href="{% tag_type_url tag_type=tag_type.MISCELLANEOUS|upper %}#tagTop" class="ohos-tag ohos-tag--misc" aria-label="Category: Miscellaneous">
 
                     <span class="ohos-tag__inner">
-                        <label for="Category: Miscellaneous">Miscellaneous</label>
+                        Miscellaneous
                         {% if form.chart_data_type.value == 'MISC' %}
                             <i class="fa-solid fa-xmark"></i>
                         {% endif %}
