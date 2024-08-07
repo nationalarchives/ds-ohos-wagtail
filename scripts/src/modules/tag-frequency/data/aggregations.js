@@ -1,4 +1,4 @@
-export const aggregations = [
+export const enrichment_aggs = [
     {
         name: "enrichmentLoc",
         entries: [
