@@ -3,7 +3,9 @@ export const processAggregationData = (chartContainer) => {
         return;
     }
 
-    const enrichment_aggs = JSON.parse(document.getElementById('enrichment_aggs').textContent);
+    const enrichment_aggs = JSON.parse(
+        document.getElementById("enrichment_aggs").textContent,
+    );
     const data =
         JSON.parse(chartContainer.getAttribute("data-js-tag-frequency-data")) ??
         enrichment_aggs;
