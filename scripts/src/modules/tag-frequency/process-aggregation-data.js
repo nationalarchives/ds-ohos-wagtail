@@ -1,10 +1,9 @@
-import { enrichment_aggs } from "./data/aggregations.js";
-
 export const processAggregationData = (chartContainer) => {
     if (!chartContainer) {
         return;
     }
 
+    const enrichment_aggs = JSON.parse(document.getElementById('enrichment_aggs').textContent);
     const data =
         JSON.parse(chartContainer.getAttribute("data-js-tag-frequency-data")) ??
         enrichment_aggs;
