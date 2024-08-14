@@ -9,6 +9,10 @@ name: app
 # to find the supported versions for the 'python' type.
 type: 'python:3.12'
 
+dependencies:
+  python3:
+    poetry: '1.6.1'
+
 variables:
   env:
     DJANGO_SETTINGS_MODULE: 'config.settings.platform'
