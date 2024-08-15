@@ -72,27 +72,28 @@
                       },
                     },
                   },
+
+                  // Add this configuration to improve hit area accuracy
+                  interaction: {
+                    mode: 'index',
+                    intersect: false
+                  }
                 },
-
-
               });
+
               //  click event listener to the chart canvas
               chart.canvas.onclick = function(evt) {
                 const activePoints = chart.getElementsAtEventForMode(evt, 'index', false);
                 if (activePoints.length > 0) {
                   // Get the clicked bar index
-                  const clickedIndex = activePoints[0].index *100;
-                  clickedIndexAdjust = clickedIndex + 100;
+                  const clickedIndex = activePoints[0].index * 100;
+                  clickedIndexAdjust = clickedIndex;
                   console.log(clickedIndexAdjust);
                   // Access the corresponding record count from chart data
                   // const recordCount = chartData[clickedIndex];
 
                   const url ='./?vis_view=timeline&timeline_type=decade&startDate='+ clickedIndexAdjust +'#myChart';
                   window.location = url;
-
-
-
-
                 }
               };
             })
