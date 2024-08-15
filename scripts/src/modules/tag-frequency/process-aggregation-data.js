@@ -33,7 +33,7 @@ export const processAggregationData = (chartContainer) => {
      * @returns {Array}
      *
      * Helper function to add type to entry
-     */
+     */1
     const mapDataByType = (data, type) => {
         const mappedData = data?.map((entry) => {
             return {

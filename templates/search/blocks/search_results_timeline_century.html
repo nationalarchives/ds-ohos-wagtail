@@ -3,7 +3,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
 
   <script>
-    fetch('http://a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com/rosetta/data/search?aggs=decade,year,century&filter=group:community&filter=century:500&field=century:1900') //  server-side API endpoint
+    fetch('http://a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com/rosetta/data/search?aggs=century&filter=group:community') //  server-side API endpoint
 
             .then(response => response.json())
             .then(data => {
@@ -12,15 +12,19 @@
               // Loop through each entry in the "century" aggregation
               data.aggregations[0].entries.forEach(entry => {
                 const century = parseInt(entry.value);
-                const centuryName = `${century}`; // Construct the century name
 
-                // Check if the century already exists in the array
-                const existingCentury = centuries.find(c => c.name === centuryName);
+                // Filter centuries between 0 and 2100
+                if (century >= 0 && century <= 2100) {
+                  const centuryName = `${century}`; // Construct the century name
 
-                if (existingCentury) {
-                  existingCentury.count += entry.doc_count; // Add doc count to existing century
-                } else {
-                  centuries.push({ name: centuryName, count: entry.doc_count }); // Add new century object
+                  // Check if the century already exists in the array
+                  const existingCentury = centuries.find(c => c.name === centuryName);
+
+                  if (existingCentury) {
+                    existingCentury.count += entry.doc_count; // Add doc count to existing century
+                  } else {
+                    centuries.push({ name: centuryName, count: entry.doc_count }); // Add new century object
+                  }
                 }
               });
 
