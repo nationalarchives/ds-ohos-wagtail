@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Record Counts (Histogram)</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
-</head>
-<body>
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
 <script>
 
   fetch('http://a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com/rosetta/data/search?aggs=decade,year,century&filter=group:community') // Replace with your server-side API endpoint
@@ -119,16 +108,9 @@
 
 </script>
 
-
-
-
   <div class="tna-container">
     <div class="hist-bar"></div>
   <canvas id="myChart"></canvas>
   <p class="disclaim"><i class="tag-frequency__info-icon fa-solid fa-circle-info"></i>Timeline shows the volume of items over time. This view does not show items without dates.</p>
   </div>
 
-
-  
-</body>
-</html>
