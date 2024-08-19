@@ -25,6 +25,7 @@ module.exports = {
         tag_frequency_chart: "./scripts/src/modules/tag-frequency/tag-frequency-chart.js",
         wikidata_overlays: "./scripts/src/modules/wikidata-overlays/wikidata-overlays.js",
         timeline:"./scripts/src/modules/timeline/timeline.js",
+        century:"./scripts/src/modules/timeline/century.js",
     },
     output: {
         filename: "[name].js",
