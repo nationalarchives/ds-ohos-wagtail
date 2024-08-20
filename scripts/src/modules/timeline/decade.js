@@ -6,8 +6,10 @@ fetch(
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
 
-        var targetDecade = urlParams.get("startDate"); // Assuming the target decade is passed as startDate
-        var targetDecade = Number(targetDecade); // Using Number() function
+        const targetDecade = parseInt(urlParams.get("startDate"));
+
+        // var targetDecade = urlParams.get("startDate"); // Assuming the target decade is passed as startDate
+        // var targetDecade = Number(targetDecade); // Using Number() function
 
         const years = [];
 
