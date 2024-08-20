@@ -557,6 +557,88 @@ class TestPrepareOhosParam(SimpleTestCase):
                     ],
                 ),
             ),
+            (
+                "TAG view",  # label
+                # params
+                (
+                    "tag",
+                    [
+                        "community",
+                        "enrichmentLoc",
+                        "enrichmentPer",
+                        "enrichmentOrg",
+                        "enrichmentMisc",
+                    ],
+                    [
+                        "collection:parent-collectionSurrey:Surrey History Centre",
+                        "collection:child-collectionSurrey:GYPSY ROMA TRAVELLER HISTORY MONTH: RECORDED INTERVIEWS",
+                        "collection:child-collectionSurrey:LINGFIELD ORAL HISTORY PROJECT: TRANSCRIPTS",
+                        "collection:parent-collectionMorrab:Morrab Photo Archive",
+                        "collection:child-collectionMorrab:Miscellaneous Photos",
+                        "group:community",
+                    ],
+                ),
+                # expected
+                (
+                    [
+                        "community",
+                        "enrichmentLoc",
+                        "enrichmentPer",
+                        "enrichmentOrg",
+                        "enrichmentMisc",
+                        "collectionMorrab",
+                        "collectionSurrey",
+                    ],
+                    [
+                        "collectionOhos:GYPSY ROMA TRAVELLER HISTORY MONTH: RECORDED INTERVIEWS",
+                        "collectionOhos:LINGFIELD ORAL HISTORY PROJECT: TRANSCRIPTS",
+                        "collectionOhos:Miscellaneous Photos",
+                        "group:community",
+                    ],
+                ),
+            ),
+            (
+                "parent children selection - WMK",  # label
+                # params
+                (
+                    "list",
+                    ["community"],
+                    [
+                        "collection:parent-collectionWMK:Milton Keynes City Discovery Centre",
+                        "collection:child-collectionWMK:Women who made Milton Keynes",
+                        "group:community",
+                    ],
+                ),
+                # expected
+                (
+                    ["community", "collectionWMK"],
+                    [
+                        "collectionOhos:Women who made Milton Keynes",
+                        "group:community",
+                    ],
+                ),
+            ),
+            (
+                "parent children selection - SID",  # label
+                # params
+                (
+                    "list",
+                    ["community"],
+                    [
+                        "collection:parent-collectionCain:CAIN Archive - Conflict and Politics in Northern Ireland",
+                        "collection:child-collectionCain:An index of Deaths from the Conflict in Ireland",
+                        "group:community",
+                    ],
+                ),
+                # expected
+                (
+                    ["community", "collectionCain"],
+                    [
+                        "collectionOhos:An index of Deaths from the Conflict in Ireland",
+                        "group:community",
+                    ],
+                ),
+            ),
         )
 
         for label, params, expected in test_data:

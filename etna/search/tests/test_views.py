@@ -12,6 +12,7 @@ from wagtail.test.utils import WagtailTestUtils
 
 import responses
 
+from etna.ciim.constants import ENRICHMENT_AGGREGATIONS
 from etna.core.test_utils import prevent_request_warnings
 
 from ..forms import CatalogueSearchForm
@@ -104,6 +105,8 @@ class SelectedFiltersTest(SimpleTestCase):
                 # ],
             },
         )
+        # test Dynamic collection label
+        self.assertEqual(form.fields.get("collection").label, "Collections")
 
     @unittest.skip("# TODO: Keep, not in scope for Ohos-Etna at this time")
     def test_counts_are_removed_from_updated_choice_labels(self):
@@ -435,6 +438,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         - Filter options to refine the search
         - Search results
         - Buckets rendered
+        - Dynamic collection label
 
         They SHOULD NOT see:
         -  A "No results" message.
@@ -465,6 +469,10 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         )
         self.assertUnSelectedBucketRendered(
             "nonTna", "6,393", "Results from other archives", content
+        )
+        self.assertEqual(
+            response.context_data.get("form").fields.get("collection").label,
+            "Community archive",
         )
 
         # SHOULD NOT see
@@ -687,6 +695,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                     "&filter=collectionOhos%3ABiography+of+Women+Who+Made+Milton+Keynes+%28Digital+Document%29"
                     "&filter=group%3Acommunity"
                     "&filter=fromDate%3A%28%3E%3D1900-01-01%29"
+                    "&filter=enrichmentFrom%3A%28%3E%3D1900-01-01%29"
                     "&sort=title%3Aasc"
                     "&from=0"
                     "&size=20"
@@ -701,23 +710,24 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         chart_data_type_hidden = """<input type="hidden" name="chart_data_type" value="LOC" id="id_chart_data_type_123">"""
         self.assertContains(response, chart_data_type_hidden, count=0, status_code=200)
 
+        self.assertFalse((response.context.get("enrichment_aggs")))
+
     @mock.patch(
         "etna.search.templatetags.search_tags.get_random_string", return_value="123"
     )
     @responses.activate
     def test_tag_view(self, mocked_get_random_string):
         self.maxDiff = None
-        self.patch_search_endpoint("community_nested_filters.json")
+        self.patch_search_endpoint("community_enrichment_tags.json")
 
         expected_url = (
             "/search/catalogue/?q=and&group=community"
-            "&collection=parent-collectionMorrab%3AMorrab+Photo+Archive"
-            "&collection=parent-collectionSurrey%3ASurrey+History+Centre"
-            "&collection=child-collectionSurrey%3AJENNIFER+LOUIS+OF+WESTHUMBLE%3A+ORAL+HISTORY+RECORDINGS"
-            "&collection=Biography+of+Women+Who+Made+Milton+Keynes+%28Digital+Document%29"
+            "&collection=SWOP"
             "&covering_date_from_0=01&covering_date_from_1=01&covering_date_from_2=1900"
             "&vis_view=tag&sort=title%3Aasc"
             "&chart_data_type=LOC"
+            "&chart_selected=LOC%3ARye"
+            "&chart_selected=LOC%3AHigh+Wycombe"
         )
 
         response = self.client.get(
@@ -726,10 +736,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                 "q": "and",
                 "group": "community",
                 "collection": [
-                    "parent-collectionMorrab:Morrab Photo Archive",
-                    "parent-collectionSurrey:Surrey History Centre",
-                    "child-collectionSurrey:JENNIFER LOUIS OF WESTHUMBLE: ORAL HISTORY RECORDINGS",
-                    "Biography of Women Who Made Milton Keynes (Digital Document)",
+                    "SWOP",
                 ],
                 "covering_date_from_0": "01",
                 "covering_date_from_1": "01",
@@ -737,10 +744,10 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                 "vis_view": "tag",
                 "sort": "title:asc",
                 "chart_data_type": "LOC",
+                "chart_selected": ["LOC:Rye", "LOC:High Wycombe"],
             },
         )
         session = self.client.session
-        # content = str(response.content)
 
         self.assertEqual(len(responses.calls), 1)
 
@@ -750,8 +757,24 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
             """<input type="hidden" name="vis_view" value="tag" id="id_vis_view_123">"""
         )
         self.assertContains(response, vis_view_hidden, count=4, status_code=200)
+
         chart_data_type_hidden = """<input type="hidden" name="chart_data_type" value="LOC" id="id_chart_data_type_123">"""
         self.assertContains(response, chart_data_type_hidden, count=4, status_code=200)
+
+        chart_selected_hidden = """<input type="hidden" name="chart_selected" value="LOC:Rye" id="id_chart_selected_123_0">"""
+        self.assertContains(response, chart_selected_hidden, count=4, status_code=200)
+        chart_selected_hidden = """<input type="hidden" name="chart_selected" value="LOC:High Wycombe" id="id_chart_selected_123_1">"""
+        self.assertContains(response, chart_selected_hidden, count=4, status_code=200)
+
+        self.assertEqual(len(response.context.get("selected_filters")), 2)
+
+        self.assertEqual(len(response.context.get("enrichment_aggs")), 4)
+
+        for aggs in response.context.get("enrichment_aggs"):
+            self.assertTrue(
+                aggs.get("name") in ENRICHMENT_AGGREGATIONS,
+                msg="enrichment_aggs name not found",
+            )
 
 
 class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
@@ -796,6 +819,7 @@ class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
                 "&aggs=collectionMorrabAll"
                 "&filter=group%3Acommunity"
                 "&filter=fromDate%3A%28%3E%3D1900-01-01%29"
+                "&filter=enrichmentFrom%3A%28%3E%3D1900-01-01%29"
                 "&sort=title%3Aasc"
                 "&from=0"
                 "&size=20"

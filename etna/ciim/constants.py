@@ -44,12 +44,25 @@ class Aggregation(StrEnum):
     COUNTRY = "country"
     LOCATION = "location"
     COMMUNITY = "community"
+    ENRICHMENT_LOC = "enrichmentLoc"
+    ENRICHMENT_ORG = "enrichmentOrg"
+    ENRICHMENT_PER = "enrichmentPer"
+    ENRICHMENT_MISC = "enrichmentMisc"
 
 
 DEFAULT_AGGREGATIONS = [
     # Aggregation.GROUP # TODO: Keep, not in scope for Ohos-Etna at this time
     # TODO:Rosetta + ":30",  # Fetch more 'groups' so that we receive counts for any bucket/tab options we might be showing.
 ]
+
+ENRICHMENT_AGGREGATIONS = [
+    Aggregation.ENRICHMENT_LOC,
+    Aggregation.ENRICHMENT_PER,
+    Aggregation.ENRICHMENT_ORG,
+    Aggregation.ENRICHMENT_MISC,
+]
+
+TAG_VIEW_AGGREGATIONS = [Aggregation.COMMUNITY] + ENRICHMENT_AGGREGATIONS
 
 
 @dataclass
@@ -723,7 +736,49 @@ OHOS_CHECKBOX_AGGS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "community"}
 
 # re CIIM param: filter=<alias-name>:<value>
 # map: {<filter-alias-name>:<ohos-filter-alias-name>}
-OHOS_FILTER_ALIAS_NAME_MAP = {COLLECTION_ATTR_FOR_ALL_BUCKETS: "collectionOhos"}
+# <filter-alias-name> => <camel case of form field>[:<tag type of tag view>]
+OHOS_FILTER_ALIAS_NAME_MAP = {
+    COLLECTION_ATTR_FOR_ALL_BUCKETS: "collectionOhos",
+    "chartSelected:{tag_type}".format(
+        tag_type=TagTypes.LOCATION.upper()
+    ): Aggregation.ENRICHMENT_LOC,
+    "chartSelected:{tag_type}".format(
+        tag_type=TagTypes.PERSON.upper()
+    ): Aggregation.ENRICHMENT_PER,
+    "chartSelected:{tag_type}".format(
+        tag_type=TagTypes.ORGANISATION.upper()
+    ): Aggregation.ENRICHMENT_ORG,
+    "chartSelected:{tag_type}".format(
+        tag_type=TagTypes.MISCELLANEOUS.upper()
+    ): Aggregation.ENRICHMENT_MISC,
+}
+
+
+class CommunityCollectionMapping(StrEnum):
+    # CollectionAbbrev = (<collection-name>, <top level/community ciim id>, <webpage url>)
+    SHC = ("Surrey History Centre", "shc-0", "https://www.surreyarchives.org.uk/")
+    MPA = (
+        "Morrab Photo Archive",
+        "mpa-0",
+        "https://photoarchive.morrablibrary.org.uk/",
+    )
+    SWOP = ("Sharing Wycombe's Old Photographs", "swop-0", "https://swop.org.uk/")
+    PCW = ("People's Collection Wales", "pcw-0", "https://www.peoplescollection.wales/")
+    WMK = (
+        "Milton Keynes City Discovery Centre",
+        "wmk-0",
+        "https://catalogue.mkcdc.org.uk/",
+    )
+    # NOTE: CAIN Archive has multiple ciim prefixed ids ex sid-0 (Community level), me-0 (Collection level)
+    SID = ("CAIN Archive - Conflict and Politics in Northern Ireland", "sid-0", "")
+
+    def __new__(cls, value, community_level_ciim_id, webpage_url):
+        obj = str.__new__(cls, [value])
+        obj._value_ = value
+        obj.community_level_ciim_id = community_level_ciim_id
+        obj.webpage_url = webpage_url
+        return obj
+
 
 """
 CONFIG:
@@ -735,8 +790,10 @@ Nested collections - collections within a collection
 For the nested filter: <collection-name/ciim-value>:(<ciim-aggs-name:at-pos-1>,<long-filter-ciim-aggs-name:at-pos-2>)
 """
 NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP = {
-    "Surrey History Centre": ("collectionSurrey", "collectionSurreyAll"),
-    "Morrab Photo Archive": ("collectionMorrab", "collectionMorrabAll"),
+    CommunityCollectionMapping.SHC.value: ("collectionSurrey", "collectionSurreyAll"),
+    CommunityCollectionMapping.MPA.value: ("collectionMorrab", "collectionMorrabAll"),
+    CommunityCollectionMapping.WMK.value: ("collectionWMK", ""),
+    CommunityCollectionMapping.SID.value: ("collectionCain", ""),
 }
 
 # prefix ends with "-"
@@ -763,9 +820,51 @@ for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values():
         {PARENT_AGGS_PREFIX + aggs[0]: CHILD_AGGS_PREFIX + aggs[0]}
     )
 
+PREFIX_FILTER_AGGS = [
+    PARENT_AGGS_PREFIX + aggs[0]
+    for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+] + [
+    CHILD_AGGS_PREFIX + aggs[0]
+    for aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.values()
+]
+
 SEE_MORE_LABEL = "See more collections"
 SEE_MORE_PREFIX = "SEE-MORE"
 SEPERATOR = "::SEP::"  # value seperator
 SEE_MORE_VALUE_FMT = (
     f"{SEE_MORE_PREFIX}{SEPERATOR}{SEE_MORE_LABEL}{SEPERATOR}" + "{url}"
 )
+
+COLLECTION_FILTER_LABEL = "Community archive"
+
+
+class CommunityLevels(StrEnum):
+    COMMUNITY = "Community"
+    COLLECTION = "Collection"
+    SERIES = "Series"
+    ITEM = "Item"
+
+
+# maps ciim if with community webpage display value and urls
+COMMUNITY_WEBPAGE_MAP = {
+    CommunityCollectionMapping.SHC.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.SHC.value,
+        "url": CommunityCollectionMapping.SHC.webpage_url,
+    },
+    CommunityCollectionMapping.MPA.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.MPA.value,
+        "url": CommunityCollectionMapping.MPA.webpage_url,
+    },
+    CommunityCollectionMapping.SWOP.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.SWOP.value,
+        "url": CommunityCollectionMapping.SWOP.webpage_url,
+    },
+    CommunityCollectionMapping.PCW.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.PCW.value,
+        "url": CommunityCollectionMapping.PCW.webpage_url,
+    },
+    CommunityCollectionMapping.WMK.community_level_ciim_id: {
+        "value": CommunityCollectionMapping.WMK.value,
+        "url": CommunityCollectionMapping.WMK.webpage_url,
+    },
+}

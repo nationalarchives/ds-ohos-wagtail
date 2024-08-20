@@ -11,7 +11,9 @@ from ..ciim.constants import (  # TODO: Keep, not in scope for Ohos-Etna at this
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
     COLLECTION_CHOICES,
+    COLLECTION_FILTER_LABEL,
     NESTED_CHILDREN_KEY,
+    PREFIX_FILTER_AGGS,
     SEPERATOR,
     BucketKeys,
     TagTypes,
@@ -148,7 +150,11 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
             try:
                 label_base = self.configured_choice_labels[missing_value]
             except KeyError:
-                label_base = missing_value
+                if missing_value.startswith(tuple(PREFIX_FILTER_AGGS)):
+                    # remove prefix filter
+                    label_base = missing_value.split(":", 1)[1]
+                else:
+                    label_base = missing_value
 
             # if missing value forms part of the collection that has more, then prefix
             choices.append((missing_value, f"{label_base} (0)"))
@@ -335,11 +341,16 @@ class BaseCollectionSearchForm(forms.Form):
         ],
         required=False,
     )
+    # used for Tag View
+    chart_selected = DynamicMultipleChoiceField(
+        label="Chart selected",
+        required=False,
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if kwargs and kwargs.get("data").get("group", "") == BucketKeys.COMMUNITY:
-            self.fields["collection"].label = "Community Archive"
+            self.fields["collection"].label = COLLECTION_FILTER_LABEL
 
     def clean(self):
         """

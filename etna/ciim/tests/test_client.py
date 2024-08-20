@@ -91,7 +91,7 @@ class ClientSearchTest(SimpleTestCase):
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
             responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/search?filter={quote('fromDate:(>=1901-02-03)')}",
+            f"{settings.CLIENT_BASE_URL}/search?filter={quote('fromDate:(>=1901-02-03)')}&filter={quote('enrichmentFrom:(>=1901-02-03)')}",
         )
 
     @responses.activate
@@ -103,7 +103,7 @@ class ClientSearchTest(SimpleTestCase):
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
             responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/search?filter={quote('toDate:(<=1901-02-03)')}",
+            f"{settings.CLIENT_BASE_URL}/search?filter={quote('toDate:(<=1901-02-03)')}&filter={quote('enrichmentTo:(<=1901-02-03)')}",
         )
 
     @responses.activate
@@ -689,7 +689,13 @@ class TestClientFetchReponse(SimpleTestCase):
 
     @responses.activate
     def test_valid_response(self):
-        record_data = create_record(group="community")
+        record_data = create_record(
+            group="community",
+            add_template_details={
+                "descriptionPlace": "desc1",
+                "descriptionView": "desc2",
+            },
+        )
         responses.add(
             responses.GET,
             f"{settings.CLIENT_BASE_URL}/get",
@@ -703,7 +709,9 @@ class TestClientFetchReponse(SimpleTestCase):
         )
         self.assertEqual(
             result.description,
-            record_data["@template"]["details"]["description"],
+            record_data["@template"]["details"]["descriptionPlace"]
+            + " "
+            + record_data["@template"]["details"]["descriptionView"],
         )
 
     @responses.activate
