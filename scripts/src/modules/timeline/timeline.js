@@ -33,7 +33,8 @@ fetch(
         centuries.sort((a, b) => parseInt(a.name) - parseInt(b.name));
 
         const ctx = document.getElementById("myChart").getContext("2d");
-        const chart = new Chart(ctx, {
+        // const chart = new Chart(ctx, {
+        const chart = new window.Chart(ctx, {
             type: "bar",
             data: {
                 labels: centuries.map((century) => century.name),
@@ -96,7 +97,8 @@ fetch(
             if (activePoints.length > 0) {
                 // Get the clicked bar index
                 const clickedIndex = activePoints[0].index * 100;
-                clickedIndexAdjust = clickedIndex;
+                const clickedIndexAdjust = clickedIndex;
+                // clickedIndexAdjust = clickedIndex;
                 console.log(clickedIndexAdjust);
                 // Access the corresponding record count from chart data
                 // const recordCount = chartData[clickedIndex];
