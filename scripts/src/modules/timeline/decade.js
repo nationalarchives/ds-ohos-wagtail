@@ -31,7 +31,8 @@ fetch(
         }
 
         const ctx = document.getElementById("myChart").getContext("2d");
-        const chart = new Chart(ctx, {
+        // const chart = new Chart(ctx, {
+        new window.Chart(ctx, {
             type: "bar", // You can choose a different chart type for year-wise data (e.g., 'line')
             data: {
                 labels: years.map((year) => `${year.year}`),

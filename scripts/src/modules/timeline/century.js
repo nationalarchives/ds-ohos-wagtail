@@ -6,8 +6,10 @@ fetch(
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
 
-        var targetCentury = urlParams.get("startDate");
-        var targetCentury = Number(targetCentury); // Using Number() function
+        // var targetCentury = urlParams.get("startDate");
+        // var targetCentury = Number(targetCentury); // Using Number() function
+
+        const targetCentury = parseInt(urlParams.get("startDate"));
 
         const decades = [];
 
@@ -39,7 +41,8 @@ fetch(
         }
 
         const ctx = document.getElementById("myChart").getContext("2d");
-        const chart = new Chart(ctx, {
+        // const chart = new Chart(ctx, {
+        const chart = new window.Chart(ctx, {
             type: "bar",
             data: {
                 labels: decades.map((decade) => `${decade.decade}`),
@@ -96,8 +99,9 @@ fetch(
             if (activePoints.length > 0) {
                 // Get the clicked bar index
                 const clickedIndex = activePoints[0].index * 10;
-                clickedIndexAdjust = targetCentury + clickedIndex;
-                console.log(clickedIndexAdjust);
+                // clickedIndexAdjust = targetCentury + clickedIndex;
+                const clickedIndexAdjust = targetCentury + clickedIndex;
+                // console.log(clickedIndexAdjust);
                 // Access the corresponding record count from chart data
                 // const recordCount = chartData[clickedIndex];
 
