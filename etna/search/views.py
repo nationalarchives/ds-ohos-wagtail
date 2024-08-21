@@ -13,12 +13,12 @@ from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadReque
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import urlencode
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView
 
 from wagtail.coreutils import camelcase_to_underscore
 
 from ..analytics.mixins import SearchDataLayerMixin
-from ..ciim.client import Aggregation, Sort
+from ..ciim.client import Sort
 from ..ciim.constants import (
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
