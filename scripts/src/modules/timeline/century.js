@@ -1,5 +1,5 @@
 fetch(
-    "http://a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com/rosetta/data/search?aggs=decade,year,century&filter=group:community",
+    "https://a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com/rosetta/data/search?aggs=decade,year,century&filter=group:community",
 ) // Replace with your server-side API endpoint
     .then((response) => response.json())
     .then((data) => {
