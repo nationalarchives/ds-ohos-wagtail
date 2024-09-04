@@ -3,7 +3,7 @@ pre code {
     padding: 20px;
 }
 
-pre {
+pre:has(code) {
     background-color: #eee;
     border: 1px solid #999;
 }
