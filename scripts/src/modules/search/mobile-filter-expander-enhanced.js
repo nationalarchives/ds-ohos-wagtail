@@ -1,5 +1,5 @@
 /* global $buttonHtml $noOfFilters */
-alert('called');
+alert("called");
 import debounce from "../debounce.js";
 
 export default function () {
