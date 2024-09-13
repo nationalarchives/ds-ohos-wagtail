@@ -1,5 +1,5 @@
 /* global $buttonHtml $noOfFilters */
-
+alert('called');
 import debounce from "../debounce.js";
 
 export default function () {
@@ -62,7 +62,7 @@ export default function () {
         }
     });
 
-    if (window.innerWidth <= 1200) {
+    if (window.innerWidth <= 1025) {
         $showHideButton.hidden = false;
         $searchFilterContainer.hidden = true;
     }
@@ -71,7 +71,7 @@ export default function () {
         "resize",
         debounce(() => {
             let ariaExpanded = $showHideButton.getAttribute("aria-expanded");
-            if (window.innerWidth <= 1200) {
+            if (window.innerWidth <= 1025) {
                 $showHideButton.hidden = false;
 
                 if (ariaExpanded === "false") {
