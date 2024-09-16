@@ -61,9 +61,7 @@ export default function () {
         }
     });
 
-
     if (window.innerWidth <= 992) {
-
         $showHideButton.hidden = false;
         $searchFilterContainer.hidden = true;
     }
@@ -74,8 +72,6 @@ export default function () {
             let ariaExpanded = $showHideButton.getAttribute("aria-expanded");
 
             if (window.innerWidth <= 992) {
-
-              
                 $showHideButton.hidden = false;
 
                 if (ariaExpanded === "false") {
