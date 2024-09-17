@@ -61,6 +61,9 @@
     <form method="GET" class="tag-frequency__form" data-js-form-tag-frequency>
 
         {{ enrichment_aggs|json_script:"enrichment_aggs" }}
+        {% if  not has_enrichment_aggs_entries %}
+            EMPTY
+        {% endif %}
 
         <div id="tag-frequency-chart" class="tag-frequency__chart"></div>
 
