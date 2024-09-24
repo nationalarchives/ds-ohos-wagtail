@@ -13,12 +13,12 @@ from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadReque
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import urlencode
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView
 
 from wagtail.coreutils import camelcase_to_underscore
 
 from ..analytics.mixins import SearchDataLayerMixin
-from ..ciim.client import Aggregation, Sort
+from ..ciim.client import Sort
 from ..ciim.constants import (
     AGGS_LOOKUP_KEY,
     CATALOGUE_BUCKETS,
@@ -33,7 +33,7 @@ from ..ciim.constants import (
     PARENT_AGGS_PREFIX,
     PREFIX_AGGS_PARENT_CHILD_KV,
     PREFIX_FILTER_AGGS,
-    SEE_MORE_VALUE_FMT,
+    SEE_ALL_VALUE_FMT,
     TAG_VIEW_AGGREGATIONS,
     Bucket,
     BucketKeys,
@@ -179,48 +179,6 @@ class ClientAPIMixin:
             number=self.page_number, on_each_side=1, on_ends=1
         )
         return paginator, page, page_range
-
-
-class SearchLandingView(SearchDataLayerMixin, BucketsMixin, TemplateView):
-    """
-    A simple view that queries the API to retrieve counts for the various
-    buckets the user can explore, and provides a form to encourage the user
-    to dig deeper. Any interaction should take them to one of the other,
-    more sophisticated, views below.
-
-    Although this view called the Client API, it does not use ClientAPIMixin,
-    as the unique functionality is simple enough to keep in a single method.
-    """
-
-    template_name = "search/search.html"
-    bucket_list = CATALOGUE_BUCKETS
-    page_type = "Search landing page"
-    page_title = "Search landing"
-
-    def get_context_data(self, **kwargs):
-        # Make empty search to get aggregations
-        self.api_result = records_client.search(
-            aggregations=[
-                Aggregation.CATALOGUE_SOURCE,
-                Aggregation.CLOSURE,
-                Aggregation.COLLECTION,
-                Aggregation.LEVEL,
-                Aggregation.TOPIC,
-                # Fetching more groups so that we receive a counts
-                # for any bucket/tab options we might be showing
-                f"{Aggregation.GROUP}:30",
-                Aggregation.HELD_BY,
-                Aggregation.TYPE,
-            ],
-            size=0,
-        )
-        kwargs["page_type"] = self.page_type
-        kwargs["page_title"] = self.page_title
-        return super().get_context_data(
-            meta_title="Search the collection",
-            form=CatalogueSearchForm(),
-            **kwargs,
-        )
 
 
 class GETFormView(FormView):
@@ -511,25 +469,25 @@ class BaseFilteredSearchView(BaseSearchView):
         filter_aggregations.append(f"group:{form.cleaned_data['group']}")
         return filter_aggregations
 
-    def _prepare_see_more_choice(
+    def _prepare_see_all_choice(
         self, aggs_rec: Dict[str, Any], field_name: str
     ) -> Dict:
         """
-        Prepares see more to be extracted as a choice and then url in template.
+        Prepares see all to be extracted as a choice and then url in template.
         aggs_rec:
             aggregations record in the API response ex "collectionMorrab"
         field_name:
             name of the checkbox field
 
         Ex:
-        see_more_value=SEE-MORE::SEP::See more collections::SEP::
+        see_all_value=SEE-ALL::SEP::See all collections::SEP::
         /search/catalogue/long-filter-chooser/collection/
         ?collection=long-collectionMorrabAll%3AMorrab+Photo+Archive
         &collection=parent-collectionMorrab%3AMorrab+Photo+Archive&vis_view=list&group=community
         """
         choice_data = {}
-        see_more_count = aggs_rec.get("other")  # attribute that determines see more
-        if see_more_count > 0:
+        see_all_count = aggs_rec.get("other")  # attribute that determines see all
+        if see_all_count > 0:
             long_filter_aggs = NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.get(field_name)[1]
 
             data = f"{LONG_AGGS_PREFIX}{long_filter_aggs}:{field_name}"
@@ -567,11 +525,11 @@ class BaseFilteredSearchView(BaseSearchView):
                 kwargs={"field_name": COLLECTION_ATTR_FOR_ALL_BUCKETS},
             )
             url += add_url_params
-            see_more_value = SEE_MORE_VALUE_FMT.format(url=url)
+            see_all_value = SEE_ALL_VALUE_FMT.format(url=url)
 
             choice_data = {
-                "value": see_more_value,
-                "doc_count": see_more_count,
+                "value": see_all_value,
+                "doc_count": see_all_count,
             }
 
         return choice_data
@@ -582,7 +540,7 @@ class BaseFilteredSearchView(BaseSearchView):
         """
         Transforms the API aggregations for nested checkbox
         when the "other" count is more than 0 it indicates there are more collections
-        see more is added to children - used as a url
+        see all is added to children - used as a url
 
         Ex:
         API aggregations:
@@ -603,7 +561,7 @@ class BaseFilteredSearchView(BaseSearchView):
                                      'doc_count': 12,
                                      'key': 'child-collectionSurrey'},
                                      ...
-                                     {'value': 'See more collections', 'doc_count': 22}]}],
+                                     {'value': 'See all collections', 'doc_count': 22}]}],
                                      'total': 0,
                                      'other': 0}]
         """
@@ -649,10 +607,10 @@ class BaseFilteredSearchView(BaseSearchView):
                                             {AGGS_LOOKUP_KEY: child_aggs_name}
                                         )
 
-                                    if see_more := self._prepare_see_more_choice(
+                                    if see_all := self._prepare_see_all_choice(
                                         aggs_rec, collection_name
                                     ):
-                                        children.append(see_more)
+                                        children.append(see_all)
 
                             # add children KV
                             if children:
@@ -985,6 +943,12 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
                     enrichment_aggs.append(aggs_rec)
             if enrichment_aggs:
                 kwargs.update(enrichment_aggs=enrichment_aggs)
+
+                kwargs.update(has_enrichment_aggs_entries=False)
+                for aggs in enrichment_aggs:
+                    if len(aggs.get("entries", [])) > 0:
+                        kwargs.update(has_enrichment_aggs_entries=True)
+                        break
         return kwargs
 
     def get_api_aggregations(self) -> List[str]:
