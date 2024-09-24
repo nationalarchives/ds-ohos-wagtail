@@ -1,4 +1,3 @@
-
 fetch(
     "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=century&filter=group:community",
 ) //  server-side API endpoint
