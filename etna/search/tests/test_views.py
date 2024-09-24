@@ -610,7 +610,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         "etna.search.templatetags.search_tags.get_random_string", return_value="123"
     )
     @responses.activate
-    def test_nested_filters_see_more(self, mocked_get_random_string):
+    def test_nested_filters_see_all(self, mocked_get_random_string):
         self.maxDiff = None
         self.patch_search_endpoint("community_nested_filters.json")
 
@@ -659,9 +659,9 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
             """<label for="id_collection_0_1"><input type="checkbox" name="collection" value="child-collectionMorrab:Richards Collection" id="id_collection_0_1">""",
             content,
         )
-        # see more url - Note: updated \' to \\\'
+        # see all url - Note: updated \' to \\\'
         self.assertIn(
-            """<a href="/search/catalogue/long-filter-chooser/collection/?collection=long-collectionMorrabAll%3AMorrab+Photo+Archive&amp;q=and&amp;collection=parent-collectionMorrab%3AMorrab+Photo+Archive&amp;collection=parent-collectionSurrey%3ASurrey+History+Centre&amp;collection=child-collectionSurrey%3AJENNIFER+LOUIS+OF+WESTHUMBLE%3A+ORAL+HISTORY+RECORDINGS&amp;collection=Biography+of+Women+Who+Made+Milton+Keynes+%28Digital+Document%29&amp;covering_date_from_0=01&amp;covering_date_from_1=01&amp;covering_date_from_2=1900&amp;sort=title%3Aasc&amp;vis_view=list&amp;group=community" aria-label=\\\'See more\\\'>See more collections (126)</a>""",
+            """<a href="/search/catalogue/long-filter-chooser/collection/?collection=long-collectionMorrabAll%3AMorrab+Photo+Archive&amp;q=and&amp;collection=parent-collectionMorrab%3AMorrab+Photo+Archive&amp;collection=parent-collectionSurrey%3ASurrey+History+Centre&amp;collection=child-collectionSurrey%3AJENNIFER+LOUIS+OF+WESTHUMBLE%3A+ORAL+HISTORY+RECORDINGS&amp;collection=Biography+of+Women+Who+Made+Milton+Keynes+%28Digital+Document%29&amp;covering_date_from_0=01&amp;covering_date_from_1=01&amp;covering_date_from_2=1900&amp;sort=title%3Aasc&amp;vis_view=list&amp;group=community" aria-label=\\\'See more\\\'>See all collections (126)</a>""",
             content,
         )
         # orphan collection checked
@@ -776,6 +776,44 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
                 msg="enrichment_aggs name not found",
             )
 
+        self.assertEqual(response.context.get("has_enrichment_aggs_entries"), True)
+
+    @responses.activate
+    def test_tag_view_no_entries_for_search_term(self):
+
+        self.patch_search_endpoint(
+            "community_enrichment_aggs_no_entries_search_term.json"
+        )
+
+        response = self.client.get(
+            self.test_url,
+            data={
+                "q": "qwert",
+                "vis_view": "tag",
+            },
+        )
+
+        self.assertEqual(len(responses.calls), 1)
+        self.assertEqual(response.context.get("has_enrichment_aggs_entries"), False)
+
+    @responses.activate
+    def test_tag_view_no_entries_for_search_filter_collection(self):
+
+        self.patch_search_endpoint(
+            "community_enrichment_aggs_no_entries_search_filter_collection.json"
+        )
+
+        response = self.client.get(
+            self.test_url,
+            data={
+                "collection": ["parent-collectionSurrey:Surrey History Centre"],
+                "vis_view": "tag",
+            },
+        )
+
+        self.assertEqual(len(responses.calls), 1)
+        self.assertEqual(response.context.get("has_enrichment_aggs_entries"), False)
+
 
 class CatalogueSearchLongFilterChooserAPIIntegrationTest(SearchViewTestCase):
     test_url = reverse_lazy(
@@ -856,36 +894,6 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
         self.assertEqual(
             response.context["view"].get_datalayer_data(request),
             expected,
-        )
-
-    @responses.activate
-    def test_datalayer_landing_search(self):
-        self.assertDataLayerEquals(
-            path=reverse("search"),
-            query_data={},
-            api_resonse_path=f"{settings.BASE_DIR}/etna/search/tests/fixtures/landing_search.json",
-            expected={
-                "contentGroup1": "Search",
-                "customDimension1": "offsite",
-                "customDimension2": "",
-                "customDimension3": "SearchLandingView",
-                "customDimension4": "",
-                "customDimension5": "",
-                "customDimension6": "",
-                "customDimension7": "",
-                "customDimension8": "",
-                "customDimension9": "",
-                "customDimension10": "",
-                "customDimension11": "",
-                "customDimension12": "",
-                "customDimension13": "",
-                "customDimension14": "",
-                "customDimension15": "",
-                "customDimension16": "",
-                "customDimension17": "",
-                "customMetric1": 0,
-                "customMetric2": 0,
-            },
         )
 
     @responses.activate
@@ -1007,3 +1015,12 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
                 "customMetric2": 0,
             },
         )
+
+
+class CatalogueSearchRedirectTest(SearchViewTestCase):
+
+    @responses.activate
+    def test_redirect(self):
+        response = self.client.get(reverse_lazy("search"))
+        expected_redirect_url = reverse_lazy("search-catalogue")
+        self.assertRedirects(response, expected_redirect_url, status_code=302)
