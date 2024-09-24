@@ -29,6 +29,8 @@ fetch(
             console.warn(
                 "No records found for years within the target decade.",
             );
+            document.getElementById("no-records").style.display = "block";
+            document.getElementById("no-records").style.height = "0";
             return;
         }
 
