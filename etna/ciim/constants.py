@@ -771,6 +771,7 @@ class CommunityCollectionMapping(StrEnum):
     )
     # NOTE: CAIN Archive has multiple ciim prefixed ids ex sid-0 (Community level), me-0 (Collection level)
     SID = ("CAIN Archive - Conflict and Politics in Northern Ireland", "sid-0", "")
+    AOC = ("Accounts of the Conflict", "aoc-0", "")
 
     def __new__(cls, value, community_level_ciim_id, webpage_url):
         obj = str.__new__(cls, [value])
@@ -794,6 +795,7 @@ NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP = {
     CommunityCollectionMapping.MPA.value: ("collectionMorrab", "collectionMorrabAll"),
     CommunityCollectionMapping.WMK.value: ("collectionWMK", ""),
     CommunityCollectionMapping.SID.value: ("collectionCain", ""),
+    CommunityCollectionMapping.AOC.value: ("collectionConflict", ""),
 }
 
 # prefix ends with "-"
