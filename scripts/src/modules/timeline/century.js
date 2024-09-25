@@ -37,6 +37,8 @@ fetch(
             console.warn(
                 "No records found for decades within the target century.",
             );
+            document.getElementById("no-records").style.display = "block";
+            document.getElementById("no-records").style.height = "0";
             return;
         }
 
