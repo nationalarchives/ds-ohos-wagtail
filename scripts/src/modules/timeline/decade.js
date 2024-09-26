@@ -17,9 +17,7 @@ if (collection) {
         collection.substring(collection.indexOf(":") + 1).replace(/ /g, "+");
 }
 
-fetch(
-    url_string
-) // Replace with your server-side API endpoint
+fetch(url_string) // Replace with your server-side API endpoint
     .then((response) => response.json())
     .then((data) => {
         const queryString = window.location.search;

@@ -119,8 +119,7 @@ fetch(url_string) //  server-side API endpoint
                 searchParams.set("timeline_type", "decade");
                 searchParams.set("startDate", targetCentury.name);
 
-                const url =
-                    "./?" + searchParams.toString() + "#myChart";
+                const url = "./?" + searchParams.toString() + "#myChart";
                 console.log(url);
                 window.location = url;
             }

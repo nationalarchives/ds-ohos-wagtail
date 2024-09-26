@@ -17,7 +17,6 @@ if (collection) {
         collection.substring(collection.indexOf(":") + 1).replace(/ /g, "+");
 }
 
-
 fetch(url_string) //  server-side API endpoint
     .then((response) => response.json())
     .then((data) => {
@@ -124,8 +123,7 @@ fetch(url_string) //  server-side API endpoint
                 searchParams.set("timeline_type", "year");
                 searchParams.set("startDate", targetDecade.decade);
 
-                const url =
-                    "./?" + searchParams.toString() + "#myChart";
+                const url = "./?" + searchParams.toString() + "#myChart";
                 console.log(url);
                 window.location = url;
             }
