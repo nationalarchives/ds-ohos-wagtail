@@ -1,6 +1,23 @@
-fetch(
-    "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=century&filter=group:community",
-) //  server-side API endpoint
+const searchParams = new URLSearchParams(window.location.search);
+
+var url_string =
+    "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=century,community&filter=group%3Acommunity";
+
+var query = searchParams.get("q");
+
+if (query) {
+    url_string += "&q=" + query;
+}
+
+var collection = searchParams.get("collection");
+
+if (collection) {
+    url_string +=
+        "&filter=collectionOhos%3A" +
+        collection.substring(collection.indexOf(":") + 1).replace(/ /g, "+");
+}
+
+fetch(url_string) //  server-side API endpoint
     .then((response) => response.json())
     .then((data) => {
         const centuries = [];
