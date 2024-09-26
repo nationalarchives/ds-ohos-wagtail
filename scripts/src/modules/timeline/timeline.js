@@ -1,5 +1,27 @@
+//default fetch url
+var fetchUrl='https://tna.rosetta.k-int.com/rosetta/data/search?aggs=century&filter=group:community';
+
+// check if a search term has been entered
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const searchTerm = urlParams.get('q');
+
+if ((Object.is(searchTerm, null))) {
+    var fetchUrl='https://tna.rosetta.k-int.com/rosetta/data/search?aggs=century&filter=group:community';
+    // console.log(fetchUrl);
+    alert('no term');
+}
+// if searchTerm is not Null
+if (searchTerm !== null) {
+    //construct the fetch url string
+    var fetchUrl='https://tna.rosetta.k-int.com/rosetta/data/search?aggs=century&filter=group:community&q=' + searchTerm;
+    //console.log(searchTerm);
+}
+
+console.log(fetchUrl);
+
 fetch(
-    "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=century&filter=group:community",
+    fetchUrl,
 ) //  server-side API endpoint
     .then((response) => response.json())
     .then((data) => {
