@@ -118,15 +118,11 @@ fetch(url_string) //  server-side API endpoint
             );
             if (activePoints.length > 0) {
                 // Get the clicked bar index
-                const clickedIndex = activePoints[0].index * 10;
+                const targetDecade = decades[activePoints[0].index];
                 // clickedIndexAdjust = targetCentury + clickedIndex;
-                const clickedIndexAdjust = targetCentury + clickedIndex;
-                // console.log(clickedIndexAdjust);
-                // Access the corresponding record count from chart data
-                // const recordCount = chartData[clickedIndex];
                 var searchParams = new URLSearchParams(window.location.search);
                 searchParams.set("timeline_type", "year");
-                searchParams.set("startDate", clickedIndexAdjust);
+                searchParams.set("startDate", targetDecade.decade);
 
                 const url =
                     "./?" + searchParams.toString() + "#myChart";
