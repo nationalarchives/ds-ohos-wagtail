@@ -120,7 +120,6 @@ fetch(url_string) //  server-side API endpoint
                 searchParams.set("startDate", targetCentury.name);
 
                 const url = "./?" + searchParams.toString() + "#myChart";
-                console.log(url);
                 window.location = url;
             }
         };

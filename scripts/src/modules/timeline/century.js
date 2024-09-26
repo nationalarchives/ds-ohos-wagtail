@@ -124,7 +124,6 @@ fetch(url_string) //  server-side API endpoint
                 searchParams.set("startDate", targetDecade.decade);
 
                 const url = "./?" + searchParams.toString() + "#myChart";
-                console.log(url);
                 window.location = url;
             }
         };
