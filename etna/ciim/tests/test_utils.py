@@ -639,6 +639,27 @@ class TestPrepareOhosParam(SimpleTestCase):
                     ],
                 ),
             ),
+            (
+                "parent children selection - AOC",  # label
+                # params
+                (
+                    "list",
+                    ["community"],
+                    [
+                        "collection:parent-collectionConflict:Accounts of the Conflict",
+                        "collection:child-collectionConflict:Bear in Mind: Stories of the Troubles",
+                        "group:community",
+                    ],
+                ),
+                # expected
+                (
+                    ["community", "collectionConflict"],
+                    [
+                        "collectionOhos:Bear in Mind: Stories of the Troubles",
+                        "group:community",
+                    ],
+                ),
+            ),
         )
 
         for label, params, expected in test_data:
