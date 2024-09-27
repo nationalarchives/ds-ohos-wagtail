@@ -28,6 +28,8 @@ fetch(url_string) //  server-side API endpoint
 
             // Filter centuries between 0 and 2100
             if (century >= 0 && century <= 2100) {
+                const centuryStartYear = century * 100; // Calculate start year of the century
+
                 const centuryName = `${century}`; // Construct the century name
 
                 // Check if the century already exists in the array
@@ -41,6 +43,7 @@ fetch(url_string) //  server-side API endpoint
                     centuries.push({
                         name: centuryName,
                         count: entry.doc_count,
+                        startYear: centuryStartYear, // Add start year property
                     }); // Add new century object
                 }
             }
@@ -50,9 +53,11 @@ fetch(url_string) //  server-side API endpoint
         centuries.sort((a, b) => parseInt(a.name) - parseInt(b.name));
 
         const ctx = document.getElementById("myChart").getContext("2d");
-        // const chart = new Chart(ctx, {
         const chart = new window.Chart(ctx, {
             type: "bar",
+            interaction: {
+                mode: "index", // or 'nearest'
+            },
             data: {
                 labels: centuries.map((century) => century.name),
                 datasets: [
@@ -111,20 +116,23 @@ fetch(url_string) //  server-side API endpoint
                 "index",
                 false,
             );
+
             if (activePoints.length > 0) {
-                // Get the clicked bar index
-                const clickedIndex = activePoints[0].index * 100;
-                const clickedIndexAdjust = clickedIndex;
-                // clickedIndexAdjust = clickedIndex;
-                console.log(clickedIndexAdjust);
-                // Access the corresponding record count from chart data
-                // const recordCount = chartData[clickedIndex];
+                const clickedElement = activePoints[0];
+                const clickedIndex = clickedElement.index;
+
+                const clickedCentury = centuries[clickedIndex];
+                var startDate = clickedCentury.startYear; // Use startYear property
+                var startDate =startDate/100;
+
 
                 const url =
                     "./?vis_view=timeline&timeline_type=decade&startDate=" +
-                    clickedIndexAdjust +
+                    startDate +
                     "#myChart";
-                window.location = url;
+
+                // Add window.location.href to navigate to the new URL
+                window.location.href = url;
             }
         };
     })
