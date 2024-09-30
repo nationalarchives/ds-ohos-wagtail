@@ -113,17 +113,13 @@ fetch(url_string) //  server-side API endpoint
             );
             if (activePoints.length > 0) {
                 // Get the clicked bar index
-                const clickedIndex = activePoints[0].index * 100;
-                const clickedIndexAdjust = clickedIndex;
-                // clickedIndexAdjust = clickedIndex;
-                console.log(clickedIndexAdjust);
-                // Access the corresponding record count from chart data
-                // const recordCount = chartData[clickedIndex];
+                const targetCentury = centuries[activePoints[0].index];
 
-                const url =
-                    "./?vis_view=timeline&timeline_type=decade&startDate=" +
-                    clickedIndexAdjust +
-                    "#myChart";
+                var searchParams = new URLSearchParams(window.location.search);
+                searchParams.set("timeline_type", "decade");
+                searchParams.set("startDate", targetCentury.name);
+
+                const url = "./?" + searchParams.toString() + "#myChart";
                 window.location = url;
             }
         };
