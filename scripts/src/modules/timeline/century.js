@@ -1,6 +1,23 @@
-fetch(
-    "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=decade,year,century&filter=group:community",
-) // Replace with your server-side API endpoint
+const searchParams = new URLSearchParams(window.location.search);
+
+var url_string =
+    "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=decade,year,century&filter=group%3Acommunity";
+
+var query = searchParams.get("q");
+
+if (query) {
+    url_string += "&q=" + query;
+}
+
+var collection = searchParams.get("collection");
+
+if (collection) {
+    url_string +=
+        "&filter=collectionOhos%3A" +
+        collection.substring(collection.indexOf(":") + 1).replace(/ /g, "+");
+}
+
+fetch(url_string) //  server-side API endpoint
     .then((response) => response.json())
     .then((data) => {
         const queryString = window.location.search;
@@ -100,17 +117,13 @@ fetch(
             );
             if (activePoints.length > 0) {
                 // Get the clicked bar index
-                const clickedIndex = activePoints[0].index * 10;
+                const targetDecade = decades[activePoints[0].index];
                 // clickedIndexAdjust = targetCentury + clickedIndex;
-                const clickedIndexAdjust = targetCentury + clickedIndex;
-                // console.log(clickedIndexAdjust);
-                // Access the corresponding record count from chart data
-                // const recordCount = chartData[clickedIndex];
+                var searchParams = new URLSearchParams(window.location.search);
+                searchParams.set("timeline_type", "year");
+                searchParams.set("startDate", targetDecade.decade);
 
-                const url =
-                    "./?vis_view=timeline&timeline_type=year&startDate=" +
-                    clickedIndexAdjust +
-                    "#myChart";
+                const url = "./?" + searchParams.toString() + "#myChart";
                 window.location = url;
             }
         };
