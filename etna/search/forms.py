@@ -60,8 +60,8 @@ class DynamicMultipleChoiceField(forms.MultipleChoiceField):
             value = data["value"]
             label = f"{value} ({count})"
             if is_see_all(value):
-                # prepare see all label with count
-                label = value.split(SEPERATOR)[1] + f" ({count})"
+                # prepare see all label
+                label = value.split(SEPERATOR)[1]
             return label
 
     def update_choices(

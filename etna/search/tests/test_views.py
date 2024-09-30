@@ -661,7 +661,7 @@ class CatalogueSearchEndToEndTest(EndToEndSearchTestCase):
         )
         # see all url - Note: updated \' to \\\'
         self.assertIn(
-            """<a href="/search/catalogue/long-filter-chooser/collection/?collection=long-collectionMorrabAll%3AMorrab+Photo+Archive&amp;q=and&amp;collection=parent-collectionMorrab%3AMorrab+Photo+Archive&amp;collection=parent-collectionSurrey%3ASurrey+History+Centre&amp;collection=child-collectionSurrey%3AJENNIFER+LOUIS+OF+WESTHUMBLE%3A+ORAL+HISTORY+RECORDINGS&amp;collection=Biography+of+Women+Who+Made+Milton+Keynes+%28Digital+Document%29&amp;covering_date_from_0=01&amp;covering_date_from_1=01&amp;covering_date_from_2=1900&amp;sort=title%3Aasc&amp;vis_view=list&amp;group=community" aria-label=\\\'See more\\\'>See all collections (126)</a>""",
+            """<a href="/search/catalogue/long-filter-chooser/collection/?collection=long-collectionMorrabAll%3AMorrab+Photo+Archive&amp;q=and&amp;collection=parent-collectionMorrab%3AMorrab+Photo+Archive&amp;collection=parent-collectionSurrey%3ASurrey+History+Centre&amp;collection=child-collectionSurrey%3AJENNIFER+LOUIS+OF+WESTHUMBLE%3A+ORAL+HISTORY+RECORDINGS&amp;collection=Biography+of+Women+Who+Made+Milton+Keynes+%28Digital+Document%29&amp;covering_date_from_0=01&amp;covering_date_from_1=01&amp;covering_date_from_2=1900&amp;sort=title%3Aasc&amp;vis_view=list&amp;group=community" aria-label=\\\'See more\\\'>See all collections</a>""",
             content,
         )
         # orphan collection checked
