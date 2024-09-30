@@ -1,7 +1,7 @@
 const searchParams = new URLSearchParams(window.location.search);
 
 var url_string =
-    "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=century,community&filter=group%3Acommunity";
+    "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=decade,year,century&filter=group%3Acommunity";
 
 var query = searchParams.get("q");
 
