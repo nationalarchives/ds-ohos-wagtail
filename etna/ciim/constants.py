@@ -812,7 +812,7 @@ PARENT_PARAM_VALUES = [
 ]
 
 LONG_FILTER_PARAM_VALUES = [
-    f"{LONG_AGGS_PREFIX+aggs[1]}:{value}"
+    f"{LONG_AGGS_PREFIX + aggs[1]}:{value}"
     for value, aggs in NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.items()
 ]
 

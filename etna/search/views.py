@@ -491,7 +491,7 @@ class BaseFilteredSearchView(BaseSearchView):
             long_filter_aggs = NESTED_CHECKBOX_VALUES_AGGS_NAMES_MAP.get(field_name)[1]
 
             data = f"{LONG_AGGS_PREFIX}{long_filter_aggs}:{field_name}"
-            add_url_params = f"?{urlencode({COLLECTION_ATTR_FOR_ALL_BUCKETS:data})}"
+            add_url_params = f"?{urlencode({COLLECTION_ATTR_FOR_ALL_BUCKETS: data})}"
 
             # add params to handle return to search
             fields_to_add = (
@@ -509,10 +509,10 @@ class BaseFilteredSearchView(BaseSearchView):
             for field, data in self.form.cleaned_data.items():
                 if field in fields_to_add and data:
                     if isinstance(data, str):
-                        add_url_params += f"&{urlencode({field:data})}"
+                        add_url_params += f"&{urlencode({field: data})}"
                     elif isinstance(data, list):
                         for filter in data:
-                            add_url_params += f"&{urlencode({field:filter})}"
+                            add_url_params += f"&{urlencode({field: filter})}"
                     elif isinstance(data, date):
                         date_params = {
                             f"{field}_0": str(data.day).zfill(2),
@@ -914,10 +914,10 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
         for field, data in self.form.cleaned_data.items():
             if field in fields_to_add and data:
                 if isinstance(data, str):
-                    add_url_params += f"&{urlencode({field:data})}"
+                    add_url_params += f"&{urlencode({field: data})}"
                 elif isinstance(data, list):
                     for item in data:
-                        add_url_params += f"&{urlencode({field:item})}"
+                        add_url_params += f"&{urlencode({field: item})}"
                 elif isinstance(data, date):
                     date_params = {
                         f"{field}_0": str(data.day).zfill(2),
