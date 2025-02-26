@@ -32,7 +32,7 @@ LOCAL_DB_DUMP_DIR = "database_dumps"
 
 def container_exec(cmd, container_name="web", check_returncode=False):
     result = subprocess.run(
-        ["docker-compose", "exec", "-T", container_name, "bash", "-c", cmd]
+        ["docker", "compose", "exec", "-T", container_name, "bash", "-c", cmd]
     )
     if check_returncode:
         result.check_returncode()
@@ -80,7 +80,7 @@ def build(c):
     # bash copy .env.example .env if .env does not exist
     if not os.path.exists(".env"):
         local("cp .env.example .env")
-    local("docker-compose build")
+    local("docker compose build")
 
 
 @task
@@ -88,7 +88,7 @@ def start(c, container_name=None):
     """
     Start the local development environment.
     """
-    cmd = "docker-compose up -d"
+    cmd = "docker compose up -d"
     if container_name:
         cmd += f" {container_name}"
     local(cmd)
@@ -99,7 +99,7 @@ def stop(c, container_name=None):
     """
     Stop the local development environment.
     """
-    cmd = "docker-compose stop"
+    cmd = "docker compose stop"
     if container_name:
         cmd += f" {container_name}"
     local(cmd)
@@ -110,7 +110,7 @@ def update_deps(c):
     """
     Update npm and poetry dependencies through Docker containers
     """
-    local("docker-compose --profile update up -d")
+    local("docker compose --profile update up -d")
 
 
 @task
@@ -127,7 +127,7 @@ def sh(c):
     """
     Run bash in a local container (with access to dependencies)
     """
-    subprocess.run(["docker-compose", "exec", "web", "poetry", "run", "bash"])
+    subprocess.run(["docker", "compose", "exec", "web", "poetry", "run", "bash"])
 
 
 @task
@@ -179,7 +179,8 @@ def create_superuser(c):
     """
     subprocess.run(
         [
-            "docker-compose",
+            "docker",
+            "compose",
             "exec",
             "web",
             "poetry",
@@ -203,7 +204,8 @@ def psql(c, command=None):
     Connect to the local postgres DB using psql
     """
     cmd_list = [
-        "docker-compose",
+        "docker",
+        "compose",
         "exec",
         "db",
         "psql",
@@ -282,7 +284,7 @@ def pull_staging_data(c):
 def pull_staging_media(c):
     """Pull all media from the staging platform.sh env"""
     pull_media_from_platform(c, STAGING_APP_INSTANCE)
-    subprocess.run(["docker-compose", "exec", "cli", "chmod", "-fR", "777", "media"])
+    subprocess.run(["docker", "compose", "exec", "cli", "chmod", "-fR", "777", "media"])
 
 
 # -----------------------------------------------------------------------------

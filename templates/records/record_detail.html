@@ -32,13 +32,22 @@
                     </tbody>
                 </table>
             </div>
+            {% if record.held_by %}
+            <p class="record-licencing-notice">For licensing enquiries about this item, please contact <strong>{{ record.held_by }}</strong> directly.</p>
+            {% else %}
+            <p class="record-licencing-notice">For licensing enquiries about this item, please contact the community archive that holds it.</p>
+            {% endif %}
         </div>
 
-        {% if record.group == bucketkeys.COMMUNITY.value and record.has_enrichment %}
             <div class="tna-column tna-column--width-1-3 tna-column--width-1-3-medium tna-column--full-small tna-column--full-tiny">
+                {% if record.group == bucketkeys.COMMUNITY.value and record.has_enrichment %}
                 {% include "includes/related-tags.html" %}
+                {% endif %}
+                <div class="takedown-request">
+                    <h2 class="tna-heading-m">Takedown request</h2>
+                    <p>To request the removal of content from OHOS, email us at <a href="mailto:ohostakedowns@nationalarchives.gov.uk">ohostakedowns@nationalarchives.gov.uk</a></p>
+                </div>
             </div>
-        {% endif %}
     </div>
 
     {% if record.group != bucketkeys.COMMUNITY.value %}

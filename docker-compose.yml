@@ -1,5 +1,3 @@
-version: '3'
-
 services:
 
   db:
@@ -32,7 +30,7 @@ services:
     depends_on:
       - db
     ports:
-      - 8000:8080
+      - 8002:8080
     command: sh /app/bash/run-dev.sh
     restart: on-failure
     init: true
@@ -44,6 +42,7 @@ services:
       - ENVIRONMENT=develop
       - DJANGO_SETTINGS_MODULE=config.settings.dev
       - DATABASE_HOST=db
+      - NPM_DEVELOP_COMMAND=dev
       - DATABASE_NAME=postgres
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=postgres

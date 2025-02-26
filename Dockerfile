@@ -5,19 +5,11 @@ ENV DJANGO_SETTINGS_MODULE=config.settings.production
 
 HEALTHCHECK CMD curl --fail http://localhost:8080/healthcheck/ || exit 1
 
-# Copy in the project dependency files and config
-COPY --chown=app pyproject.toml poetry.lock ./
-COPY --chown=app package.json package-lock.json .nvmrc webpack.config.js ./
-COPY --chown=app sass sass
-COPY --chown=app scripts scripts
-COPY --chown=app config config
-COPY --chown=app templates templates
+# Copy application code
+COPY --chown=app . .
 
 # Install Python dependencies AND the 'etna' app
 RUN tna-build
-
-# Copy application code
-COPY --chown=app . .
 
 # Copy the assets from the @nationalarchives/frontend repository
 RUN mkdir -p /app/templates/static/assets; \
