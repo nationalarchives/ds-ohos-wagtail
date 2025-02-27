@@ -890,3 +890,7 @@ class Record(DataLayerMixin, APIModel):
                     url=map.get("url"),
                 )
         return data
+
+    @cached_property
+    def author(self) -> str:
+        return self.template.get("author", "")
