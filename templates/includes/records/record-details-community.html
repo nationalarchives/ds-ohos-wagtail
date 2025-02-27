@@ -108,3 +108,10 @@
         <td>{{ record.creator }}</td>
     </tr>
 {% endif %}
+{% if record.author %}
+    <tr>
+        <th scope="row">{{ 'author'|as_label }}</th>
+        <td>{{ record.author }}</td>
+    </tr>
+{% endif %}
+
