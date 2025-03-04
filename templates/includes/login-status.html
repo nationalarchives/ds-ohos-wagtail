@@ -1,4 +1,7 @@
-<div class="login-status" role="region" aria-labelledby="authentication_link">
+<div class="login-status tna-background-accent" role="region" aria-labelledby="authentication_link">
+    <div class="service-notice">
+        <p><strong>PROOF OF CONCEPT.</strong> This website will be live for three years from March 2025. Community collections data will not be updated during this time.</p>
+    </div>
     {% if request.user.is_authenticated %}
         <a href="{% url 'account_logout' %}" class="login-status__link" id="authentication_link">Sign out</a>
     {% else %}

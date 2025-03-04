@@ -1,7 +1,17 @@
+@use "@nationalarchives/frontend/nationalarchives/tools/media";
+
 .login-status {
     border-bottom: 0.06rem dotted $color__grey-400;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
     padding: 0.5rem 1rem;
+
+    @include media.on-mobile {
+        flex-direction: column;
+        align-items: flex-end;
+    }
 
     &__link {
         font-weight: bold;
@@ -9,5 +19,13 @@
         &:visited {
             color: $color__link;
         }
+
+        &:focus {
+            outline-color: #000;
+        }
     }
+}
+
+.service-notice {
+    flex: 1;
 }
