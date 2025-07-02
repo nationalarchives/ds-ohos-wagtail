@@ -22,11 +22,13 @@ module.exports = {
         feedback_tracking: "./scripts/src/feedback-tracking.js",
         whats_on: "./scripts/src/whats-on.js",
         search_results_map: "./scripts/src/search-results-map.js",
-        tag_frequency_chart: "./scripts/src/modules/tag-frequency/tag-frequency-chart.js",
-        wikidata_overlays: "./scripts/src/modules/wikidata-overlays/wikidata-overlays.js",
-        timeline:"./scripts/src/modules/timeline/timeline.js",
-        century:"./scripts/src/modules/timeline/century.js",
-        decade:"./scripts/src/modules/timeline/decade.js",
+        tag_frequency_chart:
+            "./scripts/src/modules/tag-frequency/tag-frequency-chart.js",
+        wikidata_overlays:
+            "./scripts/src/modules/wikidata-overlays/wikidata-overlays.js",
+        timeline: "./scripts/src/modules/timeline/timeline.js",
+        century: "./scripts/src/modules/timeline/century.js",
+        decade: "./scripts/src/modules/timeline/decade.js",
     },
     output: {
         filename: "[name].js",

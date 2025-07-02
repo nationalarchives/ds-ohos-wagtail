@@ -7,22 +7,22 @@ on:
       - ohos
     paths:
       # Host config
-      - '.plaform/**'
-      - '.platform.app.yaml'
-      - 'gunicorn.conf.py'
+      - ".plaform/**"
+      - ".platform.app.yaml"
+      - "gunicorn.conf.py"
       # Python config
-      - 'poetry.lock'
-      - 'pyproject.toml'
+      - "poetry.lock"
+      - "pyproject.toml"
       # NPM config
-      - 'package.json'
-      - 'package-lock.json'
-      - 'webpack.config.js'
+      - "package.json"
+      - "package-lock.json"
+      - "webpack.config.js"
       # App changes
-      - 'config/**'
-      - 'sass/**'
-      - 'scripts/**'
-      - 'templates/**'
-      - 'etna/**'
+      - "config/**"
+      - "sass/**"
+      - "scripts/**"
+      - "templates/**"
+      - "etna/**"
 
 jobs:
   ci:

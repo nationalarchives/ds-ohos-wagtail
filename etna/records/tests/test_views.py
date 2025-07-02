@@ -1,17 +1,14 @@
 import unittest
 
+import responses
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
-
-from wagtail.test.utils import WagtailTestUtils
-
-import responses
-
 from etna.core.test_utils import prevent_request_warnings
 from etna.records.views.records import SEARCH_URL_RETAIN_DELTA
+from wagtail.test.utils import WagtailTestUtils
 
 from ...ciim.tests.factories import create_record, create_response
 

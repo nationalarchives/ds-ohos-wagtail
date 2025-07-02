@@ -1,6 +1,5 @@
 from django.urls import reverse
 from django.utils.http import urlencode
-
 from etna.ciim.constants import BucketKeys, TimelineTypes, VisViews
 
 # visualisation urls

@@ -1,9 +1,5 @@
 from django.conf import settings
 from django.utils.html import format_html
-
-from wagtail import blocks
-from wagtail.snippets.blocks import SnippetChooserBlock
-
 from etna.core.blocks import (
     CodeBlock,
     ContentImageBlock,
@@ -15,6 +11,8 @@ from etna.core.blocks import (
 )
 from etna.core.blocks.image import APIImageChooserBlock
 from etna.core.blocks.paragraph import APIRichTextBlock
+from wagtail import blocks
+from wagtail.snippets.blocks import SnippetChooserBlock
 
 from ..records.blocks import RecordLinksBlock
 

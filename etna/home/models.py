@@ -1,11 +1,10 @@
 import importlib
 
+from etna.alerts.models import AlertMixin
+from etna.core.models import BasePageWithIntro
 from wagtail.admin.panels import FieldPanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
-
-from etna.alerts.models import AlertMixin
-from etna.core.models import BasePageWithIntro
 
 from ..search.forms import FeaturedSearchForm
 from .blocks import HomePageStreamBlock

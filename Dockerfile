@@ -1,4 +1,7 @@
-FROM ghcr.io/nationalarchives/tna-python-django:latest
+ARG IMAGE=ghcr.io/nationalarchives/tna-python-django
+ARG IMAGE_TAG=latest
+
+FROM "$IMAGE":"$IMAGE_TAG"
 
 ENV NPM_BUILD_COMMAND=compile
 ENV DJANGO_SETTINGS_MODULE=config.settings.production
