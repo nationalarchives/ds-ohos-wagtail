@@ -881,7 +881,7 @@ class CatalogueSearchView(BucketsMixin, BaseFilteredSearchView):
     page_type = "Catalogue search page"
     page_title = "Catalogue search"
 
-    def _get_ohos_kwargs(self, **kwargs: Any) -> Dict[str, Any]:
+    def _get_ohos_kwargs(self, **kwargs: Any) -> Dict[str, Any]:  # noqa: C901
         """
         Adds template tags for OHOS visualisation links
         """

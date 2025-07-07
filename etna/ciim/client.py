@@ -213,7 +213,7 @@ class ClientAPI:
             raise MultipleObjectsReturned
         return result_list.hits[0]
 
-    def search(
+    def search(  # noqa: C901
         self,
         *,
         group: Optional[str] = None,

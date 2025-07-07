@@ -81,7 +81,7 @@ class DateInputField(forms.MultiValueField):
 
         super().__init__(fields=fields, **kwargs)
 
-    def clean(self, value):
+    def clean(self, value):  # noqa: C901
         """
         Validate the values entered into the day, month and year fields.
 

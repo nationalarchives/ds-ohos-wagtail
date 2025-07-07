@@ -1,6 +1,6 @@
 import os
 
-from .base import *  # noqa: F401
+from .base import *  # noqa: 401, F403
 
 # TODO: Temporary until the static files can be served via S3 or a CDN
 DEBUG = True
@@ -16,6 +16,6 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STATIC_ROOT = "/app/static"
 
 try:
-    from .local import *  # noqa: F401
+    from .local import *  # noqa: 401, F403
 except ImportError:
     pass
