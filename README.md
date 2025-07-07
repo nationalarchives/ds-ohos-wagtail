@@ -76,10 +76,11 @@ docker compose exec web tna-node compile
 docker compose exec dev poetry run python3 manage.py test
 ```
 
-### 6. Format
+### 6. Format, Sort
 
 ```sh
 docker compose exec dev format
+docker compose exec dev poetry run isort .
 ```
 
 ### 7. Feature/Fix/Chore work
