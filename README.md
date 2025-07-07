@@ -12,7 +12,6 @@ Convenience commands have been added to `fabfile.py` to help you interact with t
 
 Alternatively, install fabric in a python virtual environment.
 
-
 ### Install platform.sh CLI
 
 Check with team to have your username, email configured in Platform.sh and create API-Token
@@ -21,7 +20,6 @@ https://docs.platform.sh/administration/cli.html
 
 CLI is used to pull data and media from Platform.sh.
 
-
 ### Before starting a build for the first time
 
 Get the development `.env` from team
@@ -29,7 +27,6 @@ Get the development `.env` from team
 ```sh
 cp .env.example .env
 ```
-
 
 ### 1. Build and start Docker containers
 
@@ -61,13 +58,11 @@ fab pull-staging-media
 
 <http://127.0.0.1:8002>
 
-
 ### 3. Access the Wagtail admin
 
 Navigate to the admin URL in your browser, and sign in using the username/password combination you chose in the previous step or created via docer-compose.yml
 
 <http://127.0.0.1:8002/admin/>
-
 
 ### 4. Compile the front-end assets
 
@@ -75,13 +70,11 @@ Navigate to the admin URL in your browser, and sign in using the username/passwo
 docker compose exec web tna-node compile
 ```
 
-
 ### 5. Run tests
 
 ```sh
 docker compose exec dev poetry run python3 manage.py test
 ```
-
 
 ### 6. Format
 
