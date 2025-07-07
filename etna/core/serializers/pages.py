@@ -1,5 +1,6 @@
-from rest_framework import serializers
 from wagtail.images.api.fields import ImageRenditionField
+
+from rest_framework import serializers
 
 
 class LinkedPageSerializer(serializers.ModelSerializer):

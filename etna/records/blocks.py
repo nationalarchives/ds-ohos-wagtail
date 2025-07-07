@@ -2,9 +2,11 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
-from etna.core.blocks.image import APIImageChooserBlock
+
 from wagtail import blocks
 from wagtail.api import APIField
+
+from etna.core.blocks.image import APIImageChooserBlock
 
 from ..ciim.exceptions import ClientAPIError
 from .api import records_client

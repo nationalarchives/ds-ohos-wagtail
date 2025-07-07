@@ -1,8 +1,10 @@
 from django.contrib.contenttypes.models import ContentType
-from rest_framework.response import Response
+
 from wagtail.api.v2.router import WagtailAPIRouter
 from wagtail.api.v2.views import PagesAPIViewSet
 from wagtail.images.api.v2.views import ImagesAPIViewSet
+
+from rest_framework.response import Response
 from wagtail_headless_preview.models import PagePreview
 from wagtailmedia.api.views import MediaAPIViewSet
 

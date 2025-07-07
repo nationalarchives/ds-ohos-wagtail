@@ -1,5 +1,6 @@
 import datetime
 import logging
+
 from typing import Union
 
 from django import template
@@ -7,6 +8,7 @@ from django.forms import Form
 from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.utils.safestring import mark_safe
+
 from etna.ciim.constants import (
     COLLECTION_ATTR_FOR_ALL_BUCKETS,
     LONG_FILTER_PARAM_VALUES,

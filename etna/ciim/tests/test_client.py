@@ -1,10 +1,13 @@
 import unittest
+
 from datetime import date, datetime
 from urllib.parse import quote
 
-import responses
 from django.conf import settings
 from django.test import SimpleTestCase
+
+import responses
+
 from etna.ciim.constants import Aggregation, BucketKeys
 from etna.ciim.tests.factories import (
     create_record,
