@@ -1,23 +1,19 @@
 import hmac
 import uuid
-
 from typing import Optional, Union
 from urllib.parse import urlparse
 
+import nh3
 from django import forms
 from django.core.exceptions import ValidationError
 from django.http.request import QueryDict, validate_host
-
-from wagtail.blocks import StreamValue
-from wagtail.models import Page, Revision, Site
-from wagtail.models.sites import get_site_for_hostname
-
-import nh3
-
 from etna.feedback import constants
 from etna.feedback.models import FeedbackSubmission
 from etna.feedback.utils import get_allowed_hosts, normalize_path, sign_submission_id
 from etna.feedback.widgets import ResponseSubmitButtonList
+from wagtail.blocks import StreamValue
+from wagtail.models import Page, Revision, Site
+from wagtail.models.sites import get_site_for_hostname
 
 
 class FeedbackForm(forms.Form):

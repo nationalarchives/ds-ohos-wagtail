@@ -2,7 +2,6 @@ import copy
 import importlib
 import logging
 import re
-
 from datetime import date
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
@@ -14,7 +13,6 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import urlencode
 from django.views.generic import FormView
-
 from wagtail.coreutils import camelcase_to_underscore
 
 from ..analytics.mixins import SearchDataLayerMixin

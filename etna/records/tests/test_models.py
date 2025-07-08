@@ -1,15 +1,13 @@
 import json
 import unittest
-
 from copy import deepcopy
 
+import responses
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.test import SimpleTestCase, override_settings
 from django.urls import reverse
 from django.utils.safestring import SafeString
-
-import responses
 
 from ...ciim.tests.factories import create_record, create_response
 from ...ciim.utils import ValueExtractionError

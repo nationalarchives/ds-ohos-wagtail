@@ -5,20 +5,6 @@ from django.http import HttpRequest
 from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
-
-from modelcluster.contrib.taggit import ClusterTaggableManager
-from modelcluster.fields import ParentalKey
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
-from wagtail.api import APIField
-from wagtail.fields import RichTextField, StreamField
-from wagtail.images import get_image_model_string
-from wagtail.models import Orderable, Page
-from wagtail.search import index
-from wagtail.snippets.models import register_snippet
-
-from rest_framework import serializers
-from taggit.models import ItemBase, TagBase
-
 from etna.core.models import (
     BasePageWithIntro,
     ContentWarningMixin,
@@ -26,6 +12,17 @@ from etna.core.models import (
     NewLabelMixin,
 )
 from etna.core.utils import skos_id_from_text
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
+from rest_framework import serializers
+from taggit.models import ItemBase, TagBase
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.api import APIField
+from wagtail.fields import RichTextField, StreamField
+from wagtail.images import get_image_model_string
+from wagtail.models import Orderable, Page
+from wagtail.search import index
+from wagtail.snippets.models import register_snippet
 
 from .blocks import ArticlePageStreamBlock
 
