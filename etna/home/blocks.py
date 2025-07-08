@@ -1,6 +1,7 @@
+from wagtail import blocks
+
 from etna.core.blocks import ParagraphBlock, ParagraphWithHeading
 from etna.core.blocks.image import APIImageChooserBlock
-from wagtail import blocks
 
 
 class FeaturedExternalPageBlock(blocks.StructBlock):

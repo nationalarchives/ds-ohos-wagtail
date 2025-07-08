@@ -3,6 +3,7 @@ from typing import Dict, List, Optional, Union
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.functional import cached_property
+
 from etna.core.fields import END_OF_MONTH, DateInputField
 
 from ..ciim.client import Sort

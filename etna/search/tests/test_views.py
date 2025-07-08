@@ -7,9 +7,10 @@ import responses
 from django.conf import settings
 from django.test import SimpleTestCase, TestCase, override_settings
 from django.urls import reverse, reverse_lazy
+from wagtail.test.utils import WagtailTestUtils
+
 from etna.ciim.constants import ENRICHMENT_AGGREGATIONS
 from etna.core.test_utils import prevent_request_warnings
-from wagtail.test.utils import WagtailTestUtils
 
 from ..forms import CatalogueSearchForm
 from ..views import CatalogueSearchView

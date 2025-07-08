@@ -4,6 +4,7 @@ from unittest import mock
 from django.forms.boundfield import BoundField
 from django.test import RequestFactory, SimpleTestCase
 from django.utils.datastructures import MultiValueDict
+
 from etna.ciim.constants import BucketKeys, TagTypes
 
 from ..forms import CatalogueSearchForm

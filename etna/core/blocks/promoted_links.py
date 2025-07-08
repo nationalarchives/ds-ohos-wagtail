@@ -1,5 +1,6 @@
-from etna.core.blocks.image import APIImageChooserBlock
 from wagtail import blocks
+
+from etna.core.blocks.image import APIImageChooserBlock
 
 
 class PromotedLinkBlock(blocks.StructBlock):
