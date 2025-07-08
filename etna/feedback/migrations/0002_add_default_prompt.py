@@ -1,5 +1,6 @@
 from django.db import migrations
 from django.utils import timezone
+
 from etna.feedback.constants import SentimentChoices
 
 
