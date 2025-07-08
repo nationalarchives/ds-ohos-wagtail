@@ -29,3 +29,5 @@ SEARCH_VIEWS_REQUIRE_LOGIN = False
 
 CLIENT_BASE_URL = "https://kong.test/data"
 CLIENT_MEDIA_URL = "https://kong.test/media"
+
+FEATURE_BETA_BANNER_ENABLED = True
