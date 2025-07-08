@@ -10,7 +10,7 @@ Note: Fabric and Plaform.sh are temporary provisions to pull data and media.
 
 Convenience commands have been added to `fabfile.py` to help you interact with the various services. But, for any of these commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html).
 
-Alternatively, install fabric in a python virtual environment.
+Alternatively, install fabric in a python virtual environment and run from the activated environment.
 
 ### Install platform.sh CLI
 
@@ -20,7 +20,7 @@ https://docs.platform.sh/administration/cli.html
 
 CLI is used to pull data and media from Platform.sh.
 
-### Before starting a build for the first time
+## Before starting a build for the first time
 
 Get the development `.env` from team
 
@@ -28,66 +28,61 @@ Get the development `.env` from team
 cp .env.example .env
 ```
 
-### 1. Build and start Docker containers
+`.env` hold sensitive values. Please ask on the `ds-etna-dev` slack channel to get those values.
+
+## Build and start Docker containers
 
 ```sh
-fab start
+docker compose up -d
 ```
 
-This command takes care of the following:
-
-1. Building all of the necessary Docker containers
-2. Starting all of the necessary Docker containers
-3. Installing any new python dependencies
-4. Collect static assets
-5. Starts development server
-
-Pull data
+## Pull data, media from Platform.sh
 
 ```sh
 fab pull-staging-data
 ```
 
-Pull media
-
 ```sh
 fab pull-staging-media
 ```
 
-### 2. Access the site
+## Access the site
 
 <http://127.0.0.1:8002>
 
-### 3. Access the Wagtail admin
+## Access the Wagtail admin
 
-Navigate to the admin URL in your browser, and sign in using the username/password combination you chose in the previous step or created via docer-compose.yml
+Navigate to the admin URL in your browser, and sign in using the username/password combination created via docker-compose.yml
 
 <http://127.0.0.1:8002/admin/>
 
-### 4. Compile the front-end assets
+## Compile the front-end assets
 
 ```sh
 docker compose exec web tna-node compile
 ```
 
-### 5. Run tests
+## Run tests
 
 ```sh
-docker compose exec dev poetry run python3 manage.py test
+docker compose exec dev poetry run python manage.py test
 ```
 
-### 6. Format, Sort
+## Format, Sort
 
 ```sh
 docker compose exec dev format
+```
+
+```sh
 docker compose exec dev poetry run isort .
 ```
 
-### 7. Feature/Fix/Chore work
+## Feature/Fix/Chore work
 
 Create ticket branch off `ds-ohos-wagtail:ohos`
 
-### 8. Deploy OHOS
+## Deploy OHOS
 
 Merge PR into `ds-ohos-wagtail:ohos`
 
