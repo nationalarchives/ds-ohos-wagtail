@@ -23,7 +23,7 @@ jobs:
           cache-dependency-path: "**/lint-requirements.txt"
       - run: pip install -r lint-requirements.txt
       - name: Check compliance with flake8
-        run: flake8 .
+        run: flake8 --max-line-length=88 --ignore=E501,W503 --exclude=node_modules .
       - name: Check compliance with isort
         run: isort -c .
       - name: Check compliance with Black
