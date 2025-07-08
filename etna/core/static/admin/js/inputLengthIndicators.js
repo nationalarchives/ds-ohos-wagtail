@@ -58,7 +58,7 @@ const initializeLengthIndicator = function (input) {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    for (input of document.querySelectorAll(
+    for (let input of document.querySelectorAll(
         ".w-field__input input[maxlength], .w-field__input textarea[maxlength]",
     )) {
         initializeLengthIndicator(input);
