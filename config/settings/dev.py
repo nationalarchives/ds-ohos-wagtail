@@ -1,7 +1,7 @@
 import logging
 import os
 
-from .base import *  # noqa: F401
+from .base import *  # noqa: F401, F403
 from .util import strtobool
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -40,7 +40,7 @@ MEDIA_ROOT = "/media"
 logging.getLogger("faker").setLevel(logging.ERROR)
 
 try:
-    from .local import *  # noqa: F401
+    from .local import *  # noqa: F401, F403
 except ImportError:
     pass
 

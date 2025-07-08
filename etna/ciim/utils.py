@@ -362,7 +362,7 @@ def strip_html(
     return clean_html.lstrip()
 
 
-def prepare_ohos_params(
+def prepare_ohos_params(  # noqa: C901
     vis_view: str = None,
     aggregations: List = None,
     filter_aggregations: List = None,

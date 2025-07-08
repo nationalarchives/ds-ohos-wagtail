@@ -71,6 +71,7 @@ docker compose exec dev poetry run python manage.py test
 ## Format, Sort
 
 ```sh
+docker compose exec dev format
 ```
 
 ## Feature/Fix/Chore work
