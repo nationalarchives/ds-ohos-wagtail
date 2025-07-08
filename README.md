@@ -6,7 +6,7 @@
 
 Local development is done in Docker.
 
-Note: Fabric and Plaform.sh are temporary provisions to pull data and media.
+**Note: Fabric and Plaform.sh are temporary provisions to pull data and media.**
 
 Convenience commands have been added to `fabfile.py` to help you interact with the various services. But, for any of these commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html).
 
