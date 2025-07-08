@@ -1,10 +1,9 @@
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
-from wagtail.models import Page
-
 from etna.feedback.models import FeedbackPrompt, FeedbackPromptPageType
 from etna.generic_pages.models import GeneralPage
 from etna.home.models import HomePage
+from wagtail.models import Page
 
 
 class TestGetForPath(TestCase):

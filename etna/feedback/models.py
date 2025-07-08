@@ -10,17 +10,16 @@ from django.db.models.functions import Length
 from django.utils.functional import cached_property
 from django.utils.text import Truncator
 from django.utils.translation import gettext_lazy as _
+from etna.feedback import constants
+from etna.feedback.blocks import ResponseOptionBlock
+from etna.feedback.utils import normalize_path
+from etna.feedback.widgets import PageTypeChooser
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.admin import panels
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import DraftStateMixin, Orderable, Page, RevisionMixin
 from wagtail.snippets.models import register_snippet
-
-from etna.feedback import constants
-from etna.feedback.blocks import ResponseOptionBlock
-from etna.feedback.utils import normalize_path
-from etna.feedback.widgets import PageTypeChooser
 
 
 class FeedbackPromptManager(models.Manager):

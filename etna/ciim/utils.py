@@ -5,8 +5,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import nh3
 from django.urls import NoReverseMatch, reverse
-from pyquery import PyQuery as pq
-
 from etna.ciim.constants import (
     CATALOGUE_BUCKETS,
     LONG_FILTER_PARAM_VALUES,
@@ -15,6 +13,7 @@ from etna.ciim.constants import (
     BucketKeys,
     VisViews,
 )
+from pyquery import PyQuery as pq
 
 
 def underscore_to_camelcase(word, lower_first=True):

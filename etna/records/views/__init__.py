@@ -1,5 +1,5 @@
-from .choosers import (
-    ClientAPIChosenView,  # noqa: F401
+from .choosers import (  # noqa: F401
+    ClientAPIChosenView,
     ClientAPIModelChooserMixinIn,
     RecordChooserViewSet,
 )

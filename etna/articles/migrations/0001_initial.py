@@ -3,6 +3,8 @@
 import uuid
 
 import django.db.models.deletion
+import etna.analytics.mixins
+import etna.records.blocks
 import modelcluster.contrib.taggit
 import modelcluster.fields
 import wagtail.blocks
@@ -11,9 +13,6 @@ import wagtail.images.blocks
 import wagtail.snippets.blocks
 import wagtailmetadata.models
 from django.db import migrations, models
-
-import etna.analytics.mixins
-import etna.records.blocks
 
 
 class Migration(migrations.Migration):

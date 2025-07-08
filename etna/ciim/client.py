@@ -18,7 +18,6 @@ from typing import (
 import requests
 from django.utils.functional import cached_property
 from django.utils.timezone import get_current_timezone
-
 from etna.ciim.constants import Aggregation, BucketKeys, VisViews
 from etna.records.models import Record
 

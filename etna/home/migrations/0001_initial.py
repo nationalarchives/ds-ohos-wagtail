@@ -3,12 +3,11 @@
 import uuid
 
 import django.db.models.deletion
+import etna.analytics.mixins
 import wagtail.blocks
 import wagtail.fields
 import wagtailmetadata.models
 from django.db import migrations, models
-
-import etna.analytics.mixins
 
 
 class Migration(migrations.Migration):
