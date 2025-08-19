@@ -6,8 +6,6 @@ FROM "$IMAGE":"$IMAGE_TAG"
 ENV NPM_BUILD_COMMAND=compile
 ENV DJANGO_SETTINGS_MODULE=config.settings.production
 
-HEALTHCHECK CMD curl --fail http://localhost:8080/healthcheck/ || exit 1
-
 # Copy application code
 COPY --chown=app . .
 
