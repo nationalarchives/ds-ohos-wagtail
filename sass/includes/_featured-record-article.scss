@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .featured-record-article {
     $root: &;
     box-sizing: border-box;
@@ -34,7 +36,7 @@
         object-fit: cover;
         max-height: 330px; // prevent image getting huge on smaller viewports
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             max-height: 390px;
         }
     }
@@ -43,7 +45,7 @@
         align-self: center;
         margin: 24px;
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             margin: 23px 40px;
         }
     }
