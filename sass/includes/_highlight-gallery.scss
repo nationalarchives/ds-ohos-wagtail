@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .highlight-gallery {
     $root: &;
     background-color: $color__grey-700;
@@ -10,7 +12,7 @@
         border-bottom: 1px dashed $color__grey-500;
         padding-bottom: 3rem;
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             grid-template-columns: 50% 50%;
         }
     }
@@ -18,7 +20,7 @@
     &__content {
         order: 1;
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             margin-right: 2.5%;
         }
     }
@@ -91,7 +93,7 @@
         justify-content: center;
         margin: 5% 0;
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             margin: 0 0 0 2.5%;
             order: 2;
         }
@@ -101,7 +103,7 @@
         max-width: 100%;
         height: auto;
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             grid-column-start: 1;
         }
     }
