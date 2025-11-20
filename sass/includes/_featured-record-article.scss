@@ -13,12 +13,12 @@
     margin-left: calc((3rem + 14px) / -2);
     margin-right: calc((3rem + 14px) / -2);
 
-    @media screen and (min-width: map-get($grid-breakpoints, "md")) {
+    @media screen and (min-width: map.get($grid-breakpoints, "md")) {
         margin-left: 0;
         margin-right: 0;
     }
 
-    @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+    @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
         margin-right: 15px;
         margin-left: 15px;
         grid-template-columns: 1fr 1fr;
