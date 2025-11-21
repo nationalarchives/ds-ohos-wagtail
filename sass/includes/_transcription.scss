@@ -1,4 +1,5 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/colour";
+@use "sass:map";
 
 .transcription {
     @include colour.contrast;
@@ -24,7 +25,7 @@
 
         max-width: 80%;
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             display: grid;
             gap: 1.875rem 3rem;
             grid-template-columns: 55% 45%;
@@ -39,7 +40,7 @@
     &__text {
         margin-top: 0;
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             h2 {
                 margin-top: 0;
             }
@@ -170,11 +171,11 @@
         font-size: $font-size-base;
         font-weight: $headings-font-weight;
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             font-size: 1.4rem;
         }
 
-        @media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
             font-size: 1.8rem;
         }
 

@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .featured-link {
     border: 1px solid $color__grey-300;
     border-top: 0.25rem solid $color__yellow;
@@ -65,7 +67,7 @@
         object-fit: cover;
         max-height: 330px; // prevent image getting huge on smaller viewports
 
-        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
             max-height: 390px;
         }
     }

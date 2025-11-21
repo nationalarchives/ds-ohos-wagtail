@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .card-grid {
     @extend .row;
     display: grid;
@@ -13,7 +15,7 @@
         grid-gap: 1rem;
         margin: 1rem 0;
 
-        @media (min-width: map-get($grid-breakpoints, "md")) {
+        @media (min-width: map.get($grid-breakpoints, "md")) {
             grid-template-columns: repeat(2, 1fr);
         }
     }
@@ -23,19 +25,19 @@
         row-gap: 1.875rem;
         padding: 0 1rem 1rem;
 
-        @media (min-width: map-get($grid-breakpoints, "sm")) {
+        @media (min-width: map.get($grid-breakpoints, "sm")) {
             grid-template-columns: repeat(2, 1fr);
             row-gap: 3rem;
         }
 
-        @media (min-width: map-get($grid-breakpoints, "md")) {
+        @media (min-width: map.get($grid-breakpoints, "md")) {
             grid-template-columns: repeat(3, 1fr);
         }
 
         &--large-gaps {
             grid-gap: 3.625rem;
 
-            @media screen and (min-width: map-get($grid-breakpoints, "sm")) {
+            @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
                 grid-gap: 1.875em;
             }
         }
@@ -45,11 +47,11 @@
         grid-gap: 40px;
         margin: 20px 0;
 
-        @media (min-width: map-get($grid-breakpoints, "sm")) {
+        @media (min-width: map.get($grid-breakpoints, "sm")) {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        @media (min-width: map-get($grid-breakpoints, "lg")) {
+        @media (min-width: map.get($grid-breakpoints, "lg")) {
             grid-template-columns: repeat(4, 1fr);
         }
     }
@@ -58,11 +60,11 @@
         gap: 14px;
         grid-template-columns: repeat(2, 1fr);
 
-        @media (min-width: map-get($grid-breakpoints, "md")) {
+        @media (min-width: map.get($grid-breakpoints, "md")) {
             gap: 42px;
         }
 
-        @media (min-width: map-get($grid-breakpoints, "lg")) {
+        @media (min-width: map.get($grid-breakpoints, "lg")) {
             grid-template-columns: repeat(5, 1fr);
         }
     }

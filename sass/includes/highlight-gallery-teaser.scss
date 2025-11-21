@@ -1,14 +1,16 @@
 // stylelint-disable no-descending-specificity
+@use "sass:map";
+
 .highlight-gallery-teaser {
     $root: &;
     padding-bottom: 3rem;
     background-color: $color__cream;
 
-    @media screen and (min-width: map-get($grid-breakpoints, "sm")) {
+    @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
         margin-bottom: 3rem;
     }
 
-    @media screen and (min-width: map-get($grid-breakpoints, "md")) {
+    @media screen and (min-width: map.get($grid-breakpoints, "md")) {
         padding-bottom: 5.125rem;
     }
 
@@ -17,7 +19,7 @@
         margin: 0;
         padding: 3rem 0 1.5rem;
 
-        @media (min-width: map-get($grid-breakpoints, "md")) {
+        @media (min-width: map.get($grid-breakpoints, "md")) {
             padding: 3rem 0 2.75rem;
         }
 
