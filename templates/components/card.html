@@ -3,7 +3,7 @@
     {% if event %}
       {% include "components/event_tags.html" %}
     {% endif %}
-    {% if supertitle %}
+    {# {% if supertitle %}
       {% if not singleSentence %}
         <hgroup class="tna-hgroup-{{ headingSize|default:'s' }} tna-card__heading">
           <p class="tna-hgroup__supertitle">{{ supertitle }}</p>
@@ -43,7 +43,7 @@
           </h{{ headingLevel }}>
         </hgroup>
       {% endif %}
-    {% else %}
+    {% else %} #}
       <h{{ headingLevel }} class="tna-card__heading tna-heading-{{ headingSize|default:'s' }} {% if highlight %}tna-card__heading--has-highlight{% endif %}">
       {% if href %}
         <a
@@ -59,7 +59,7 @@
         {{ title }}
       {% endif %}
       </h{{ headingLevel }}>
-    {% endif %}
+    {# {% endif %} #}
     {% if highlight and highlight_color %}
       <div class="tna-card__highlight tna-card__highlight--{{ highlight_color }}">
         {{ highlight }}
