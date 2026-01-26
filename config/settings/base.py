@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
-from sysconfig import get_path
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -91,6 +90,8 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -98,7 +99,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.security.SecurityMiddleware",
     "etna.core.middleware.MaintenanceModeMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "etna.core.middleware.InterpretCookiesMiddleware",
@@ -113,9 +113,6 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             os.path.join(BASE_DIR, "templates"),
-            # os.path.join(
-            #     get_path("platlib"), "nationalarchives-frontend-django/templates"
-            # ),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -175,7 +172,6 @@ LOGGING = {
     },
 }
 
-SENTRY_DEBUG_URL_ENABLED = False
 if SENTRY_DSN := os.getenv("SENTRY_DSN", ""):
     sentry_sdk.init(
         dsn=SENTRY_DSN,
@@ -191,16 +187,14 @@ if SENTRY_DSN := os.getenv("SENTRY_DSN", ""):
         send_default_pii=strtobool(os.getenv("SENTRY_SEND_USER_DATA", "False")),
     )
 
-    SENTRY_DEBUG_URL_ENABLED = strtobool(os.getenv("SENTRY_DEBUG_URL_ENABLED", "False"))
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     "default": {
-        "ENGINE": os.getenv("DATABASE_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.getenv("DATABASE_NAME", "db.sqlite3"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DATABASE_NAME"),
         "USER": os.getenv("DATABASE_USER"),
         "PASSWORD": os.getenv("DATABASE_PASSWORD"),
         "HOST": os.getenv("DATABASE_HOST"),
@@ -251,13 +245,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "templates", "static"),
 ]
 
-# ManifestStaticFilesStorage is recommended in production, to prevent outdated
-# JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
-# See https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -418,9 +408,6 @@ FEATURE_FEEDBACK_MECHANISM_ENABLED = strtobool(
 FEATURE_PAGE_LIMIT = os.getenv("FEATURE_PAGE_LIMIT", "1")
 # max number of records the API search returns
 FEATURE_RECORD_LIMIT = os.getenv("FEATURE_RECORD_LIMIT", "5000")
-
-# Not in scope for OHOS
-FEATURE_ENABLE_API_V2 = False
 
 FEATURE_GEO_LAT = os.getenv("FEATURE_GEO_LAT", "54.7246201949245")
 FEATURE_GEO_LON = os.getenv("FEATURE_GEO_LON", "-4.614257812500001")

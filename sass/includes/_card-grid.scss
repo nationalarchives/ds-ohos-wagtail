@@ -12,7 +12,7 @@
     }
 
     &__duo {
-        grid-gap: 1rem;
+        gap: 1rem;
         margin: 1rem 0;
 
         @media (min-width: map.get($grid-breakpoints, "md")) {
@@ -21,7 +21,7 @@
     }
 
     &__trio {
-        grid-gap: 1.5rem;
+        gap: 1.5rem;
         row-gap: 1.875rem;
         padding: 0 1rem 1rem;
 
@@ -35,16 +35,16 @@
         }
 
         &--large-gaps {
-            grid-gap: 3.625rem;
+            gap: 3.625rem;
 
             @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
-                grid-gap: 1.875em;
+                gap: 1.875em;
             }
         }
     }
 
     &__quad {
-        grid-gap: 40px;
+        gap: 40px;
         margin: 20px 0;
 
         @media (min-width: map.get($grid-breakpoints, "sm")) {

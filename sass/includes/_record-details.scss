@@ -20,7 +20,7 @@
         }
 
         .xslt_patches {
-            word-break: break-word;
+            word-break: break-all;
         }
     }
 
@@ -66,5 +66,5 @@
 .takedown-request {
     border: 1px #000 solid;
     padding: 16px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }

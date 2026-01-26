@@ -1,5 +1,5 @@
-ARG IMAGE=ghcr.io/nationalarchives/tna-python-django
-ARG IMAGE_TAG=latest
+ARG IMAGE=ghcr.io/nationalarchives/tna-python
+ARG IMAGE_TAG=1
 
 FROM "$IMAGE":"$IMAGE_TAG"
 
@@ -12,8 +12,9 @@ COPY --chown=app . .
 # Install Python dependencies AND the 'etna' app
 RUN tna-build
 
-# Copy the assets from the @nationalarchives/frontend repository
-RUN mkdir -p /app/templates/static/assets; \
-  cp -R /app/node_modules/@nationalarchives/frontend/nationalarchives/assets/* /app/templates/static/assets
+# Collect static files and copy the assets from the @nationalarchives/frontend repository
+RUN poetry run python /app/manage.py collectstatic --no-input --clear; \
+    mkdir -p /app/templates/static/assets; \
+    cp -R /app/node_modules/@nationalarchives/frontend/nationalarchives/assets/* /app/templates/static/assets
 
-CMD ["tna-run", "config.wsgi:application"]
+CMD ["tna-wsgi", "config.wsgi:application"]

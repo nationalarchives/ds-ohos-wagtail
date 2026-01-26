@@ -11,7 +11,7 @@ module.exports = {
             env: {
                 node: true,
             },
-            files: [".eslintrc.{js}"],
+            files: [".eslintrc.{js,jsx,mjs,ts,tsx,cjs}"],
             parserOptions: {
                 sourceType: "script",
             },
@@ -22,9 +22,5 @@ module.exports = {
         sourceType: "module",
     },
     rules: {},
-    ignorePatterns: [
-        "templates/static/scripts/**/*.js",
-        ".*.js",
-        "*.config.js",
-    ],
+    ignorePatterns: ["**/*.js"],
 };

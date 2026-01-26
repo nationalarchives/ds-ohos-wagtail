@@ -21,7 +21,6 @@ docker-compose.yml
 docs
 fabfile.py
 gunicorn.conf.py
-lint-requirements.txt
 media
 mkdocs.yml
 node_modules

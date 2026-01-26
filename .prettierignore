@@ -1,3 +1,5 @@
 # Ignore all HTML files:
 **/*.html
 sass/tna-toolkit/bootstrap/**/*
+templates/static/**/*
+/static/**/*
