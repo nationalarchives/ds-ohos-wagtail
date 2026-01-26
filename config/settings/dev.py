@@ -6,9 +6,6 @@ from .util import strtobool
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = strtobool(os.getenv("DEBUG", "True"))  # noqa: F405
-DEBUG_TOOLBAR_ENABLED = strtobool(  # noqa: F405
-    os.getenv("DEBUG_TOOLBAR_ENABLED", "True")  # noqa: F405
-)
 
 WAGTAILADMIN_BASE_URL = os.getenv("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
 WAGTAIL_HEADLESS_PREVIEW = {
@@ -31,7 +28,6 @@ SEARCH_VIEWS_REQUIRE_LOGIN = False
 FEATURE_BETA_BANNER_ENABLED = strtobool(
     os.getenv("FEATURE_BETA_BANNER_ENABLED", "True")
 )
-DJANGO_SERVE_STATIC = strtobool(os.getenv("DJANGO_SERVE_STATIC", "True"))
 COOKIE_DOMAIN = "localhost"
 
 MEDIA_ROOT = "/media"
@@ -44,28 +40,29 @@ try:
 except ImportError:
     pass
 
+
+def show_toolbar(request):
+    return True
+
+
 if DEBUG:
     from .base import LOGGING
 
-    LOGGING["root"]["level"] = "DEBUG"
+    LOGGING["root"]["level"] = "DEBUG"  # noqa: F405
 
-if not DEBUG and DJANGO_SERVE_STATIC:
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+    try:
+        import debug_toolbar  # noqa: F401
 
-if DEBUG and DEBUG_TOOLBAR_ENABLED:
-    from .base import INSTALLED_APPS, MIDDLEWARE
+        INSTALLED_APPS += [  # noqa: F405
+            "debug_toolbar",
+        ]
 
-    INSTALLED_APPS += [
-        "debug_toolbar",
-    ]
+        MIDDLEWARE = [
+            "debug_toolbar.middleware.DebugToolbarMiddleware",
+        ] + MIDDLEWARE  # noqa: F405
 
-    MIDDLEWARE += [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
-    ]
-
-    def show_toolbar(request) -> bool:
-        return strtobool(os.getenv("DEBUG_TOOLBAR", "False"))
-
-    DEBUG_TOOLBAR_CONFIG = {
-        "SHOW_TOOLBAR_CALLBACK": show_toolbar,
-    }
+        DEBUG_TOOLBAR_CONFIG = {
+            "SHOW_COLLAPSED": True,
+        }
+    except ImportError:
+        pass

@@ -26,27 +26,19 @@ wagtailmedia = "~0.15"
 wagtail-metadata = "~5.0"
 nationalarchives-frontend-django = "^0.1.2a0"
 wagtail-headless-preview = "0.8.0"
+whitenoise = "^6.11.0"
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-black = "~24.10"
 coverage = "~7.6"
-django-debug-toolbar = "~5.0"
 django-extensions = "~3.2"
-flake8 = "~7.0"
 ipdb = "~0.13"
-isort = "~5.13"
 mkdocs-material = "~9.5"
 pymdown-extensions = "~10.12"
 responses = "~0.25"
 wagtail-factories = "~4.2"
-
-[tool.poetry.group.root]
-optional = true
-
-[tool.poetry.group.root.dependencies]
 
 [build-system]
 requires = ["poetry-core"]

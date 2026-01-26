@@ -1,5 +1,5 @@
-ARG IMAGE=ghcr.io/nationalarchives/tna-python-django
-ARG IMAGE_TAG=latest
+ARG IMAGE=ghcr.io/nationalarchives/tna-python
+ARG IMAGE_TAG=1
 
 FROM "$IMAGE":"$IMAGE_TAG"
 
@@ -16,4 +16,6 @@ RUN tna-build
 RUN mkdir -p /app/templates/static/assets; \
   cp -R /app/node_modules/@nationalarchives/frontend/nationalarchives/assets/* /app/templates/static/assets
 
-CMD ["tna-run", "config.wsgi:application"]
+RUN tna-clean
+
+CMD ["tna-wsgi", "config.wsgi:application"]
