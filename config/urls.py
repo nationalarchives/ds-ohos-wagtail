@@ -1,6 +1,5 @@
 from django.apps import apps
 from django.conf import settings
-from django.contrib import admin
 from django.urls import include, path, register_converter
 from django.views.decorators.cache import never_cache
 from django.views.generic import RedirectView
@@ -9,11 +8,6 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.utils.urlpatterns import decorate_urlpatterns
 
-from etna.api.urls import api_router
-from etna.core.cache_control import (
-    apply_default_cache_control,
-    apply_default_vary_headers,
-)
 from etna.core.decorators import setting_controlled_login_required
 from etna.errors import views as errors_view
 from etna.records import converters
@@ -36,7 +30,6 @@ handler503 = "etna.errors.views.custom_503_error_view"
 
 # Private URLs that are not meant to be cached.
 private_urls = [
-    # path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("accounts/", include("allauth.urls")),
     path("documents/", include(wagtaildocs_urls)),

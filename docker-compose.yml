@@ -37,16 +37,7 @@ services:
       - 8002:8080
     restart: on-failure
     volumes:
-      - ./etna:/app/etna
-      - ./config:/app/config
-      - ./sass:/app/sass
-      - ./scripts:/app/scripts
-      - ./static:/app/static
-      - ./templates:/app/templates
-      - ./poetry.lock:/app/poetry.lock
-      - ./pyproject.toml:/app/pyproject.toml
-      - ./package.json:/app/package.json
-      - ./package-lock.json:/app/package-lock.json
+      - ./:/app
       - media:/media
 
 volumes:
