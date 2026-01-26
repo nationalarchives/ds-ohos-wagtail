@@ -36,22 +36,13 @@ handler503 = "etna.errors.views.custom_503_error_view"
 
 # Private URLs that are not meant to be cached.
 private_urls = [
-    path("django-admin/", admin.site.urls),
+    # path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("accounts/", include("allauth.urls")),
     path("documents/", include(wagtaildocs_urls)),
     path("feedback/", include("etna.feedback.urls")),
     path("healthcheck/", include("etna.healthcheck.urls")),
 ]
-
-if settings.FEATURE_ENABLE_API_V2:
-    private_urls = [
-        path("api/v2/", api_router.urls),
-    ] + private_urls
-
-if settings.SENTRY_DEBUG_URL_ENABLED:
-    # url is toggled via the SENTRY_DEBUG_URL_ENABLED .env var
-    private_urls.append(path("sentry-debug/", trigger_error))
 
 # Public URLs that are meant to be cached.
 public_urls = [
@@ -94,23 +85,13 @@ public_urls = [
     ),
 ]
 
-# if settings.DEBUG or settings.DJANGO_SERVE_STATIC:
-#     from django.conf.urls.static import static
-#     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-#     # Serve static and media files from development server
-#     public_urls += staticfiles_urlpatterns()
-#     public_urls += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#     public_urls += [
-#         path(
-#             r"404/",
-#             errors_view.custom_404_error_view,
-#             kwargs={"exception": Exception("Bad Request!")},
-#         ),
-#         path(r"500/", errors_view.custom_500_error_view),
-#         path(r"503/", errors_view.custom_503_error_view),
-#     ]
-
+    # Serve static and media files from development server
+    public_urls += staticfiles_urlpatterns()
+    public_urls += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 public_urls += [
     path(
@@ -121,14 +102,6 @@ public_urls += [
     path(r"500/", errors_view.custom_500_error_view),
     path(r"503/", errors_view.custom_503_error_view),
 ]
-
-# Update public URLs to use the "default" cache settings.
-public_urls = decorate_urlpatterns(public_urls, apply_default_cache_control)
-
-# Set vary headers for public URLS to instruct cache to serve different version on
-# different cookies, different request method (e.g. AJAX) and different protocol
-# (http vs https).
-public_urls = decorate_urlpatterns(public_urls, apply_default_vary_headers)
 
 # Update private URLs to use the "never cache" cache settings.
 private_urls = decorate_urlpatterns(private_urls, never_cache)

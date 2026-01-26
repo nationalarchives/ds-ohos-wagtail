@@ -12,10 +12,9 @@ COPY --chown=app . .
 # Install Python dependencies AND the 'etna' app
 RUN tna-build
 
-# Copy the assets from the @nationalarchives/frontend repository
-RUN mkdir -p /app/templates/static/assets; \
-  cp -R /app/node_modules/@nationalarchives/frontend/nationalarchives/assets/* /app/templates/static/assets
-
-RUN tna-clean
+# Collect static files and copy the assets from the @nationalarchives/frontend repository
+RUN poetry run python /app/manage.py collectstatic --no-input --clear; \
+    mkdir -p /app/templates/static/assets; \
+    cp -R /app/node_modules/@nationalarchives/frontend/nationalarchives/assets/* /app/templates/static/assets
 
 CMD ["tna-wsgi", "config.wsgi:application"]

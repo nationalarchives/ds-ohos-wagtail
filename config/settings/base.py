@@ -91,6 +91,8 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -98,9 +100,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.security.SecurityMiddleware",
     "etna.core.middleware.MaintenanceModeMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "etna.core.middleware.InterpretCookiesMiddleware",
 ]
@@ -176,7 +176,6 @@ LOGGING = {
     },
 }
 
-SENTRY_DEBUG_URL_ENABLED = False
 if SENTRY_DSN := os.getenv("SENTRY_DSN", ""):
     sentry_sdk.init(
         dsn=SENTRY_DSN,
@@ -191,8 +190,6 @@ if SENTRY_DSN := os.getenv("SENTRY_DSN", ""):
         # django.contrib.auth) you may enable sending PII data.
         send_default_pii=strtobool(os.getenv("SENTRY_SEND_USER_DATA", "False")),
     )
-
-    SENTRY_DEBUG_URL_ENABLED = strtobool(os.getenv("SENTRY_DEBUG_URL_ENABLED", "False"))
 
 
 # Database
@@ -252,10 +249,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "templates", "static"),
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -416,9 +412,6 @@ FEATURE_FEEDBACK_MECHANISM_ENABLED = strtobool(
 FEATURE_PAGE_LIMIT = os.getenv("FEATURE_PAGE_LIMIT", "1")
 # max number of records the API search returns
 FEATURE_RECORD_LIMIT = os.getenv("FEATURE_RECORD_LIMIT", "5000")
-
-# Not in scope for OHOS
-FEATURE_ENABLE_API_V2 = False
 
 FEATURE_GEO_LAT = os.getenv("FEATURE_GEO_LAT", "54.7246201949245")
 FEATURE_GEO_LON = os.getenv("FEATURE_GEO_LON", "-4.614257812500001")
