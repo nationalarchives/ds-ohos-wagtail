@@ -13,8 +13,8 @@ COPY --chown=app . .
 RUN tna-build
 
 # Collect static files and copy the assets from the @nationalarchives/frontend repository
-RUN poetry run python /app/manage.py collectstatic --no-input --clear; \
-    mkdir -p /app/templates/static/assets; \
-    cp -R /app/node_modules/@nationalarchives/frontend/nationalarchives/assets/* /app/templates/static/assets
+RUN mkdir -p /app/templates/static/assets; \
+    cp -R /app/node_modules/@nationalarchives/frontend/nationalarchives/assets/* /app/templates/static/assets; \
+    poetry run python /app/manage.py collectstatic --no-input --clear
 
 CMD ["tna-wsgi", "config.wsgi:application"]
