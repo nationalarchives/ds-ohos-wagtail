@@ -10,11 +10,6 @@
     {% meta_tags %}
 {% endblock %}
 
-{% block extra_gtm_js %}
-    {% render_gtm_datalayer page %}
-{% endblock %}
-
 {% block header %}
-    {% alerts page=page %}
     {{ block.super }}
 {% endblock %}

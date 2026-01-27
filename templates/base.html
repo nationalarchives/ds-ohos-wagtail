@@ -43,10 +43,6 @@
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
 
-        {% block extra_gtm_js %}
-            {# Override this in templates to add extra javascript to be used by GTM #}
-        {% endblock %}
-
         {% if cookies_permitted %}
             {% include 'includes/gtm-script.html' %}
         {% endif %}
