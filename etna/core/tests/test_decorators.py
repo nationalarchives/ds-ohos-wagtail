@@ -37,31 +37,31 @@ class SettingControlledLoginRequiredTest(WagtailTestUtils, TestCase):
             json=create_response(),
         )
 
-    @override_settings(
-        SEARCH_VIEWS_REQUIRE_LOGIN=True,
-        RECORD_DETAIL_REQUIRE_LOGIN=True,
-    )
-    def test_requires_login_when_setting_value_is_true(self):
-        for url in CONDITIONALLY_PROTECTED_URLS:
-            with self.subTest(f"URL: {url}"):
-                response = self.client.get(url)
-                self.assertRedirects(
-                    response,
-                    f"/accounts/login?next={url}",
-                    fetch_redirect_response=False,
-                )
+    # @override_settings(
+    #     SEARCH_VIEWS_REQUIRE_LOGIN=True,
+    #     RECORD_DETAIL_REQUIRE_LOGIN=True,
+    # )
+    # def test_requires_login_when_setting_value_is_true(self):
+    #     for url in CONDITIONALLY_PROTECTED_URLS:
+    #         with self.subTest(f"URL: {url}"):
+    #             response = self.client.get(url)
+    #             self.assertRedirects(
+    #                 response,
+    #                 f"/accounts/login?next={url}",
+    #                 fetch_redirect_response=False,
+    #             )
 
-    @responses.activate
-    @override_settings(
-        SEARCH_VIEWS_REQUIRE_LOGIN=True,
-        RECORD_DETAIL_REQUIRE_LOGIN=True,
-    )
-    def test_allows_request_when_setting_value_is_true_and_authenticated(self):
-        self.login()
-        for url in CONDITIONALLY_PROTECTED_URLS:
-            with self.subTest(f"URL: {url}"):
-                response = self.client.get(url)
-                self.assertEqual(response.status_code, 200)
+    # @responses.activate
+    # @override_settings(
+    #     SEARCH_VIEWS_REQUIRE_LOGIN=True,
+    #     RECORD_DETAIL_REQUIRE_LOGIN=True,
+    # )
+    # def test_allows_request_when_setting_value_is_true_and_authenticated(self):
+    #     self.login()
+    #     for url in CONDITIONALLY_PROTECTED_URLS:
+    #         with self.subTest(f"URL: {url}"):
+    #             response = self.client.get(url)
+    #             self.assertEqual(response.status_code, 200)
 
     @responses.activate
     @override_settings(

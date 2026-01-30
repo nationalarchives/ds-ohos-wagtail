@@ -56,22 +56,16 @@ Navigate to the admin URL in your browser, and sign in using the username/passwo
 
 <http://127.0.0.1:8002/admin/>
 
-## Compile the front-end assets
-
-```sh
-docker compose exec web tna-node compile
-```
-
 ## Run tests
 
 ```sh
-docker compose exec dev poetry run python manage.py test
+docker compose exec app poetry run python manage.py test
 ```
 
 ## Format, Sort
 
 ```sh
-docker compose exec dev format
+docker compose exec app format
 ```
 
 ## Feature/Fix/Chore work
