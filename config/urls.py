@@ -8,7 +8,6 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.utils.urlpatterns import decorate_urlpatterns
 
-from etna.core.decorators import setting_controlled_login_required
 from etna.errors import views as errors_view
 from etna.records import converters
 from etna.records import views as records_views
@@ -41,39 +40,27 @@ private_urls = [
 public_urls = [
     path(
         r"catalogue/id/<id:id>/",
-        setting_controlled_login_required(
-            records_views.record_detail_view, "RECORD_DETAIL_REQUIRE_LOGIN"
-        ),
+        records_views.record_detail_view,
         name="details-page-machine-readable",
     ),
     path(
         r"catalogue/ref/<reference_number:reference_number>/",
-        setting_controlled_login_required(
-            records_views.record_disambiguation_view, "RECORD_DETAIL_REQUIRE_LOGIN"
-        ),
+        records_views.record_disambiguation_view,
         name="details-page-human-readable",
     ),
     path(
         r"search/",
-        setting_controlled_login_required(
-            RedirectView.as_view(pattern_name="search-catalogue", permanent=False),
-            "SEARCH_VIEWS_REQUIRE_LOGIN",
-        ),
+        RedirectView.as_view(pattern_name="search-catalogue", permanent=False),
         name="search",
     ),
     path(
         r"search/catalogue/",
-        setting_controlled_login_required(
-            search_views.CatalogueSearchView.as_view(), "SEARCH_VIEWS_REQUIRE_LOGIN"
-        ),
+        search_views.CatalogueSearchView.as_view(),
         name="search-catalogue",
     ),
     path(
         r"search/catalogue/long-filter-chooser/<str:field_name>/",
-        setting_controlled_login_required(
-            search_views.CatalogueSearchLongFilterView.as_view(),
-            "SEARCH_VIEWS_REQUIRE_LOGIN",
-        ),
+        search_views.CatalogueSearchLongFilterView.as_view(),
         name="search-catalogue-long-filter-chooser",
     ),
 ]
