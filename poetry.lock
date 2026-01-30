@@ -2401,14 +2401,14 @@ files = [
 
 [[package]]
 name = "wagtail-generic-chooser"
-version = "0.6.1"
+version = "0.7"
 description = "A toolkit for custom chooser popups in Wagtail"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "wagtail-generic-chooser-0.6.1.tar.gz", hash = "sha256:a9962c8cbf5b65d05fe6d7feea15ab5a169a2046f7344f31bbb5851714a29267"},
-    {file = "wagtail_generic_chooser-0.6.1-py3-none-any.whl", hash = "sha256:ec7b080e006d5560d4f0d26f351e7bf732d31645247157af427ccda3d4a75ab5"},
+    {file = "wagtail_generic_chooser-0.7-py3-none-any.whl", hash = "sha256:42ec66e4c4154f52e0ee6219d098a424e32349518176ebc213eade789585e746"},
+    {file = "wagtail_generic_chooser-0.7.tar.gz", hash = "sha256:a79ade8189e23813b0c65dbf0f9617cd462fc36cab1ed3a26c01c835fa4e113d"},
 ]
 
 [package.dependencies]
@@ -2564,4 +2564,4 @@ wand = ["Wand (>=0.6,<1.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.14"
-content-hash = "642df25cf4b4f123bb01f5e0e130132fa307556148a60f458affd1a1d125f11c"
+content-hash = "d2b9a0a1d7dc715b87b7faa72300d0914dcf271be698926a1f454ef11ece4418"
