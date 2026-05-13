@@ -36,14 +36,18 @@ cp .env.example .env
 docker compose up -d
 ```
 
-## Pull data, media from Platform.sh
+## Import data
+
+Import Wagtail data dump (provided by the platform team) into the local database
 
 ```sh
-fab pull-staging-data
+docker-compose exec -T db psql -U postgres < database_dumps/datafile.sql
 ```
 
+Create Django Admin user
+
 ```sh
-fab pull-staging-media
+docker compose exec app poetry run python manage.py createsuperuser
 ```
 
 ## Access the site
