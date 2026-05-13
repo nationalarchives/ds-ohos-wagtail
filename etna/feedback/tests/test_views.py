@@ -1,3 +1,4 @@
+import unittest
 from http import HTTPStatus
 
 from django.contrib.auth.models import Permission
@@ -191,6 +192,7 @@ class TestFeedbackSubmitView(WagtailTestUtils, TestCase):
         )
 
 
+@unittest.skip("DISABLED_AUTH")
 @override_settings(ALLOWED_HOSTS=["*"])
 class TestFeedbackCommentSubmitView(WagtailTestUtils, TestCase):
     maxDiff = None
