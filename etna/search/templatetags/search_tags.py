@@ -206,7 +206,7 @@ def long_filter_cancel(context, field_name: str = "") -> str:
             ],
         )
 
-    return f'{reverse("search-catalogue")}?{query_dict.urlencode()}'
+    return f"{reverse('search-catalogue')}?{query_dict.urlencode()}"
 
 
 @register.simple_tag(takes_context=True)
@@ -228,6 +228,6 @@ def tag_type_url(context, tag_type: str | None = None) -> str:
         add_param = (
             f"&chart_data_type={tag_type}" if tag_type != form_chart_data_type else ""
         )
-        return f'{reverse("search-catalogue")}?{query_dict.urlencode()}{add_param}'
+        return f"{reverse('search-catalogue')}?{query_dict.urlencode()}{add_param}"
 
     return ""

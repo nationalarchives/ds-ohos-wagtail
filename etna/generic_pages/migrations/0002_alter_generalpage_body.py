@@ -9,7 +9,6 @@ import etna.core.blocks.paragraph
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("generic_pages", "0001_initial"),
     ]

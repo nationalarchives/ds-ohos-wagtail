@@ -233,12 +233,12 @@ class CommunityRecordModelTests(SimpleTestCase):
 
     def test_description_for_swop(self):
         self.record._raw["@template"]["details"]["ciimId"] = "swop-1234"
-        self.record._raw["@template"]["details"][
-            "descriptionPlace"
-        ] = "data for descriptionPlace"
-        self.record._raw["@template"]["details"][
-            "descriptionView"
-        ] = "data for descriptionView"
+        self.record._raw["@template"]["details"]["descriptionPlace"] = (
+            "data for descriptionPlace"
+        )
+        self.record._raw["@template"]["details"]["descriptionView"] = (
+            "data for descriptionView"
+        )
         self.assertEqual(
             self.record.description,
             "data for descriptionPlace" + " " + "data for descriptionView",
@@ -246,9 +246,9 @@ class CommunityRecordModelTests(SimpleTestCase):
 
     def test_description_for_swop_partial_data(self):
         self.record._raw["@template"]["details"]["ciimId"] = "swop-1234"
-        self.record._raw["@template"]["details"][
-            "descriptionView"
-        ] = "data for descriptionView"
+        self.record._raw["@template"]["details"]["descriptionView"] = (
+            "data for descriptionView"
+        )
         self.assertEqual(self.record.description, "data for descriptionView")
 
     def test_provenance(self):

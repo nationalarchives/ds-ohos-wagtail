@@ -9,7 +9,6 @@ import etna.core.blocks.paragraph
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("home", "0002_create_homepage"),
     ]
