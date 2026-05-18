@@ -184,7 +184,7 @@ class ClientSearchTest(SimpleTestCase):
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
             responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/search?" "aggs=group" "&aggs=collection",
+            f"{settings.CLIENT_BASE_URL}/search?aggs=group&aggs=collection",
         )
 
     @responses.activate
@@ -211,7 +211,7 @@ class ClientSearchTest(SimpleTestCase):
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(
             responses.calls[0].request.url,
-            f"{settings.CLIENT_BASE_URL}/search?" "filter=collection%3Avalue%281%29",
+            f"{settings.CLIENT_BASE_URL}/search?filter=collection%3Avalue%281%29",
         )
 
     @responses.activate

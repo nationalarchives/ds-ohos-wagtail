@@ -30,7 +30,12 @@ handler503 = "etna.errors.views.custom_503_error_view"
 # Private URLs that are not meant to be cached.
 private_urls = [
     path("admin/", include(wagtailadmin_urls)),
-    path("accounts/", include("allauth.urls")),
+    # DISABLED_AUTH:
+    # Disabled authentication routes:
+    # - user login is not enabled for this application
+    # - removed due to open redirect issue identified by Wiz
+    # - if re-enabled, ensure logout redirects validate `next` parameters
+    # path("accounts/", include("allauth.urls")),
     path("documents/", include(wagtaildocs_urls)),
     path("feedback/", include("etna.feedback.urls")),
     path("healthcheck/", include("etna.healthcheck.urls")),

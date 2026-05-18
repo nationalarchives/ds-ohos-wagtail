@@ -49,7 +49,8 @@ class PromotedItemBlock(SectionDepthAwareStructBlock):
     target_blank = blocks.BooleanBlock(
         label=format_html(
             "%s <p style='font-size: 11px;'>%s</p>",
-            "Should this URL open in a new tab?", "Tick the box if 'yes'"
+            "Should this URL open in a new tab?",
+            "Tick the box if 'yes'",
         ),
         required=False,
     )
@@ -58,8 +59,8 @@ class PromotedItemBlock(SectionDepthAwareStructBlock):
         max_length=50,
         help_text=format_html(
             "%s <strong>%s</strong>'.",
-                "The text displayed on the button for your URL. If your URL links to an external site, please add the name of the site users will land on, and what they will find on this page. For example 'Watch our short film ",
-                "about Shakespeare on YouTube",
+            "The text displayed on the button for your URL. If your URL links to an external site, please add the name of the site users will land on, and what they will find on this page. For example 'Watch our short film ",
+            "about Shakespeare on YouTube",
         ),
     )
     image = NoCaptionImageBlock(

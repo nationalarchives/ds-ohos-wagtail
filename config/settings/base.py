@@ -85,7 +85,7 @@ INSTALLED_APPS = [
     "wagtail.api.v2",
     "rest_framework",
     "wagtail_headless_preview",
-    "django.contrib.postgres"
+    "django.contrib.postgres",
 ]
 
 SITE_ID = 1
@@ -144,6 +144,9 @@ ACCOUNT_USERNAME_REQUIRED = False  # Register using email only
 ACCOUNT_SESSION_REMEMBER = False  # True|False disables "Remember me?" checkbox"
 LOGIN_URL = "/accounts/login"
 LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = (
+    LOGIN_REDIRECT_URL  # default logout redirect (no external redirects)
+)
 WAGTAIL_FRONTEND_LOGIN_URL = LOGIN_URL
 # View access control
 RECORD_DETAIL_REQUIRE_LOGIN = strtobool(

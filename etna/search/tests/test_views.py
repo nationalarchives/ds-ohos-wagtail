@@ -1015,7 +1015,6 @@ class TestDataLayerSearchViews(WagtailTestUtils, TestCase):
 
 
 class CatalogueSearchRedirectTest(SearchViewTestCase):
-
     @responses.activate
     def test_redirect(self):
         response = self.client.get(reverse_lazy("search"))
