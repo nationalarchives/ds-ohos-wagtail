@@ -68,6 +68,17 @@ Create ticket branch off `ds-ohos-wagtail:main`
 
 Merge PR into `ds-ohos-wagtail:main`
 
+After merging to `main`, a release image is automatically built and published:
+
+- Release images: `https://github.com/nationalarchives/ds-ohos-wagtail/tags`
+
+Once the image is available:
+
+1. Notify the team in the channel `rae-ohos`
+2. Confirm whether any database migrations need to be run
+3. The team will deploy the image to AWS
+4. After deployment, verify the changes on the hosted site
+
 ## Updating python dependencies
 
 - Update version numbers in `pyproject.toml`
@@ -84,16 +95,3 @@ Merge PR into `ds-ohos-wagtail:main`
 docker compose exec app poetry run python manage.py makemigrations
 docker compose exec app poetry run python manage.py migrate
 ```
-
-## Deployment process after merging to `main`
-
-After merging to `main`, a release image is automatically built and published:
-
-- Release images: `https://github.com/nationalarchives/ds-ohos-wagtail/tags`
-
-Once the image is available:
-
-1. Notify the team in the channel `rae-ohos`
-2. Confirm whether any database migrations need to be run
-3. The team will deploy the image to AWS
-4. After deployment, verify the changes on the hosted site
