@@ -158,13 +158,13 @@ class TestResolveLinks(SimpleTestCase):
         stripped_markup = format_description_markup(markup)
 
         self.assertEqual(
-            ("<span>" '<a href="http://example.com/">link text one</a>' "</span>"),
+            ('<span><a href="http://example.com/">link text one</a></span>'),
             stripped_markup,
         )
 
     def test_invalid_link(self):
         # C3829405 contains an span.extref with no href
-        markup = "<span>" '<span class="extref">Invalid link</span>' "</span>"
+        markup = '<span><span class="extref">Invalid link</span></span>'
 
         stripped_markup = format_description_markup(markup)
 
@@ -375,7 +375,6 @@ class TestConvertSortKeyToIndex(SimpleTestCase):
 
 
 class TestStripHtml(SimpleTestCase):
-
     def test_ensure_spaces_preserve_marks(self):
 
         test_data = (
@@ -417,7 +416,6 @@ class TestStripHtml(SimpleTestCase):
 
 
 class TestPrepareOhosParam(SimpleTestCase):
-
     def test_prepare_ohos_param(self):
 
         test_data = (

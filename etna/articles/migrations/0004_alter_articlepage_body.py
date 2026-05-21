@@ -12,7 +12,6 @@ import etna.records.blocks
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("articles", "0003_alter_articlepage_body"),
     ]

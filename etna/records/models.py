@@ -817,7 +817,6 @@ class Record(DataLayerMixin, APIModel):
         data = {}
 
         if value := self.collection:
-
             field_name = "collection"
             level = self.level
             label = FIELD_LABELS.get(field_name, "UNRECOGNISED FIELD NAME")
