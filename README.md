@@ -1,24 +1,8 @@
 # OHOS
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
 ## Setting up a local build
 
 Local development is done in Docker.
-
-**Note: Fabric and Plaform.sh are temporary provisions to pull data and media.**
-
-Convenience commands have been added to `fabfile.py` to help you interact with the various services. But, for any of these commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html).
-
-Alternatively, install fabric in a python virtual environment and run from the activated environment.
-
-### Install platform.sh CLI
-
-Check with team to have your username, email configured in Platform.sh and create API-Token
-
-https://docs.platform.sh/administration/cli.html
-
-CLI is used to pull data and media from Platform.sh.
 
 ## Before starting a build for the first time
 
@@ -28,7 +12,11 @@ Get the development `.env` from team
 cp .env.example .env
 ```
 
-`.env` hold sensitive values. Please ask on the `ds-etna-dev` slack channel to get those values.
+`.env` hold sensitive values. Please ask on the `ds-etna-dev/rae-ohos` slack channel to get those values.
+
+Get the database dump from team and copy to `database_dumps/` folder
+
+`database_dumps/datafile.sql`
 
 ## Build and start Docker containers
 
@@ -74,12 +62,38 @@ docker compose exec app format
 
 ## Feature/Fix/Chore work
 
-Create ticket branch off `ds-ohos-wagtail:ohos`
+Create ticket branch off `ds-ohos-wagtail:main`
 
 ## Deploy OHOS
 
-Merge PR into `ds-ohos-wagtail:ohos`
+Merge PR into `ds-ohos-wagtail:main`
 
-## Linux / OSX
+## Updating python dependencies
 
-If you are running a Unix based operating system, these alias commands may be useful to you to run inside the Docker container.
+- Update version numbers in `pyproject.toml`
+- If the app container is already running
+  - Run `docker compose exec app poetry update`
+- Alternatively, run `poetry update` on the docker host
+- Alternatively, start a temporary app container to run the update:
+  - Run `docker compose run --rm app poetry update`
+  - Run `docker compose up -d --build app`
+
+## Run migrations
+
+```sh
+docker compose exec app poetry run python manage.py makemigrations
+docker compose exec app poetry run python manage.py migrate
+```
+
+## Deployment process after merging to `main`
+
+After merging to `main`, a release image is automatically built and published:
+
+- Release images: `https://github.com/nationalarchives/ds-ohos-wagtail/tags`
+
+Once the image is available:
+
+1. Notify the team in the channel `rae-ohos`
+2. Confirm whether any database migrations need to be run
+3. The team will deploy the image to AWS
+4. After deployment, verify the changes on the hosted site
