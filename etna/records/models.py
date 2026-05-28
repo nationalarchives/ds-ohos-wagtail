@@ -286,12 +286,9 @@ class Record(DataLayerMixin, APIModel):
     @cached_property
     def held_by_url(self) -> str:
         if self.held_by_id:
-            try:
-                return reverse(
-                    "details-page-machine-readable", kwargs={"id": self.held_by_id}
-                )
-            except NoReverseMatch:
-                pass
+            return (
+                f"https://discovery.nationalarchives.gov.uk/details/a/{self.held_by_id}"
+            )
         return ""
 
     @cached_property
