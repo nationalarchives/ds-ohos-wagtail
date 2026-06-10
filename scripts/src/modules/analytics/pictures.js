@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-ternary */
 import push_to_data_layer from "./push_to_data_layer";
 
 export const trackPictureTranscripts = () => {

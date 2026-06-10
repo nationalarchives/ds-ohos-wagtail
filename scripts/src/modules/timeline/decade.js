@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-magic-numbers, max-lines-per-function, max-statements, radix, no-magic-numbers, no-console, no-new, id-length, no-inline-comments, no-ternary, promise/always-return  */
 const searchParams = new URLSearchParams(window.location.search);
 
 let url_string =
@@ -6,15 +7,15 @@ let url_string =
 const query = searchParams.get("q");
 
 if (query) {
-    url_string += `&q=${  query}`;
+    url_string += `&q=${query}`;
 }
 
 const collection = searchParams.get("collection");
 
 if (collection) {
-    url_string +=
-        `&filter=collectionOhos%3A${ 
-        collection.substring(collection.indexOf(":") + 1).replace(/ /g, "+")}`;
+    url_string += `&filter=collectionOhos%3A${collection
+        .substring(collection.indexOf(":") + 1)
+        .replace(/ /g, "+")}`;
 }
 
 fetch(url_string) // Replace with your server-side API endpoint

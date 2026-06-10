@@ -1,3 +1,4 @@
+/* eslint-disable func-names, max-statements, id-length, eqeqeq */
 export default function () {
     const $toggleLinkCTA = document.querySelector(
         'div[data-id="cta-toggle-link"]',

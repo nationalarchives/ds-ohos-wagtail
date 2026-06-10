@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, func-names, no-undef, no-invalid-this */
 export default function apply_aria_roles(sectionHeadings, sectionContents) {
     sectionHeadings.each(function (index) {
         // Set aria attributes and roles.

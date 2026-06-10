@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, func-names, no-undef, no-invalid-this, no-magic-numbers */
 // This function calculates the position of each heading. In order to prevent expanded sections from causing the heading
 // position being calculated too far down the page, the top position of the first heading is taken as the first index.
 // The height of subsequent headings is calculated by adding its height to the previous index.

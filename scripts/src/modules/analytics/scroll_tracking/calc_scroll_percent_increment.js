@@ -1,5 +1,6 @@
+/* eslint-disable camelcase, no-magic-numbers */
 const pageHeight = document.documentElement;
-const {body} = document;
+const { body } = document;
 const scrollTop = "scrollTop";
 const scrollHeight = "scrollHeight";
 
@@ -19,9 +20,8 @@ const calc_scroll_percent_increment = () => {
         return 50;
     } else if (scrollPercentage < 100) {
         return 75;
-    } 
-        return 100;
-    
+    }
+    return 100;
 };
 
 export default calc_scroll_percent_increment;

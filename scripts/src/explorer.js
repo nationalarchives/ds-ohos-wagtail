@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import add_unique_ids from "./modules/analytics/add_unique_ids";
 import add_analytics_data_card_position from "./modules/analytics/card_position";
 

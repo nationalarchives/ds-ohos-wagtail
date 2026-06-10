@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import get_scroll_percentage from "./get_scroll_percentage";
 
 let highestPercentageReached = get_scroll_percentage();

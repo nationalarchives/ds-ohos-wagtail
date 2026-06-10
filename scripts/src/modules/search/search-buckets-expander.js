@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function,  func-names, max-statements, no-magic-numbers, no-inline-comments, id-length, no-plusplus, eqeqeq */
 import debounce from "../debounce.js";
 
 export default function () {

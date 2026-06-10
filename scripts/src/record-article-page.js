@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import imageGalleryTracking from "./modules/analytics/record_tracking/image_gallery_tracking";
 import ImageGallery from "./modules/image-gallery";
 import RecordMatters from "./modules/record-matter";

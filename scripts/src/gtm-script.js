@@ -1,3 +1,4 @@
+/* eslint-disable max-params, func-names, id-length, logical-assignment-operators, prefer-destructuring, id-length, no-magic-numbers, no-negated-condition, no-ternary, eqeqeq, sort-vars */
 (function (w, d, s, l, i) {
     w[l] = w[l] || [];
     w[l].push({
@@ -6,8 +7,8 @@
     });
     const f = d.getElementsByTagName(s)[0],
         j = d.createElement(s),
-        dl = l != "dataLayer" ? `&l=${  l}` : "";
+        dl = l != "dataLayer" ? `&l=${l}` : "";
     j.async = true;
-    j.src = `https://www.googletagmanager.com/gtm.js?id=${  i  }${dl}`;
+    j.src = `https://www.googletagmanager.com/gtm.js?id=${i}${dl}`;
     f.parentNode.insertBefore(j, f);
 })(window, document, "script", "dataLayer", "GTM-NLWCSTF7");

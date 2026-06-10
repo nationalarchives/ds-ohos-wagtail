@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function, func-names, max-statements, no-magic-numbers, no-inline-comments, eqeqeq, id-length, no-plusplus */
 export default function () {
     const $headerElementsToHide = document.querySelectorAll(
         '[data-isSearch="false"]',

@@ -1,3 +1,4 @@
+/* eslint-disable func-names, camelcase, init-declarations, consistent-return, no-invalid-this, no-implicit-coercion */
 /**
  * Invoke a given callback immediately and no more frequently than
  * every `wait` ms until this function stops being called

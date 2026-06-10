@@ -1,3 +1,4 @@
+/* eslint-disable max-statements, id-length, no-plusplus, no-magic-numbers, no-new, class-methods-use-this */
 import TabManager from "./tab_manager";
 
 class ImageGallery {

@@ -1,3 +1,4 @@
+/* eslint-disable id-length, max-lines-per-function, func-names, max-statements, no-ternary, no-inline-comments, no-magic-numbers, no-unused-expressions */
 /**
  * LeafletJS
  * Docs - {@link https://leafletjs.com/}
@@ -15,7 +16,7 @@ import data from "./data/map-data-unprocessed.json";
 
 // Filter data to include only items with lat and lon
 const dataWithLatLon = data.data.filter((item) => {
-    const {details} = item["@template"];
+    const { details } = item["@template"];
     return details.lat && details.lon;
 });
 
@@ -87,7 +88,7 @@ export default function () {
 
     // Define and add icon for marker cluster group
     const markers = L.markerClusterGroup({
-        iconCreateFunction (cluster) {
+        iconCreateFunction(cluster) {
             const clusteredMarkersCount = cluster.getChildCount();
 
             return L.divIcon({

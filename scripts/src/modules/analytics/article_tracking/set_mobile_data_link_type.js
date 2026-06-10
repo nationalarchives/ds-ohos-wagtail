@@ -1,6 +1,6 @@
+/* eslint-disable camelcase, id-length, no-ternary */
 export default function toggle_data_link_type(e) {
-    const isExpanded =
-        e.target.getAttribute("aria-expanded") === "true";
+    const isExpanded = e.target.getAttribute("aria-expanded") === "true";
 
     e.target.setAttribute(
         "data-link-type",

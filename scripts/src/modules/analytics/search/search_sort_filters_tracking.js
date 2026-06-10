@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, max-lines-per-function, max-statements, no-shadow, eqeqeq, camelcase, id-length, func-names */
 import push_to_data_layer from "./../push_to_data_layer";
 
 const getSort = () => {

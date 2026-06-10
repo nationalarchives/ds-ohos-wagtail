@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import Accordion from "./modules/accordion";
 import FiltersSubmission from "./modules/filters-submission";
 

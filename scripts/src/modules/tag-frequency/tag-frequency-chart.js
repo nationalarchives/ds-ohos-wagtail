@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers, max-statements, no-undefined, func-style, id-length, no-magic-numbers, max-lines-per-function, func-names, no-shadow, no-use-before-define, max-lines, no-ternary, no-invalid-this */
 import * as d3 from "d3";
 
 import debounce from "../../modules/debounce";
@@ -67,7 +68,9 @@ const toggleApplyButton = () => {
 };
 
 const populateForm = () => {
-    if (!form) {return;}
+    if (!form) {
+        return;
+    }
 
     urlParams.forEach((value, key) => {
         const element = document.createElement("input");
@@ -129,7 +132,9 @@ const isSelectedItem = (term, type) => {
         `input[name=${SELECTED_PARAM_NAME}]`,
     );
 
-    const matchingInput = [...formInputs].find((input) => input.value === `${type}:${term}`);
+    const matchingInput = [...formInputs].find(
+        (input) => input.value === `${type}:${term}`,
+    );
 
     return matchingInput !== undefined;
 };
@@ -235,7 +240,7 @@ const setCircleRadius = (data, width, height) => {
      * Square the radius values to get their area
      * @returns {Array}
      */
-    const circleAreas = dataMappedToRadius.map((value) => value**2);
+    const circleAreas = dataMappedToRadius.map((value) => value ** 2);
 
     /**
      * Add each value together to get the total area
@@ -274,9 +279,9 @@ const setCircleRadius = (data, width, height) => {
      * @returns {Array}
      */
     const dataWithRadius = data.map((d, i) => ({
-            ...d,
-            radius: getCircleRadius(i),
-        }));
+        ...d,
+        radius: getCircleRadius(i),
+    }));
 
     return dataWithRadius;
 };
@@ -433,7 +438,9 @@ const chartForceSimulation = (data, options = {}) => {
     const updateSize = () => {
         const newWidth = container.getBoundingClientRect().width;
 
-        if (newWidth === containerWidth) {return;}
+        if (newWidth === containerWidth) {
+            return;
+        }
 
         containerWidth = newWidth;
 
@@ -485,7 +492,9 @@ const containerForceSimulation = document.getElementById("tag-frequency-chart");
 const chartData = processAggregationData(containerForceSimulation);
 
 const init = () => {
-    if (!containerForceSimulation) {return;}
+    if (!containerForceSimulation) {
+        return;
+    }
 
     populateForm();
 

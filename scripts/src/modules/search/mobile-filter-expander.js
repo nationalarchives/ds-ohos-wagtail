@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function, func-names, max-statements, no-negated-condition, eqeqeq, no-magic-numbers, id-length, no-magic-numbers */
 /* global $buttonHtml $noOfFilters */
 
 import debounce from "../debounce.js";
@@ -48,10 +49,9 @@ export default function () {
         if (newAriaExpanded) {
             $showHideButton.innerHTML = "Hide filters";
         } else {
-            $showHideButton.innerHTML =
-                `Filters<span class="filter-indicator">${ 
-                $noOfFilters 
-                }</span>`;
+            $showHideButton.innerHTML = `Filters<span class="filter-indicator">${
+                $noOfFilters
+            }</span>`;
         }
     });
 

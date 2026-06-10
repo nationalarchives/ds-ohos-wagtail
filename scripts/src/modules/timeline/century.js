@@ -1,3 +1,4 @@
+/* eslint-disable camelcase,  no-magic-numbers, no-inline-comments, max-lines-per-function, radix, id-length, no-shadow, no-console, max-statements, promise/always-return, no-ternary, func-names */
 const searchParams = new URLSearchParams(window.location.search);
 
 let url_string =
@@ -6,15 +7,15 @@ let url_string =
 const query = searchParams.get("q");
 
 if (query) {
-    url_string += `&q=${  query}`;
+    url_string += `&q=${query}`;
 }
 
 const collection = searchParams.get("collection");
 
 if (collection) {
-    url_string +=
-        `&filter=collectionOhos%3A${ 
-        collection.substring(collection.indexOf(":") + 1).replace(/ /g, "+")}`;
+    url_string += `&filter=collectionOhos%3A${collection
+        .substring(collection.indexOf(":") + 1)
+        .replace(/ /g, "+")}`;
 }
 
 fetch(url_string) //  server-side API endpoint
@@ -119,11 +120,13 @@ fetch(url_string) //  server-side API endpoint
                 // Get the clicked bar index
                 const targetDecade = decades[activePoints[0].index];
                 // clickedIndexAdjust = targetCentury + clickedIndex;
-                const searchParams = new URLSearchParams(window.location.search);
+                const searchParams = new URLSearchParams(
+                    window.location.search,
+                );
                 searchParams.set("timeline_type", "year");
                 searchParams.set("startDate", targetDecade.decade);
 
-                const url = `./?${  searchParams.toString()  }#myChart`;
+                const url = `./?${searchParams.toString()}#myChart`;
                 window.location = url;
             }
         };

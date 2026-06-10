@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function, func-names, max-statements, max-statements, id-length, eqeqeq */
 export default function () {
     const $toggleLink = document.querySelector(
         'div[data-id="hierarchy-toggle-link"]',

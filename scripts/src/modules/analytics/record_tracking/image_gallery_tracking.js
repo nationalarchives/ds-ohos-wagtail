@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, max-lines-per-function, max-statements, id-length */
 import push_to_data_layer from "../push_to_data_layer";
 
 export default function imageGalleryTracking() {

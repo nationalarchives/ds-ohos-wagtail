@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import create_dismiss_button from "./modules/beta_banner/create_dismiss_button";
 import extract_usage_policy from "./modules/beta_banner/extract_usage_policy";
 

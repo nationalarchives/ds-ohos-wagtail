@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, consistent-return */
 const push_to_data_layer = (obj) => {
     if (!window.dataLayer) {
         return;

@@ -1,3 +1,4 @@
+/* eslint-disable func-names, func-names, max-statements, max-lines-per-function, no-negated-condition, no-magic-numbers, id-length, no-shadow, func-name-matching, max-lines */
 import dsCookieConsentBannerAPI from "./modules/cookie_consent/api/dsCookieConsentBannerAPI";
 import Data from "./modules/cookie_consent/data";
 
@@ -87,10 +88,7 @@ const doNotRememberSettingsRadioInput = document.querySelector(
             });
         } else {
             if (
-                Object.hasOwn(
-                    getCookieObject,
-                    "usage",
-                ) &&
+                Object.hasOwn(getCookieObject, "usage") &&
                 getCookieObject.usage === false
             ) {
                 Data.cookies.gaCookies.forEach((cookie) => {
@@ -99,10 +97,7 @@ const doNotRememberSettingsRadioInput = document.querySelector(
             }
 
             if (
-                Object.hasOwn(
-                    getCookieObject,
-                    "settings",
-                ) &&
+                Object.hasOwn(getCookieObject, "settings") &&
                 getCookieObject.settings === false
             ) {
                 Data.cookies.settings.forEach((cookie) => {
@@ -116,10 +111,7 @@ const doNotRememberSettingsRadioInput = document.querySelector(
                 // Update the state on the form radio elements
                 // based on the cookie_policy value
                 if (
-                    Object.hasOwn(
-                        getCookieObject,
-                        "usage",
-                    ) &&
+                    Object.hasOwn(getCookieObject, "usage") &&
                     getCookieObject.usage === true &&
                     !measureRadioInput.checked
                 ) {
@@ -130,10 +122,7 @@ const doNotRememberSettingsRadioInput = document.querySelector(
 
                 // Remove the functional cookies if the user hasn't consent
                 if (
-                    Object.hasOwn(
-                        getCookieObject,
-                        "settings",
-                    ) &&
+                    Object.hasOwn(getCookieObject, "settings") &&
                     getCookieObject.settings === true &&
                     !settingsRadioInput.checked
                 ) {

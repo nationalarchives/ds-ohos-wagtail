@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-undef, no-magic-numbers */
 export default function scroll_to_active_heading(heading) {
     $("html, body").animate(
         {

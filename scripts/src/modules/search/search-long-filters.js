@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function, func-names, max-statements, no-inline-comments, no-magic-numbers, eqeqeq, prefer-destructuring, func-names, id-length */
 export default function () {
     const $parentForm = document.querySelector('[data-id="long-filter-form"]');
 

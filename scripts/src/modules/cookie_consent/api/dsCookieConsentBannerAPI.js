@@ -1,3 +1,4 @@
+/* eslint-disable func-style, id-length, no-plusplus, no-magic-numbers, func-style, max-statements, no-plusplus, no-ternary, no-param-reassign, guard-for-in, max-params */
 import Data from "../data";
 
 // DS COOKIE CONSENT BANNER API
@@ -40,14 +41,13 @@ const dsCookieConsentBannerAPI = (() => {
             options.expires = options.expires.toUTCString();
         }
 
-        let updatedCookie =
-            `${encodeURIComponent(name)  }=${  encodeURIComponent(value)}`;
+        let updatedCookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
 
         for (const optionKey in options) {
-            updatedCookie += `; ${  optionKey}`;
+            updatedCookie += `; ${optionKey}`;
             const optionValue = options[optionKey];
             if (optionValue !== true) {
-                updatedCookie += `=${  optionValue}`;
+                updatedCookie += `=${optionValue}`;
             }
         }
 

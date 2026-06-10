@@ -1,8 +1,11 @@
+/* eslint-disable max-lines-per-function, func-names, max-statements, no-param-reassign, no-magic-numbers, no-inline-comments, no-unused-expressions, no-ternary, no-plusplus, id-length */
 import debounce from "./debounce.js";
 
 export default function () {
     const $headerMenu = document.querySelector('[data-id="site-menu"]');
-    const $headerMenuList = document.querySelector('[data-id="site-menu-list"]');
+    const $headerMenuList = document.querySelector(
+        '[data-id="site-menu-list"]',
+    );
     const $headerElementsToHide = document.querySelectorAll(
         '[data-isSearch="false"]',
     );

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-use-before-define */
 import push_to_data_layer from "./../push_to_data_layer";
 
 const pushActiveFilterDataOnLoad = () => {

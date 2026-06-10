@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export default function link_list_tracking() {
     if (document.querySelector(".related-resources")) {
         const link_list_grandparent =

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, id-length */
 export default function remove_mobile_tracking() {
     const article_body = document.querySelector(".article-container__main");
     const section_headings = document.querySelectorAll(

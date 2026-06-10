@@ -1,3 +1,4 @@
+/* eslint-disable id-length, no-plusplus, no-new,  class-methods-use-this */
 import TabManager from "./tab_manager";
 
 class TranscriptTabs {

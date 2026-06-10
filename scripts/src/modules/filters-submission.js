@@ -1,3 +1,4 @@
+/* eslint-disable max-statements, no-ternary, id-length, no-magic-numbers, require-await, promise/catch-or-return, promise/always-return */
 import debounce from "./debounce";
 
 class FiltersSubmission {

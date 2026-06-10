@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, prefer-destructuring, no-magic-numbers */
 export default function extract_usage_policy(cookies) {
     if (cookies) {
         const cookies_array = decodeURIComponent(cookies)

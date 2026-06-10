@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-use-before-define, max-lines-per-function, default-case, id-length, no-negated-condition */
 import push_to_data_layer from "../push_to_data_layer";
 
 const pushFeedbackForm = () => {

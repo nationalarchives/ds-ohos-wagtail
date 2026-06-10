@@ -1,3 +1,4 @@
+/* eslint-disable max-statements, id-length, no-magic-numbers, no-param-reassign, init-declarations, prefer-const, sort-vars */
 class TabManager {
     constructor(groupNode) {
         this.tablistNode = groupNode;

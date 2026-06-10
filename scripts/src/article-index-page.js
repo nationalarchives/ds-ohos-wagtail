@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import add_analytics_data_card_position from "./modules/analytics/card_position";
 
 document.addEventListener("DOMContentLoaded", () => {

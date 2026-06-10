@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import add_data_link from "./modules/analytics/add_data_link";
 import push_to_data_layer from "./modules/analytics/push_to_data_layer";
 import calc_scroll_percent_increment from "./modules/analytics/scroll_tracking/calc_scroll_percent_increment";

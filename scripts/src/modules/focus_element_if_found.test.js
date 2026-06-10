@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-undef, no-magic-numbers */
 /**
  * @jest-environment jsdom
  */

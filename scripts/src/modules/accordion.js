@@ -1,3 +1,4 @@
+/* eslint-disable max-statements, id-length, no-useless-assignment */
 class Accordion {
     static selector() {
         return "[data-accordion]";

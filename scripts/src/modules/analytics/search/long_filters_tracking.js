@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, id-length */
 import push_to_data_layer from "../push_to_data_layer";
 
 const longFiltersTracking = () => {

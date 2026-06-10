@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, id-length */
 import push_to_data_layer from "../push_to_data_layer";
 
 import set_data_link_type from "./set_mobile_data_link_type";

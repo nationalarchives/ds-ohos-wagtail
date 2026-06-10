@@ -1,3 +1,4 @@
+/* eslint-disable no-ternary, no-magic-numbers, no-console */
 /**
  * fetchData
  *

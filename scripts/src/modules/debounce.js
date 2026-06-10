@@ -1,3 +1,4 @@
+/* eslint-disable func-names, camelcase, no-invalid-this */
 /**
  *
  * Invoke a given callback after debounce function
