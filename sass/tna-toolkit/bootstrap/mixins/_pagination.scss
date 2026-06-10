@@ -9,6 +9,7 @@
 ) {
     .page-link {
         padding: $padding-y $padding-x;
+
         font-size: $font-size;
         line-height: $line-height;
     }
@@ -19,6 +20,7 @@
                 @include border-left-radius($border-radius);
             }
         }
+
         &:last-child {
             .page-link {
                 @include border-right-radius($border-radius);

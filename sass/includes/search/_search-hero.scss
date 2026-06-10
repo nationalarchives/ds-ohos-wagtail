@@ -2,33 +2,38 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/media";
 
 .search-hero {
-    background-color: $color__grey-300;
     padding-top: 2rem;
     padding-bottom: 2rem;
 
+    background-color: $color__grey-300;
+
     &__container {
-        margin-left: auto;
         margin-right: auto;
+        margin-left: auto;
     }
 
     &__heading {
         margin-top: 0;
-        font-weight: normal;
+
         font-family: $font__supria-sans;
+        font-weight: normal;
     }
 
     &__label {
+        margin-bottom: 0.8em;
+
         display: block;
         @include typography.relative-font-size(20);
-        margin-bottom: 0.8em;
     }
 
     &__form {
         &-submit {
             @extend .search-button;
-            cursor: pointer;
             width: 8rem;
+
             font-size: 1.1rem;
+
+            cursor: pointer;
 
             @include media.on-larger-than-mobile {
                 height: 4.375rem;
@@ -39,13 +44,16 @@
             width: 100%;
             max-width: 60rem;
             height: 3.25rem;
-            border: 1px solid $color__off-black;
-            padding: 1rem;
-            vertical-align: top;
-            font-size: 1.1rem;
             margin-right: 0.2rem;
             margin-bottom: 0.2rem;
+            padding: 1rem;
+
             box-sizing: border-box;
+
+            font-size: 1.1rem;
+            vertical-align: top;
+
+            border: 1px solid $color__off-black;
 
             @include media.on-larger-than-mobile {
                 height: 4.375rem;
@@ -62,37 +70,43 @@
 
         &-list {
             padding-left: 0;
+
             display: flex;
-            align-items: center;
             flex-wrap: wrap;
+            align-items: center;
+
             font-size: 1.2rem;
 
             &-item {
-                display: inline-block;
                 margin-right: 2rem;
+
+                display: inline-block;
+
                 font-family: $font__supria-sans;
 
-                @media only screen and (max-width: 38rem) {
+                @media only screen and (width <= 38rem) {
                     margin-right: 0.5rem;
                 }
 
-                @media only screen and (max-width: 34rem) {
+                @media only screen and (width <= 34rem) {
                     max-width: 7rem;
                     max-height: 5rem;
                 }
 
-                @media only screen and (max-width: 26rem) {
+                @media only screen and (width <= 26rem) {
                     max-width: 6.5rem;
                 }
 
-                @media only screen and (max-width: 23rem) {
+                @media only screen and (width <= 23rem) {
                     max-width: 5.5rem;
+
                     font-size: 1.1rem;
                 }
 
                 &-new-search {
-                    display: inline-block;
                     margin-left: auto;
+
+                    display: inline-block;
                 }
 
                 &:last-of-type {
@@ -103,11 +117,13 @@
                         margin-right: 0;
 
                         div {
-                            background-color: $color__white;
                             margin-right: -1rem;
                             margin-left: -1rem;
                             padding: 1rem 2rem 0 1rem;
+
                             text-align: right;
+
+                            background-color: $color__white;
                         }
                     }
 
@@ -128,24 +144,30 @@
         }
 
         &-link {
-            display: block;
-            position: relative;
             width: 100%;
             height: 100%;
             padding: 0.5rem;
-            text-decoration: none;
+
+            display: block;
+
+            position: relative;
+
             color: rgb(0 0 0 / 73%);
-            border-top: 0.3rem solid $color__grey-500;
+            text-decoration: none;
+
             background-color: #ffffff85;
 
-            @media only screen and (max-width: 34rem) {
+            border-top: 0.3rem solid $color__grey-500;
+
+            @media only screen and (width <= 34rem) {
                 min-height: 70px;
+
                 line-height: 1.5rem;
             }
 
-            @media only screen and (max-width: 24rem) {
-                padding-left: 0.5rem;
+            @media only screen and (width <= 24rem) {
                 padding-right: 0.5rem;
+                padding-left: 0.5rem;
             }
 
             &:visited,
@@ -156,11 +178,13 @@
             &[aria-current="true"],
             &:hover,
             &:focus {
-                background-color: $color__white;
-                border-top: 0.3rem solid $color__yellow;
-                border-left: 0;
-                border-right: 0;
                 color: $color__black;
+
+                background-color: $color__white;
+
+                border-top: 0.3rem solid $color__yellow;
+                border-right: 0;
+                border-left: 0;
             }
 
             &-new-search {
@@ -178,8 +202,9 @@
     }
 
     img {
-        border-radius: 10px;
         vertical-align: text-top;
+
+        border-radius: 10px;
     }
 }
 

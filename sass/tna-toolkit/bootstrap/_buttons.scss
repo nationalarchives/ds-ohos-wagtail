@@ -6,12 +6,15 @@
 
 .btn {
     display: inline-block;
+
     font-weight: $btn-font-weight;
     text-align: center;
-    white-space: nowrap;
     vertical-align: middle;
-    user-select: none;
+    white-space: nowrap;
+
     border: $btn-border-width solid transparent;
+
+    user-select: none;
     @include button-size(
         $btn-padding-y,
         $btn-padding-x,
@@ -29,6 +32,7 @@
     &:focus,
     &.focus {
         outline: 0;
+
         box-shadow: $btn-focus-box-shadow;
     }
 
@@ -40,12 +44,12 @@
     }
 
     // Opinionated: add "hand" cursor to non-disabled .btn elements
-    &:not(:disabled):not(.disabled) {
+    &:not(:disabled, .disabled) {
         cursor: pointer;
     }
 
-    &:not(:disabled):not(.disabled):active,
-    &:not(:disabled):not(.disabled).active {
+    &:not(:disabled, .disabled):active,
+    &:not(:disabled, .disabled).active {
         @include box-shadow($btn-active-box-shadow);
 
         &:focus {
@@ -82,27 +86,33 @@ fieldset:disabled a.btn {
 
 // Make a button look and behave like a link
 .btn-link {
-    font-weight: $font-weight-normal;
     color: $link-color;
+    font-weight: $font-weight-normal;
+
     background-color: transparent;
 
     @include hover {
         color: $link-hover-color;
         text-decoration: $link-hover-decoration;
+
         background-color: transparent;
+
         border-color: transparent;
     }
 
     &:focus,
     &.focus {
         text-decoration: $link-hover-decoration;
+
         border-color: transparent;
+
         box-shadow: none;
     }
 
     &:disabled,
     &.disabled {
         color: $btn-link-disabled-color;
+
         pointer-events: none;
     }
 
@@ -138,8 +148,9 @@ fieldset:disabled a.btn {
 //
 
 .btn-block {
-    display: block;
     width: 100%;
+
+    display: block;
 
     // Vertically space out multiple block buttons
     + .btn-block {

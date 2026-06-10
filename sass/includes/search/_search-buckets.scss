@@ -4,30 +4,36 @@
     @media only screen and (max-width: $screen__md) {
         display: none;
     }
+    margin-bottom: 2rem;
 
     display: flex;
     flex-wrap: wrap;
+
     background-color: $color__grey-300;
-    margin-bottom: 2rem;
 
     &__list {
-        display: flex;
-        flex-wrap: wrap;
         width: 100%;
-        margin-left: auto;
         margin-right: auto;
         margin-bottom: 0;
+        margin-left: auto;
+
+        display: flex;
+        flex-wrap: wrap;
+
         order: -1;
 
         &-item {
-            display: inline-block;
-            list-style: none;
-            flex: 1;
+            min-height: 100px;
             margin-right: 0.5rem;
             margin-left: 0.5rem;
-            min-height: 100px;
+
+            display: inline-block;
+            flex: 1;
+
             font-family: $font__supria-sans;
             font-size: 1.2rem;
+
+            list-style: none;
 
             &:first-child {
                 margin-left: 0;
@@ -39,9 +45,10 @@
 
             @media only screen and (max-width: $screen__md) {
                 width: 100%;
-                display: block;
                 min-height: 10px;
                 margin-right: 0;
+
+                display: block;
             }
         }
 
@@ -51,19 +58,22 @@
     }
 
     &__link {
-        text-align: center;
-        padding: 14px;
-        padding-top: 9px;
         // @include colour.colour-border("keyline", 1px);
         width: 100%;
+        height: 100%;
         margin-top: auto;
         margin-bottom: auto;
-        text-decoration: none;
-        height: 100%;
-        color: $color__navy;
+        padding: 14px;
+        padding-top: 9px;
+
         display: flex;
         align-items: center;
         justify-content: center;
+
+        color: $color__navy;
+        text-align: center;
+        text-decoration: none;
+
         border-top: 5px solid transparent;
 
         &,
@@ -76,6 +86,7 @@
         &:hover,
         &:focus {
             background: $body-bg;
+
             border-top-color: var(--font-dark);
         }
     }
@@ -83,6 +94,7 @@
     &__toggle-button {
         @extend .search-results__filter-button;
         margin: 0 auto 0.5rem;
+
         display: block;
 
         &::before {

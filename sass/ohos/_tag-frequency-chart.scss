@@ -4,13 +4,17 @@
     margin-bottom: 1.5rem;
 
     &__tags {
-        font-size: 1rem;
-        background-color: #c2c2c2;
         padding: 0.75rem;
+
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
+
+        font-size: 1rem;
+
+        background-color: #c2c2c2;
+
         border: 1px solid #8a8a8a;
 
         @media screen and (max-width: $screen__md) {
@@ -19,12 +23,14 @@
     }
 
     &__tags-list {
-        list-style: none;
+        padding: 0;
+
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 0;
         gap: 0.75rem;
+
+        list-style: none;
     }
 
     &__form {
@@ -33,14 +39,16 @@
 
     &__form-controls {
         position: absolute;
-        right: 0.75rem;
         top: 0.75rem;
+        right: 0.75rem;
     }
 
     &__chart {
-        border: 1px solid #8a8a8a;
-        background-color: $color__grey-300;
         height: 550px;
+
+        background-color: $color__grey-300;
+
+        border: 1px solid #8a8a8a;
 
         &:not(:first-child) {
             border-top: 0;
@@ -56,11 +64,14 @@
     }
 
     &__info {
-        background-color: $color__yellow;
-        border: 1px solid $color__off-black;
         padding: 0.5rem 1rem;
+
         display: flex;
         align-items: center;
+
+        background-color: $color__yellow;
+
+        border: 1px solid $color__off-black;
 
         &-icon {
             @include colour.colour-font("font-dark");
@@ -71,8 +82,10 @@
 
 .clear-apply {
     position: relative;
-    left: 250px;
     top: 70px;
+    left: 250px;
+
     background: black;
+
     border-radius: 5px;
 }

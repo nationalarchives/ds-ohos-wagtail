@@ -1,21 +1,32 @@
 .ohos-checkbox-container {
     input {
         &[type="checkbox"] {
-            flex: none;
-            margin-right: 0.5rem;
-            appearance: none;
             width: 1.875rem;
             height: 1.875rem;
-            border: 2px solid $color__off-black;
-            background-color: $color__grey-200;
+            margin-right: 0.5rem;
+
+            appearance: none;
             display: grid;
+            flex: none;
             place-content: center;
+
+            background-color: $color__grey-200;
+
+            border: 2px solid $color__off-black;
 
             &:checked {
                 background-color: $orange;
 
                 &::before {
                     content: "";
+
+                    width: 20px;
+                    height: 18px;
+
+                    display: block;
+
+                    background-color: $color__off-black;
+
                     clip-path: polygon(
                         85.41% 0,
                         39.5898% 69.04%,
@@ -24,10 +35,6 @@
                         41.6602% 100%,
                         100% 14.2857%
                     );
-                    width: 20px;
-                    height: 18px;
-                    display: block;
-                    background-color: $color__off-black;
                 }
             }
         }
@@ -38,9 +45,11 @@
     }
 
     label {
-        cursor: pointer;
-        display: flex;
-        margin-bottom: 0.5rem;
         max-width: 100%;
+        margin-bottom: 0.5rem;
+
+        display: flex;
+
+        cursor: pointer;
     }
 }

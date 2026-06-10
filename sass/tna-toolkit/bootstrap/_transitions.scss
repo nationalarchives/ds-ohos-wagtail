@@ -15,8 +15,10 @@
 }
 
 .collapsing {
-    position: relative;
     height: 0;
+
     overflow: hidden;
+
+    position: relative;
     @include transition($transition-collapse);
 }

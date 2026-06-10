@@ -2,22 +2,29 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/colour";
 
 .event-tags {
-    display: inline-flex;
-    align-self: flex-start;
-    list-style-type: none;
-    flex-basis: 50%;
-    border: 2px solid colour.brand-colour("pastel-pink");
-    padding: 0;
-    order: 2;
     margin-bottom: 1rem;
+    padding: 0;
+
+    align-self: flex-start;
+
+    display: inline-flex;
+    flex-basis: 50%;
+
+    list-style-type: none;
+
+    border: 2px solid colour.brand-colour("pastel-pink");
+
+    order: 2;
 
     &__tag {
         @include typography.relative-font-size(14);
         @include typography.detail-font;
-        text-transform: uppercase;
         padding: 0 0.4rem;
+
         display: flex;
         align-items: center;
+
+        text-transform: uppercase;
 
         &--event-type {
             @include colour.plain;

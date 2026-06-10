@@ -1,13 +1,19 @@
 .ohos-tag-container {
-    position: relative;
     display: inline-block;
+
+    position: relative;
 }
 
 .ohos-tag {
     display: inline-flex;
-    border: 1px solid;
+
     font-size: 16px;
+
+    background-color: var(--tag-theme-color, $color__grey-500);
+
+    border: 1px solid;
     border-radius: 5px;
+
     cursor: pointer;
 
     &,
@@ -16,8 +22,6 @@
         color: inherit;
         text-decoration: none;
     }
-
-    background-color: var(--tag-theme-color, $color__grey-500);
 
     &--location {
         --tag-theme-color: #edae49;
@@ -50,18 +54,23 @@
     }
 
     &__inner {
-        display: block;
         padding: 0.25rem 0.5rem;
+
+        display: block;
     }
 
     &__link {
-        display: flex;
-        gap: 0.25rem;
-        align-items: center;
         padding: 0.25rem 0.5rem;
-        background-color: $color__grey-200;
-        border-left: 1px solid $color__off-black;
+
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
         font-size: 0.9em;
+
+        background-color: $color__grey-200;
+
+        border-left: 1px solid $color__off-black;
         border-radius: 0 5px 5px 0;
 
         &,
@@ -71,9 +80,10 @@
         }
 
         &:hover {
-            text-decoration-thickness: inherit;
-            background-color: $color__off-black;
             color: $color__grey-200;
+            text-decoration-thickness: inherit;
+
+            background-color: $color__off-black;
         }
     }
 }

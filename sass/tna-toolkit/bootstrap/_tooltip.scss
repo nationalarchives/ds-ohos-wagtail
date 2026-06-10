@@ -1,30 +1,38 @@
 // Base class
 .tooltip {
+    margin: $tooltip-margin;
+
+    display: block;
+
     position: absolute;
     z-index: $zindex-tooltip;
-    display: block;
-    margin: $tooltip-margin;
-    // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
-    // So reset our font and text properties to avoid inheriting weird values.
-    @include reset-text();
+
     font-size: $tooltip-font-size;
     // Allow breaking very long words so they don't overflow the tooltip's bounds
-    word-wrap: break-word;
+    overflow-wrap: break-word;
+
     opacity: 0;
+    // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+    // So reset our font and text properties to avoid inheriting weird values.
+    @include reset-text;
 
     &.show {
         opacity: $tooltip-opacity;
     }
 
     .arrow {
-        position: absolute;
-        display: block;
         width: $tooltip-arrow-width;
         height: $tooltip-arrow-height;
 
+        display: block;
+
+        position: absolute;
+
         &::before {
-            position: absolute;
             content: "";
+
+            position: absolute;
+
             border-color: transparent;
             border-style: solid;
         }
@@ -39,6 +47,7 @@
 
         &::before {
             top: 0;
+
             border-width: $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
             border-top-color: $tooltip-arrow-color;
         }
@@ -49,12 +58,14 @@
     padding: 0 $tooltip-arrow-height;
 
     .arrow {
-        left: 0;
         width: $tooltip-arrow-height;
         height: $tooltip-arrow-width;
 
+        left: 0;
+
         &::before {
             right: 0;
+
             border-width: ($tooltip-arrow-width / 2) $tooltip-arrow-height
                 ($tooltip-arrow-width / 2) 0;
             border-right-color: $tooltip-arrow-color;
@@ -70,6 +81,7 @@
 
         &::before {
             bottom: 0;
+
             border-width: 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
             border-bottom-color: $tooltip-arrow-color;
         }
@@ -80,12 +92,14 @@
     padding: 0 $tooltip-arrow-height;
 
     .arrow {
-        right: 0;
         width: $tooltip-arrow-height;
         height: $tooltip-arrow-width;
 
+        right: 0;
+
         &::before {
             left: 0;
+
             border-width: ($tooltip-arrow-width / 2) 0
                 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
             border-left-color: $tooltip-arrow-color;
@@ -97,12 +111,15 @@
     &[x-placement^="top"] {
         @extend .bs-tooltip-top;
     }
+
     &[x-placement^="right"] {
         @extend .bs-tooltip-right;
     }
+
     &[x-placement^="bottom"] {
         @extend .bs-tooltip-bottom;
     }
+
     &[x-placement^="left"] {
         @extend .bs-tooltip-left;
     }
@@ -112,8 +129,10 @@
 .tooltip-inner {
     max-width: $tooltip-max-width;
     padding: $tooltip-padding-y $tooltip-padding-x;
+
     color: $tooltip-color;
     text-align: center;
+
     background-color: $tooltip-bg;
     @include border-radius($tooltip-border-radius);
 }

@@ -7,20 +7,24 @@
 // Base class takes care of all the key behavioral aspects.
 
 .custom-control {
-    position: relative;
-    display: block;
     min-height: ($font-size-base * $line-height-base);
     padding-left: $custom-control-gutter;
+
+    display: block;
+
+    position: relative;
 }
 
 .custom-control-inline {
-    display: inline-flex;
     margin-right: $custom-control-spacer-x;
+
+    display: inline-flex;
 }
 
 .custom-control-input {
     position: absolute;
     z-index: -1; // Put the input behind the label so it doesn't overlay text
+
     opacity: 0;
 
     &:checked ~ .custom-control-label::before {
@@ -36,6 +40,7 @@
 
     &:active ~ .custom-control-label::before {
         color: $custom-control-indicator-active-color;
+
         background-color: $custom-control-indicator-active-bg;
         @include box-shadow($custom-control-indicator-active-box-shadow);
     }
@@ -56,11 +61,19 @@
 // Build the custom controls out of pseudo-elements.
 
 .custom-control-label {
-    position: relative;
     margin-bottom: 0;
+
+    position: relative;
 
     // Background-color and (when enabled) gradient
     &::before {
+        content: "";
+
+        width: $custom-control-indicator-size;
+        height: $custom-control-indicator-size;
+
+        display: block;
+
         position: absolute;
         top: (
             (
@@ -70,18 +83,23 @@
                 2
         );
         left: -$custom-control-gutter;
-        display: block;
-        width: $custom-control-indicator-size;
-        height: $custom-control-indicator-size;
-        pointer-events: none;
-        content: "";
-        user-select: none;
+
         background-color: $custom-control-indicator-bg;
+
+        pointer-events: none;
+        user-select: none;
         @include box-shadow($custom-control-indicator-box-shadow);
     }
 
     // Foreground (icon)
     &::after {
+        content: "";
+
+        width: $custom-control-indicator-size;
+        height: $custom-control-indicator-size;
+
+        display: block;
+
         position: absolute;
         top: (
             (
@@ -91,13 +109,10 @@
                 2
         );
         left: -$custom-control-gutter;
-        display: block;
-        width: $custom-control-indicator-size;
-        height: $custom-control-indicator-size;
-        content: "";
+
+        background-size: $custom-control-indicator-bg-size;
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: $custom-control-indicator-bg-size;
     }
 }
 
@@ -114,6 +129,7 @@
         &::before {
             @include gradient-bg($custom-control-indicator-checked-bg);
         }
+
         &::after {
             background-image: $custom-checkbox-indicator-icon-checked;
         }
@@ -126,6 +142,7 @@
                 $custom-checkbox-indicator-indeterminate-box-shadow
             );
         }
+
         &::after {
             background-image: $custom-checkbox-indicator-icon-indeterminate;
         }
@@ -135,6 +152,7 @@
         &:checked ~ .custom-control-label::before {
             background-color: $custom-control-indicator-checked-disabled-bg;
         }
+
         &:indeterminate ~ .custom-control-label::before {
             background-color: $custom-control-indicator-checked-disabled-bg;
         }
@@ -154,6 +172,7 @@
         &::before {
             @include gradient-bg($custom-control-indicator-checked-bg);
         }
+
         &::after {
             background-image: $custom-radio-indicator-icon-checked;
         }
@@ -173,18 +192,23 @@
 //
 
 .custom-select {
-    display: inline-block;
     width: 100%;
     height: $custom-select-height;
     padding: $custom-select-padding-y
         ($custom-select-padding-x + $custom-select-indicator-padding)
         $custom-select-padding-y $custom-select-padding-x;
-    line-height: $custom-select-line-height;
+
+    appearance: none;
+    display: inline-block;
+
     color: $custom-select-color;
+    line-height: $custom-select-line-height;
     vertical-align: middle;
+
     background: $custom-select-bg $custom-select-indicator no-repeat right
         $custom-select-padding-x center;
     background-size: $custom-select-bg-size;
+
     border: $custom-select-border-width solid $custom-select-border-color;
     @if $enable-rounded {
         border-radius: $custom-select-border-radius;
@@ -192,7 +216,6 @@
         border-radius: 0;
     }
     @include box-shadow($custom-select-box-shadow);
-    appearance: none;
 
     &:focus {
         border-color: $custom-select-focus-border-color;
@@ -211,6 +234,7 @@
             // in IE and (under certain conditions) Edge.
             // See https://github.com/twbs/bootstrap/issues/19398.
             color: $input-color;
+
             background-color: $input-bg;
         }
     }
@@ -219,11 +243,13 @@
     &[size]:not([size="1"]) {
         height: auto;
         padding-right: $custom-select-padding-x;
+
         background-image: none;
     }
 
     &:disabled {
         color: $custom-select-disabled-color;
+
         background-color: $custom-select-disabled-bg;
     }
 
@@ -237,6 +263,7 @@
     height: $custom-select-height-sm;
     padding-top: $custom-select-padding-y;
     padding-bottom: $custom-select-padding-y;
+
     font-size: $custom-select-font-size-sm;
 }
 
@@ -244,6 +271,7 @@
     height: $custom-select-height-lg;
     padding-top: $custom-select-padding-y;
     padding-bottom: $custom-select-padding-y;
+
     font-size: $custom-select-font-size-lg;
 }
 
@@ -252,23 +280,28 @@
 // Custom file input.
 
 .custom-file {
-    position: relative;
-    display: inline-block;
     width: 100%;
     height: $custom-file-height;
     margin-bottom: 0;
+
+    display: inline-block;
+
+    position: relative;
 }
 
 .custom-file-input {
-    position: relative;
-    z-index: 2;
     width: 100%;
     height: $custom-file-height;
     margin: 0;
+
+    position: relative;
+    z-index: 2;
+
     opacity: 0;
 
     &:focus ~ .custom-file-label {
         border-color: $custom-file-focus-border-color;
+
         box-shadow: $custom-file-focus-box-shadow;
 
         &::after {
@@ -288,34 +321,43 @@
 }
 
 .custom-file-label {
+    height: $custom-file-height;
+    padding: $custom-file-padding-y $custom-file-padding-x;
+
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
     z-index: 1;
-    height: $custom-file-height;
-    padding: $custom-file-padding-y $custom-file-padding-x;
-    line-height: $custom-file-line-height;
+
     color: $custom-file-color;
+    line-height: $custom-file-line-height;
+
     background-color: $custom-file-bg;
+
     border: $custom-file-border-width solid $custom-file-border-color;
     @include border-radius($custom-file-border-radius);
     @include box-shadow($custom-file-box-shadow);
 
     &::after {
+        content: "Browse";
+
+        height: $custom-file-height-inner;
+        padding: $custom-file-padding-y $custom-file-padding-x;
+
+        display: block;
+
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         z-index: 3;
-        display: block;
-        height: $custom-file-height-inner;
-        padding: $custom-file-padding-y $custom-file-padding-x;
-        line-height: $custom-file-line-height;
+
         color: $custom-file-button-color;
-        content: "Browse";
-        @include gradient-bg($custom-file-button-bg);
+        line-height: $custom-file-line-height;
+
         border-left: $custom-file-border-width solid $custom-file-border-color;
+        @include gradient-bg($custom-file-button-bg);
         @include border-radius(
             0 $custom-file-border-radius $custom-file-border-radius 0
         );
@@ -331,8 +373,10 @@
 .custom-range {
     width: 100%;
     padding-left: 0; // Firefox specific
-    background-color: transparent;
+
     appearance: none;
+
+    background-color: transparent;
 
     &:focus {
         outline: none;
@@ -342,9 +386,11 @@
         &::-webkit-slider-thumb {
             box-shadow: $custom-range-thumb-focus-box-shadow;
         }
+
         &::-moz-range-thumb {
             box-shadow: $custom-range-thumb-focus-box-shadow;
         }
+
         &::-ms-thumb {
             box-shadow: $custom-range-thumb-focus-box-shadow;
         }
@@ -360,12 +406,14 @@
         margin-top: (
             ($custom-range-track-height - $custom-range-thumb-height) / 2
         ); // Webkit specific
-        @include gradient-bg($custom-range-thumb-bg);
+
+        appearance: none;
+
         border: $custom-range-thumb-border;
+        @include gradient-bg($custom-range-thumb-bg);
         @include border-radius($custom-range-thumb-border-radius);
         @include box-shadow($custom-range-thumb-box-shadow);
         @include transition($custom-forms-transition);
-        appearance: none;
 
         &:active {
             @include gradient-bg($custom-range-thumb-active-bg);
@@ -375,10 +423,14 @@
     &::-webkit-slider-runnable-track {
         width: $custom-range-track-width;
         height: $custom-range-track-height;
+
         color: transparent; // Why?
-        cursor: $custom-range-track-cursor;
+
         background-color: $custom-range-track-bg;
+
         border-color: transparent;
+
+        cursor: $custom-range-track-cursor;
         @include border-radius($custom-range-track-border-radius);
         @include box-shadow($custom-range-track-box-shadow);
     }
@@ -386,12 +438,14 @@
     &::-moz-range-thumb {
         width: $custom-range-thumb-width;
         height: $custom-range-thumb-height;
-        @include gradient-bg($custom-range-thumb-bg);
+
+        appearance: none;
+
         border: $custom-range-thumb-border;
+        @include gradient-bg($custom-range-thumb-bg);
         @include border-radius($custom-range-thumb-border-radius);
         @include box-shadow($custom-range-thumb-box-shadow);
         @include transition($custom-forms-transition);
-        appearance: none;
 
         &:active {
             @include gradient-bg($custom-range-thumb-active-bg);
@@ -401,10 +455,14 @@
     &::-moz-range-track {
         width: $custom-range-track-width;
         height: $custom-range-track-height;
+
         color: transparent;
-        cursor: $custom-range-track-cursor;
+
         background-color: $custom-range-track-bg;
+
         border-color: transparent; // Firefox specific?
+
+        cursor: $custom-range-track-cursor;
         @include border-radius($custom-range-track-border-radius);
         @include box-shadow($custom-range-track-box-shadow);
     }
@@ -415,12 +473,14 @@
         margin-top: 0; // Edge specific
         margin-right: $custom-range-thumb-focus-box-shadow-width; // Workaround that overflowed box-shadow is hidden.
         margin-left: $custom-range-thumb-focus-box-shadow-width; // Workaround that overflowed box-shadow is hidden.
-        @include gradient-bg($custom-range-thumb-bg);
+
+        appearance: none;
+
         border: $custom-range-thumb-border;
+        @include gradient-bg($custom-range-thumb-bg);
         @include border-radius($custom-range-thumb-border-radius);
         @include box-shadow($custom-range-thumb-box-shadow);
         @include transition($custom-forms-transition);
-        appearance: none;
 
         &:active {
             @include gradient-bg($custom-range-thumb-active-bg);
@@ -430,11 +490,15 @@
     &::-ms-track {
         width: $custom-range-track-width;
         height: $custom-range-track-height;
+
         color: transparent;
-        cursor: $custom-range-track-cursor;
+
         background-color: transparent;
-        border-color: transparent;
+
         border-width: ($custom-range-thumb-height * 0.5);
+        border-color: transparent;
+
+        cursor: $custom-range-track-cursor;
         @include box-shadow($custom-range-track-box-shadow);
     }
 
@@ -445,6 +509,7 @@
 
     &::-ms-fill-upper {
         margin-right: 15px; // arbitrary?
+
         background-color: $custom-range-track-bg;
         @include border-radius($custom-range-track-border-radius);
     }

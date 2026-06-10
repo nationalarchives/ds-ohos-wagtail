@@ -1,57 +1,69 @@
 .tna-ul {
     &--no-bullet {
-        list-style-type: none;
         padding: 0;
+
+        list-style-type: none;
     }
 
     &--menu {
-        list-style-type: none;
         padding: 0;
 
+        list-style-type: none;
+
         li {
-            padding: 0;
             margin: 0;
+            padding: 0;
 
             a {
-                display: block;
-                border-top: 1px solid $color__grey-light;
-                padding: 0.3em 0.2em;
                 margin: 0;
+                padding: 0.3em 0.2em;
+
+                display: block;
+
+                border-top: 1px solid $color__grey-light;
             }
 
             a:hover {
-                background-color: $color__grey-light;
                 text-decoration: none;
+
+                background-color: $color__grey-light;
             }
         }
     }
 
     &--menu-disc {
-        list-style-type: none;
         padding: 0;
+
+        list-style-type: none;
 
         li {
             margin: 0;
+
             display: inline-block;
         }
 
         a {
-            display: block;
-            color: $color__white;
-            background-color: $color__black;
-            text-align: center;
-            border: $default__border;
-            font-size: 1.25em;
-            line-height: 44px;
             width: 48px;
             height: 48px;
+
+            display: block;
+
+            color: $color__white;
+            font-size: 1.25em;
+            line-height: 44px;
+            text-align: center;
+
+            background-color: $color__black;
+
+            border: $default__border;
             border-radius: 50%;
         }
 
         a:hover {
-            text-decoration: none;
-            background-color: $color__white;
             color: $color__black;
+            text-decoration: none;
+
+            background-color: $color__white;
         }
     }
 }
