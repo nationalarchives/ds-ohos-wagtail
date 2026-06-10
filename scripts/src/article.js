@@ -1,29 +1,28 @@
 import $ from "jquery";
 
-import add_analytics_data_card_position from "./modules/analytics/card_position";
-import audio_tracking from "./modules/analytics/audio_tracking";
-import video_tracking from "./modules/analytics/video_tracking";
 import add_unique_ids from "./modules/analytics/add_unique_ids";
+import link_list_tracking from "./modules/analytics/article_tracking/link_list_tracking";
 import mobile_tracking from "./modules/analytics/article_tracking/mobile_tracking";
 import remove_mobile_tracking from "./modules/analytics/article_tracking/remove_mobile_tracking";
-import link_list_tracking from "./modules/analytics/article_tracking/link_list_tracking";
+import audio_tracking from "./modules/analytics/audio_tracking";
+import add_analytics_data_card_position from "./modules/analytics/card_position";
 import trackHeroCaptions from "./modules/analytics/hero-captions";
 import {
-    trackPictureTranscripts,
     trackPictureTranscriptTabs,
+    trackPictureTranscripts,
 } from "./modules/analytics/pictures";
-
+import video_tracking from "./modules/analytics/video_tracking";
 import accordion_functionality from "./modules/articles/accordion_functionality/accordion_functionality";
-import add_event from "./modules/articles/add_event";
 import add_section_ids from "./modules/articles/accordion_functionality/add_section_ids";
 import apply_aria_roles from "./modules/articles/accordion_functionality/apply_aria_roles";
-import debounce from "./modules/debounce";
-import jumplinks_smooth_scroll from "./modules/articles/navigation/jumplinks_smooth_scroll";
 import open_first_section from "./modules/articles/accordion_functionality/open_first_section";
 import remove_aria_roles from "./modules/articles/accordion_functionality/remove_aria_roles";
-import remove_event from "./modules/articles/remove_event";
-import set_active from "./modules/articles/navigation/set_active";
 import set_heading_positions from "./modules/articles/accordion_functionality/set_heading_positions";
+import add_event from "./modules/articles/add_event";
+import jumplinks_smooth_scroll from "./modules/articles/navigation/jumplinks_smooth_scroll";
+import set_active from "./modules/articles/navigation/set_active";
+import remove_event from "./modules/articles/remove_event";
+import debounce from "./modules/debounce";
 import throttle from "./modules/throttle";
 import transcript_tabs from "./modules/transcript_tabs";
 
@@ -128,7 +127,7 @@ window.addEventListener("load", () => {
         add_event(
             $(window),
             "scroll",
-            throttle(function () {
+            throttle(() => {
                 set_active($sectionHeadings);
             }, 300),
         );
@@ -195,7 +194,7 @@ window.addEventListener("load", () => {
                 add_event(
                     $(window),
                     "scroll",
-                    throttle(function () {
+                    throttle(() => {
                         set_active($sectionHeadings);
                     }, 300),
                 );

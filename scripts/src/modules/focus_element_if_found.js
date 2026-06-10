@@ -12,9 +12,9 @@ const focus_element_if_found = (needle_class = "") => {
         needle_elements[0].setAttribute("tabindex", "-1");
         needle_elements[0].focus();
         return true;
-    } else {
+    } 
         return false;
-    }
+    
 };
 
 export default focus_element_if_found;

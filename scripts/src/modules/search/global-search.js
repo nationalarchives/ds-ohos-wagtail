@@ -2,10 +2,10 @@ export default function () {
     const $headerElementsToHide = document.querySelectorAll(
         '[data-isSearch="false"]',
     );
-    let $gsFallbackLink = document.querySelector(
+    const $gsFallbackLink = document.querySelector(
         "a[data-id='search-nav-link']",
     );
-    let $main = document.querySelector("main");
+    const $main = document.querySelector("main");
 
     if (!$gsFallbackLink) {
         return;
@@ -15,9 +15,9 @@ export default function () {
         <span class="global-search__button-text">Search</span>
     </button>`;
 
-    let $gsToggleButton = document.querySelector("#gs-show-hide");
+    const $gsToggleButton = document.querySelector("#gs-show-hide");
 
-    let $globalSearchComponent = document.createElement("div");
+    const $globalSearchComponent = document.createElement("div");
     $globalSearchComponent.hidden = true;
     $globalSearchComponent.id = "gs-component";
     $globalSearchComponent.classList.add("global-search");
@@ -40,11 +40,11 @@ export default function () {
 
     $main.insertBefore($globalSearchComponent, $main.childNodes[0]); //IE11 compatible prepend
 
-    $gsToggleButton.addEventListener("click", function () {
+    $gsToggleButton.addEventListener("click", () => {
         const $showHideButton = document.querySelector(
             ".header__show-hide-button",
         );
-        let ariaExpanded =
+        const ariaExpanded =
             $gsToggleButton.getAttribute("aria-expanded") == "true";
         $gsToggleButton.setAttribute("aria-expanded", !ariaExpanded);
 

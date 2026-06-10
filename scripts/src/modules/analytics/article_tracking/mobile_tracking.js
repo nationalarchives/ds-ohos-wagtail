@@ -1,6 +1,7 @@
+import push_to_data_layer from "../push_to_data_layer";
+
 import set_data_link_type from "./set_mobile_data_link_type";
 import set_mobile_tracking_attributes from "./set_mobile_tracking_attributes";
-import push_to_data_layer from "../push_to_data_layer";
 
 export default function mobile_tracking() {
     const article_body = document.querySelector(".article-container__main");

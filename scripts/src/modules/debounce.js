@@ -12,10 +12,10 @@
  **/
 
 export default function (call_back, wait, this_argument) {
-    var timer = null;
+    let timer = null;
 
     return function (...args) {
-        var context = this_argument || this;
+        const context = this_argument || this;
 
         window.clearTimeout(timer);
 

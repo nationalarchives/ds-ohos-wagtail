@@ -44,7 +44,7 @@ export default function () {
     $searchLabel.setAttribute("for", searchId);
     $searchLabel.setAttribute("class", "long-filters__search-label");
 
-    let $searchHelperText = document.createElement("p");
+    const $searchHelperText = document.createElement("p");
     $searchHelperText.innerText =
         "Enter text to refine your filters. Already selected filters will remain active.";
     $searchHelperText.setAttribute("class", "long-filters__helper-text");
@@ -126,7 +126,7 @@ export default function () {
             $longFiltersList.appendChild(filter);
         }
 
-        let narrowedFiltersLength = narrowedDownFilters.length;
+        const narrowedFiltersLength = narrowedDownFilters.length;
         longFiltersCountText = `Showing ${narrowedFiltersLength} out of ${totalFiltersLength} filters`;
         $filterCount.innerText = longFiltersCountText;
     };

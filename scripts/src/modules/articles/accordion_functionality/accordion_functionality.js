@@ -8,7 +8,7 @@ export default function accordion_functionality(
     sectionContents,
     headingPositions,
 ) {
-    const id = currentHeading.id;
+    const {id} = currentHeading;
 
     // Find the section that matches the heading that was clicked on.
     sectionContents.each(function (index) {

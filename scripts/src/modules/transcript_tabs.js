@@ -24,7 +24,7 @@ class TranscriptTabs {
         this.hide(this.node);
 
         // tabs
-        for (var i = 0; i < this.tabList.length; i++) {
+        for (let i = 0; i < this.tabList.length; i++) {
             new TabManager(this.tabList[i]);
             this.show(this.tabList[i]);
         }

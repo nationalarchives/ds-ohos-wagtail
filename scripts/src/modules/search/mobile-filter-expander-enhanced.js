@@ -2,21 +2,21 @@
 import debounce from "../debounce.js";
 
 export default function () {
-    let $searchGrid = document.querySelector(
+    const $searchGrid = document.querySelector(
         'div[data-id="catalogue-search-grid"]',
     );
-    let $searchFilterContainer = document.querySelector(
+    const $searchFilterContainer = document.querySelector(
         'div[data-id="catalogue-search-sidebar"]',
     );
 
-    let $main = document.querySelector("main");
+    const $main = document.querySelector("main");
 
     if (!$searchFilterContainer || !$searchGrid || !$main) {
         return;
     }
 
     //need case where validation warning is invoked
-    let $showHideButton = document.createElement("button");
+    const $showHideButton = document.createElement("button");
     //check the query string to populate the number of selected filters
     if (window.location.href.indexOf("filter_keyword") != -1) {
         $showHideButton.innerHTML = $buttonHtml;
@@ -41,12 +41,12 @@ export default function () {
 
     $searchFilterContainer.id = "searchFilterContainer";
 
-    $showHideButton.addEventListener("click", function (e) {
+    $showHideButton.addEventListener("click", (e) => {
         e.preventDefault();
-        let ariaExpanded =
+        const ariaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $showHideButton.setAttribute("aria-expanded", !ariaExpanded);
-        let newAriaExpanded =
+        const newAriaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $searchFilterContainer.hidden = !$searchFilterContainer.hidden;
 
@@ -55,9 +55,9 @@ export default function () {
                 'Hide filters <img src="/static/images/fontawesome-svgs/chevron-up-white.svg" width="20px" height="20px" style=\'display: inline-block;margin-left: 10px;\'>';
         } else {
             $showHideButton.innerHTML =
-                'Add filters<span class="filter-indicator">' +
-                $noOfFilters +
-                '<span class="sr-only"> active</span></span><img src="/static/images/fontawesome-svgs/chevron-down-white.svg" width="20" height="20" style=\'display: inline-block;margin-left: 10px;\'>';
+                `Add filters<span class="filter-indicator">${ 
+                $noOfFilters 
+                }<span class="sr-only"> active</span></span><img src="/static/images/fontawesome-svgs/chevron-down-white.svg" width="20" height="20" style='display: inline-block;margin-left: 10px;'>`;
         }
     });
 
@@ -69,7 +69,7 @@ export default function () {
     window.addEventListener(
         "resize",
         debounce(() => {
-            let ariaExpanded = $showHideButton.getAttribute("aria-expanded");
+            const ariaExpanded = $showHideButton.getAttribute("aria-expanded");
 
             if (window.innerWidth <= 992) {
                 $showHideButton.hidden = false;

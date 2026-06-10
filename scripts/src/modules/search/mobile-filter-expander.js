@@ -3,13 +3,13 @@
 import debounce from "../debounce.js";
 
 export default function () {
-    let $searchGrid = document.querySelector(
+    const $searchGrid = document.querySelector(
         'div[data-id="catalogue-search-grid"]',
     );
-    let $searchFilterContainer = document.querySelector(
+    const $searchFilterContainer = document.querySelector(
         'div[data-id="catalogue-search-sidebar"]',
     );
-    let $main = document.querySelector("main");
+    const $main = document.querySelector("main");
 
     if (!$searchFilterContainer || !$searchGrid || !$main) {
         return;
@@ -17,7 +17,7 @@ export default function () {
 
     //need case where validation warning is invoked
 
-    let $showHideButton = document.createElement("button");
+    const $showHideButton = document.createElement("button");
     //check the query string to populate the number of selected filters
     if (window.location.href.indexOf("filter_keyword") != -1) {
         $showHideButton.innerHTML = $buttonHtml;
@@ -36,12 +36,12 @@ export default function () {
 
     $searchFilterContainer.id = "searchFilterContainer";
 
-    $showHideButton.addEventListener("click", function (e) {
+    $showHideButton.addEventListener("click", (e) => {
         e.preventDefault();
-        let ariaExpanded =
+        const ariaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $showHideButton.setAttribute("aria-expanded", !ariaExpanded);
-        let newAriaExpanded =
+        const newAriaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $searchFilterContainer.hidden = !$searchFilterContainer.hidden;
 
@@ -49,9 +49,9 @@ export default function () {
             $showHideButton.innerHTML = "Hide filters";
         } else {
             $showHideButton.innerHTML =
-                'Filters<span class="filter-indicator">' +
-                $noOfFilters +
-                "</span>";
+                `Filters<span class="filter-indicator">${ 
+                $noOfFilters 
+                }</span>`;
         }
     });
 
@@ -63,7 +63,7 @@ export default function () {
     window.addEventListener(
         "resize",
         debounce(() => {
-            let ariaExpanded = $showHideButton.getAttribute("aria-expanded");
+            const ariaExpanded = $showHideButton.getAttribute("aria-expanded");
             if (window.innerWidth <= 1200) {
                 $showHideButton.hidden = false;
 

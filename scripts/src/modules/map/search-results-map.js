@@ -15,7 +15,7 @@ import data from "./data/map-data-unprocessed.json";
 
 // Filter data to include only items with lat and lon
 const dataWithLatLon = data.data.filter((item) => {
-    const details = item["@template"].details;
+    const {details} = item["@template"];
     return details.lat && details.lon;
 });
 
@@ -87,7 +87,7 @@ export default function () {
 
     // Define and add icon for marker cluster group
     const markers = L.markerClusterGroup({
-        iconCreateFunction: function (cluster) {
+        iconCreateFunction (cluster) {
             const clusteredMarkersCount = cluster.getChildCount();
 
             return L.divIcon({
@@ -153,7 +153,7 @@ export default function () {
     });
 
     // Add moveend event listener to map and update queryParams for link sharing
-    map.on("moveend", function () {
+    map.on("moveend", () => {
         const { lat, lng: lon } = map.getCenter();
         const zoom = map.getZoom();
 

@@ -30,7 +30,7 @@ const pushActiveErrors = (errors) => {
         const name = error.getAttribute("data-filter");
 
         // setup the dataLayer variables for each filter
-        let errorData = {
+        const errorData = {
             event: "error-message",
             "search-filter-name": name || "",
             "search-errors": value || "",

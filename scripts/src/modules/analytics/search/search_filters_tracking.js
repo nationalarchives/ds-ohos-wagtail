@@ -39,7 +39,7 @@ const pushActiveFilterData = (filterList) => {
         }
 
         // setup the dataLayer variables for each filter
-        let filterData = {
+        const filterData = {
             event: "search-filters",
             search_bucket: searchBucket || "",
             search_filter_name: name || "",

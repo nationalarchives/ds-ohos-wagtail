@@ -8,10 +8,10 @@ export default function imageGalleryTracking() {
     const imageGalleryClose = imageGallery.querySelector(
         "[data-image-gallery-close]",
     );
-    let imageGalleryTranscriptionTab = imageGallery.querySelectorAll(
+    const imageGalleryTranscriptionTab = imageGallery.querySelectorAll(
         "[data-transcription-tab]",
     );
-    let imageGalleryTranslationTab = imageGallery.querySelectorAll(
+    const imageGalleryTranslationTab = imageGallery.querySelectorAll(
         "[data-translation-tab]",
     );
 

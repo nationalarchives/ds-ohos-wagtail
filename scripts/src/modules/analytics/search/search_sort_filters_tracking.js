@@ -3,15 +3,15 @@ import push_to_data_layer from "./../push_to_data_layer";
 const getSort = () => {
     // get filters after DOM has loaded and they have rendered on page
     window.addEventListener("load", () => {
-        var selectElementDesktop = document.querySelector("#id_sort_desktop");
-        var selectElementMobile = document.querySelector("#id_sort_mobile");
+        const selectElementDesktop = document.querySelector("#id_sort_desktop");
+        const selectElementMobile = document.querySelector("#id_sort_mobile");
 
         if (selectElementDesktop) {
             const selectOutputDesktop =
                 selectElementDesktop.options[
                     selectElementDesktop.selectedIndex
                 ].value.trim();
-            var sortDesktop = selectElementDesktop.parentElement;
+            const sortDesktop = selectElementDesktop.parentElement;
             sortDesktop.setAttribute(
                 "data-search-filter-value",
                 selectOutputDesktop,
@@ -37,14 +37,14 @@ const getSort = () => {
             sortDesktop.addEventListener("submit", (e) => {
                 e.preventDefault();
 
-                let searchNameDesktop = sortDesktop.getAttribute(
+                const searchNameDesktop = sortDesktop.getAttribute(
                     "data-search-filter-name",
                 );
-                let searchValueDesktop = sortDesktop.getAttribute(
+                const searchValueDesktop = sortDesktop.getAttribute(
                     "data-search-filter-value",
                 );
 
-                let filterDataDesktop = {
+                const filterDataDesktop = {
                     event: "sort-results",
                     search_type: searchTypeDesktop || "",
                     search_bucket: searchBucketDesktop || "",
@@ -63,7 +63,7 @@ const getSort = () => {
                 selectElementMobile.options[
                     selectElementMobile.selectedIndex
                 ].value.trim();
-            var sortMobile = selectElementMobile.parentElement;
+            const sortMobile = selectElementMobile.parentElement;
             sortMobile.setAttribute(
                 "data-search-filter-value",
                 selectOutputMobile,
@@ -89,14 +89,14 @@ const getSort = () => {
             sortMobile.addEventListener("submit", (e) => {
                 e.preventDefault();
 
-                let searchNameMobile = sortMobile.getAttribute(
+                const searchNameMobile = sortMobile.getAttribute(
                     "data-search-filter-name",
                 );
-                let searchValueMobile = sortMobile.getAttribute(
+                const searchValueMobile = sortMobile.getAttribute(
                     "data-search-filter-value",
                 );
 
-                let filterDataMobile = {
+                const filterDataMobile = {
                     event: "sort-results",
                     search_type: searchTypeMobile || "",
                     search_bucket: searchBucketMobile || "",

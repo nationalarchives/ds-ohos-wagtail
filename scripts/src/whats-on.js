@@ -1,5 +1,5 @@
-import FiltersSubmission from "./modules/filters-submission";
 import Accordion from "./modules/accordion";
+import FiltersSubmission from "./modules/filters-submission";
 
 document.addEventListener("DOMContentLoaded", () => {
     for (const filtersSubmission of document.querySelectorAll(

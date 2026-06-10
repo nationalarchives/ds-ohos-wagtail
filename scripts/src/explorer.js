@@ -1,5 +1,5 @@
-import add_analytics_data_card_position from "./modules/analytics/card_position";
 import add_unique_ids from "./modules/analytics/add_unique_ids";
+import add_analytics_data_card_position from "./modules/analytics/card_position";
 
 document.addEventListener("DOMContentLoaded", () => {
     add_analytics_data_card_position(".card-group-promo--green");

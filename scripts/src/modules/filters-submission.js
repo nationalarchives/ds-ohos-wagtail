@@ -69,7 +69,7 @@ class FiltersSubmission {
     }
 
     buildURL() {
-        let url = new URL(window.location.href.split("?")[0]);
+        const url = new URL(window.location.href.split("?")[0]);
 
         if (this.dateValue) {
             url.searchParams.append("date", this.dateValue);
@@ -89,7 +89,7 @@ class FiltersSubmission {
     // when the back or forward buttons is used for a JavaScript change,
     // we need to update the field values based on the URL
     updateFields(url) {
-        let urlParams = new URLSearchParams(url.search);
+        const urlParams = new URLSearchParams(url.search);
         this.dateValue = urlParams.get("date");
         this.dateField.value = this.dateValue;
         this.eventValue = urlParams.get("event_type");
@@ -103,7 +103,7 @@ class FiltersSubmission {
     }
 
     async reloadEvents(updateURL = true) {
-        let newURL = this.buildURL();
+        const newURL = this.buildURL();
         fetch(newURL, {
             method: "GET",
             headers: {

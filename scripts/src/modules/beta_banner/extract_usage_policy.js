@@ -10,7 +10,7 @@ export default function extract_usage_policy(cookies) {
             cookies_policy.slice(cookies_policy.indexOf("=") + 1),
         );
 
-        return cookies_policy_object["usage"];
+        return cookies_policy_object.usage;
     }
 
     return false;

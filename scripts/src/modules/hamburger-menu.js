@@ -1,19 +1,19 @@
 import debounce from "./debounce.js";
 
 export default function () {
-    let $headerMenu = document.querySelector('[data-id="site-menu"]');
-    let $headerMenuList = document.querySelector('[data-id="site-menu-list"]');
-    let $headerElementsToHide = document.querySelectorAll(
+    const $headerMenu = document.querySelector('[data-id="site-menu"]');
+    const $headerMenuList = document.querySelector('[data-id="site-menu-list"]');
+    const $headerElementsToHide = document.querySelectorAll(
         '[data-isSearch="false"]',
     );
-    let $searchListItem = document.querySelector("#js-site-menu-search");
-    let $globalSearchButton = document.querySelector("#gs-show-hide");
-    let $globalSearch = document.querySelector("#gs-component");
+    const $searchListItem = document.querySelector("#js-site-menu-search");
+    const $globalSearchButton = document.querySelector("#gs-show-hide");
+    const $globalSearch = document.querySelector("#gs-component");
     if (!$headerMenu || !$headerMenuList || !$searchListItem) {
         return;
     }
 
-    let isGlobalSearchFocused = function () {
+    const isGlobalSearchFocused = function () {
         /* Global search doesn't exist on Etna search pages (/search/), so we must check if it exists before we check if it's focused. */
         if (!$globalSearchButton) {
             return false;
@@ -23,7 +23,7 @@ export default function () {
         return $globalSearchButton.id === document.activeElement.id;
     };
 
-    let placeSearchAtIndex = function (newIndex, isFocused) {
+    const placeSearchAtIndex = function (newIndex, isFocused) {
         if (newIndex === "end") {
             newIndex = $headerMenuList.childNodes.length - 1;
         }
@@ -39,11 +39,11 @@ export default function () {
         }
     };
 
-    let $showHideListItem = document.createElement("li");
+    const $showHideListItem = document.createElement("li");
     $showHideListItem.classList.add("header__nav-list-item");
     $showHideListItem.setAttribute("data-id", "menu-show-hide-button");
 
-    let $showHideButton = document.createElement("button");
+    const $showHideButton = document.createElement("button");
     $showHideButton.innerHTML =
         '<span class="sr-only">Show or hide navigation menu</span>';
     $showHideButton.classList.add("header__show-hide-button");
@@ -68,7 +68,7 @@ export default function () {
 
     let ariaControls = "";
     for (let i = 0; i < $headerElementsToHide.length; i++) {
-        let id = `menu-item-${i}`;
+        const id = `menu-item-${i}`;
         $headerElementsToHide[i].id = id;
         ariaControls += ` ${id}`;
         if (window.innerWidth < 768) {
@@ -78,8 +78,8 @@ export default function () {
 
     $showHideButton.setAttribute("aria-controls", ariaControls);
 
-    $showHideButton.addEventListener("click", function () {
-        let ariaExpandedBoolean =
+    $showHideButton.addEventListener("click", () => {
+        const ariaExpandedBoolean =
             $showHideButton.getAttribute("aria-expanded") === "true";
         $showHideButton.setAttribute("aria-expanded", !ariaExpandedBoolean);
 
@@ -94,7 +94,7 @@ export default function () {
         }
     });
 
-    let setMenuItemsHidden = function (hidden) {
+    const setMenuItemsHidden = function (hidden) {
         for (let i = 0; i < $headerElementsToHide.length; i++) {
             $headerElementsToHide[i].hidden = hidden;
         }
@@ -103,7 +103,7 @@ export default function () {
     window.addEventListener(
         "resize",
         debounce(() => {
-            let ariaExpanded = $showHideButton.getAttribute("aria-expanded");
+            const ariaExpanded = $showHideButton.getAttribute("aria-expanded");
 
             if (window.innerWidth < 768) {
                 $showHideButton.hidden = false;
