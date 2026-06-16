@@ -8,7 +8,7 @@
     "compile": "npm run compile:css && npm run compile:js",
     "dev:css": "sass --load-path=node_modules --watch sass/etna.scss:templates/static/css/dist/etna.css",
     "dev:js": "webpack --config webpack.config.js --mode=development --watch",
-    "dev": "npm run dev:css & npm run dev:js",
+    "dev": "npm run dev:css & npm run dev:js &",
     "test": "jest --coverage",
     "lint": "prettier --check '{scripts,sass}/**/*.{scss,js}' && stylelint 'sass/**/*.scss' && eslint 'scripts/**/*.js'",
     "lint:fix": "prettier --write '{scripts,sass}/**/*.{scss,js}' && stylelint --fix 'sass/**/*.scss' && eslint --fix 'scripts/**/*.js'"
