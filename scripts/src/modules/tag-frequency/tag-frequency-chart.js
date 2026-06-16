@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, max-statements, no-undefined, func-style, id-length, no-magic-numbers, max-lines-per-function, func-names, no-shadow, no-use-before-define, max-lines, no-ternary, no-invalid-this, import-x/no-unresolved */
+/* eslint-disable no-magic-numbers, max-statements, no-undefined, func-style, id-length, no-magic-numbers, max-lines-per-function, func-names, no-shadow, no-use-before-define, max-lines, no-ternary, no-invalid-this */
 import * as d3 from "d3";
 
 import debounce from "../../modules/debounce";

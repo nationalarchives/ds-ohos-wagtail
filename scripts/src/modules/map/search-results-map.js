@@ -1,4 +1,4 @@
-/* eslint-disable id-length, max-lines-per-function, func-names, max-statements, no-ternary, no-inline-comments, no-magic-numbers, no-unused-expressions, import-x/no-unresolved */
+/* eslint-disable id-length, max-lines-per-function, func-names, max-statements, no-ternary, no-inline-comments, no-magic-numbers, no-unused-expressions */
 /**
  * LeafletJS
  * Docs - {@link https://leafletjs.com/}

@@ -1,4 +1,4 @@
-/* eslint-disable id-length, camelcase, max-statements, max-lines-per-function, id-length, init-declarations, no-new, new-cap, no-invalid-this, no-magic-numbers, func-names, import-x/no-unresolved */
+/* eslint-disable id-length, camelcase, max-statements, max-lines-per-function, id-length, init-declarations, no-new, new-cap, no-invalid-this, no-magic-numbers, func-names */
 import $ from "jquery";
 
 import add_unique_ids from "./modules/analytics/add_unique_ids";
