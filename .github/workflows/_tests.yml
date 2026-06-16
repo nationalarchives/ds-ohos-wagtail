@@ -12,7 +12,7 @@ on:
 
 jobs:
   check-formatting:
-    name: Lint Python
+    name: Lint and check formatting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
