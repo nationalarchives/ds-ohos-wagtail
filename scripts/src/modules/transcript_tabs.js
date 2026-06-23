@@ -1,3 +1,4 @@
+/* eslint-disable id-length, no-plusplus, no-new,  class-methods-use-this */
 import TabManager from "./tab_manager";
 
 class TranscriptTabs {
@@ -24,7 +25,7 @@ class TranscriptTabs {
         this.hide(this.node);
 
         // tabs
-        for (var i = 0; i < this.tabList.length; i++) {
+        for (let i = 0; i < this.tabList.length; i++) {
             new TabManager(this.tabList[i]);
             this.show(this.tabList[i]);
         }

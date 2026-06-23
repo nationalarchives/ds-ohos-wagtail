@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function,  max-statements, camelcase, no-inline-comments, no-unused-expressions, consistent-return, no-shadow, no-magic-numbers, id-length */
 export const processAggregationData = (chartContainer) => {
     if (!chartContainer) {
         return;
@@ -36,13 +37,11 @@ export const processAggregationData = (chartContainer) => {
      * Helper function to add type to entry
      */ 1;
     const mapDataByType = (data, type) => {
-        const mappedData = data?.map((entry) => {
-            return {
-                term: entry.value,
-                count: entry.doc_count,
-                type,
-            };
-        });
+        const mappedData = data?.map((entry) => ({
+            term: entry.value,
+            count: entry.doc_count,
+            type,
+        }));
 
         return mappedData ?? [];
     };

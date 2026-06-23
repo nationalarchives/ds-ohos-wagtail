@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-magic-numbers */
 const manage_details_element = () => {
     const details_element = document.getElementById("js-hierarchy-global"),
         summary_element = document.querySelector(

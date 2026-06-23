@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, id-length */
 import push_to_data_layer from "../push_to_data_layer";
 
 const longFiltersTracking = () => {
@@ -18,7 +19,7 @@ const longFiltersTracking = () => {
 
             // listen for checkboxes and store in array
             longFilterItems.forEach((filter) => {
-                filter.addEventListener("change", function () {
+                filter.addEventListener("change", () => {
                     checkedLongFilters.push(filter);
                 });
             });
@@ -27,10 +28,10 @@ const longFiltersTracking = () => {
                 e.preventDefault();
 
                 checkedLongFilters.forEach((filter) => {
-                    let filterName = filter.name;
-                    let filterValue = filter.value;
+                    const filterName = filter.name;
+                    const filterValue = filter.value;
 
-                    let filterData = {
+                    const filterData = {
                         event: "search-long-filter",
                         "search-filter-name": filterName || "",
                         "search-filter-value": filterValue || "",

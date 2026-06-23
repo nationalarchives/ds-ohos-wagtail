@@ -3,8 +3,8 @@
 
     @media (min-width: #{$screen__lg + 1px}) {
         .template-focused-article & {
-            padding-left: 10%;
             padding-right: 10%;
+            padding-left: 10%;
         }
     }
 
@@ -18,8 +18,9 @@
     }
 
     &--bordered {
+        padding: 2rem 0;
+
         border-top: 0.3125rem solid $color__grey-500;
         border-bottom: 0.3125rem solid $color__grey-500;
-        padding: 2rem 0;
     }
 }

@@ -1,8 +1,9 @@
+/* eslint-disable max-lines-per-function, func-names, max-statements, max-statements, id-length, eqeqeq */
 export default function () {
-    let $toggleLink = document.querySelector(
+    const $toggleLink = document.querySelector(
         'div[data-id="hierarchy-toggle-link"]',
     );
-    let $detailedView = document.querySelector(
+    const $detailedView = document.querySelector(
         'nav[data-id="hierarchy-detailed-view"]',
     );
 
@@ -10,7 +11,7 @@ export default function () {
         return;
     }
 
-    let $showHideButton = document.createElement("button");
+    const $showHideButton = document.createElement("button");
     $showHideButton.innerText = "Show detailed view";
     $showHideButton.classList.add("hierarchy-short-panel__toggle-button");
     $showHideButton.setAttribute("aria-expanded", false);
@@ -24,12 +25,12 @@ export default function () {
     $detailedView.id = "hierarchyTogglee";
     $detailedView.hidden = true;
 
-    $showHideButton.addEventListener("click", function (e) {
+    $showHideButton.addEventListener("click", (e) => {
         e.preventDefault();
-        let ariaExpanded =
+        const ariaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $showHideButton.setAttribute("aria-expanded", !ariaExpanded);
-        let newAriaExpanded =
+        const newAriaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $detailedView.hidden = !$detailedView.hidden;
 

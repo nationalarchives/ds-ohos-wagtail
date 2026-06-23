@@ -1,3 +1,4 @@
+// stylelint-disable scss/comment-no-empty
 // Responsive images (ensure images don't scale beyond their parents)
 //
 // This is purposefully opt-in via an explicit class rather than being the default for all `<img>`s.
@@ -12,7 +13,9 @@
 // Image thumbnails
 .img-thumbnail {
     padding: $thumbnail-padding;
+
     background-color: $thumbnail-bg;
+
     border: $thumbnail-border-width solid $thumbnail-border-color;
     @include border-radius($thumbnail-border-radius);
     @include box-shadow($thumbnail-box-shadow);
@@ -32,10 +35,11 @@
 
 .figure-img {
     margin-bottom: ($spacer * 0.5);
+
     line-height: 1;
 }
 
 .figure-caption {
-    font-size: $figure-caption-font-size;
     color: $figure-caption-color;
+    font-size: $figure-caption-font-size;
 }

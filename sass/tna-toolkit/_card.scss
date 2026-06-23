@@ -1,8 +1,11 @@
 .tna-card {
     &__link {
-        position: relative;
-        display: block;
         width: 100%;
+
+        display: block;
+
+        position: relative;
+
         text-decoration: none;
 
         h2,
@@ -21,7 +24,8 @@
     }
 
     &__image {
-        overflow: hidden;
         max-width: 100%;
+
+        overflow: hidden;
     }
 }

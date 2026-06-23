@@ -1,17 +1,23 @@
+// stylelint-disable property-no-deprecated, scss/comment-no-empty
 // Only display content to screen readers
 //
 // See: https://a11yproject.com/posts/how-to-hide-content/
 // See: https://hugogiraudel.com/2016/10/13/css-hide-and-seek/
 
 @mixin sr-only {
-    position: absolute;
     width: 1px;
     height: 1px;
     padding: 0;
+
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+
+    position: absolute;
+
     white-space: nowrap;
+
     border: 0;
+
+    clip: rect(0, 0, 0, 0);
 }
 
 // Use in conjunction with .sr-only to only display content when it's focused.
@@ -23,11 +29,15 @@
 @mixin sr-only-focusable {
     &:active,
     &:focus {
-        position: static;
         width: auto;
         height: auto;
+
         overflow: visible;
-        clip: auto;
+
+        position: static;
+
         white-space: normal;
+
+        clip: auto;
     }
 }

@@ -1,27 +1,28 @@
-import Data from "./modules/cookie_consent/data";
+/* eslint-disable func-names, func-names, max-statements, max-lines-per-function, no-negated-condition, no-magic-numbers, id-length, no-shadow, func-name-matching, max-lines */
 import dsCookieConsentBannerAPI from "./modules/cookie_consent/api/dsCookieConsentBannerAPI";
+import Data from "./modules/cookie_consent/data";
 
 const getBannerElement = document.querySelector(Data.bannerWrapper.id);
 const getCookieForm = document.querySelector(Data.formWrapper.id);
 const getCookieObject = dsCookieConsentBannerAPI.getCookieValue(
     Data.cookies.cookieTwo,
 );
-let measureRadioInput = document.querySelector(Data.form.analytics.measure);
-let doNotMeasureRadioInput = document.querySelector(
+const measureRadioInput = document.querySelector(Data.form.analytics.measure);
+const doNotMeasureRadioInput = document.querySelector(
     Data.form.analytics.doNotMeasure,
 );
-let settingsRadioInput = document.querySelector(
+const settingsRadioInput = document.querySelector(
     Data.form.settings.rememberSettings,
 );
-let doNotRememberSettingsRadioInput = document.querySelector(
+const doNotRememberSettingsRadioInput = document.querySelector(
     Data.form.settings.doNotRememberSettings,
 );
 
 // Polyfill the remove() method IE9 and higher
 // from:https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
 (function (arr) {
-    arr.forEach(function (item) {
-        if (Object.prototype.hasOwnProperty.call(item, "remove")) {
+    arr.forEach((item) => {
+        if (Object.hasOwn(item, "remove")) {
             return;
         }
         Object.defineProperty(item, "remove", {
@@ -87,10 +88,7 @@ let doNotRememberSettingsRadioInput = document.querySelector(
             });
         } else {
             if (
-                Object.prototype.hasOwnProperty.call(
-                    getCookieObject,
-                    "usage",
-                ) &&
+                Object.hasOwn(getCookieObject, "usage") &&
                 getCookieObject.usage === false
             ) {
                 Data.cookies.gaCookies.forEach((cookie) => {
@@ -99,10 +97,7 @@ let doNotRememberSettingsRadioInput = document.querySelector(
             }
 
             if (
-                Object.prototype.hasOwnProperty.call(
-                    getCookieObject,
-                    "settings",
-                ) &&
+                Object.hasOwn(getCookieObject, "settings") &&
                 getCookieObject.settings === false
             ) {
                 Data.cookies.settings.forEach((cookie) => {
@@ -116,10 +111,7 @@ let doNotRememberSettingsRadioInput = document.querySelector(
                 // Update the state on the form radio elements
                 // based on the cookie_policy value
                 if (
-                    Object.prototype.hasOwnProperty.call(
-                        getCookieObject,
-                        "usage",
-                    ) &&
+                    Object.hasOwn(getCookieObject, "usage") &&
                     getCookieObject.usage === true &&
                     !measureRadioInput.checked
                 ) {
@@ -130,10 +122,7 @@ let doNotRememberSettingsRadioInput = document.querySelector(
 
                 // Remove the functional cookies if the user hasn't consent
                 if (
-                    Object.prototype.hasOwnProperty.call(
-                        getCookieObject,
-                        "settings",
-                    ) &&
+                    Object.hasOwn(getCookieObject, "settings") &&
                     getCookieObject.settings === true &&
                     !settingsRadioInput.checked
                 ) {

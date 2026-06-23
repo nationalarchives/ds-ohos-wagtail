@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, prefer-destructuring, no-magic-numbers */
 export default function extract_usage_policy(cookies) {
     if (cookies) {
         const cookies_array = decodeURIComponent(cookies)
@@ -10,7 +11,7 @@ export default function extract_usage_policy(cookies) {
             cookies_policy.slice(cookies_policy.indexOf("=") + 1),
         );
 
-        return cookies_policy_object["usage"];
+        return cookies_policy_object.usage;
     }
 
     return false;

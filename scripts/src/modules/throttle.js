@@ -1,3 +1,4 @@
+/* eslint-disable func-names, camelcase, init-declarations, consistent-return, no-invalid-this, no-implicit-coercion */
 /**
  * Invoke a given callback immediately and no more frequently than
  * every `wait` ms until this function stops being called
@@ -10,10 +11,10 @@
  * @param {Object} this_argument
  */
 export default function (call_back, wait, this_argument) {
-    var last_call_timestamp, timer;
+    let last_call_timestamp, timer;
 
     return function (...args) {
-        var context = this_argument || this,
+        const context = this_argument || this,
             now = +new Date();
 
         if (!last_call_timestamp || now >= last_call_timestamp + wait) {

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export default function create_dismiss_button(beta_banner) {
     const body = document.querySelector("body");
     const beta_banner_options = document.querySelector(".beta-banner__options");

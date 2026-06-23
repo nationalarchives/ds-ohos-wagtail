@@ -1,19 +1,23 @@
-// stylelint-disable selector-no-qualifying-type
+// stylelint-disable selector-no-qualifying-type, scss/comment-no-empty
 
 //
 // Textual form controls
 //
 
 .form-control {
-    display: block;
     width: 100%;
     height: $input-height;
     padding: $input-padding-y $input-padding-x;
+
+    display: block;
+
+    color: $input-color;
     font-size: $font-size-base;
     line-height: $input-line-height;
-    color: $input-color;
+
     background-color: $input-bg;
     background-clip: padding-box;
+
     border: $input-border-width solid $input-border-color;
 
     // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
@@ -31,11 +35,12 @@
     // Unstyle the caret on `<select>`s in IE10+.
     &::-ms-expand {
         background-color: transparent;
+
         border: 0;
     }
 
     // Customize the `:focus` state to imitate native WebKit styles.
-    @include form-control-focus();
+    @include form-control-focus;
 
     // Placeholder
     &::placeholder {
@@ -65,6 +70,7 @@ select.form-control {
         // match the appearance of the native widget.
         // See https://github.com/twbs/bootstrap/issues/19398.
         color: $input-color;
+
         background-color: $input-bg;
     }
 }
@@ -72,8 +78,9 @@ select.form-control {
 // Make file inputs better match text inputs by forcing them to new lines.
 .form-control-file,
 .form-control-range {
-    display: block;
     width: 100%;
+
+    display: block;
 }
 
 //
@@ -83,9 +90,10 @@ select.form-control {
 // For use with horizontal and inline forms, when you need the label (or legend)
 // text to align with the form controls.
 .col-form-label {
+    margin-bottom: 0; // Override the `<label>/<legend>` default
     padding-top: calc(#{$input-padding-y} + #{$input-border-width});
     padding-bottom: calc(#{$input-padding-y} + #{$input-border-width});
-    margin-bottom: 0; // Override the `<label>/<legend>` default
+
     font-size: inherit; // Override the `<legend>` default
     line-height: $input-line-height;
 }
@@ -93,6 +101,7 @@ select.form-control {
 .col-form-label-lg {
     padding-top: calc(#{$input-padding-y-lg} + #{$input-border-width});
     padding-bottom: calc(#{$input-padding-y-lg} + #{$input-border-width});
+
     font-size: $font-size-lg;
     line-height: $input-line-height-lg;
 }
@@ -100,6 +109,7 @@ select.form-control {
 .col-form-label-sm {
     padding-top: calc(#{$input-padding-y-sm} + #{$input-border-width});
     padding-bottom: calc(#{$input-padding-y-sm} + #{$input-border-width});
+
     font-size: $font-size-sm;
     line-height: $input-line-height-sm;
 }
@@ -110,14 +120,18 @@ select.form-control {
 // text (without any border, background color, focus indicator)
 
 .form-control-plaintext {
-    display: block;
     width: 100%;
+    margin-bottom: 0; // match inputs if this class comes on inputs with default margins
     padding-top: $input-padding-y;
     padding-bottom: $input-padding-y;
-    margin-bottom: 0; // match inputs if this class comes on inputs with default margins
-    line-height: $input-line-height;
+
+    display: block;
+
     color: $input-plaintext-color;
+    line-height: $input-line-height;
+
     background-color: transparent;
+
     border: solid transparent;
     border-width: $input-border-width 0;
 
@@ -138,6 +152,7 @@ select.form-control {
 .form-control-sm {
     height: $input-height-sm;
     padding: $input-padding-y-sm $input-padding-x-sm;
+
     font-size: $font-size-sm;
     line-height: $input-line-height-sm;
     @include border-radius($input-border-radius-sm);
@@ -146,6 +161,7 @@ select.form-control {
 .form-control-lg {
     height: $input-height-lg;
     padding: $input-padding-y-lg $input-padding-x-lg;
+
     font-size: $font-size-lg;
     line-height: $input-line-height-lg;
     @include border-radius($input-border-radius-lg);
@@ -174,8 +190,9 @@ textarea.form-control {
 }
 
 .form-text {
-    display: block;
     margin-top: $form-text-margin-top;
+
+    display: block;
 }
 
 // Form grid
@@ -183,10 +200,11 @@ textarea.form-control {
 // Special replacement for our grid system's `.row` for tighter form layouts.
 
 .form-row {
-    display: flex;
-    flex-wrap: wrap;
     margin-right: -5px;
     margin-left: -5px;
+
+    display: flex;
+    flex-wrap: wrap;
 
     > .col,
     > [class*="col-"] {
@@ -200,15 +218,18 @@ textarea.form-control {
 // Indent the labels to position radios/checkboxes as hanging controls.
 
 .form-check {
-    position: relative;
-    display: block;
     padding-left: $form-check-input-gutter;
+
+    display: block;
+
+    position: relative;
 }
 
 .form-check-input {
-    position: absolute;
     margin-top: $form-check-input-margin-y;
     margin-left: -$form-check-input-gutter;
+
+    position: absolute;
 
     &:disabled ~ .form-check-label {
         color: $text-muted;
@@ -220,17 +241,19 @@ textarea.form-control {
 }
 
 .form-check-inline {
+    margin-right: $form-check-inline-margin-x;
+    padding-left: 0; // Override base .form-check
+
     display: inline-flex;
     align-items: center;
-    padding-left: 0; // Override base .form-check
-    margin-right: $form-check-inline-margin-x;
 
     // Undo .form-check-input defaults and add some `margin-right`.
     .form-check-input {
-        position: static;
         margin-top: 0;
         margin-right: $form-check-inline-input-margin-x;
         margin-left: 0;
+
+        position: static;
     }
 }
 
@@ -255,8 +278,9 @@ textarea.form-control {
 
 .form-inline {
     display: flex;
-    flex-flow: row wrap;
     align-items: center; // Prevent shorter elements from growing to same height as others (e.g., small buttons growing to normal sized button height)
+
+    flex-flow: row wrap;
 
     // Because we use flex, the initial sizing of checkboxes is collapsed and
     // doesn't occupy the full-width (which is what we want for xs grid tier),
@@ -268,25 +292,30 @@ textarea.form-control {
     // Kick in the inline
     @include media-breakpoint-up(sm) {
         label {
+            margin-bottom: 0;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 0;
         }
 
         // Inline-block all the things for "inline"
         .form-group {
+            margin-bottom: 0;
+
             display: flex;
             flex: 0 0 auto;
-            flex-flow: row wrap;
             align-items: center;
-            margin-bottom: 0;
+
+            flex-flow: row wrap;
         }
 
         // Allow folks to *not* use `.form-group`
         .form-control {
-            display: inline-block;
             width: auto; // Prevent labels from stacking above inputs in `.form-group`
+
+            display: inline-block;
+
             vertical-align: middle;
         }
 
@@ -303,23 +332,27 @@ textarea.form-control {
         // Remove default margin on radios/checkboxes that were used for stacking, and
         // then undo the floating of radios and checkboxes to match.
         .form-check {
+            width: auto;
+            padding-left: 0;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            width: auto;
-            padding-left: 0;
         }
+
         .form-check-input {
-            position: relative;
             margin-top: 0;
             margin-right: $form-check-input-margin-x;
             margin-left: 0;
+
+            position: relative;
         }
 
         .custom-control {
             align-items: center;
             justify-content: center;
         }
+
         .custom-control-label {
             margin-bottom: 0;
         }

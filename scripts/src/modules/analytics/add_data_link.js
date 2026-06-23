@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const add_data_link = (selector) => {
     const items = document.querySelectorAll(selector);
 

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, id-length, class-methods-use-this */
 import push_to_data_layer from "./analytics/push_to_data_layer";
 class RecordMatters {
     constructor(node) {

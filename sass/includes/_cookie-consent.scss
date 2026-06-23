@@ -1,3 +1,4 @@
+// stylelint-disable selector-id-pattern
 #ds-cookie-consent-banner {
     .container {
         .row {
@@ -18,8 +19,9 @@
         }
 
         #btn_preferences {
-            color: $color__white;
             padding: 0.5rem;
+
+            color: $color__white;
 
             &:hover {
                 transition: none;

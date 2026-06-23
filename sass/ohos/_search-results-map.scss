@@ -6,15 +6,19 @@
 
 .ohos-search-results-map {
     height: 600px;
+
     border: solid 1px $color__grey-500;
     border-bottom: 0;
 
     &__info {
-        background-color: #faf0ca;
-        border: 1px solid $color__off-black;
         padding: 0.5rem 1rem;
+
         display: flex;
         align-items: center;
+
+        background-color: #faf0ca;
+
+        border: 1px solid $color__off-black;
 
         &-icon {
             @include colour.colour-font("font-dark");
@@ -34,20 +38,24 @@
 
 .leaflet-marker-icon {
     &.marker-cluster {
-        background-color: #ec5855;
-        border-radius: 50%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-weight: 700;
-        font-size: 18px;
+        justify-content: center;
+
         font-family: "Open Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+
+        background-color: #ec5855;
+
+        border-radius: 50%;
     }
 }
 
 .ohos-popup {
-    filter: drop-shadow(4px 4px rgb(0 0 0 / 25%));
     font-size: 1rem;
+
+    filter: drop-shadow(4px 4px rgb(0 0 0 / 25%));
 
     h3,
     p {
@@ -58,19 +66,26 @@
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip {
-        box-shadow: none;
-        border-radius: 0;
-        background-color: #f4f4f4;
         max-height: 500px;
+
         overflow: auto;
+
+        background-color: #f4f4f4;
+
+        border-radius: 0;
+
+        box-shadow: none;
     }
 
     .leaflet-popup-content {
-        display: flex;
-        gap: 20px;
-        border-radius: 0;
         margin: 0;
         padding: 20px;
+
+        display: flex;
+        gap: 20px;
+
+        border-radius: 0;
+
         box-shadow: none;
     }
 
@@ -80,11 +95,12 @@
 
     &__content {
         align-self: center;
+
         word-break: break-all;
     }
 
     &__icon {
-        font-size: 2rem;
         color: $color__grey-500;
+        font-size: 2rem;
     }
 }

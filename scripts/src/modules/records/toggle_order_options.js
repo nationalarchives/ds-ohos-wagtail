@@ -1,8 +1,9 @@
+/* eslint-disable func-names, max-statements, id-length, eqeqeq */
 export default function () {
-    let $toggleLinkCTA = document.querySelector(
+    const $toggleLinkCTA = document.querySelector(
         'div[data-id="cta-toggle-link"]',
     );
-    let $detailedViewCTA = document.querySelector(
+    const $detailedViewCTA = document.querySelector(
         'div[data-id="cta-detailed-view"]',
     );
 
@@ -10,7 +11,7 @@ export default function () {
         return;
     }
 
-    let $showHideButton = document.createElement("button");
+    const $showHideButton = document.createElement("button");
     $showHideButton.innerText = "Order/download this record";
     $showHideButton.classList.add("cta-primary-panel__link");
     $showHideButton.classList.add("cta-primary-panel__link--primary");
@@ -24,12 +25,12 @@ export default function () {
     $detailedViewCTA.id = "hierarchyTogglee";
     $detailedViewCTA.hidden = true;
 
-    $showHideButton.addEventListener("click", function (e) {
+    $showHideButton.addEventListener("click", (e) => {
         e.preventDefault();
-        let ariaExpanded =
+        const ariaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $showHideButton.setAttribute("aria-expanded", !ariaExpanded);
-        let newAriaExpanded =
+        const newAriaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $detailedViewCTA.hidden = !$detailedViewCTA.hidden;
 

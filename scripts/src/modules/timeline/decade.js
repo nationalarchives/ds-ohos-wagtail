@@ -1,20 +1,21 @@
+/* eslint-disable camelcase, no-magic-numbers, max-lines-per-function, max-statements, radix, no-magic-numbers, no-console, no-new, id-length, no-inline-comments, no-ternary, promise/always-return  */
 const searchParams = new URLSearchParams(window.location.search);
 
-var url_string =
+let url_string =
     "https://tna.rosetta.k-int.com/rosetta/data/search?aggs=decade,year,century&filter=group%3Acommunity";
 
-var query = searchParams.get("q");
+const query = searchParams.get("q");
 
 if (query) {
-    url_string += "&q=" + query;
+    url_string += `&q=${query}`;
 }
 
-var collection = searchParams.get("collection");
+const collection = searchParams.get("collection");
 
 if (collection) {
-    url_string +=
-        "&filter=collectionOhos%3A" +
-        collection.substring(collection.indexOf(":") + 1).replace(/ /g, "+");
+    url_string += `&filter=collectionOhos%3A${collection
+        .substring(collection.indexOf(":") + 1)
+        .replace(/ /g, "+")}`;
 }
 
 fetch(url_string) // Replace with your server-side API endpoint

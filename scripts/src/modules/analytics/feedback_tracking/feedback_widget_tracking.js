@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-use-before-define, max-lines-per-function, default-case, id-length, no-negated-condition */
 import push_to_data_layer from "../push_to_data_layer";
 
 const pushFeedbackForm = () => {
@@ -22,9 +23,9 @@ const pushFeedbackData = () => {
         "[data-feedback-response-button]",
     );
 
-    let feedbackFormCommentTextarea =
+    const feedbackFormCommentTextarea =
         feedbackFormComment.querySelector("#id_comment");
-    let heading = feedbackFormHeading.innerText;
+    const heading = feedbackFormHeading.innerText;
 
     feedbackResponseButtons.forEach((response) => {
         response.addEventListener("click", () => {
@@ -55,10 +56,10 @@ const pushFeedbackData = () => {
     feedbackFormComment.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        let value = feedbackFormComment.getAttribute("data-sentiment");
+        const value = feedbackFormComment.getAttribute("data-sentiment");
 
         if (feedbackFormCommentTextarea.value !== "") {
-            let formData = {
+            const formData = {
                 event: "feedback-form",
                 "data-text-field": "Comment",
                 "data-link-type": "Form",
@@ -69,7 +70,7 @@ const pushFeedbackData = () => {
             // console.log(formData);
             push_to_data_layer(formData);
         } else {
-            let formData = {
+            const formData = {
                 event: "feedback-form",
                 "data-text-field": "No comment",
                 "data-link-type": "Form",

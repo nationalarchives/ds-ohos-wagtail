@@ -1,14 +1,15 @@
+/* eslint-disable func-style, id-length, no-plusplus, no-magic-numbers, func-style, max-statements, no-plusplus, no-ternary, no-param-reassign, guard-for-in, max-params */
 import Data from "../data";
 
 // DS COOKIE CONSENT BANNER API
 const dsCookieConsentBannerAPI = (() => {
     // Delete cookie
     function deleteCookie(...cname) {
-        let cookies = document.cookie.split(";");
+        const cookies = document.cookie.split(";");
         for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i];
-            let eqPos = cookie.indexOf("=");
-            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
 
             cname.forEach((c) => {
                 if (name.trim() === c) {
@@ -40,14 +41,13 @@ const dsCookieConsentBannerAPI = (() => {
             options.expires = options.expires.toUTCString();
         }
 
-        let updatedCookie =
-            encodeURIComponent(name) + "=" + encodeURIComponent(value);
+        let updatedCookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
 
-        for (let optionKey in options) {
-            updatedCookie += "; " + optionKey;
-            let optionValue = options[optionKey];
+        for (const optionKey in options) {
+            updatedCookie += `; ${optionKey}`;
+            const optionValue = options[optionKey];
             if (optionValue !== true) {
-                updatedCookie += "=" + optionValue;
+                updatedCookie += `=${optionValue}`;
             }
         }
 
@@ -56,7 +56,7 @@ const dsCookieConsentBannerAPI = (() => {
 
     // Check if cookie exists
     function checkCookie(name) {
-        return -1 !== document.cookie.indexOf(name);
+        return document.cookie.indexOf(name) !== -1;
     }
 
     // Create link element inside the banner
@@ -79,14 +79,14 @@ const dsCookieConsentBannerAPI = (() => {
     // If cookies_policy get its value, decode it, parse it and return an object
     // For any other cookies return its value as a string
     function getCookieValue(cname) {
-        let cookies = document.cookie.split(";");
+        const cookies = document.cookie.split(";");
         let cookieValue = "";
 
         for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i];
-            let equalSignPos = cookie.indexOf("=");
+            const cookie = cookies[i];
+            const equalSignPos = cookie.indexOf("=");
             cookieValue = cookie.slice(equalSignPos + 1);
-            let cookieName =
+            const cookieName =
                 equalSignPos > -1
                     ? cookie.substr(0, equalSignPos).trim()
                     : cookie;

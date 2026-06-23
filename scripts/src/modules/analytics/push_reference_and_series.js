@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-magic-numbers, id-length, no-console, sort-vars */
 import push_to_data_layer from "./push_to_data_layer";
 
 const push_reference_and_series = () => {

@@ -1,3 +1,4 @@
+// stylelint-disable scss/no-global-function-names, scss/comment-no-empty
 // Form control focus state
 //
 // Generate a customized focus state and for any input with the specified color,
@@ -13,7 +14,9 @@
 @mixin form-control-focus() {
     &:focus {
         color: $input-focus-color;
+
         background-color: $input-focus-bg;
+
         border-color: $input-focus-border-color;
         outline: 0;
         // Avoid using mixin so we can pass custom focus shadow properly
@@ -27,24 +30,30 @@
 
 @mixin form-validation-state($state, $color) {
     .#{$state}-feedback {
-        display: none;
         width: 100%;
         margin-top: $form-feedback-margin-top;
-        font-size: $form-feedback-font-size;
+
+        display: none;
+
         color: $color;
+        font-size: $form-feedback-font-size;
     }
 
     .#{$state}-tooltip {
+        max-width: 100%; // Contain to parent when possible
+        margin-top: 0.1rem;
+        padding: $tooltip-padding-y $tooltip-padding-x;
+
+        display: none;
+
         position: absolute;
         top: 100%;
         z-index: 5;
-        display: none;
-        max-width: 100%; // Contain to parent when possible
-        padding: $tooltip-padding-y $tooltip-padding-x;
-        margin-top: 0.1rem;
+
+        color: color-yiq($color);
         font-size: $tooltip-font-size;
         line-height: $line-height-base;
-        color: color-yiq($color);
+
         background-color: rgba($color, $tooltip-opacity);
         @include border-radius($tooltip-border-radius);
     }
@@ -57,6 +66,7 @@
 
             &:focus {
                 border-color: $color;
+
                 box-shadow: 0 0 0 $input-focus-width rgba($color, 0.25);
             }
 

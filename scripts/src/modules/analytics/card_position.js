@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const add_analytics_data_card_position = (selector) => {
     const items = document.querySelectorAll(selector);
 

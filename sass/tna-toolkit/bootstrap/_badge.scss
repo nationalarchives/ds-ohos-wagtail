@@ -1,17 +1,20 @@
+// stylelint-disable scss/comment-no-empty
 // Base class
 //
 // Requires one of the contextual, color modifier classes for `color` and
 // `background-color`.
 
 .badge {
-    display: inline-block;
     padding: $badge-padding-y $badge-padding-x;
+
+    display: inline-block;
+
     font-size: $badge-font-size;
     font-weight: $badge-font-weight;
     line-height: 1;
     text-align: center;
-    white-space: nowrap;
     vertical-align: baseline;
+    white-space: nowrap;
     @include border-radius($badge-border-radius);
 
     // Empty badges collapse automatically

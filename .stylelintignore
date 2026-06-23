@@ -1,0 +1,3 @@
+sass/tna-toolkit/**/*.scss
+templates/static/cookie-consent/**/*
+templates/static/css/dist/**/*

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, max-lines-per-function, max-statements, id-length */
 import push_to_data_layer from "../push_to_data_layer";
 
 export default function imageGalleryTracking() {
@@ -8,10 +9,10 @@ export default function imageGalleryTracking() {
     const imageGalleryClose = imageGallery.querySelector(
         "[data-image-gallery-close]",
     );
-    let imageGalleryTranscriptionTab = imageGallery.querySelectorAll(
+    const imageGalleryTranscriptionTab = imageGallery.querySelectorAll(
         "[data-transcription-tab]",
     );
-    let imageGalleryTranslationTab = imageGallery.querySelectorAll(
+    const imageGalleryTranslationTab = imageGallery.querySelectorAll(
         "[data-translation-tab]",
     );
 

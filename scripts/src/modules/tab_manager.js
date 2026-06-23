@@ -1,3 +1,4 @@
+/* eslint-disable max-statements, id-length, no-magic-numbers, no-param-reassign, init-declarations, prefer-const, sort-vars */
 class TabManager {
     constructor(groupNode) {
         this.tablistNode = groupNode;
@@ -10,9 +11,9 @@ class TabManager {
         this.tabs = Array.from(this.tablistNode.querySelectorAll("[role=tab]"));
         this.tabpanels = [];
 
-        for (var i = 0; i < this.tabs.length; i += 1) {
-            var tab = this.tabs[i];
-            var tabpanel = document.getElementById(
+        for (let i = 0; i < this.tabs.length; i += 1) {
+            const tab = this.tabs[i];
+            const tabpanel = document.getElementById(
                 tab.getAttribute("aria-controls"),
             );
 
@@ -36,8 +37,8 @@ class TabManager {
         if (typeof setFocus !== "boolean") {
             setFocus = true;
         }
-        for (var i = 0; i < this.tabs.length; i += 1) {
-            var tab = this.tabs[i];
+        for (let i = 0; i < this.tabs.length; i += 1) {
+            const tab = this.tabs[i];
             if (currentTab === tab) {
                 tab.setAttribute("aria-selected", "true");
                 tab.removeAttribute("tabindex");
@@ -54,7 +55,7 @@ class TabManager {
     }
 
     setSelectedToPreviousTab(currentTab) {
-        var index;
+        let index;
 
         if (currentTab === this.firstTab) {
             this.setSelectedTab(this.lastTab);
@@ -65,7 +66,7 @@ class TabManager {
     }
 
     setSelectedToNextTab(currentTab) {
-        var index;
+        let index;
 
         if (currentTab === this.lastTab) {
             this.setSelectedTab(this.firstTab);
@@ -78,7 +79,7 @@ class TabManager {
     /* EVENT HANDLERS */
 
     onKeydown(event) {
-        var tgt = event.currentTarget,
+        let tgt = event.currentTarget,
             flag = false;
 
         switch (event.key) {

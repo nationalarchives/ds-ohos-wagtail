@@ -1,3 +1,4 @@
+// stylelint-disable scss/no-global-function-names, scss/comment-no-empty, scss/at-mixin-pattern, scss/at-if-no-null
 // Bootstrap functions
 //
 // Utility mixins and functions for evaluating source code across our variables, maps, and mixins.
@@ -61,7 +62,7 @@
 
     $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
 
-    @if ($yiq >= $yiq-contrasted-threshold) {
+    @if $yiq >= $yiq-contrasted-threshold {
         @return $yiq-text-dark;
     } @else {
         @return $yiq-text-light;

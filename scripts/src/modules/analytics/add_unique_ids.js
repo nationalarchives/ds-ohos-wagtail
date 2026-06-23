@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-magic-numbers, id-length, no-unused-vars, no-console */
 const add_unique_ids = () => {
     const items = [
         { selector: ".blog-embed", id_prefix: "analytics-blog-embed" },

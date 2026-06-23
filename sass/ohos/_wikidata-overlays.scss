@@ -2,53 +2,65 @@
 
 .wikidata {
     $spacer-size: 1em;
-    display: none;
-    position: absolute;
-    top: calc(100% - 1px); // Accounts for border on hover target area
     width: 300px;
     max-width: calc(100vw - 80px);
+    margin-top: $spacer-size;
+
+    display: none;
+
+    position: absolute;
+    top: calc(100% - 1px); // Accounts for border on hover target area
     left: 0;
     z-index: 10;
+
     background-color: $color__grey-light;
-    margin-top: $spacer-size;
+
     box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 25%);
 
     @media only screen and (min-width: #{$screen__md + 1px}) {
-        left: auto;
         right: 0;
+        left: auto;
     }
 
     &::before {
         content: "";
+
+        width: 100%;
         height: $spacer-size;
+
         display: block;
+
         position: absolute;
         bottom: 100%;
-        width: 100%;
     }
 
     &::after {
         content: "";
-        height: 0;
+
         width: 0;
-        left: 20px;
+        height: 0;
+
         position: absolute;
         bottom: 100%;
+        left: 20px;
+
         border: 12px solid transparent;
         border-top: 0;
         border-bottom-color: var(--tag-theme-color, $color__grey-500);
 
         @media only screen and (min-width: #{$screen__md + 1px}) {
-            left: auto;
             right: 20px;
+            left: auto;
         }
     }
 
     &__header {
+        padding: 1em;
+
         display: flex;
         align-items: flex-start;
         gap: 1em;
-        padding: 1em;
+
         background-color: var(--tag-theme-color, $color__grey-500);
     }
 
@@ -72,10 +84,11 @@
 
     &__footer {
         @include typography.relative-font-size(12);
+        margin-top: 1em;
+
         display: flex;
         align-items: center;
         gap: 0.5em;
-        margin-top: 1em;
 
         img {
             margin: 0;

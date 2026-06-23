@@ -1,17 +1,18 @@
+/* eslint-disable max-lines-per-function,  func-names, max-statements, no-magic-numbers, no-inline-comments, id-length, no-plusplus, eqeqeq */
 import debounce from "../debounce.js";
 
 export default function () {
-    let $searchBuckets = document.querySelector(".search-buckets");
+    const $searchBuckets = document.querySelector(".search-buckets");
 
     if (!$searchBuckets) {
         return;
     }
 
-    let $searchBucketsToHide = document.querySelectorAll(
+    const $searchBucketsToHide = document.querySelectorAll(
         "ul[data-id=search-buckets-list] li:not([data-current=true])",
     );
 
-    let $showHideButton = document.createElement("button");
+    const $showHideButton = document.createElement("button");
     $showHideButton.innerText = "Show more result categories";
     $showHideButton.classList.add("search-buckets__toggle-button");
     $showHideButton.setAttribute("aria-expanded", false);
@@ -26,24 +27,24 @@ export default function () {
 
     let ariaControls = "";
     for (let i = 0; i < $searchBucketsToHide.length; i++) {
-        let $bucket = $searchBucketsToHide[i];
-        let id = `bucket-${i}`;
+        const $bucket = $searchBucketsToHide[i];
+        const id = `bucket-${i}`;
         $bucket.id = id; // Needed for aria-controls
         ariaControls = `${ariaControls}${id} `;
     }
 
     $showHideButton.setAttribute("aria-controls", ariaControls);
 
-    $showHideButton.addEventListener("click", function (e) {
+    $showHideButton.addEventListener("click", (e) => {
         e.preventDefault();
-        let ariaExpanded =
+        const ariaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
         $showHideButton.setAttribute("aria-expanded", !ariaExpanded);
-        let newAriaExpanded =
+        const newAriaExpanded =
             $showHideButton.getAttribute("aria-expanded") == "true";
 
         for (let i = 0; i < $searchBucketsToHide.length; i++) {
-            let $bucket = $searchBucketsToHide[i];
+            const $bucket = $searchBucketsToHide[i];
             $bucket.hidden = !$bucket.hidden;
         }
 
@@ -57,7 +58,7 @@ export default function () {
     if (window.innerWidth <= 768) {
         $showHideButton.hidden = false;
         for (let i = 0; i < $searchBucketsToHide.length; i++) {
-            let $bucket = $searchBucketsToHide[i];
+            const $bucket = $searchBucketsToHide[i];
             $bucket.hidden = true;
         }
     }
@@ -65,13 +66,13 @@ export default function () {
     window.addEventListener(
         "resize",
         debounce(() => {
-            let ariaExpanded = $showHideButton.getAttribute("aria-expanded");
+            const ariaExpanded = $showHideButton.getAttribute("aria-expanded");
             if (window.innerWidth <= 768) {
                 $showHideButton.hidden = false;
 
                 if (ariaExpanded === "false") {
                     for (let i = 0; i < $searchBucketsToHide.length; i++) {
-                        let $bucket = $searchBucketsToHide[i];
+                        const $bucket = $searchBucketsToHide[i];
                         $bucket.hidden = true;
                     }
                 }
@@ -81,7 +82,7 @@ export default function () {
                 $showHideButton.innerHTML = "Show more result categories";
 
                 for (let i = 0; i < $searchBucketsToHide.length; i++) {
-                    let $bucket = $searchBucketsToHide[i];
+                    const $bucket = $searchBucketsToHide[i];
                     $bucket.hidden = false;
                 }
             }

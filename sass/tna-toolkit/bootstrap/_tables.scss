@@ -1,3 +1,4 @@
+// stylelint-disable scss/no-global-function-names, scss/comment-no-empty
 //
 // Basic Bootstrap table
 //
@@ -5,17 +6,21 @@
 .table {
     width: 100%;
     margin-bottom: $spacer;
+
     background-color: $table-bg; // Reset for nesting within parents with `background-color`.
 
     th,
     td {
         padding: $table-cell-padding;
+
         vertical-align: top;
+
         border-top: $table-border-width solid $table-border-color;
     }
 
     thead th {
         vertical-align: bottom;
+
         border-bottom: (2 * $table-border-width) solid $table-border-color;
     }
 
@@ -110,7 +115,9 @@
     .thead-dark {
         th {
             color: $table-dark-color;
+
             background-color: $table-dark-bg;
+
             border-color: $table-dark-border-color;
         }
     }
@@ -118,7 +125,9 @@
     .thead-light {
         th {
             color: $table-head-color;
+
             background-color: $table-head-bg;
+
             border-color: $table-border-color;
         }
     }
@@ -126,6 +135,7 @@
 
 .table-dark {
     color: $table-dark-color;
+
     background-color: $table-dark-bg;
 
     th,
@@ -165,9 +175,11 @@
 
         &#{$infix} {
             @include media-breakpoint-down($breakpoint) {
-                display: block;
                 width: 100%;
+
+                display: block;
                 overflow-x: auto;
+
                 -webkit-overflow-scrolling: touch;
                 -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
 

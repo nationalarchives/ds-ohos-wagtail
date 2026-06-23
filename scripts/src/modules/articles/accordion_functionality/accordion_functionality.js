@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, max-params, func-names, no-undef, no-invalid-this, prefer-destructuring, no-undef, no-invalid-this, no-magic-numbers, no-undef */
 import scroll_to_active_heading from "./scroll_to_active_heading";
 import slide_toggle from "./slide_toggle";
 import toggle_aria_expanded from "./toggle_aria_expanded";
@@ -8,7 +9,7 @@ export default function accordion_functionality(
     sectionContents,
     headingPositions,
 ) {
-    const id = currentHeading.id;
+    const { id } = currentHeading;
 
     // Find the section that matches the heading that was clicked on.
     sectionContents.each(function (index) {

@@ -1,3 +1,4 @@
+/* eslint-disable func-names, no-secrets/no-secrets, no-ternary, no-magic-numbers, func-names, no-shadow  */
 const lengthIndicatorClassname = "inputlengthindicator";
 const lengthIndicatorExceededClassname = "inputlengthindicator--exceeded";
 const countHTMLBase = '<span class="w-sr-only">Character count:</span> ';
@@ -19,7 +20,7 @@ const countChars = function (text) {
 };
 
 const updateLengthIndicator = function (lengthIndicator, length, maxChars) {
-    lengthIndicator.innerHTML = countHTMLBase + `${length}/${maxChars}`;
+    lengthIndicator.innerHTML = `${countHTMLBase}${length}/${maxChars}`;
 
     if (length > maxChars) {
         lengthIndicator.classList.add(lengthIndicatorExceededClassname);
@@ -57,8 +58,8 @@ const initializeLengthIndicator = function (input) {
     };
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-    for (let input of document.querySelectorAll(
+document.addEventListener("DOMContentLoaded", () => {
+    for (const input of document.querySelectorAll(
         ".w-field__input input[maxlength], .w-field__input textarea[maxlength]",
     )) {
         initializeLengthIndicator(input);

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, new-cap, no-magic-numbers, prefer-destructuring, id-length, no-console */
 /* global image_source */
 
 import Openseadragon from "openseadragon";

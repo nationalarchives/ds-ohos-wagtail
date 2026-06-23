@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, id-length, no-console, camelcase */
 const scroll_to_bottom = (element, container) => {
     try {
         const elementRect = element.getBoundingClientRect();

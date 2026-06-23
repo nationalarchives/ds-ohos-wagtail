@@ -1,9 +1,10 @@
+/* eslint-disable camelcase, consistent-return */
 const push_to_data_layer = (obj) => {
     if (!window.dataLayer) {
         return;
     }
 
-    if (!!obj || typeof obj === "object") {
+    if (Boolean(obj) || typeof obj === "object") {
         window.dataLayer.push(obj);
     }
 

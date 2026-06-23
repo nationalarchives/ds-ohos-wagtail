@@ -1,5 +1,6 @@
-import FiltersSubmission from "./modules/filters-submission";
+/* eslint-disable no-new */
 import Accordion from "./modules/accordion";
+import FiltersSubmission from "./modules/filters-submission";
 
 document.addEventListener("DOMContentLoaded", () => {
     for (const filtersSubmission of document.querySelectorAll(

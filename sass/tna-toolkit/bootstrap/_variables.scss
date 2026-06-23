@@ -1,3 +1,4 @@
+// stylelint-disable scss/no-global-function-names, scss/comment-no-empty
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
@@ -504,7 +505,7 @@ $custom-control-label-disabled-color: $gray-600 !default;
 
 $custom-control-indicator-checked-color: $component-active-color !default;
 $custom-control-indicator-checked-bg: $component-active-bg !default;
-$custom-control-indicator-checked-disabled-bg: rgba(
+$custom-control-indicator-checked-disabled-bg: rgb(
     theme-color("primary"),
     0.5
 ) !default;
@@ -946,7 +947,7 @@ $breadcrumb-margin-bottom: 1rem !default;
 $breadcrumb-bg: $gray-200 !default;
 $breadcrumb-divider-color: $gray-600 !default;
 $breadcrumb-active-color: $gray-600 !default;
-$breadcrumb-divider: quote("/") !default;
+$breadcrumb-divider: "/" !default;
 
 $breadcrumb-border-radius: $border-radius !default;
 

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-use-before-define */
 import push_to_data_layer from "../push_to_data_layer";
 
 const pushActiveErrorsOnLoad = () => {
@@ -30,7 +31,7 @@ const pushActiveErrors = (errors) => {
         const name = error.getAttribute("data-filter");
 
         // setup the dataLayer variables for each filter
-        let errorData = {
+        const errorData = {
             event: "error-message",
             "search-filter-name": name || "",
             "search-errors": value || "",

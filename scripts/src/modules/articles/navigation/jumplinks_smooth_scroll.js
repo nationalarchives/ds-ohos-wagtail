@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-undef, no-magic-numbers */
 export default function jumplinks_smooth_scroll(currentJumplink) {
     if (!$("html, body").is(":animated")) {
         let target = $(currentJumplink).attr("href");

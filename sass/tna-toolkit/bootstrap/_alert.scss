@@ -1,11 +1,14 @@
+// stylelint-disable scss/comment-no-empty
 //
 // Base styles
 //
 
 .alert {
-    position: relative;
-    padding: $alert-padding-y $alert-padding-x;
     margin-bottom: $alert-margin-bottom;
+    padding: $alert-padding-y $alert-padding-x;
+
+    position: relative;
+
     border: $alert-border-width solid transparent;
     @include border-radius($alert-border-radius);
 }
@@ -30,10 +33,12 @@
 
     // Adjust close link position
     .close {
+        padding: $alert-padding-y $alert-padding-x;
+
         position: absolute;
         top: 0;
         right: 0;
-        padding: $alert-padding-y $alert-padding-x;
+
         color: inherit;
     }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, init-declarations, max-lines-per-function, id-length, no-magic-numbers, no-plusplus, no-shadow, no-console */
 import push_to_data_layer from "./push_to_data_layer";
 
 let stored_percentage_video;

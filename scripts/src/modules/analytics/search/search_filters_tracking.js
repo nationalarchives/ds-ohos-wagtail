@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-use-before-define */
 import push_to_data_layer from "./../push_to_data_layer";
 
 const pushActiveFilterDataOnLoad = () => {
@@ -39,7 +40,7 @@ const pushActiveFilterData = (filterList) => {
         }
 
         // setup the dataLayer variables for each filter
-        let filterData = {
+        const filterData = {
             event: "search-filters",
             search_bucket: searchBucket || "",
             search_filter_name: name || "",

@@ -1,0 +1,7 @@
+ignore:
+  sast:
+    WS-I013-JAVASCRIPT-00031:
+      etna/core/static/admin/js/inputLengthIndicators.js:
+        reason: RISK_ACCEPTED
+      scripts/src/modules/search/mobile-filter-expander-enhanced.js:
+        reason: RISK_ACCEPTED

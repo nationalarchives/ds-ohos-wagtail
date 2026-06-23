@@ -1,7 +1,7 @@
+/* eslint-disable camelcase, no-ternary */
 export default function set_mobile_tracking_attributes(section_headings) {
     Array.prototype.forEach.call(section_headings, (item, index) => {
-        const isExpanded =
-            item.getAttribute("aria-expanded") === "true" ? true : false;
+        const isExpanded = item.getAttribute("aria-expanded") === "true";
 
         item.setAttribute("data-component-name", "Mobile in page navigation");
         item.setAttribute(

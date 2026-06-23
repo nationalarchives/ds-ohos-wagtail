@@ -29,35 +29,42 @@
 .sr-only-focusable {
     &:active,
     &:focus {
-        position: static;
         width: auto;
         height: auto;
         margin: 0;
+
         overflow: visible;
+
+        position: static;
     }
 }
 
 .skip-to-content-link {
-    background-color: $color__white;
     padding: 0.2rem;
+
+    background-color: $color__white;
 }
 
 mark {
-    font-weight: bold;
-    background-color: inherit;
     color: inherit;
+    font-weight: bold;
+
+    background-color: inherit;
 }
 
 .global-tna-link {
     text-align: right;
 
     &__link {
+        padding: 0.5rem 3rem 0.5rem 1rem;
+
         display: inline-block;
+
         text-decoration: none;
+
         background: url("/static/images/icons/open-in-new-tab.svg") no-repeat;
         background-position-x: 97.5%;
         background-position-y: 40%;
-        padding: 0.5rem 3rem 0.5rem 1rem;
 
         &:hover {
             text-decoration: underline;
